@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Lorann/contract/src/main/java"/>
+	<classpathentry kind="src" path="Lorann/contract/src/test/java"/>
+	<classpathentry kind="src" path="Lorann/controller/src/main/java"/>
+	<classpathentry kind="src" path="Lorann/main/src/main/java"/>
+	<classpathentry kind="src" path="Lorann/model/src/main/java"/>
+	<classpathentry kind="src" path="Lorann/showboard/src/main/java"/>
+	<classpathentry kind="src" path="Lorann/view/src/main/java"/>
+	<classpathentry kind="src" path="showboard-master/src"/>
+	<classpathentry kind="lib" path="Lorann/contract/target/contract-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Lorann/controller/target/controller-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Lorann/main/target/main-0.0.1-SNAPSHOT-shaded.jar"/>
+	<classpathentry kind="lib" path="Lorann/main/target/main-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Lorann/main/target/original-main-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Lorann/model/target/model-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Lorann/showboard.jar"/>
+	<classpathentry kind="lib" path="Lorann/showboard/target/showboard-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="Lorann/view/target/view-0.0.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ryodi/.m2/repository/junit/junit/4.11/junit-4.11.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="junit"/>
+			<attribute name="maven.artifactId" value="junit"/>
+			<attribute name="maven.version" value="4.11"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="Lorann/contract/target/classes"/>
+</classpath>
