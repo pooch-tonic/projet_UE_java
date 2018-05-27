@@ -1,5 +1,9 @@
 package model.vector;
 
+/*
+ * 	Vector which only works with int values
+ */
+
 public class Vector {
 	private int x;
 	private int y;
