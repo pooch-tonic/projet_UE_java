@@ -5,13 +5,11 @@ import java.awt.Rectangle;
 import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
 
 /**
  * <h1>The Class BoardFrame.</h1>
  * <p>
- * This class is just used to load the BoardPanel. It extends JPanel and
- * implements IBoard.
+ * This class is just used to load the BoardPanel. It extends JPanel and implements IBoard.
  * </p>
  * <p>
  * As the BoardPanel is a private class, BoardPanel is a Facade.
@@ -33,10 +31,10 @@ public class BoardFrame extends JFrame implements IBoard {
     private static final long serialVersionUID = -6563585351564617603L;
 
     /** The initial frame size. */
-    private static final int defaultFrameSize = 700;
+    private static final int  defaultFrameSize = 700;
 
     /** The board panel. */
-    private final BoardPanel boardPanel;
+    private final BoardPanel  boardPanel;
 
     /**
      * Instantiates a new board frame.
@@ -51,7 +49,7 @@ public class BoardFrame extends JFrame implements IBoard {
         this.setTitle(title);
         this.setSize(defaultFrameSize, defaultFrameSize);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setUndecorated(decorated);
         this.boardPanel = new BoardPanel();
         this.setContentPane(this.boardPanel);
@@ -88,19 +86,15 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
-     * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int,
-     * int)
+     * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int, int)
      */
     @Override
-    public final void addSquare(final ISquare square, final int x,
-            final int y) {
+    public final void addSquare(final ISquare square, final int x, final int y) {
         this.getBoardPanel().addSquare(square, x, y);
     }
 
     /*
      * (non-Javadoc)
-     * 
      * @see fr.exia.showboard.IBoard#addPawn(fr.exia.showboard.IPawn)
      */
     @Override
@@ -110,7 +104,6 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
      * @see fr.exia.showboard.IBoard#getObserver()
      */
     @Override
@@ -120,7 +113,6 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
      * @see fr.exia.showboard.IBoard#setDimension(java.awt.Dimension)
      */
     @Override
@@ -130,7 +122,6 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
      * @see fr.exia.showboard.IBoard#getDimension()
      */
     @Override
@@ -149,7 +140,6 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
      * @see fr.exia.showboard.IBoard#setDisplayFrame(java.awt.Rectangle)
      */
     @Override
@@ -202,17 +192,5 @@ public class BoardFrame extends JFrame implements IBoard {
      */
     public final void setHeightLooped(final Boolean heightLooped) {
         this.getBoardPanel().setHeightLooped(heightLooped);
-    }
-
-    @Override
-    public void removePawn(final IPawn pawn) {
-        // TODO Auto-generated method stub
-        this.getBoardPanel().removePawn(pawn);
-    }
-
-    @Override
-    public void removeAllPawn() {
-        // TODO Auto-generated method stub
-        this.getBoardPanel().removeAllPawn();
     }
 }
