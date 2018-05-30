@@ -7,7 +7,7 @@ public interface ISpriteSet {
 	public int getMaxIndex();
 	
 	
-	public BufferedImage getSpriteByIndex(int index);
+	public BufferedImage getSpriteByIndex(final int index);
 	
 	public void setNextSprite();
 
@@ -15,6 +15,6 @@ public interface ISpriteSet {
 	
 	public ArrayList<BufferedImage> getSprites();
 	
-	public void setSprites(ArrayList<BufferedImage> sprites);
+	public void setSprites(final ArrayList<BufferedImage> sprites);
 	
 }
