@@ -8,9 +8,9 @@ import enums.TypeEnum;
 
 public interface IUnit {
 	public Vector getPosition();
-	public void setPosition(Vector position);
+	public void setPosition(final Vector position);
 	public ArrayList<BufferedImage> getSpriteSet();
-	public void setSpriteSet(ArrayList<BufferedImage> sprites);
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
 	public TypeEnum getType();
-	public void setType(TypeEnum type);
+	public void setType(final TypeEnum type);
 }
