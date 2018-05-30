@@ -8,15 +8,16 @@ import model.IModel;
 import view.IView;
 
 /**
- * <h1>The Class ControllerFacade provides a facade of the Controller component.</h1>
+ * <h1>The Class ControllerFacade provides a facade of the Controller
+ * component.</h1>
  *
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class ControllerFacade implements IController {
+public class ControllerFacade implements IController, IOrderStacker {
 
     /** The view. */
-    private final IView  view;
+    private IView view;
 
     /** The model. */
     private final IModel model;
@@ -29,9 +30,8 @@ public class ControllerFacade implements IController {
      * @param model
      *            the model
      */
-    public ControllerFacade(final IView view, final IModel model) {
+    public ControllerFacade(final IModel model) {
         super();
-        this.view = view;
         this.model = model;
     }
 
@@ -42,9 +42,11 @@ public class ControllerFacade implements IController {
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.getView().displayMessage(this.getModel().getExampleById(1).toString());
+        this.getView()
+                .displayMessage(this.getModel().getExampleById(1).toString());
 
-        this.getView().displayMessage(this.getModel().getExampleByName("Example 2").toString());
+        this.getView().displayMessage(
+                this.getModel().getExampleByName("Example 2").toString());
 
         final List<Example> examples = this.getModel().getAllExamples();
         final StringBuilder message = new StringBuilder();
@@ -64,6 +66,10 @@ public class ControllerFacade implements IController {
         return this.view;
     }
 
+    public void setView(final IView view) {
+        this.view = view;
+    }
+
     /**
      * Gets the model.
      *
@@ -71,5 +77,11 @@ public class ControllerFacade implements IController {
      */
     public IModel getModel() {
         return this.model;
+    }
+
+    @Override
+    public void stackOrder(final IUserOrder userOrder) {
+        // TODO Auto-generated method stub
+
     }
 }
