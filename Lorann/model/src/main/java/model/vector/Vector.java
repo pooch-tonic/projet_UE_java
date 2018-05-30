@@ -1,10 +1,12 @@
 package model.vector;
 
+import model.IVector;
+
 /*
  * 	Vector which only works with int values
  */
 
-public class Vector {
+public class Vector implements IVector {
 	private int x;
 	private int y;
 
@@ -18,16 +20,18 @@ public class Vector {
 		this.setY(y);
 	}
 
-	public Vector(final Vector vector) {
-		this.setX(vector.x);
-		this.setY(vector.y);
+	public Vector(final IVector vector) {
+		this.setX(vector.getX());
+		this.setY(vector.getY());
 	}
 
-	public void add(final Vector vector) {
+	@Override
+	public void add(final IVector vector) {
 		this.setX(this.getX() + vector.getX());
 		this.setY(this.getY() + vector.getY());
 	}
 
+	@Override
 	public void div(final int divider) {
 		if (divider != 0) {
 			this.setX(this.getX() / divider);
@@ -37,7 +41,8 @@ public class Vector {
 		}
 	}
 
-	public void div(final Vector divider) {
+	@Override
+	public void div(final IVector divider) {
 		if ((divider.getX() != 0) && (divider.getY() != 0)) {
 			this.setX(this.getX() / divider.getX());
 			this.setY(this.getY() / divider.getY());
@@ -46,38 +51,52 @@ public class Vector {
 		}
 	}
 
+	@Override
 	public int getX() {
 		return this.x;
 	}
 
+	@Override
 	public int getY() {
 		return this.y;
 	}
 
+	@Override
 	public void invert() {
 		this.setX(-this.getX());
 		this.setY(-this.getY());
 	}
 
+	@Override
 	public void mult(final int multiplier) {
 		this.setX(this.getX() * multiplier);
 		this.setY(this.getY() * multiplier);
 	}
 
-	public void mult(final Vector multiplier) {
+	@Override
+	public void mult(final IVector multiplier) {
 		this.setX(this.getX() * multiplier.getX());
 		this.setY(this.getY() * multiplier.getY());
 	}
 
-	private void setX(final int x) {
+	@Override
+	public void set(final int x, final int y) {
 		this.x = x;
-	}
-
-	private void setY(final int y) {
 		this.y = y;
 	}
 
-	public void sub(final Vector vector) {
+	@Override
+	public void setX(final int x) {
+		this.x = x;
+	}
+
+	@Override
+	public void setY(final int y) {
+		this.y = y;
+	}
+
+	@Override
+	public void sub(final IVector vector) {
 		this.setX(this.getX() - vector.getX());
 		this.setY(this.getY() - vector.getY());
 	}
