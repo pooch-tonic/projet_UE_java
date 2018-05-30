@@ -36,6 +36,10 @@ public interface IBoard {
      */
     void addPawn(IPawn pawn);
 
+    void removePawn(IPawn pawn);
+
+    void removeAllPawn();
+
     /**
      * Gets the observer.
      *
