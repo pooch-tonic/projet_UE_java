@@ -3,9 +3,10 @@ package model;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import enums.TypeEnum;
+import modelInterfaces.IBlock;
+import modelInterfaces.ISpriteSet;
 import modelInterfaces.IVector;
 import showboard.ISquare;
 
@@ -13,25 +14,24 @@ import showboard.ISquare;
  * @author Max Becerro
  *
  */
-public class Block extends Unit implements ISquare{
-
+public class Block extends Unit implements ISquare, IBlock {
 
 	public Block() {
 		super();
 	}
 
-	public Block(TypeEnum type) {
-		super(type);
+	public Block(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
+		super(position, spriteSet, type);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Block(IVector position, SpriteSet sprites, TypeEnum type) {
-		super(position, sprites, type);
-		// TODO Auto-generated constructor stub
-	}
-
-	public Block(IVector position, TypeEnum type) {
+	public Block(final IVector position, final TypeEnum type) {
 		super(position, type);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Block(final TypeEnum type) {
+		super(type);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,15 +42,21 @@ public class Block extends Unit implements ISquare{
 	}
 
 	@Override
-	public ArrayList<BufferedImage> getSpriteSet() {
+	public ISpriteSet getSpriteSet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setSpriteSet(ArrayList<BufferedImage> sprites) {
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void setSpriteSet(final ISpriteSet spriteSet) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

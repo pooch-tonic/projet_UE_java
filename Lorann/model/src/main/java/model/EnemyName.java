@@ -1,5 +1,5 @@
 package model;
 
-enum EnemyName {
+public enum EnemyName {
 	KYRACJ, CARGYV, ARRBARR, MAARCG;
 }

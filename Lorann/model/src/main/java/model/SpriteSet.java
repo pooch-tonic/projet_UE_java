@@ -3,59 +3,55 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import modelInterfaces.ISpriteSet;
+
 public class SpriteSet {
-	
+
 	private ArrayList<BufferedImage> sprites;
 	private int currentIndex;
-	
-	
-	
-	
+
+	public int getCurrentIndex() {
+		return this.currentIndex;
+	}
+
 	public int getMaxIndex() {
-		
-		//getSpriteByIndex(24);
-		
-		return this.getSprites().size()-1;
-	}
-	
-	
-	public BufferedImage getSpriteByIndex(int index) {
-		
 
-		//this.currentIndex = index;
-		return getSprites().get(index);
-	}
-	
-	
-	public void setNextSprite() {
-		
-			this.setCurrentIndex((currentIndex+1)%getMaxIndex());
-		
+		// getSpriteByIndex(24);
 
-		
+		return this.getSprites().size() - 1;
 	}
-	
-	
-	public void resetIndex() {
-		
-		this.setCurrentIndex(0);
-		
+
+	public BufferedImage getSpriteByIndex(final int index) {
+
+		// this.currentIndex = index;
+		return this.getSprites().get(index);
 	}
-	
-	
-	
-	
-	
+
 	public ArrayList<BufferedImage> getSprites() {
-		return sprites;
+		return this.sprites;
 	}
-	public void setSprites(ArrayList<BufferedImage> sprites) {
-		this.sprites = sprites;
+
+	public void resetIndex() {
+
+		this.setCurrentIndex(0);
+
 	}
-	private int getCurrentIndex() {
-		return currentIndex;
-	}
-	private void setCurrentIndex(int currentIndex) {
+
+	private void setCurrentIndex(final int currentIndex) {
 		this.currentIndex = currentIndex;
+	}
+
+	public void setNextSprite() {
+
+		this.setCurrentIndex((this.currentIndex + 1) % this.getMaxIndex());
+
+	}
+
+	public void setSprite(final ISpriteSet spriteSet) {
+		this.sprites = spriteSet.getSprites();
+	}
+
+	public void setSprites(final ArrayList<BufferedImage> sprites) {
+		this.sprites = sprites;
 	}
 }
