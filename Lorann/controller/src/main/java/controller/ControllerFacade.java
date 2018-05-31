@@ -29,12 +29,9 @@ public class ControllerFacade implements IController, IOrderStacker {
     private IBoard board;
 
     /**
-     * Instantiates a new controller facade.
-     *
-     * @param view
-     *            the view
+     * Instantiates a new ControllerFacade
+     * 
      * @param model
-     *            the model
      */
     public ControllerFacade(final IModel model) {
         super();

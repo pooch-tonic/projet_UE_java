@@ -50,6 +50,7 @@
         <version>2.10.4</version>
         <configuration>
           <aggregate>true</aggregate>
+          <show>private</show>
         </configuration>
       </plugin>
      <plugin>
@@ -61,7 +62,7 @@
   </reporting>
   <distributionManagement>
     <site>
-      <id>insane_vehicles</id>
+      <id>lorann</id>
       <url>file:///C:/temp/</url>
     </site>
   </distributionManagement>

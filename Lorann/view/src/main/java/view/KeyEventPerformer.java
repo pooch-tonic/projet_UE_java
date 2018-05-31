@@ -3,10 +3,14 @@ package view;
 import java.awt.event.KeyEvent;
 
 import controllerInterfaces.IOrderStacker;
+import enums.OrderEnum;
 
 /**
- * @author aurel
+ * <h1>The class KeyEventPerformer is an object able to translate keyboard
+ * events to concrete action applicable to the model.</h1>
  *
+ * @author aurel
+ * @version 31 mai 2018
  */
 class KeyEventPerformer implements IKeyEventPerformer {
     /** The object able to stack order. */
@@ -34,9 +38,15 @@ class KeyEventPerformer implements IKeyEventPerformer {
 
     }
 
-    // private Order keyCodeToOrder(final int keyCode) {
-    // return Order.NONE;
-    // }
+    /**
+     * Gets a key code and translate it to an order for the player
+     *
+     * @param keyCode
+     * @return Order
+     */
+    private OrderEnum keyCodeToOrder(final int keyCode) {
+        return OrderEnum.NONE;
+    }
 
     /**
      * Gets the orderStacker
