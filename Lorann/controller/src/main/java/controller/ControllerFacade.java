@@ -3,10 +3,13 @@ package controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.Example;
-import model.IModel;
+import controllerInterfaces.IController;
+import controllerInterfaces.IOrderStacker;
+import controllerInterfaces.IUserOrder;
+import modelInterfaces.Example;
+import modelInterfaces.IModel;
 import showboard.IBoard;
-import view.IView;
+import viewInterfaces.IView;
 
 /**
  * <h1>The Class ControllerFacade provides a facade of the Controller

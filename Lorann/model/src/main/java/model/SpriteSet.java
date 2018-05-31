@@ -1,5 +1,7 @@
 package model;
 
+import modelInterfaces.ISpriteSet;
+
 /**
  * @author Max Becerro
  *

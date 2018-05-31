@@ -1,5 +1,7 @@
 package model;
 
+import modelInterfaces.ISquare;
+
 /**
  * @author Max Becerro
  *

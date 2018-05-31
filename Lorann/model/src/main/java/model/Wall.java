@@ -1,5 +1,7 @@
 package model;
 
+import modelInterfaces.IWall;
+
 /**
  * @author Max Becerro
  *
