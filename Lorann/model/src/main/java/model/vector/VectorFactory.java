@@ -1,6 +1,6 @@
 package model.vector;
 
-import model.IVectorFactory;
+import modelInterfaces.IVectorFactory;
 
 public abstract class VectorFactory implements IVectorFactory{
 

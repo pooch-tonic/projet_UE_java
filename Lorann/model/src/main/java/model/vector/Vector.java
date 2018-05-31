@@ -1,6 +1,6 @@
 package model.vector;
 
-import model.IVector;
+import modelInterfaces.IVector;
 
 /*
  * 	Vector which only works with int values

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Observable;
 
 import model.dao.ExampleDAO;
+import modelInterfaces.Example;
+import modelInterfaces.ILevel;
+import modelInterfaces.IModel;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>

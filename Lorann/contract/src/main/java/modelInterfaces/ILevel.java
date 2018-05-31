@@ -1,4 +1,4 @@
-package model;
+package modelInterfaces;
 
 import java.awt.Dimension;
 

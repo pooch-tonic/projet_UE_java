@@ -1,4 +1,4 @@
-package model;
+package modelInterfaces;
 
 public interface IVector {
 	public void add(final IVector vector);

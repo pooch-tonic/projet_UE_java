@@ -1,4 +1,4 @@
-package controller;
+package controllerInterfaces;
 
 import showboard.IBoard;
 

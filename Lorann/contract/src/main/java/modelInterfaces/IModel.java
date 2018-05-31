@@ -1,4 +1,4 @@
-package model;
+package modelInterfaces;
 
 import java.sql.SQLException;
 import java.util.List;
