@@ -1,5 +1,9 @@
 package model.factories;
 
-class PlayerFactory {
+import model.Player;
 
+class PlayerFactory {
+	Player createLorann() {
+		return new Player();
+	}
 }

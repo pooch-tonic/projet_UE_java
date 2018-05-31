@@ -1,6 +1,7 @@
 package model;
 
 import enums.TypeEnum;
+import modelInterfaces.ISpriteSet;
 import modelInterfaces.IUnit;
 import modelInterfaces.IVector;
 
@@ -8,64 +9,67 @@ import modelInterfaces.IVector;
  * @author Max Becerro
  *
  */
-public abstract class Unit implements IUnit{
+public abstract class Unit implements IUnit {
 	private IVector position;
-	private SpriteSet spritesSet;
+	private ISpriteSet spriteSet;
 	private TypeEnum type;
 	private int scoreValue;
-	
-	public Unit() {
-		
-	}
-	
-	public Unit(TypeEnum type) {
-		setType(type);
-	}
-	
 
-	
-	public Unit(IVector position,TypeEnum type) {
-		setPosition(position);
-		setType(type);
-		
+	public Unit() {
+
 	}
-	
-	
-	public Unit(IVector position, SpriteSet sprites,TypeEnum type) {
-		setPosition(position);
-		setSpritesSet(sprites);
-		setType(type);
+
+	public Unit(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
+		this.setPosition(position);
+		this.setSpriteSet(spriteSet);
+		this.setType(type);
 	}
-	
-	
-	
-	
+
+	public Unit(final IVector position, final TypeEnum type) {
+		this.setPosition(position);
+		this.setType(type);
+
+	}
+
+	public Unit(final TypeEnum type) {
+		this.setType(type);
+	}
+
+	@Override
 	public IVector getPosition() {
 		return this.position;
 	}
-	public void setPosition(IVector position) {
-		this.position = position;
-	}
-	
-	public SpriteSet getSpritesSet() {
-		return this.spritesSet;
-	}
-	public void setSpritesSet(SpriteSet spritesSet) {
-		this.spritesSet = spritesSet;
-	}
-	
+
 	public int getScoreValue() {
 		return this.scoreValue;
 	}
-	public void setScoreValue(int scoreValue) {
-		this.scoreValue = scoreValue;
+
+	@Override
+	public ISpriteSet getSpriteSet() {
+		return this.spriteSet;
 	}
 
+	@Override
 	public TypeEnum getType() {
 		return this.type;
 	}
 
-	public void setType(TypeEnum type) {
+	@Override
+	public void setPosition(final IVector position) {
+		this.position = position;
+	}
+
+	public void setScoreValue(final int scoreValue) {
+		this.scoreValue = scoreValue;
+	}
+
+	@Override
+	public void setSpriteSet(final ISpriteSet spriteSet) {
+		this.spriteSet = spriteSet;
+	}
+
+	@Override
+	public void setType(final TypeEnum type) {
 		this.type = type;
 	}
 }

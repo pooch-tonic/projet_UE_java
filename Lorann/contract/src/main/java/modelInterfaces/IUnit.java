@@ -6,9 +6,16 @@ import enums.TypeEnum;
 
 public interface IUnit {
 	public IVector getPosition();
-	public void setPosition(final IVector position);
-	public ArrayList<BufferedImage> getSpriteSet();
-	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+
+	public ISpriteSet getSpriteSet();
+
 	public TypeEnum getType();
+
+	public void setPosition(final IVector position);
+
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+
+	public void setSpriteSet(final ISpriteSet spriteSet);
+
 	public void setType(final TypeEnum type);
 }

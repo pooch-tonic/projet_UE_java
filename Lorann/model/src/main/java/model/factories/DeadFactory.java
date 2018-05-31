@@ -1,5 +1,9 @@
 package model.factories;
 
-class DeadFactory {
+import model.Dead;
 
+class DeadFactory {
+	Dead createDefault() {
+		return new Dead();
+	}
 }
