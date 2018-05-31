@@ -5,46 +5,53 @@ import java.util.ArrayList;
 
 import modelInterfaces.ISpriteSet;
 
-/**
- * @author Max Becerro
- *
- */
-public class SpriteSet implements ISpriteSet{
+public class SpriteSet {
 
-	@Override
+	private ArrayList<BufferedImage> sprites;
+	private int currentIndex;
+
+	public int getCurrentIndex() {
+		return this.currentIndex;
+	}
+
 	public int getMaxIndex() {
-		// TODO Auto-generated method stub
-		return 0;
+
+		// getSpriteByIndex(24);
+
+		return this.getSprites().size() - 1;
 	}
 
-	@Override
-	public BufferedImage getSpriteByIndex(int index) {
-		// TODO Auto-generated method stub
-		return null;
+	public BufferedImage getSpriteByIndex(final int index) {
+
+		// this.currentIndex = index;
+		return this.getSprites().get(index);
 	}
 
-	@Override
-	public void setNextSprite() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void resetIndex() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public ArrayList<BufferedImage> getSprites() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sprites;
 	}
 
-	@Override
-	public void setSprites(ArrayList<BufferedImage> sprites) {
-		// TODO Auto-generated method stub
-		
+	public void resetIndex() {
+
+		this.setCurrentIndex(0);
+
 	}
 
+	private void setCurrentIndex(final int currentIndex) {
+		this.currentIndex = currentIndex;
+	}
+
+	public void setNextSprite() {
+
+		this.setCurrentIndex((this.currentIndex + 1) % this.getMaxIndex());
+
+	}
+
+	public void setSprite(final ISpriteSet spriteSet) {
+		this.sprites = spriteSet.getSprites();
+	}
+
+	public void setSprites(final ArrayList<BufferedImage> sprites) {
+		this.sprites = sprites;
+	}
 }

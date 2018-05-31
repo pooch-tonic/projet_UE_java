@@ -2,15 +2,20 @@ package modelInterfaces;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Vector;
-
 import enums.TypeEnum;
 
 public interface IUnit {
-	public Vector getPosition();
-	public void setPosition(final Vector position);
-	public ArrayList<BufferedImage> getSpriteSet();
-	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+	public IVector getPosition();
+
+	public ISpriteSet getSpriteSet();
+
 	public TypeEnum getType();
+
+	public void setPosition(final IVector position);
+
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+
+	public void setSpriteSet(final ISpriteSet spriteSet);
+
 	public void setType(final TypeEnum type);
 }
