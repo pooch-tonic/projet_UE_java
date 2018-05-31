@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Example;
 import model.IModel;
+import showboard.IBoard;
 import view.IView;
 
 /**
@@ -21,6 +22,8 @@ public class ControllerFacade implements IController, IOrderStacker {
 
     /** The model. */
     private final IModel model;
+
+    private IBoard board;
 
     /**
      * Instantiates a new controller facade.
@@ -83,5 +86,11 @@ public class ControllerFacade implements IController, IOrderStacker {
     public void stackOrder(final IUserOrder userOrder) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void setBoard(final IBoard board) {
+        // TODO Auto-generated method stub
+        this.board = board;
     }
 }
