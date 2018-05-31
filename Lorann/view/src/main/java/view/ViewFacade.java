@@ -22,21 +22,17 @@ import viewInterfaces.IView;
  *
  */
 public class ViewFacade implements IView {
-    /**
-     * The frame of the game
-     */
+    /** The frame of the game. */
     private BoardFrame  boardFrame;
-    /**
-     * The key listener using to detect keyboards inputs
-     */
+    /** The key listener using to detect keyboards inputs. */
     private KeyListener keyListener;
 
     /**
-     * Instantiates a new view facade.
+     * Instantiates a new ViewFacade
      *
-     * @param model
-     * @param observable
+     * @param controller
      * @param orderStacker
+     * @param observable
      */
     public ViewFacade(final IController controller,
             final IOrderStacker orderStacker, final Observable observable) {
@@ -84,10 +80,20 @@ public class ViewFacade implements IView {
         this.boardFrame = boardFrame;
     }
 
+    /**
+     * Return the key listener
+     *
+     * @return the key listener
+     */
     private KeyListener getKeyListener() {
         return this.keyListener;
     }
 
+    /**
+     * Set the key listener
+     *
+     * @param keyListener
+     */
     private void setKeyListener(final KeyListener keyListener) {
         this.keyListener = keyListener;
     }
