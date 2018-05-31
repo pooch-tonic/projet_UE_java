@@ -47,7 +47,7 @@ public class Vector implements IVector {
 			this.setX(this.getX() / divider.getX());
 			this.setY(this.getY() / divider.getY());
 		} else {
-			System.out.println("Divided by 0 ! Operation is cancelled.");
+			System.out.println("Divided by 0! Operation is cancelled.");
 		}
 	}
 
