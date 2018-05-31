@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Image;
+
 import modelInterfaces.IWall;
 
 /**
@@ -7,5 +9,11 @@ import modelInterfaces.IWall;
  *
  */
 public class Wall extends Block implements IWall {
+
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
