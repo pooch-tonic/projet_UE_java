@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import enums.TypeEnum;
+import modelInterfaces.IVector;
 import showboard.ISquare;
 
 /**
@@ -15,18 +16,21 @@ import showboard.ISquare;
 public class Block extends Unit implements ISquare{
 
 
+	public Block() {
+		super();
+	}
 
 	public Block(TypeEnum type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Block(Vector position, SpriteSet sprites, TypeEnum type) {
+	public Block(IVector position, SpriteSet sprites, TypeEnum type) {
 		super(position, sprites, type);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Block(Vector position, TypeEnum type) {
+	public Block(IVector position, TypeEnum type) {
 		super(position, type);
 		// TODO Auto-generated constructor stub
 	}

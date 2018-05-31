@@ -12,26 +12,25 @@ import modelInterfaces.IVector;
  */
 public class Door extends Entity implements IDoor{
 	
-	
-
-	public Door(boolean closed) {
-		super();
+	private void setDoorType(boolean closed) {
 		if(closed) {
 			super.setType(TypeEnum.DOOR_CLOSED);
 		}else {
 			super.setType(TypeEnum.DOOR_OPEN);
 		}
+	}
+
+	public Door(boolean closed) {
+		super();
+		this.setDoorType(closed);
 		
 		// TODO Auto-generated constructor stub
 	}
 
 	public Door(IVector position, boolean closed) {
 		super();
-		if(closed) {
-			super.setType(TypeEnum.DOOR_CLOSED);
-		}else {
-			super.setType(TypeEnum.DOOR_OPEN);
-		}
+		this.setDoorType(closed);
+		super.setPosition(position);
 		
 		// TODO Auto-generated constructor stub
 	}
