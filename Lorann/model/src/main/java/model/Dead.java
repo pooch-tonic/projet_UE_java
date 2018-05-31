@@ -10,10 +10,19 @@ import modelInterfaces.IVector;
  */
 public class Dead extends Entity implements IDead {
 
+	/**
+	 * Instantiates a new Dead
+	 * 
+	 */
 	public Dead() {
 		super(TypeEnum.DEAD);
 	}
 
+	/**
+	 * Instantiates a new Dead
+	 * 
+	 * @param position
+	 */
 	public Dead(final IVector position) {
 		super(position, TypeEnum.DEAD);
 	}

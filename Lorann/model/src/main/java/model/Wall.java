@@ -12,6 +12,12 @@ import modelInterfaces.IWall;
  */
 public class Wall extends Block implements IWall {
 
+	/**
+	 * Instantiates a new Wall
+	 * 
+	 * @param position
+	 * @param wallType
+	 */
 	public Wall(final IVector position, final WallType wallType) {
 		super();
 		this.setWallType(wallType);
@@ -20,11 +26,17 @@ public class Wall extends Block implements IWall {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new Wall
+	 * 
+	 * @param wallType
+	 */
 	public Wall(final WallType wallType) {
 		super();
 		this.setWallType(wallType);
 		// TODO Auto-generated constructor stub
 	}
+
 
 	@Override
 	public Image getImage() {
@@ -32,6 +44,9 @@ public class Wall extends Block implements IWall {
 		return null;
 	}
 
+	/**
+	 * @param wallType
+	 */
 	private void setWallType(final WallType wallType) {
 		switch (wallType) {
 		case WALL_ROUND:

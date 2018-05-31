@@ -15,26 +15,47 @@ import showboard.ISquare;
  *
  */
 public class Block extends Unit implements ISquare, IBlock {
-
+	
+	/**
+	 * Instantiates a new Block
+	 * 
+	 */
 	public Block() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new Block
+	 * 
+	 * @param position
+	 * @param spriteSet
+	 * @param type
+	 */
 	public Block(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
 		super(position, spriteSet, type);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param position
+	 * @param type
+	 */
 	public Block(final IVector position, final TypeEnum type) {
 		super(position, type);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param type
+	 */
 	public Block(final TypeEnum type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see showboard.ISquare#getImage()
+	 */
 	@Override
 	public Image getImage() {
 		// TODO Auto-generated method stub
@@ -42,9 +63,12 @@ public class Block extends Unit implements ISquare, IBlock {
 	}
 
 	@Override
+	/**
+	 * @return a spriteSet
+	 */
 	public ISpriteSet getSpriteSet() {
 		// TODO Auto-generated method stub
-		return null;
+		return super.getSpriteSet();
 	}
 
 	@Override

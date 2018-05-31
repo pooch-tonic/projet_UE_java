@@ -9,22 +9,48 @@ import modelInterfaces.IEntity;
 import modelInterfaces.ISpriteSet;
 import modelInterfaces.IVector;
 
+/**
+ * @author Max Becerro
+ *
+ */
 public class Entity extends Unit implements IEntity {
 
 	private IVector direction;
-
+	
+	/**
+	 * Instantiates a new Entity
+	 * 
+	 */
 	public Entity() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new Entity
+	 * 
+	 * @param position
+	 * @param spriteSet
+	 * @param type
+	 */
 	public Entity(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
 		super(position, spriteSet, type);
 	}
 
+	/**
+	 * Instantiates a new Entity
+	 * 
+	 * @param position
+	 * @param type
+	 */
 	public Entity(final IVector position, final TypeEnum type) {
 		super(position, type);
 	}
 
+	/**
+	 * Instantiates a new Entity
+	 * 
+	 * @param type
+	 */
 	public Entity(final TypeEnum type) {
 		super(type);
 	}
@@ -32,28 +58,39 @@ public class Entity extends Unit implements IEntity {
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
+	/**
+	 * @return a direction
+	 */
 	public IVector getDirection() {
 		// TODO Auto-generated method stub
 		return this.direction;
 	}
 
 	@Override
+	/**
+	 * @return a position
+	 */
 	public IVector getPosition() {
 		// TODO Auto-generated method stub
 		return super.getPosition();
 	}
 
 	@Override
+	/**
+	 * @return a spriteSet
+	 */
 	public ISpriteSet getSpriteSet() {
 		// TODO Auto-generated method stub
 		return super.getSpriteSet();
 	}
 
 	@Override
+	/**
+	 * @return a type
+	 */
 	public TypeEnum getType() {
 		// TODO Auto-generated method stub
 		return super.getType();

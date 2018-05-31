@@ -10,6 +10,11 @@ import modelInterfaces.IVector;
  */
 public class Enemy extends Entity implements IEnemy {
 
+	/**
+	 * Instantiates a new Enemy
+	 * 
+	 * @param enemyName
+	 */
 	public Enemy(final EnemyName enemyName) {
 		super();
 		this.setEnemyType(enemyName);
@@ -17,6 +22,12 @@ public class Enemy extends Entity implements IEnemy {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new Enemy
+	 * 
+	 * @param position
+	 * @param enemyName
+	 */
 	public Enemy(final IVector position, final EnemyName enemyName) {
 		super();
 		this.setEnemyType(enemyName);
@@ -24,6 +35,9 @@ public class Enemy extends Entity implements IEnemy {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param enemyName
+	 */
 	private void setEnemyType(final EnemyName enemyName) {
 		switch (enemyName) {
 		case KYRACJ:
