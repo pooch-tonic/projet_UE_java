@@ -4,6 +4,6 @@ package model;
  * @author Max Becerro
  *
  */
-public abstract class Unit implements IUnit{
+public class SpriteSet implements ISpriteSet{
 
 }
