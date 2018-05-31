@@ -2,7 +2,6 @@ package modelInterfaces;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import enums.TypeEnum;
 
 public interface IUnit {
