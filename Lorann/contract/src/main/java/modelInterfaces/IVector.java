@@ -1,5 +1,7 @@
 package modelInterfaces;
 
+import java.awt.Point;
+
 public interface IVector {
 	public void add(final IVector vector);
 
@@ -18,6 +20,8 @@ public interface IVector {
 	public void mult(final IVector multiplier);
 
 	public void set(final int x, final int y);
+
+	public void set(final Point point);
 
 	public void setX(final int x);
 
