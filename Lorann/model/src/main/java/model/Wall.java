@@ -1,5 +1,9 @@
 package model;
 
-public class Wall implements IWall{
+/**
+ * @author Max Becerro
+ *
+ */
+public class Wall extends Block implements IWall{
 
 }
