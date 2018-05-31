@@ -1,9 +1,5 @@
 package model;
 
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-
-
 import enums.TypeEnum;
 import modelInterfaces.IUnit;
 import modelInterfaces.IVector;
