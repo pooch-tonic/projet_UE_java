@@ -1,5 +1,7 @@
 package model.factories;
 
-public class VectorFactory {
+import modelInterfaces.IVectorFactory;
+
+public abstract class VectorFactory implements IVectorFactory{
 
 }
