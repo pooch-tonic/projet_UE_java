@@ -1,5 +1,5 @@
 package model.factories;
 
-public class UnitFactory {
+public abstract class UnitFactory {
 
 }
