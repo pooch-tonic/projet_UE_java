@@ -1,6 +1,6 @@
 package model;
 
-import modelInterfaces.ISquare;
+import showboard.ISquare;
 
 /**
  * @author Max Becerro
