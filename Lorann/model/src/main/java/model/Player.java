@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import enums.TypeEnum;
 import modelInterfaces.IPlayer;
+import modelInterfaces.IVector;
 
 /**
  * @author Max Becerro
@@ -11,18 +12,15 @@ import modelInterfaces.IPlayer;
  */
 public class Player extends Entity implements IPlayer{
 
-	public Player(TypeEnum type) {
-		super(type);
+	public Player() {
+		super(TypeEnum.PLAYER);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Player(Vector position, SpriteSet sprites, TypeEnum type) {
-		super(position, sprites, type);
-		// TODO Auto-generated constructor stub
-	}
 
-	public Player(Vector position, TypeEnum type) {
-		super(position, type);
+
+	public Player(IVector position) {
+		super(position, TypeEnum.PLAYER);
 		// TODO Auto-generated constructor stub
 	}
 

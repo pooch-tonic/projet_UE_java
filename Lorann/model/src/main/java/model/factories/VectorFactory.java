@@ -1,5 +1,6 @@
 package model.factories;
 
+import enums.DirectionsEnum;
 import model.vector.Vector;
 import modelInterfaces.IVectorFactory;
 

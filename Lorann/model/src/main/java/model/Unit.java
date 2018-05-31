@@ -26,6 +26,8 @@ public abstract class Unit implements IUnit{
 		setType(type);
 	}
 	
+
+	
 	public Unit(IVector position,TypeEnum type) {
 		setPosition(position);
 		setType(type);

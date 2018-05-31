@@ -12,29 +12,33 @@ import modelInterfaces.IVector;
  */
 public class Enemy extends Entity implements IEnemy{
 
+	private void setEnemyType(EnemyName enemyName) {
+		switch (enemyName) {
+		case KYRACJ: super.setType(TypeEnum.ENEMY_A);
+			break;
+		case CARGYV:super.setType(TypeEnum.ENEMY_B);
+			break;
+		case ARRBARR:super.setType(TypeEnum.ENEMY_C);
+			break;
+		case MAARCG:super.setType(TypeEnum.ENEMY_D);
+			break;
+		}
+	}
+		
+		
 	public Enemy(EnemyName enemyName) {
 		super();
-		switch (enemyName) {
-			case KYRACJ: super.setType(TypeEnum.ENEMY_A);
-				break;
-			case CARGYV:super.setType(TypeEnum.ENEMY_B);
-				break;
-			case ARRBARR:super.setType(TypeEnum.ENEMY_C);
-				break;
-			case MAARCG:super.setType(TypeEnum.ENEMY_D);
-				break;
+		this.setEnemyType(enemyName);
 		
-		}
+		
 		// TODO Auto-generated constructor stub
 	}
 
-	public Enemy(IVector position, SpriteSet sprites, TypeEnum type) {
-		super(position, sprites, type);
-		// TODO Auto-generated constructor stub
-	}
 
-	public Enemy(IVector position, TypeEnum type) {
-		super(position, type);
+	public Enemy(IVector position, EnemyName enemyName) {
+		super();
+		this.setEnemyType(enemyName);
+		super.setPosition(position);
 		// TODO Auto-generated constructor stub
 	}
 }

@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import enums.TypeEnum;
 import modelInterfaces.IKey;
+import modelInterfaces.IVector;
 
 /**
  * @author Max Becerro
@@ -11,18 +12,15 @@ import modelInterfaces.IKey;
  */
 public class Key extends Entity implements IKey{
 
-	public Key(TypeEnum type) {
-		super(type);
+	public Key() {
+		super(TypeEnum.KEY);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Key(Vector position, SpriteSet sprites, TypeEnum type) {
-		super(position, sprites, type);
-		// TODO Auto-generated constructor stub
-	}
 
-	public Key(Vector position, TypeEnum type) {
-		super(position, type);
+
+	public Key(IVector position) {
+		super(position, TypeEnum.KEY);
 		// TODO Auto-generated constructor stub
 	}
 

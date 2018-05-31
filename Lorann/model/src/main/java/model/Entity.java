@@ -22,6 +22,7 @@ public class Entity extends Unit implements IEntity{
 		// TODO Auto-generated constructor stub
 	}
 
+
 	public Entity(IVector position, SpriteSet sprites, TypeEnum type) {
 		super(position, sprites, type);
 		// TODO Auto-generated constructor stub
