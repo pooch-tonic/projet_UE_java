@@ -39,12 +39,10 @@ public class BoardFrame extends JFrame implements IBoard {
     private final BoardPanel boardPanel;
 
     /**
-     * Instantiates a new board frame.
-     *
+     * Instantiates a new BoardFrame
+     * 
      * @param title
-     *            the title of the frame
      * @param decorated
-     *            the decorated
      */
     public BoardFrame(final String title, final Boolean decorated) {
         super();
@@ -88,7 +86,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int,
      * int)
      */
@@ -100,7 +98,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see fr.exia.showboard.IBoard#addPawn(fr.exia.showboard.IPawn)
      */
     @Override
@@ -110,7 +108,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see fr.exia.showboard.IBoard#getObserver()
      */
     @Override
@@ -120,7 +118,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see fr.exia.showboard.IBoard#setDimension(java.awt.Dimension)
      */
     @Override
@@ -130,7 +128,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see fr.exia.showboard.IBoard#getDimension()
      */
     @Override
@@ -149,7 +147,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see fr.exia.showboard.IBoard#setDisplayFrame(java.awt.Rectangle)
      */
     @Override

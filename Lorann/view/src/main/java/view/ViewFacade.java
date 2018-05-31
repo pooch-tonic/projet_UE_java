@@ -13,30 +13,25 @@ import viewInterfaces.IView;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
- *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
- */
-/**
+ * 
  * @author aurel
- *
+ * @version 31 mai 2018
  */
 public class ViewFacade implements IView {
-    /**
-     * The frame of the game
-     */
+    /** The frame of the game. */
     private BoardFrame  boardFrame;
-    /**
-     * The key listener using to detect keyboards inputs
-     */
+    /** The key listener using to detect keyboards inputs. */
     private KeyListener keyListener;
 
     /**
-     * Instantiates a new view facade.
+     * Instantiates a new ViewFacade
      *
-     * @param model
-     * @param observable
+     * @param controller
+     *            the game controller
      * @param orderStacker
+     *            the object able to stack order
+     * @param observable
+     *            the observable object
      */
     public ViewFacade(final IController controller,
             final IOrderStacker orderStacker, final Observable observable) {
@@ -69,7 +64,7 @@ public class ViewFacade implements IView {
     /**
      * Return the boardFrame
      *
-     * @return
+     * @return boardFrame
      */
     private BoardFrame getBoardFrame() {
         return this.boardFrame;
@@ -84,10 +79,20 @@ public class ViewFacade implements IView {
         this.boardFrame = boardFrame;
     }
 
+    /**
+     * Return the key listener
+     *
+     * @return the key listener
+     */
     private KeyListener getKeyListener() {
         return this.keyListener;
     }
 
+    /**
+     * Set the key listener
+     *
+     * @param keyListener
+     */
     private void setKeyListener(final KeyListener keyListener) {
         this.keyListener = keyListener;
     }

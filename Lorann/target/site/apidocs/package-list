@@ -1,6 +1,11 @@
 controller
+controllerInterfaces
+enums
 main
 model
 model.dao
+model.vector
+modelInterfaces
 showboard
 view
+viewInterfaces
