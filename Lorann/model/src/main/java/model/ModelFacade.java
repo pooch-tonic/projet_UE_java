@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Observable;
 
 import model.dao.ExampleDAO;
-import showboard.IBoard;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -75,11 +74,4 @@ public final class ModelFacade extends Observable implements IModel {
         // TODO Auto-generated method stub
 
     }
-
-    @Override
-    public void setBoard(final IBoard board) {
-        // TODO Auto-generated method stub
-
-    }
-
 }

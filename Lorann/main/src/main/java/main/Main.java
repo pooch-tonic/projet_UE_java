@@ -23,7 +23,7 @@ public abstract class Main {
     public static void main(final String[] args) {
         final ModelFacade model = new ModelFacade();
         final ControllerFacade controller = new ControllerFacade(model);
-        final ViewFacade view = new ViewFacade(model, model, controller);
+        final ViewFacade view = new ViewFacade(controller, controller, model);
         controller.setView(view);
 
         try {

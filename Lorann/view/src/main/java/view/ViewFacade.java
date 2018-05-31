@@ -6,8 +6,8 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 
+import controller.IController;
 import controller.IOrderStacker;
-import model.IModel;
 import showboard.BoardFrame;
 
 /**
@@ -21,18 +21,24 @@ import showboard.BoardFrame;
  *
  */
 public class ViewFacade implements IView {
+    /**
+     * The frame of the game
+     */
     private BoardFrame  boardFrame;
+    /**
+     * The key listener using to detect keyboards inputs
+     */
     private KeyListener keyListener;
 
     /**
      * Instantiates a new view facade.
-     * 
+     *
      * @param model
      * @param observable
      * @param orderStacker
      */
-    public ViewFacade(final IModel model, final Observable observable,
-            final IOrderStacker orderStacker) {
+    public ViewFacade(final IController controller,
+            final IOrderStacker orderStacker, final Observable observable) {
         super();
 
         this.setKeyListener(
@@ -45,7 +51,7 @@ public class ViewFacade implements IView {
         this.getBoardFrame().getContentPane()
                 .addKeyListener(this.getKeyListener());
 
-        model.setBoard(this.getBoardFrame());
+        controller.setBoard(this.getBoardFrame());
         observable.addObserver(this.getBoardFrame().getObserver());
     }
 
@@ -61,7 +67,7 @@ public class ViewFacade implements IView {
 
     /**
      * Return the boardFrame
-     * 
+     *
      * @return
      */
     private BoardFrame getBoardFrame() {
@@ -70,7 +76,7 @@ public class ViewFacade implements IView {
 
     /**
      * Set the boardFrame
-     * 
+     *
      * @param boardFrame
      */
     private void setBoardFrame(final BoardFrame boardFrame) {
