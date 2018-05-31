@@ -16,12 +16,20 @@ import showboard.BoardFrame;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
+/**
+ * @author aurel
+ *
+ */
 public class ViewFacade implements IView {
     private BoardFrame  boardFrame;
     private KeyListener keyListener;
 
     /**
      * Instantiates a new view facade.
+     * 
+     * @param model
+     * @param observable
+     * @param orderStacker
      */
     public ViewFacade(final IModel model, final Observable observable,
             final IOrderStacker orderStacker) {
@@ -51,10 +59,20 @@ public class ViewFacade implements IView {
         JOptionPane.showMessageDialog(null, message);
     }
 
+    /**
+     * Return the boardFrame
+     * 
+     * @return
+     */
     private BoardFrame getBoardFrame() {
         return this.boardFrame;
     }
 
+    /**
+     * Set the boardFrame
+     * 
+     * @param boardFrame
+     */
     private void setBoardFrame(final BoardFrame boardFrame) {
         this.boardFrame = boardFrame;
     }
