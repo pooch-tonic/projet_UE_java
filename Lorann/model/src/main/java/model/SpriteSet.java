@@ -3,48 +3,59 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import modelInterfaces.ISpriteSet;
-
-/**
- * @author Max Becerro
- *
- */
-public class SpriteSet implements ISpriteSet{
-
-	@Override
+public class SpriteSet {
+	
+	private ArrayList<BufferedImage> sprites;
+	private int currentIndex;
+	
+	
+	
+	
 	public int getMaxIndex() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		//getSpriteByIndex(24);
+		
+		return this.getSprites().size()-1;
 	}
-
-	@Override
+	
+	
 	public BufferedImage getSpriteByIndex(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
 
-	@Override
+		//this.currentIndex = index;
+		return getSprites().get(index);
+	}
+	
+	
 	public void setNextSprite() {
-		// TODO Auto-generated method stub
+		
+			this.setCurrentIndex((currentIndex+1)%getMaxIndex());
+		
+
 		
 	}
-
-	@Override
+	
+	
 	public void resetIndex() {
-		// TODO Auto-generated method stub
+		
+		this.setCurrentIndex(0);
 		
 	}
-
-	@Override
+	
+	
+	
+	
+	
 	public ArrayList<BufferedImage> getSprites() {
-		// TODO Auto-generated method stub
-		return null;
+		return sprites;
 	}
-
-	@Override
 	public void setSprites(ArrayList<BufferedImage> sprites) {
-		// TODO Auto-generated method stub
-		
+		this.sprites = sprites;
 	}
-
+	private int getCurrentIndex() {
+		return currentIndex;
+	}
+	private void setCurrentIndex(int currentIndex) {
+		this.currentIndex = currentIndex;
+	}
 }
