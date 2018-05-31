@@ -1,8 +1,15 @@
 package model;
 
+/**
+ * @author Max Becerro
+ *
+ */
 public class Score {
 	private int scoreValue;
-
+	/**
+	 * 
+	 * @return a scoreValue
+	 */
 	public int getScoreValue() {
 		return scoreValue;
 	}

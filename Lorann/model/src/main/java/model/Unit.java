@@ -16,10 +16,21 @@ public abstract class Unit implements IUnit {
 	private TypeEnum type;
 	private int scoreValue;
 
+	/**
+	 * Instantiates a new Unit
+	 * 
+	 */
 	public Unit() {
 
 	}
 
+	/**
+	 * Instantiates a new Unit
+	 * 
+	 * @param position
+	 * @param spriteSet
+	 * @param type
+	 */
 	public Unit(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
 		this.setPosition(position);
 		this.setSpriteSet(spriteSet);
@@ -27,28 +38,35 @@ public abstract class Unit implements IUnit {
 		this.setScoreValue(0);
 	}
 
+	/**
+	 * Instantiates a new Unit
+	 * 
+	 * @param position
+	 * @param type
+	 */
 	public Unit(final IVector position, final TypeEnum type) {
 		this.setPosition(position);
-		// this.setSpriteSet(spriteSet); TODO default spriteset required
 		this.setType(type);
 		this.setScoreValue(0);
 	}
 
+	/**
+	 * Instantiates a new Unit
+	 * 
+	 * @param type
+	 */
 	public Unit(final TypeEnum type) {
 		this.setPosition(new Vector(0, 0));
-		// this.setSpriteSet(spriteSet); TODO default spriteset required
 		this.setType(type);
 		this.setScoreValue(0);
 	}
+
 
 	@Override
 	public IVector getPosition() {
 		return this.position;
 	}
 
-	public int getScoreValue() {
-		return this.scoreValue;
-	}
 
 	@Override
 	public ISpriteSet getSpriteSet() {
@@ -77,5 +95,14 @@ public abstract class Unit implements IUnit {
 	@Override
 	public void setType(final TypeEnum type) {
 		this.type = type;
+	}
+
+	/**
+	 * Gets the scoreValue
+	 * 
+	 * @return the scoreValue
+	 */
+	public int getScoreValue() {
+		return scoreValue;
 	}
 }
