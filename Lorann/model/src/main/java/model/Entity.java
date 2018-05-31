@@ -13,18 +13,21 @@ public class Entity extends Unit implements IEntity{
 	
 	private Vector direction;
 	
+	public Entity() {
+		super();
+	}
 	
 	public Entity(TypeEnum type) {
 		super(type);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Entity(Vector position, SpriteSet sprites, TypeEnum type) {
+	public Entity(IVector position, SpriteSet sprites, TypeEnum type) {
 		super(position, sprites, type);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Entity(Vector position, TypeEnum type) {
+	public Entity(IVector position, TypeEnum type) {
 		super(position, type);
 		// TODO Auto-generated constructor stub
 	}
@@ -42,13 +45,13 @@ public class Entity extends Unit implements IEntity{
 	
 
 	@Override
-	public Vector getPosition() {
+	public IVector getPosition() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setPosition(Vector position) {
+	public void setPosition(IVector position) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -4,26 +4,37 @@ import java.util.Vector;
 
 import enums.TypeEnum;
 import modelInterfaces.IDoor;
+import modelInterfaces.IVector;
 
 /**
  * @author Max Becerro
  *
  */
 public class Door extends Entity implements IDoor{
+	
+	
 
-	public Door(TypeEnum type) {
-		super(type);
+	public Door(boolean closed) {
+		super();
+		if(closed) {
+			super.setType(TypeEnum.DOOR_CLOSED);
+		}else {
+			super.setType(TypeEnum.DOOR_OPEN);
+		}
+		
 		// TODO Auto-generated constructor stub
 	}
 
-	public Door(Vector position, SpriteSet sprites, TypeEnum type) {
-		super(position, sprites, type);
+	public Door(IVector position, boolean closed) {
+		super();
+		if(closed) {
+			super.setType(TypeEnum.DOOR_CLOSED);
+		}else {
+			super.setType(TypeEnum.DOOR_OPEN);
+		}
+		
 		// TODO Auto-generated constructor stub
 	}
 
-	public Door(Vector position, TypeEnum type) {
-		super(position, type);
-		// TODO Auto-generated constructor stub
-	}
 
 }
