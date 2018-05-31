@@ -19,17 +19,14 @@ public class Entity extends Unit implements IEntity {
 
 	public Entity(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
 		super(position, spriteSet, type);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Entity(final IVector position, final TypeEnum type) {
 		super(position, type);
-		// TODO Auto-generated constructor stub
 	}
 
 	public Entity(final TypeEnum type) {
 		super(type);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

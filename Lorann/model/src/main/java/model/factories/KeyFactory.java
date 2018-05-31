@@ -1,5 +1,9 @@
 package model.factories;
 
-class KeyFactory {
+import model.Key;
 
+class KeyFactory {
+	Key createBlue() {
+		return new Key();
+	}
 }

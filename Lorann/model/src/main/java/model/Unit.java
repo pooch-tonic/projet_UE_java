@@ -1,6 +1,7 @@
 package model;
 
 import enums.TypeEnum;
+import model.vector.Vector;
 import modelInterfaces.ISpriteSet;
 import modelInterfaces.IUnit;
 import modelInterfaces.IVector;
@@ -23,16 +24,21 @@ public abstract class Unit implements IUnit {
 		this.setPosition(position);
 		this.setSpriteSet(spriteSet);
 		this.setType(type);
+		this.setScoreValue(0);
 	}
 
 	public Unit(final IVector position, final TypeEnum type) {
 		this.setPosition(position);
+		// this.setSpriteSet(spriteSet); TODO default spriteset required
 		this.setType(type);
-
+		this.setScoreValue(0);
 	}
 
 	public Unit(final TypeEnum type) {
+		this.setPosition(new Vector(0, 0));
+		// this.setSpriteSet(spriteSet); TODO default spriteset required
 		this.setType(type);
+		this.setScoreValue(0);
 	}
 
 	@Override
