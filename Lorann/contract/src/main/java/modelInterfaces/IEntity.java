@@ -1,4 +1,4 @@
--package modelInterfaces;
+package modelInterfaces;
 
 import enums.DirectionsEnum;
 import showboard.IPawn;
