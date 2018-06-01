@@ -1,6 +1,11 @@
 package model;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import enums.TypeEnum;
+import modelInterfaces.IUnit;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -16,7 +21,6 @@ public class Wall implements IUnit {
 	 * @param wallType
 	 */
 	public Wall(final IVector position, final WallType wallType) {
-		super();
 		this.setWallType(wallType);
 		this.setPosition(position);
 
@@ -29,17 +33,16 @@ public class Wall implements IUnit {
 	 * @param wallType
 	 */
 	public Wall(final WallType wallType) {
-		super();
 		this.setWallType(wallType);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+
 	public int getX() {
 		return this.getPosition().getX();
 	}
 
-	@Override
+
 	public int getY() {
 		return this.getPosition().getY();
 	}
@@ -50,15 +53,57 @@ public class Wall implements IUnit {
 	private void setWallType(final WallType wallType) {
 		switch (wallType) {
 		case WALL_ROUND:
-			super.setType(TypeEnum.WALL);
+			setType(TypeEnum.WALL);
 			break;
 		case WALL_VERTICAL:
-			super.setType(TypeEnum.WALL_V);
+			setType(TypeEnum.WALL_V);
 			break;
 		case WALL_HORIZONTAL:
-			super.setType(TypeEnum.WALL_H);
+			setType(TypeEnum.WALL_H);
 			break;
 		}
+	}
+
+	@Override
+	public IVector getPosition() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ISpriteSet getSpriteSet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TypeEnum getType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPosition(IVector position) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSpriteSet(ArrayList<BufferedImage> sprites) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSpriteSet(ISpriteSet spriteSet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setType(TypeEnum type) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

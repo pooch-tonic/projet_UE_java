@@ -8,13 +8,17 @@ import enums.TypeEnum;
 import modelInterfaces.IEntity;
 import showboard.ISpriteSet;
 import vector.IVector;
+import vector.Vector;
 
 /**
  * @author Max Becerro
  *
  */
-public abstract class Entity extends Unit implements IEntity {
-
+public abstract class Entity implements IEntity {
+	private IVector position;
+	private ISpriteSet spriteSet;
+	private TypeEnum type;
+	private int scoreValue;
 	private IVector direction;
 
 	/**
@@ -22,7 +26,7 @@ public abstract class Entity extends Unit implements IEntity {
 	 *
 	 */
 	public Entity() {
-		super();
+		
 	}
 
 	/**
@@ -33,7 +37,10 @@ public abstract class Entity extends Unit implements IEntity {
 	 * @param type
 	 */
 	public Entity(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
-		super(position, spriteSet, type);
+		this.setPosition(position);
+		this.setSpriteSet(spriteSet);
+		this.setType(type);
+		this.setScoreValue(0);
 	}
 
 	/**
@@ -43,7 +50,9 @@ public abstract class Entity extends Unit implements IEntity {
 	 * @param type
 	 */
 	public Entity(final IVector position, final TypeEnum type) {
-		super(position, type);
+		this.setPosition(position);
+		this.setType(type);
+		this.setScoreValue(0);
 	}
 
 	/**
@@ -52,7 +61,9 @@ public abstract class Entity extends Unit implements IEntity {
 	 * @param type
 	 */
 	public Entity(final TypeEnum type) {
-		super(type);
+		this.setPosition(new Vector(0, 0));
+		this.setType(type);
+		this.setScoreValue(0);
 	}
 
 	@Override
@@ -69,32 +80,11 @@ public abstract class Entity extends Unit implements IEntity {
 		return this.direction;
 	}
 
-	@Override
-	/**
-	 * @return a position
-	 */
-	public IVector getPosition() {
-		// TODO Auto-generated method stub
-		return super.getPosition();
-	}
 
-	@Override
-	/**
-	 * @return a spriteSet
-	 */
-	public ISpriteSet getSpriteSet() {
-		// TODO Auto-generated method stub
-		return super.getSpriteSet();
-	}
 
-	@Override
-	/**
-	 * @return a type
-	 */
-	public TypeEnum getType() {
-		// TODO Auto-generated method stub
-		return super.getType();
-	}
+
+
+
 
 	@Override
 	public void move(final DirectionsEnum direction) {
@@ -109,21 +99,52 @@ public abstract class Entity extends Unit implements IEntity {
 	}
 
 	@Override
-	public void setPosition(final IVector position) {
-		// TODO Auto-generated method stub
+	public IVector getPosition() {
+		return this.position;
+	}
 
+	/**
+	 * Gets the scoreValue
+	 *
+	 * @return the scoreValue
+	 */
+	public int getScoreValue() {
+		return this.scoreValue;
 	}
 
 	@Override
+	public ISpriteSet getSpriteSet() {
+		return this.spriteSet;
+	}
+
+
+	public TypeEnum getType() {
+		return this.type;
+	}
+
+
+	public void setPosition(final IVector position) {
+		this.position = position;
+	}
+
+	public void setScoreValue(final int scoreValue) {
+		this.scoreValue = scoreValue;
+	}
+
+
 	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public void setType(final TypeEnum type) {
-		// TODO Auto-generated method stub
 
+	public void setSpriteSet(final ISpriteSet spriteSet) {
+		this.spriteSet = spriteSet;
+	}
+
+
+	public void setType(final TypeEnum type) {
+		this.type = type;
 	}
 
 }
