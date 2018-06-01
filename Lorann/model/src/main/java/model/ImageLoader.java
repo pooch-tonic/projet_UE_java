@@ -18,7 +18,7 @@ public class ImageLoader {
 		this.type = type;
 		
 		try {
-			this.image = ImageIO.read(new File(query.getSpritePath(type)));
+			this.image = ImageIO.read(new File(query.getSpritePath(type).getString(3)));
 		} catch (Exception e) {
 			
 		}
