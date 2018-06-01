@@ -1,7 +1,11 @@
 package modelInterfaces;
 
+import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import enums.TypeEnum;
 
 /**
@@ -30,7 +34,7 @@ public interface IModel {
      * @throws SQLException
      *             the SQL exception
      */ 
-	ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException;
+	ArrayList<IVector> getUnitByType(TypeEnum type, int mapId) throws SQLException;
 
 	/**
      * Gets the unit by position.
@@ -45,7 +49,7 @@ public interface IModel {
      * @throws SQLException
      *             the SQL exception
      */ 
-	ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException;
+	String getUnitByPosition(int x, int y, int mapId) throws SQLException;
 
 	/**
      * Gets the unit by map.
@@ -56,7 +60,7 @@ public interface IModel {
      * @throws SQLException
      *             the SQL exception
      */ 
-	ResultSet getUnitByMap(int mapId) throws SQLException;
+	HashMap<String, IVector> getUnitByMap(int mapId) throws SQLException;
 
 	/**
      * Gets the path of the sprite.
@@ -67,7 +71,7 @@ public interface IModel {
      * @throws SQLException
      *             the SQL exception
      */ 
-	ResultSet getSpritePath(TypeEnum type) throws SQLException;
+	ArrayList<String> getSpritePath(TypeEnum type) throws SQLException;
 
 	/**
      * Gets the map.
@@ -78,5 +82,5 @@ public interface IModel {
      * @throws SQLException
      *             the SQL exception
      */ 
-	ResultSet getMap(int mapId) throws SQLException;
+	Dimension getMap(int mapId) throws SQLException;
 }
