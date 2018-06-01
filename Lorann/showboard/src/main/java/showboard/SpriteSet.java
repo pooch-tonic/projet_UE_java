@@ -1,9 +1,7 @@
-package model;
+package showboard;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import modelInterfaces.ISpriteSet;
 
 /**
  * <h1>The SpriteSet class to store one or many sprites as a set</h1>
@@ -13,7 +11,7 @@ import modelInterfaces.ISpriteSet;
  *
  */
 
-public class SpriteSet {
+public class SpriteSet implements ISpriteSet{
 
 	private ArrayList<BufferedImage> sprites;
 	private int currentIndex;
@@ -152,5 +150,11 @@ public class SpriteSet {
 	 */
 	public void setSprites(final ArrayList<BufferedImage> sprites) {
 		this.sprites = sprites;
+	}
+
+	@Override
+	public void setSprites(ISpriteSet spriteSet) {
+		// TODO Auto-generated method stub
+		
 	}
 }

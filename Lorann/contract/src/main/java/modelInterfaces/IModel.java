@@ -2,7 +2,9 @@ package modelInterfaces;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import enums.TypeEnum;
+
+import showboard.TypeEnum;
+
 
 /**
  * <h1>The Interface IModel.</h1>

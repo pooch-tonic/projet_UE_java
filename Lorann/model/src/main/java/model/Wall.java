@@ -1,16 +1,20 @@
 package model;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-import enums.TypeEnum;
+
 import modelInterfaces.IWall;
+import showboard.IPawn;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Wall extends Block implements IWall {
+public class Wall extends Unit implements IWall {
 
 	/**
 	 * Instantiates a new Wall
@@ -59,6 +63,36 @@ public class Wall extends Block implements IWall {
 			super.setType(TypeEnum.WALL_H);
 			break;
 		}
+	}
+
+	@Override
+	public void setSpriteSet(ArrayList<BufferedImage> sprites) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public IPawn getUnit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void removeUnit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUnitIfEmpty(IPawn unit) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

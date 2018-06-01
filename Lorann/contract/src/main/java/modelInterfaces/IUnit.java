@@ -2,7 +2,8 @@ package modelInterfaces;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import enums.TypeEnum;
+import showboard.ISpriteSet;
+import showboard.TypeEnum;
 import vector.IVector;
 
 public interface IUnit {

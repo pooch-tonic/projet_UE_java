@@ -1,19 +1,21 @@
 package model;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import enums.DirectionsEnum;
-import enums.TypeEnum;
 import modelInterfaces.IEntity;
-import modelInterfaces.ISpriteSet;
+import showboard.IPawn;
+import showboard.ISpriteSet;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Entity extends Unit implements IEntity {
+public class Entity extends Unit implements IPawn {
 
 	private IVector direction;
 	
@@ -56,74 +58,53 @@ public class Entity extends Unit implements IEntity {
 	}
 
 	@Override
-	public void destroy() {
+	public void setSpriteSet(ArrayList<BufferedImage> sprites) {
 		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	/**
-	 * @return a direction
-	 */
-	public IVector getDirection() {
+	public Image getImage() {
 		// TODO Auto-generated method stub
-		return this.direction;
+		return null;
 	}
 
 	@Override
-	/**
-	 * @return a position
-	 */
-	public IVector getPosition() {
+	public IPawn getUnit() {
 		// TODO Auto-generated method stub
-		return super.getPosition();
+		return null;
 	}
 
 	@Override
-	/**
-	 * @return a spriteSet
-	 */
-	public ISpriteSet getSpriteSet() {
+	public boolean isEmpty() {
 		// TODO Auto-generated method stub
-		return super.getSpriteSet();
+		return false;
 	}
 
 	@Override
-	/**
-	 * @return a type
-	 */
-	public TypeEnum getType() {
+	public void removeUnit() {
 		// TODO Auto-generated method stub
-		return super.getType();
+		
 	}
 
 	@Override
-	public void move(final DirectionsEnum direction) {
+	public void setUnitIfEmpty(IPawn unit) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void setDirection(final IVector direction) {
+	public int getX() {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override
-	public void setPosition(final IVector position) {
+	public int getY() {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
-	@Override
-	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void setType(final TypeEnum type) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

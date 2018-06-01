@@ -4,10 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import enums.TypeEnum;
 import model.dao.QueryDAO;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import showboard.TypeEnum;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -29,56 +29,7 @@ public final class ModelFacade extends Observable implements IModel {
      *
      * @see model.IModel#getUnitByType(TypeEnum, int)
      */
-    @Override
-    public ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException {
-        return QueryDAO.getUnitByType(type, mapId);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see model.IModel#getUnitByPosition(int, int, int)
-     */
-    @Override
-    public ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException {
-        return QueryDAO.getUnitByPosition(x, y, mapId);
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see model.IModel#getUnitByMap(int)
-     */
-    @Override
-    public ResultSet getUnitByMap(int mapId) throws SQLException {
-        return QueryDAO.getUnitByMap(mapId);
-    }
-    
-    /*
-     * (non-Javadoc)
-     *
-     * @see model.IModel#getSpritePath(TypeEnum)
-     */
-    @Override
-    public ResultSet getSpritePath(TypeEnum type) throws SQLException {
-        return QueryDAO.getSpritePath(type);
-    }
-    
-    /*
-     * (non-Javadoc)
-     *
-     * @see model.IModel#getMap(int)
-     */
-    @Override
-    public ResultSet getMap(int mapId) throws SQLException {
-        return QueryDAO.getMap(mapId);
-    }
-
-    @Override
-    public ILevel getLevel() {
-        // TODO Auto-generated method stub
-        return level;
-    }
+   
 
     /**
 	 * @param level the level to set
@@ -88,25 +39,64 @@ public final class ModelFacade extends Observable implements IModel {
 	}
 
 	@Override
-    public int getScoreValue() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+	public ILevel getLevel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public void addToScoreValue(final int value) {
-        // TODO Auto-generated method stub
+	@Override
+	public int getScoreValue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    }
+	@Override
+	public void addToScoreValue(int value) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void loadLevel(int levelId) {
-		this.setLevel(level);
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet getUnitByMap(int mapId) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet getSpritePath(TypeEnum type) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultSet getMap(int mapId) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 }

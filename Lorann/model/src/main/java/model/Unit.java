@@ -1,8 +1,9 @@
 package model;
 
-import enums.TypeEnum;
-import modelInterfaces.ISpriteSet;
-import modelInterfaces.IUnit;
+
+import showboard.ISpriteSet;
+import showboard.ISquare;
+import showboard.TypeEnum;
 import vector.IVector;
 import vector.Vector;
 
@@ -10,7 +11,7 @@ import vector.Vector;
  * @author Max Becerro
  *
  */
-public abstract class Unit implements IUnit {
+public abstract class Unit implements ISquare {
 	private IVector position;
 	private ISpriteSet spriteSet;
 	private TypeEnum type;

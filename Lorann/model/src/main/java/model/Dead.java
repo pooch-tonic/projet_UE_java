@@ -1,7 +1,8 @@
 package model;
 
-import enums.TypeEnum;
+
 import modelInterfaces.IDead;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**

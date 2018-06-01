@@ -1,6 +1,10 @@
 package showboard;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import vector.IVector;
 
 /**
  * <h1>The Interface ISquare.</h1>
@@ -16,7 +20,19 @@ import java.awt.Image;
  * @see Image
  */
 public interface ISquare {
+	public IVector getPosition();
 
+	public ISpriteSet getSpriteSet();
+
+	public TypeEnum getType();
+
+	public void setPosition(final IVector position);
+
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+
+	public void setSpriteSet(final ISpriteSet spriteSet);
+
+	public void setType(final TypeEnum type);
 	/**
 	 * Gets the image.
 	 *
