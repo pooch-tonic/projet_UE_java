@@ -8,6 +8,7 @@ import enums.TypeEnum;
 import modelInterfaces.IBlock;
 import modelInterfaces.ISpriteSet;
 import modelInterfaces.IVector;
+import showboard.IPawn;
 import showboard.ISquare;
 
 /**
@@ -81,6 +82,30 @@ public class Block extends Unit implements ISquare, IBlock {
 	public void setSpriteSet(final ISpriteSet spriteSet) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public IPawn getUnit() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void removeUnit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUnitIfEmpty(IPawn unit) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
