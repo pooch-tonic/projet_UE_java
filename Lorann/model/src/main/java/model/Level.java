@@ -11,27 +11,34 @@ import showboard.ISquare;
 public class Level {
 	private ISquare[][] squares;
 	private Dimension dimension;
-	
 
-	
 	/**
-	 * 
-	 * @return a squares
-	 */
-	public ISquare[][] getSquares() {
-		return this.squares;
-	}
-	public void setSquares(ISquare[][] squares) {
-		this.squares = squares;
-	}
-	/**
-	 * 
-	 * @return a dimension
+	 *
+	 * @return the dimension of the map, with x as rows and y as columns
 	 */
 	public Dimension getDimension() {
 		return this.dimension;
 	}
-	public void setDimension(Dimension dimension) {
+
+	/**
+	 *
+	 * @return the current level map, contained in a 2D array of ISquare.
+	 */
+	public ISquare[][] getSquares() {
+		return this.squares;
+	}
+
+	/**
+	 * @param dimension
+	 */
+	public void setDimension(final Dimension dimension) {
 		this.dimension = dimension;
+	}
+
+	/**
+	 * @param squares
+	 */
+	public void setSquares(final ISquare[][] squares) {
+		this.squares = squares;
 	}
 }
