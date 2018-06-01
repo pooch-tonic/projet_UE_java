@@ -1,7 +1,5 @@
 package showboard;
 
-import java.awt.Point;
-
 import vector.IVector;
 
 /**
@@ -18,11 +16,12 @@ import vector.IVector;
  */
 public interface IPawn extends ISquare {
 
+
 	/**
 	 * Gets the position Point(int x, int y).
 	 *
 	 * @return the position
-	 * @see Point
+	 * 
 	 */
 	IVector getPosition();
 

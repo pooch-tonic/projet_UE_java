@@ -82,7 +82,7 @@ public class ViewFacade implements IView {
      *
      * @return boardFrame
      */
-    private BoardFrame getBoardFrame() {
+    public BoardFrame getBoardFrame() {
         return this.boardFrame;
     }
 

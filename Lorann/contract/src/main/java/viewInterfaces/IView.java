@@ -1,5 +1,7 @@
 package viewInterfaces;
 
+import showboard.BoardFrame;
+
 /**
  * <h1>The Interface IView.</h1>
  *
@@ -16,4 +18,5 @@ public interface IView {
      * @throws Exception
      */
     void displayMessage(String message) throws Exception;
+    public BoardFrame getBoardFrame();
 }

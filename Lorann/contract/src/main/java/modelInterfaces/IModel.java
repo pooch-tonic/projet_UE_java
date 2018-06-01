@@ -19,6 +19,7 @@ public interface IModel {
 
     void reset();
 
+    void loadLevel(int levelId);
     /**
      * Gets the unit by type.
      *
