@@ -3,7 +3,7 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import modelInterfaces.ISpriteSet;
+import showboard.ISpriteSet;
 
 /**
  * <h1>The SpriteSet class to store one or many sprites as a set</h1>

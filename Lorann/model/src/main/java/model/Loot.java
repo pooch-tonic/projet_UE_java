@@ -1,18 +1,17 @@
 package model;
 
 import enums.TypeEnum;
-import modelInterfaces.ILoot;
 import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Loot extends Entity implements ILoot {
+public class Loot extends Entity {
 
 	/**
 	 * Instantiates a new Loot
-	 * 
+	 *
 	 */
 	public Loot() {
 		super(TypeEnum.LOOT);
@@ -21,7 +20,7 @@ public class Loot extends Entity implements ILoot {
 
 	/**
 	 * Instantiates a new Loot
-	 * 
+	 *
 	 * @param position
 	 */
 	public Loot(final IVector position) {
@@ -31,7 +30,7 @@ public class Loot extends Entity implements ILoot {
 
 	/**
 	 * Instantiates a new Loot
-	 * 
+	 *
 	 * @param position
 	 * @param lootType
 	 */
@@ -42,12 +41,22 @@ public class Loot extends Entity implements ILoot {
 
 	/**
 	 * Instantiates a new Loot
-	 * 
+	 *
 	 * @param lootType
 	 */
 	public Loot(final LootType lootType) {
 		super(TypeEnum.LOOT);
 		this.setLootScoreValue(lootType);
+	}
+
+	@Override
+	public int getX() {
+		return this.getPosition().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 	/**

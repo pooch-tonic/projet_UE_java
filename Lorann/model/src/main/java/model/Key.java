@@ -1,18 +1,17 @@
 package model;
 
 import enums.TypeEnum;
-import modelInterfaces.IKey;
 import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Key extends Entity implements IKey {
+public class Key extends Entity {
 
 	/**
 	 * Instantiates a new Key
-	 * 
+	 *
 	 */
 	public Key() {
 		super(TypeEnum.KEY);
@@ -21,12 +20,22 @@ public class Key extends Entity implements IKey {
 
 	/**
 	 * Instantiates a new Key
-	 * 
+	 *
 	 * @param position
 	 */
 	public Key(final IVector position) {
 		super(position, TypeEnum.KEY);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getX() {
+		return this.getPosition().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 }
