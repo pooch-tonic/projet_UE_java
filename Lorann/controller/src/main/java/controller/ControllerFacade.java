@@ -1,12 +1,13 @@
+/*
+ *
+ */
 package controller;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderStacker;
-import controllerInterfaces.IUserOrder;
-import modelInterfaces.Example;
+import enums.OrderEnum;
 import modelInterfaces.IModel;
 import showboard.IBoard;
 import viewInterfaces.IView;
@@ -48,19 +49,19 @@ public class ControllerFacade implements IController, IOrderStacker {
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.getView()
-                .displayMessage(this.getModel().getExampleById(1).toString());
-
-        this.getView().displayMessage(
-                this.getModel().getExampleByName("Example 2").toString());
-
-        final List<Example> examples = this.getModel().getAllExamples();
-        final StringBuilder message = new StringBuilder();
-        for (final Example example : examples) {
-            message.append(example);
-            message.append('\n');
-        }
-        this.getView().displayMessage(message.toString());
+        // this.getView()
+        // .displayMessage(this.getModel().getExampleById(1).toString());
+        //
+        // this.getView().displayMessage(
+        // this.getModel().getExampleByName("Example 2").toString());
+        //
+        // final List<Example> examples = this.getModel().getAllExamples();
+        // final StringBuilder message = new StringBuilder();
+        // for (final Example example : examples) {
+        // message.append(example);
+        // message.append('\n');
+        // }
+        // this.getView().displayMessage(message.toString());
     }
 
     /**
@@ -86,14 +87,14 @@ public class ControllerFacade implements IController, IOrderStacker {
     }
 
     @Override
-    public void stackOrder(final IUserOrder userOrder) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void setBoard(final IBoard board) {
         // TODO Auto-generated method stub
         this.board = board;
+    }
+
+    @Override
+    public void stackOrder(final OrderEnum userOrder) {
+        // TODO Auto-generated method stub
+
     }
 }

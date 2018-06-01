@@ -1,12 +1,19 @@
+/*
+ *
+ */
 package view;
 
 import java.awt.event.KeyEvent;
 
 import controllerInterfaces.IOrderStacker;
+import enums.OrderEnum;
 
 /**
- * @author aurel
+ * <h1>The class KeyEventPerformer translate key events to order for the
+ * controller</h1>
  *
+ * @author Aurélien Dellac
+ * @version 1 juin 2018
  */
 class KeyEventPerformer implements IKeyEventPerformer {
     /** The object able to stack order. */
@@ -18,8 +25,13 @@ class KeyEventPerformer implements IKeyEventPerformer {
      * Instantiates a new KeyEventPerformer
      *
      * @param orderStacker
+     * @throws Exception
      */
-    public KeyEventPerformer(final IOrderStacker orderStacker) {
+    public KeyEventPerformer(final IOrderStacker orderStacker)
+            throws Exception {
+        if (orderStacker == null) {
+            throw new Exception("The OrderStacker is null");
+        }
         this.setOrderStacker(orderStacker);
     }
 
@@ -31,12 +43,30 @@ class KeyEventPerformer implements IKeyEventPerformer {
     @Override
     public void performEvent(final KeyEvent keyEvent) {
         // TODO Auto-generated method stub
-
+        this.orderStacker
+                .stackOrder(this.keyCodeToOrder(keyEvent.getKeyCode()));
     }
 
-    // private Order keyCodeToOrder(final int keyCode) {
-    // return Order.NONE;
-    // }
+    /**
+     * Returns the order corresponding to the key code of the new keyboard input
+     *
+     * @param keyCode
+     * @return the order
+     */
+    private OrderEnum keyCodeToOrder(final int keyCode) {
+        return OrderEnum.NONE;
+    }
+
+    /**
+     * Checks if the new pressed key may be combine with the current one and
+     * then returns the new (or not) order
+     *
+     * @param keyCode
+     * @return the order
+     */
+    private OrderEnum performEventCombination(final int keyCode) {
+        return OrderEnum.NONE;
+    }
 
     /**
      * Gets the orderStacker

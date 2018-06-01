@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package view;
 
 import java.awt.Dimension;
@@ -14,12 +17,8 @@ import viewInterfaces.IView;
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
- */
-/**
  * @author aurel
- *
+ * @version 31 mai 2018
  */
 public class ViewFacade implements IView {
     /** The frame of the game. */
@@ -38,8 +37,13 @@ public class ViewFacade implements IView {
             final IOrderStacker orderStacker, final Observable observable) {
         super();
 
-        this.setKeyListener(
-                new KeyListener(new KeyEventPerformer(orderStacker)));
+        try {
+            this.setKeyListener(
+                    new KeyListener(new KeyEventPerformer(orderStacker)));
+        } catch (final Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         this.setBoardFrame(new BoardFrame("Lorann", false));
         this.getBoardFrame().setSize(640, 416);
@@ -52,13 +56,22 @@ public class ViewFacade implements IView {
         observable.addObserver(this.getBoardFrame().getObserver());
     }
 
+    /**
+     * Instantiates a new ViewFacade without setting any attribute.
+     */
+    public ViewFacade() {
+    }
+
     /*
      * (non-Javadoc)
      *
      * @see view.IView#displayMessage(java.lang.String)
      */
     @Override
-    public final void displayMessage(final String message) {
+    public final void displayMessage(final String message) throws Exception {
+        if (message.isEmpty()) {
+            throw new Exception("Message to display is empty");
+        }
         JOptionPane.showMessageDialog(null, message);
     }
 

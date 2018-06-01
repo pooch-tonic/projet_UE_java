@@ -13,6 +13,7 @@ public interface IView {
      *
      * @param message
      *            the message
+     * @throws Exception
      */
-    void displayMessage(String message);
+    void displayMessage(String message) throws Exception;
 }
