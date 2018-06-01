@@ -3,8 +3,8 @@ package model;
 import java.awt.Image;
 
 import enums.TypeEnum;
-import modelInterfaces.IVector;
 import modelInterfaces.IWall;
+import vector.IVector;
 
 /**
  * @author Max Becerro

@@ -87,23 +87,22 @@ public class ControllerFacade implements IController, IOrderStacker {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see controllerInterfaces.IController#loadLevel(int)
 	 */
 	@Override
 	public void loadLevel(final int id) {
-		// TODO Auto-generated method stub
+		this.getLevelLoader().loadLevel(id);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see controllerInterfaces.IController#nextlevel(int)
 	 */
 	@Override
 	public void nextlevel(final int currentLevelId) {
-		// TODO Auto-generated method stub
-
+		this.getLevelLoader().loadLevel(currentLevelId);
 	}
 
 	/*

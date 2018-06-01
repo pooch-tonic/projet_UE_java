@@ -3,6 +3,7 @@ package modelInterfaces;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import enums.TypeEnum;
+import vector.IVector;
 
 public interface IUnit {
 	public IVector getPosition();

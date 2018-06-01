@@ -7,7 +7,7 @@ import enums.DirectionsEnum;
 import enums.TypeEnum;
 import modelInterfaces.IEntity;
 import modelInterfaces.ISpriteSet;
-import modelInterfaces.IVector;
+import vector.IVector;
 
 /**
  * @author Max Becerro
