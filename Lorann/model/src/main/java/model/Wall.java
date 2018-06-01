@@ -7,7 +7,7 @@ import vector.IVector;
  * @author Max Becerro
  *
  */
-public class Wall extends Entity {
+public class Wall implements IUnit {
 
 	/**
 	 * Instantiates a new Wall
