@@ -22,6 +22,7 @@ public interface IPawn extends ISquare {
      * @return the x
      */
     int getX();
+    
 
     /**
      * Gets the y position.
