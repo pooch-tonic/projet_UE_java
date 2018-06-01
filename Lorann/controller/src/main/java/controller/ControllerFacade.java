@@ -111,7 +111,7 @@ public class ControllerFacade implements IController, IOrderStacker {
 	 */
 	@Override
 	public void nextlevel(final int currentLevelId) {
-		this.getLevelLoader().loadLevel(currentLevelId, this.getModel(), this.getView());
+		this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
 	}
 
 	/*

@@ -1,18 +1,17 @@
 package model;
 
 import enums.TypeEnum;
-import modelInterfaces.IDoor;
 import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Door extends Entity implements IDoor {
+public class Door extends Entity {
 
 	/**
 	 * Instantiates a new Door
-	 * 
+	 *
 	 * @param closed
 	 */
 	public Door(final boolean closed) {
@@ -24,7 +23,7 @@ public class Door extends Entity implements IDoor {
 
 	/**
 	 * Instantiates a new Door
-	 * 
+	 *
 	 * @param position
 	 * @param closed
 	 */
@@ -34,6 +33,16 @@ public class Door extends Entity implements IDoor {
 		super.setPosition(position);
 
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getX() {
+		return this.getPosition().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 	/**

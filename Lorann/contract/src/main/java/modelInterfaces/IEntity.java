@@ -1,9 +1,10 @@
 package modelInterfaces;
 
 import enums.DirectionsEnum;
+import showboard.IPawn;
 import vector.IVector;
 
-public interface IEntity extends IUnit {
+public interface IEntity extends IPawn {
 	public void destroy();
 
 	public IVector getDirection();

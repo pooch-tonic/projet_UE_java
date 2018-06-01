@@ -1,4 +1,4 @@
-package modelInterfaces;
+package showboard;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

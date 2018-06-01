@@ -1,8 +1,11 @@
 package model;
 
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 import enums.TypeEnum;
-import modelInterfaces.ISpriteSet;
 import modelInterfaces.IUnit;
+import showboard.ISpriteSet;
 import vector.IVector;
 import vector.Vector;
 
@@ -10,7 +13,7 @@ import vector.Vector;
  * @author Max Becerro
  *
  */
-public abstract class Unit implements IUnit {
+public class Unit implements IUnit {
 	private IVector position;
 	private ISpriteSet spriteSet;
 	private TypeEnum type;
@@ -18,7 +21,7 @@ public abstract class Unit implements IUnit {
 
 	/**
 	 * Instantiates a new Unit
-	 * 
+	 *
 	 */
 	public Unit() {
 
@@ -26,7 +29,7 @@ public abstract class Unit implements IUnit {
 
 	/**
 	 * Instantiates a new Unit
-	 * 
+	 *
 	 * @param position
 	 * @param spriteSet
 	 * @param type
@@ -40,7 +43,7 @@ public abstract class Unit implements IUnit {
 
 	/**
 	 * Instantiates a new Unit
-	 * 
+	 *
 	 * @param position
 	 * @param type
 	 */
@@ -52,7 +55,7 @@ public abstract class Unit implements IUnit {
 
 	/**
 	 * Instantiates a new Unit
-	 * 
+	 *
 	 * @param type
 	 */
 	public Unit(final TypeEnum type) {
@@ -61,12 +64,19 @@ public abstract class Unit implements IUnit {
 		this.setScoreValue(0);
 	}
 
-
 	@Override
 	public IVector getPosition() {
 		return this.position;
 	}
 
+	/**
+	 * Gets the scoreValue
+	 *
+	 * @return the scoreValue
+	 */
+	public int getScoreValue() {
+		return this.scoreValue;
+	}
 
 	@Override
 	public ISpriteSet getSpriteSet() {
@@ -88,6 +98,12 @@ public abstract class Unit implements IUnit {
 	}
 
 	@Override
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
 	public void setSpriteSet(final ISpriteSet spriteSet) {
 		this.spriteSet = spriteSet;
 	}
@@ -95,14 +111,5 @@ public abstract class Unit implements IUnit {
 	@Override
 	public void setType(final TypeEnum type) {
 		this.type = type;
-	}
-
-	/**
-	 * Gets the scoreValue
-	 * 
-	 * @return the scoreValue
-	 */
-	public int getScoreValue() {
-		return scoreValue;
 	}
 }
