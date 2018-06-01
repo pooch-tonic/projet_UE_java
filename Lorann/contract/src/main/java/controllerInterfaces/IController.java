@@ -10,5 +10,27 @@ import showboard.IBoard;
  */
 public interface IController {
 
-    void setBoard(IBoard board);
+	/**
+	 * loads the level according to the specified id
+	 * 
+	 * @param id
+	 */
+	void loadLevel(int id);
+
+	/**
+	 * loads the level that comes after the specified current level id
+	 */
+	void nextlevel(int currentLevelId);
+
+	/**
+	 * sets the controller's contained game board
+	 *
+	 * @param board
+	 */
+	void setBoard(IBoard board);
+
+	/**
+	 * asks the controller to update the model
+	 */
+	void update();
 }
