@@ -1,11 +1,11 @@
 package model;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Observable;
 
-import model.dao.ExampleDAO;
-import modelInterfaces.Example;
+import enums.TypeEnum;
+import model.dao.QueryDAO;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
 
@@ -27,31 +27,51 @@ public final class ModelFacade extends Observable implements IModel {
     /*
      * (non-Javadoc)
      *
-     * @see model.IModel#getExampleById(int)
+     * @see model.IModel#getUnitByType(TypeEnum, int)
      */
     @Override
-    public Example getExampleById(final int id) throws SQLException {
-        return ExampleDAO.getExampleById(id);
+    public ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException {
+        return QueryDAO.getUnitByType(type, mapId);
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see model.IModel#getExampleByName(java.lang.String)
+     * @see model.IModel#getUnitByPosition(int, int, int)
      */
     @Override
-    public Example getExampleByName(final String name) throws SQLException {
-        return ExampleDAO.getExampleByName(name);
+    public ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException {
+        return QueryDAO.getUnitByPosition(x, y, mapId);
     }
 
     /*
      * (non-Javadoc)
      *
-     * @see model.IModel#getAllExamples()
+     * @see model.IModel#getUnitByMap(int)
      */
     @Override
-    public List<Example> getAllExamples() throws SQLException {
-        return ExampleDAO.getAllExamples();
+    public ResultSet getUnitByMap(int mapId) throws SQLException {
+        return QueryDAO.getUnitByMap(mapId);
+    }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see model.IModel#getSpritePath(TypeEnum)
+     */
+    @Override
+    public ResultSet getSpritePath(TypeEnum type) throws SQLException {
+        return QueryDAO.getSpritePath(type);
+    }
+    
+    /*
+     * (non-Javadoc)
+     *
+     * @see model.IModel#getMap(int)
+     */
+    @Override
+    public ResultSet getMap(int mapId) throws SQLException {
+        return QueryDAO.getMap(mapId);
     }
 
     @Override
