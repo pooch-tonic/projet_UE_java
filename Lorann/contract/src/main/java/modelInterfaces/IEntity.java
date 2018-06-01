@@ -2,7 +2,7 @@ package modelInterfaces;
 
 import enums.DirectionsEnum;
 
-public interface IEntity {
+public interface IEntity extends IUnit {
 	public void destroy();
 
 	public IVector getDirection();

@@ -12,7 +12,7 @@ import enums.OrderEnum;
  * <h1>The class KeyEventPerformer translate key events to order for the
  * controller</h1>
  *
- * @author Aurélien Dellac
+ * @author Aurï¿½lien Dellac
  * @version 1 juin 2018
  */
 class KeyEventPerformer implements IKeyEventPerformer {
@@ -64,7 +64,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
      * @param keyCode
      * @return the order
      */
-    private OrderEnum performEventCombination(final int keyCode) {
+    private OrderEnum keyCodeToOrder(final int keyCode) {
         return OrderEnum.NONE;
     }
 

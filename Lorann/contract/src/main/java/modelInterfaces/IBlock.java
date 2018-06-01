@@ -1,5 +1,5 @@
 package modelInterfaces;
 
-public interface IBlock {
+public interface IBlock extends IUnit {
 
 }

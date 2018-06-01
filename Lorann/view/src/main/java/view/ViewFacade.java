@@ -16,7 +16,6 @@ import viewInterfaces.IView;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
- *
  * @author aurel
  * @version 31 mai 2018
  */
@@ -30,8 +29,11 @@ public class ViewFacade implements IView {
      * Instantiates a new ViewFacade
      *
      * @param controller
+     *            the game controller
      * @param orderStacker
+     *            the object able to stack order
      * @param observable
+     *            the observable object
      */
     public ViewFacade(final IController controller,
             final IOrderStacker orderStacker, final Observable observable) {
@@ -78,7 +80,7 @@ public class ViewFacade implements IView {
     /**
      * Return the boardFrame
      *
-     * @return
+     * @return boardFrame
      */
     private BoardFrame getBoardFrame() {
         return this.boardFrame;

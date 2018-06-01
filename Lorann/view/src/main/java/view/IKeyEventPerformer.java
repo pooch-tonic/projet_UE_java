@@ -3,8 +3,8 @@ package view;
 import java.awt.event.KeyEvent;
 
 /**
- * <h1>The Interface IKeyEventPerformer allows a class to perform key
- * events</h1>
+ * <h1>The Interface IKeyEventPerformer allows an object to perform keyboard
+ * events.</h1>
  *
  * @author aurel
  * @version 31 mai 2018
