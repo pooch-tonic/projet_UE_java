@@ -1,10 +1,10 @@
 package model;
 
 import enums.TypeEnum;
-import model.vector.Vector;
 import modelInterfaces.ISpriteSet;
 import modelInterfaces.IUnit;
-import modelInterfaces.IVector;
+import vector.IVector;
+import vector.Vector;
 
 /**
  * @author Max Becerro

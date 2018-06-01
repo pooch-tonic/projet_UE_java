@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import enums.TypeEnum;
 import modelInterfaces.IBlock;
 import modelInterfaces.ISpriteSet;
-import modelInterfaces.IVector;
 import showboard.IPawn;
 import showboard.ISquare;
+import vector.IVector;
 
 /**
  * @author Max Becerro

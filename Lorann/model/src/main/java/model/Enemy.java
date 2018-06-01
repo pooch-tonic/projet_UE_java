@@ -2,7 +2,7 @@ package model;
 
 import enums.TypeEnum;
 import modelInterfaces.IEnemy;
-import modelInterfaces.IVector;
+import vector.IVector;
 
 /**
  * @author Max Becerro

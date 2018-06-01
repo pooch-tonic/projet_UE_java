@@ -1,6 +1,7 @@
 package modelInterfaces;
 
 import enums.DirectionsEnum;
+import vector.IVector;
 
 public interface IEntity extends IUnit {
 	public void destroy();
