@@ -10,6 +10,8 @@ import java.awt.Image;
  * </p>
  *
  * @author Anne-Emilie DIET
+ * @author Aurélien DELLAC
+ * @author Ryo SHIINA
  * @version 1.1
  * @see Image
  */
@@ -39,7 +41,7 @@ public interface ISquare {
 
 	/**
 	 * places unit by testing first if the square is empty
-	 * 
+	 *
 	 * @param unit
 	 */
 	public void setUnitIfEmpty(IPawn unit);
