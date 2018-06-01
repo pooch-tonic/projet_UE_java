@@ -16,7 +16,7 @@ import modelInterfaces.IModel;
  * @version 1.0
  */
 public final class ModelFacade extends Observable implements IModel {
-
+	private ILevel level;
     /**
      * Instantiates a new model facade.
      */
@@ -77,10 +77,17 @@ public final class ModelFacade extends Observable implements IModel {
     @Override
     public ILevel getLevel() {
         // TODO Auto-generated method stub
-        return null;
+        return level;
     }
 
-    @Override
+    /**
+	 * @param level the level to set
+	 */
+	private void setLevel(ILevel level) {
+		this.level = level;
+	}
+
+	@Override
     public int getScoreValue() {
         // TODO Auto-generated method stub
         return 0;
@@ -97,4 +104,9 @@ public final class ModelFacade extends Observable implements IModel {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public void loadLevel(int levelId) {
+		this.setLevel(level);
+	}
 }
