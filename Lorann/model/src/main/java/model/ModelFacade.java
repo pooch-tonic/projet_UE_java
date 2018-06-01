@@ -1,13 +1,18 @@
 package model;
 
+import java.awt.Dimension;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 
 import enums.TypeEnum;
 import model.dao.QueryDAO;
+import model.vector.Vector;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import modelInterfaces.IVector;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -30,7 +35,7 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getUnitByType(TypeEnum, int)
      */
     @Override
-    public ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException {
+    public ArrayList<IVector> getUnitByType(TypeEnum type, int mapId) throws SQLException {
         return QueryDAO.getUnitByType(type, mapId);
     }
 
@@ -40,7 +45,7 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getUnitByPosition(int, int, int)
      */
     @Override
-    public ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException {
+    public String getUnitByPosition(int x, int y, int mapId) throws SQLException {
         return QueryDAO.getUnitByPosition(x, y, mapId);
     }
 
@@ -50,8 +55,9 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getUnitByMap(int)
      */
     @Override
-    public ResultSet getUnitByMap(int mapId) throws SQLException {
-        return QueryDAO.getUnitByMap(mapId);
+    public HashMap<String, IVector> getUnitByMap(int mapId) throws SQLException {
+        HashMap<String, IVector> result = QueryDAO.getUnitByMap(mapId);
+        return result;
     }
     
     /*
@@ -60,8 +66,9 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getSpritePath(TypeEnum)
      */
     @Override
-    public ResultSet getSpritePath(TypeEnum type) throws SQLException {
-        return QueryDAO.getSpritePath(type);
+    public ArrayList<String> getSpritePath(TypeEnum type) throws SQLException {
+    	ArrayList<String> result = QueryDAO.getSpritePath(type);
+    	return result;
     }
     
     /*
@@ -70,7 +77,7 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getMap(int)
      */
     @Override
-    public ResultSet getMap(int mapId) throws SQLException {
+    public Dimension getMap(int mapId) throws SQLException {
         return QueryDAO.getMap(mapId);
     }
 

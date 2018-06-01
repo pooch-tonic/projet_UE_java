@@ -1,9 +1,15 @@
 package model.dao;
 
+import java.awt.Dimension;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import enums.TypeEnum;
+import model.vector.Vector;
+import modelInterfaces.IVector;
 
 /**
  * <h1>The Class ExampleDAO.</h1>
@@ -39,20 +45,20 @@ public abstract class QueryDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */ 
-    public static ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException {
+    public static ArrayList<IVector> getUnitByType(TypeEnum type, int mapId) throws SQLException {
+    	final ArrayList<IVector> resultUnit = new ArrayList<IVector>();
     	final CallableStatement callStatement = prepareCall(sqlUnitByType);
         ResultSet result = null;
         callStatement.setString(1, type.toString());
         callStatement.setInt(2, mapId);
         if (callStatement.execute()) {
             result = callStatement.getResultSet();
-            if (result.first()) {
-                result.close();
-            	return result;
-            }
+            for(boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
+        		resultUnit.add(new Vector(result.getInt(3), result.getInt(4)));
+        	}
         }
         result.close();
-		return result;
+		return resultUnit;
     }
     
     
@@ -69,21 +75,17 @@ public abstract class QueryDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */ 
-    public static ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException {
+    public static String getUnitByPosition(int x, int y, int mapId) throws SQLException {
     	final CallableStatement callStatement = prepareCall(sqlUnitByPosition);
-        ResultSet result = null;
+        ResultSet result;
         callStatement.setInt(1, x);
         callStatement.setInt(2, y);
         callStatement.setInt(3, mapId);
         if (callStatement.execute()) {
             result = callStatement.getResultSet();
-            if (result.first()) {
-                result.close();
-            	return result;
-            }
+            return result.getString(1);
         }
-        result.close();
-		return result;
+		return null;
     }
     
     
@@ -95,20 +97,20 @@ public abstract class QueryDAO extends AbstractDAO {
      * @return the unit by map
      * @throws SQLException
      *             the SQL exception
-     */ 
-    public static ResultSet getUnitByMap(int mapId) throws SQLException {
+     */
+    public static HashMap<String, IVector> getUnitByMap(int mapId) throws SQLException {
+    	final HashMap<String, IVector> resultMap = new HashMap<String, IVector>();
     	final CallableStatement callStatement = prepareCall(sqlUnitByMap);
-        ResultSet result = null;
+        ResultSet result;
         callStatement.setInt(1, mapId);
         if (callStatement.execute()) {
             result = callStatement.getResultSet();
-            if (result.first()) {
-                result.close();
-            	return result;
-            }
+            for(boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
+        		resultMap.put(result.getString(1), new Vector(result.getInt(2), result.getInt(3)));
+        	}
+            result.close();
         }
-        result.close();
-		return result;
+		return resultMap;
     }
     
 
@@ -123,19 +125,19 @@ public abstract class QueryDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */ 
-    public static ResultSet getSpritePath(TypeEnum type) throws SQLException {
+    public static ArrayList<String> getSpritePath(TypeEnum type) throws SQLException {
+    	final ArrayList<String> resultString = new ArrayList<String>();
     	final CallableStatement callStatement = prepareCall(sqlSpritePath);
-        ResultSet result = null;
+    	ResultSet result;
         callStatement.setString(1, type.toString());
-        if (callStatement.execute()) {
+        if(callStatement.execute()) {
             result = callStatement.getResultSet();
-            if (result.first()) {
-                result.close();
-            	return result;
-            }
+        	for(boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
+        		resultString.add(result.getString("Path"));
+        	}
+        	result.close();
         }
-        result.close();
-		return result;
+		return resultString;
     }
     
     
@@ -148,18 +150,14 @@ public abstract class QueryDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */ 
-    public static ResultSet getMap(int mapId) throws SQLException {
+    public static Dimension getMap(int mapId) throws SQLException {
     	final CallableStatement callStatement = prepareCall(sqlMap);
-        ResultSet result = null;
+        ResultSet result;
         callStatement.setInt(1, mapId);
         if (callStatement.execute()) {
             result = callStatement.getResultSet();
-            if (result.first()) {
-                result.close();
-            	return result;
-            }
+            return new Dimension(result.getInt(2), result.getInt(3));
         }
-        result.close();
-		return result;
+		return null;
     }
 }

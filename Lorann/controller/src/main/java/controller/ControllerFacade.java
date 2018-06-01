@@ -3,11 +3,20 @@
  */
 package controller;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
 import java.sql.SQLException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderStacker;
 import enums.OrderEnum;
+import enums.TypeEnum;
 import modelInterfaces.IModel;
 import showboard.IBoard;
 import viewInterfaces.IView;
