@@ -26,7 +26,7 @@ public abstract class Entity implements IEntity {
 	 *
 	 */
 	public Entity() {
-		
+
 	}
 
 	/**
@@ -80,24 +80,6 @@ public abstract class Entity implements IEntity {
 		return this.direction;
 	}
 
-
-
-
-
-
-
-	@Override
-	public void move(final DirectionsEnum direction) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setDirection(final IVector direction) {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public IVector getPosition() {
 		return this.position;
@@ -117,11 +99,21 @@ public abstract class Entity implements IEntity {
 		return this.spriteSet;
 	}
 
-
 	public TypeEnum getType() {
 		return this.type;
 	}
 
+	@Override
+	public void move(final DirectionsEnum direction) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setDirection(final IVector direction) {
+		// TODO Auto-generated method stub
+
+	}
 
 	public void setPosition(final IVector position) {
 		this.position = position;
@@ -131,17 +123,14 @@ public abstract class Entity implements IEntity {
 		this.scoreValue = scoreValue;
 	}
 
-
 	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
 		// TODO Auto-generated method stub
 
 	}
 
-
 	public void setSpriteSet(final ISpriteSet spriteSet) {
 		this.spriteSet = spriteSet;
 	}
-
 
 	public void setType(final TypeEnum type) {
 		this.type = type;
