@@ -64,7 +64,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
      * @param keyCode
      * @return the order
      */
-    private OrderEnum keyCodeToOrder(final int keyCode) {
+    private OrderEnum performOrderCombination(final int keyCode) {
         return OrderEnum.NONE;
     }
 
