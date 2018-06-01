@@ -3,20 +3,11 @@
  */
 package controller;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
 import java.sql.SQLException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderStacker;
 import enums.OrderEnum;
-import enums.TypeEnum;
 import modelInterfaces.IModel;
 import showboard.IBoard;
 import viewInterfaces.IView;
@@ -51,8 +42,11 @@ public class ControllerFacade implements IController, IOrderStacker {
 	 * @param model
 	 */
 	public ControllerFacade(final IModel model) {
-		super();
+		// TODO mettre super() si ça marche pas
 		this.model = model;
+		this.setBoard(null);
+		this.setInteractionManager(new InteractionManager());
+		this.setLevelLoader(new LevelLoader());
 	}
 
 	/**

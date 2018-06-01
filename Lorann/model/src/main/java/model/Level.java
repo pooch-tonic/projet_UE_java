@@ -73,7 +73,7 @@ public class Level implements ILevel {
 	 * @param entities
 	 *            the entities to set
 	 */
-	private void setEntities(final ArrayList<IPawn> entities) {
+	public void setEntities(final ArrayList<IPawn> entities) {
 		this.entities = entities;
 	}
 
