@@ -92,7 +92,7 @@ public class ControllerFacade implements IController, IOrderStacker {
 	 */
 	@Override
 	public void loadLevel(final int id) {
-		this.getLevelLoader().loadLevel(id);
+		this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
 	}
 
 	/*
@@ -102,7 +102,7 @@ public class ControllerFacade implements IController, IOrderStacker {
 	 */
 	@Override
 	public void nextlevel(final int currentLevelId) {
-		this.getLevelLoader().loadLevel(currentLevelId);
+		this.getLevelLoader().loadLevel(currentLevelId, this.getModel(), this.getView());
 	}
 
 	/*
