@@ -8,8 +8,11 @@ import viewInterfaces.IView;
 public class LevelLoader {
 
 	/**
-	 * The constructor.
+	 * @param idLevel
+	 * @param model
+	 * @param view
 	 */
+
 	public LevelLoader() {
 		// TODO level loader constructor
 	}
@@ -29,8 +32,13 @@ public class LevelLoader {
 		}
 	}
 
+  /**
+	 * @param model
+	 * @param view
+	 */
 	public void loadNextLevel(final IModel model, final IView view) {
 		this.loadLevel(model.getLevel().getId() + 1, model, view);
+
 	}
 
 }
