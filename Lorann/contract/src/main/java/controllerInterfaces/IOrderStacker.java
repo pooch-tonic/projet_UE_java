@@ -1,5 +1,10 @@
+/*
+ *
+ */
 package controllerInterfaces;
 
+import enums.OrderEnum;
+
 public interface IOrderStacker {
-    void stackOrder(IUserOrder userOrder);
+    void stackOrder(OrderEnum userOrder);
 }

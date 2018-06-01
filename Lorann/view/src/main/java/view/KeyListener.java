@@ -1,10 +1,13 @@
+/*
+ *
+ */
 package view;
 
 import java.awt.event.KeyEvent;
 
 /**
- * <h1>The class KeyListener implements a KeyListener to read keyboard
- * inputs.</h1>
+ * <h1>The class KeyListener implements a KeyListner to be able to detect
+ * keyboard inputs</h1>
  *
  * @author aurel
  * @version 31 mai 2018
@@ -18,7 +21,11 @@ class KeyListener implements java.awt.event.KeyListener {
      *
      * @param keyEventPerformer
      */
-    public KeyListener(final IKeyEventPerformer keyEventPerformer) {
+    public KeyListener(final IKeyEventPerformer keyEventPerformer)
+            throws Exception {
+        if (keyEventPerformer == null) {
+            throw new Exception("The KeyEventPerformer is null");
+        }
         this.setKeyEventPerformer(keyEventPerformer);
     }
 
