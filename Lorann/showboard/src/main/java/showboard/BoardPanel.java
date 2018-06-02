@@ -108,7 +108,7 @@ class BoardPanel extends JPanel implements Observer {
      */
     @Override
     public final void paintComponent(final Graphics graphics) {
-        // TODO penser à décommenter
+        // TODO penser ï¿½ dï¿½commenter
         // System.out.println(this.getKeyListeners().toString());
         // System.out.println("====================");
         // final Map<String, ArrayList<IPawn>> mapPawn = this.createMapPawn();
@@ -461,5 +461,4 @@ class BoardPanel extends JPanel implements Observer {
         // TODO Auto-generated method stub
         this.pawns = new ArrayList<>();
     }
-
 }

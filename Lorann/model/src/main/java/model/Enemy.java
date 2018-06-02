@@ -1,18 +1,17 @@
 package model;
 
 import enums.TypeEnum;
-import modelInterfaces.IEnemy;
-import modelInterfaces.IVector;
+import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Enemy extends Entity implements IEnemy {
+public class Enemy extends Entity {
 
 	/**
 	 * Instantiates a new Enemy
-	 * 
+	 *
 	 * @param enemyName
 	 */
 	public Enemy(final EnemyName enemyName) {
@@ -24,7 +23,7 @@ public class Enemy extends Entity implements IEnemy {
 
 	/**
 	 * Instantiates a new Enemy
-	 * 
+	 *
 	 * @param position
 	 * @param enemyName
 	 */
@@ -33,6 +32,18 @@ public class Enemy extends Entity implements IEnemy {
 		this.setEnemyType(enemyName);
 		super.setPosition(position);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public int getX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getY() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	/**

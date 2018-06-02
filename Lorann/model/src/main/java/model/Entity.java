@@ -6,20 +6,20 @@ import java.util.ArrayList;
 import enums.DirectionsEnum;
 import enums.TypeEnum;
 import modelInterfaces.IEntity;
-import modelInterfaces.ISpriteSet;
-import modelInterfaces.IVector;
+import showboard.ISpriteSet;
+import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Entity extends Unit implements IEntity {
+public abstract class Entity extends Unit implements IEntity {
 
 	private IVector direction;
-	
+
 	/**
 	 * Instantiates a new Entity
-	 * 
+	 *
 	 */
 	public Entity() {
 		super();
@@ -27,7 +27,7 @@ public class Entity extends Unit implements IEntity {
 
 	/**
 	 * Instantiates a new Entity
-	 * 
+	 *
 	 * @param position
 	 * @param spriteSet
 	 * @param type
@@ -38,7 +38,7 @@ public class Entity extends Unit implements IEntity {
 
 	/**
 	 * Instantiates a new Entity
-	 * 
+	 *
 	 * @param position
 	 * @param type
 	 */
@@ -48,7 +48,7 @@ public class Entity extends Unit implements IEntity {
 
 	/**
 	 * Instantiates a new Entity
-	 * 
+	 *
 	 * @param type
 	 */
 	public Entity(final TypeEnum type) {

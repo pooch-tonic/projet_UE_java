@@ -2,9 +2,13 @@ package modelInterfaces;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import enums.TypeEnum;
 
-public interface IUnit {
+import enums.TypeEnum;
+import showboard.ISpriteSet;
+import showboard.ISquare;
+import vector.IVector;
+
+public interface IUnit extends ISquare {
 	public IVector getPosition();
 
 	public ISpriteSet getSpriteSet();

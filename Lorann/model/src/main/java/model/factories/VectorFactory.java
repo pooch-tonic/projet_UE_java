@@ -1,8 +1,8 @@
 package model.factories;
 
 import enums.DirectionsEnum;
-import model.vector.Vector;
 import modelInterfaces.IVectorFactory;
+import vector.Vector;
 
 abstract class VectorFactory implements IVectorFactory{
 	private static Vector UPLEFT = new Vector(-1, -1);

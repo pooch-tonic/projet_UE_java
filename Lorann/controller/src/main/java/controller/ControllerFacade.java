@@ -21,67 +21,155 @@ import viewInterfaces.IView;
  */
 public class ControllerFacade implements IController, IOrderStacker {
 
-    /** The view. */
-    private IView view;
+	/** The view. */
+	private IView view;
 
-    /** The model. */
-    private final IModel model;
+	/** The model. */
+	private final IModel model;
 
-    private IBoard board;
+	/** The board. */
+	private IBoard board;
 
-    /**
-     * Instantiates a new ControllerFacade
-     *
-     * @param model
-     */
-    public ControllerFacade(final IModel model) {
-        super();
-        this.model = model;
-    }
+	/** The interaction manager. */
+	private InteractionManager interactionManager;
 
-    /**
-     * Start.
-     *
-     * @throws SQLException
-     *             the SQL exception
-     */
-    public void start() throws SQLException {
-        while (true) {
-            this.getModel().reset();
-        }
-    }
+	/** The level loader. */
+	private LevelLoader levelLoader;
 
-    /**
-     * Gets the view.
-     *
-     * @return the view
-     */
-    public IView getView() {
-        return this.view;
-    }
+	/**
+	 * Instantiates a new ControllerFacade
+	 *
+	 * @param model
+	 */
+	public ControllerFacade(final IModel model) {
+		// TODO mettre super() si ça marche pas
+		this.model = model;
+		this.setBoard(null);
+		this.setInteractionManager(new InteractionManager());
+		this.setLevelLoader(new LevelLoader());
+	}
 
-    public void setView(final IView view) {
-        this.view = view;
-    }
+	/**
+	 * @return the board
+	 */
+	private IBoard getBoard() {
+		return this.board;
+	}
 
-    /**
-     * Gets the model.
-     *
-     * @return the model
-     */
-    public IModel getModel() {
-        return this.model;
-    }
+	/**
+	 * @return the interactionManager
+	 */
+	private InteractionManager getInteractionManager() {
+		return this.interactionManager;
+	}
 
-    @Override
-    public void setBoard(final IBoard board) {
-        // TODO Auto-generated method stub
-        this.board = board;
-    }
+	/**
+	 * @return the levelLoader
+	 */
+	private LevelLoader getLevelLoader() {
+		return this.levelLoader;
+	}
 
-    @Override
-    public void stackOrder(final OrderEnum userOrder) {
-        // TODO Auto-generated method stub
+	/**
+	 * Gets the model.
+	 *
+	 * @return the model
+	 */
+	public IModel getModel() {
+		return this.model;
+	}
 
-    }
+	/**
+	 * Gets the view.
+	 *
+	 * @return the view
+	 */
+	public IView getView() {
+		return this.view;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see controllerInterfaces.IController#loadLevel(int)
+	 */
+	@Override
+	public void loadLevel(final int id) {
+		this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see controllerInterfaces.IController#nextlevel(int)
+	 */
+	@Override
+	public void nextlevel(final int currentLevelId) {
+		this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
+	 */
+	@Override
+	public void setBoard(final IBoard board) {
+		// TODO Auto-generated method stub
+		this.board = board;
+	}
+
+	/**
+	 * @param interactionManager
+	 *            the interactionManager to set
+	 */
+	private void setInteractionManager(final InteractionManager interactionManager) {
+		this.interactionManager = interactionManager;
+	}
+
+	/**
+	 * @param levelLoader
+	 *            the levelLoader to set
+	 */
+	private void setLevelLoader(final LevelLoader levelLoader) {
+		this.levelLoader = levelLoader;
+	}
+
+	/**
+	 * @param view
+	 */
+	public void setView(final IView view) {
+		this.view = view;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see controllerInterfaces.IOrderStacker#stackOrder(enums.OrderEnum)
+	 */
+	@Override
+	public void stackOrder(final OrderEnum userOrder) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * Start.
+	 *
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+	public void start() throws SQLException {
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see controllerInterfaces.IController#update()
+	 */
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
+	}
 }

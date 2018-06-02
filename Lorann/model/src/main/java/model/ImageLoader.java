@@ -2,108 +2,33 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.sql.ResultSet;
+
 
 import javax.imageio.ImageIO;
 
 import enums.TypeEnum;
 import model.dao.QueryDAO;
+import modelInterfaces.IImageLoader;
 
-public class ImageLoader {
-	private BufferedImage image;
-	private QueryDAO query;
-	private TypeEnum type;
+/**
+ * @author Max Becerro
+ *
+ */
+public abstract class ImageLoader implements IImageLoader{
 	
-	public ResultSet getImageBypath(TypeEnum type) {
-		this.type = type;
-		
+	/**
+	 * @param type
+	 * @return an image
+	 */
+	public BufferedImage getImageBypath(TypeEnum type, int index) {
+		BufferedImage image = null;
 		try {
-			this.image = ImageIO.read(new File(query.getSpritePath(type).getString(3)));
+			image = ImageIO.read(new File(QueryDAO.getSpritePath(type).get(index))) ;
 		} catch (Exception e) {
-			
+			return null;
 		}
 		
-		return null;
-	}
-
-	
-	
-	
-	
-
-
-	/**
-	 * Gets the query
-	 * 
-	 * @return the query
-	 */
-	public QueryDAO getQuery() {
-		return query;
-	}
-
-	/**
-	 * @param query the query to set
-	 */
-	public void setQuery(QueryDAO query) {
-		this.query = query;
-	}
-
-
-
-
-
-
-
-
-
-	/**
-	 * Gets the image
-	 * 
-	 * @return the image
-	 */
-	public BufferedImage getImage() {
 		return image;
 	}
 
-
-
-
-
-
-
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-
-
-
-
-
-
-
-	/**
-	 * Gets the type
-	 * 
-	 * @return the type
-	 */
-	public TypeEnum getType() {
-		return type;
-	}
-
-
-
-
-
-
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(TypeEnum type) {
-		this.type = type;
-	}
-	
 }

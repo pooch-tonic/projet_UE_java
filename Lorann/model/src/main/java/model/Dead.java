@@ -1,18 +1,17 @@
 package model;
 
 import enums.TypeEnum;
-import modelInterfaces.IDead;
-import modelInterfaces.IVector;
+import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Dead extends Entity implements IDead {
+public class Dead extends Entity {
 
 	/**
 	 * Instantiates a new Dead
-	 * 
+	 *
 	 */
 	public Dead() {
 		super(TypeEnum.DEAD);
@@ -20,11 +19,21 @@ public class Dead extends Entity implements IDead {
 
 	/**
 	 * Instantiates a new Dead
-	 * 
+	 *
 	 * @param position
 	 */
 	public Dead(final IVector position) {
 		super(position, TypeEnum.DEAD);
+	}
+
+	@Override
+	public int getX() {
+		return this.getPosition().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 }

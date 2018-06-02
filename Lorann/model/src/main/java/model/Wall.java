@@ -1,20 +1,17 @@
 package model;
 
-import java.awt.Image;
-
 import enums.TypeEnum;
-import modelInterfaces.IVector;
-import modelInterfaces.IWall;
+import vector.IVector;
 
 /**
  * @author Max Becerro
  *
  */
-public class Wall extends Block implements IWall {
+public class Wall extends Entity {
 
 	/**
 	 * Instantiates a new Wall
-	 * 
+	 *
 	 * @param position
 	 * @param wallType
 	 */
@@ -28,7 +25,7 @@ public class Wall extends Block implements IWall {
 
 	/**
 	 * Instantiates a new Wall
-	 * 
+	 *
 	 * @param wallType
 	 */
 	public Wall(final WallType wallType) {
@@ -37,11 +34,14 @@ public class Wall extends Block implements IWall {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public int getX() {
+		return this.getPosition().getX();
+	}
 
 	@Override
-	public Image getImage() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 	/**
