@@ -61,6 +61,8 @@ class BoardPanel extends JPanel implements Observer {
 
 	/** The pawns represents a list of all the pawns on the board. */
 	private List<IPawn> pawns;
+	
+
 
 	/**
 	 * The dimension is used to known the width and the height of the board. It's
@@ -92,6 +94,13 @@ class BoardPanel extends JPanel implements Observer {
 		graphics.fillRect(0, 0, 2, 2);
 	}
 
+	public void setAl() {
+		this.setPawns();
+	}
+	
+	
+	
+	
 	/**
 	 * Adds the pawn.
 	 *
@@ -321,6 +330,13 @@ class BoardPanel extends JPanel implements Observer {
 	 */
 	private List<IPawn> getPawns() {
 		return this.pawns;
+	}
+
+	/**
+	 * @param pawns the pawns to set
+	 */
+	public void setPawns(List<IPawn> pawns) {
+		this.pawns = pawns;
 	}
 
 	/**
