@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import enums.DirectionsEnum;
 import enums.TypeEnum;
 import vector.IVector;
 
@@ -15,13 +16,13 @@ import vector.IVector;
  * @version 1.0
  */
 public interface IModel {
-	void addToScoreValue(final int value);
+	void addToScore(final int value);
 
 	ILevel getLevel();
 
 	/**
 	 * Gets the map.
-	 * 
+	 *
 	 * @param mapId
 	 *            the id of the map
 	 * @return the unit by position
@@ -30,7 +31,7 @@ public interface IModel {
 	 */
 	Dimension getMap(int mapId) throws SQLException;
 
-	int getScoreValue();
+	int getScore();
 
 	/**
 	 * Gets the path of the sprite.
@@ -84,5 +85,8 @@ public interface IModel {
 
 	void loadLevel(int levelId);
 
-	void reset();
+	void resetScore();
+
+	// TODO javadoc
+	public void setPlayerDirection(DirectionsEnum direction);
 }
