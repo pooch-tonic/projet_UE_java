@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package model;
 
@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import enums.DirectionsEnum;
-import enums.TypeEnum;
+import enums.Type;
 import modelInterfaces.IEntity;
 import showboard.ISpriteSet;
 import vector.IVector;
@@ -35,7 +35,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param spriteSet
      * @param type
      */
-    public Entity(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
+    public Entity(final IVector position, final ISpriteSet spriteSet, final Type type) {
         super(position, spriteSet, type);
     }
 
@@ -45,7 +45,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param position
      * @param type
      */
-    public Entity(final IVector position, final TypeEnum type) {
+    public Entity(final IVector position, final Type type) {
         super(position, type);
     }
 
@@ -54,7 +54,7 @@ public abstract class Entity extends Unit implements IEntity {
      *
      * @param type
      */
-    public Entity(final TypeEnum type) {
+    public Entity(final Type type) {
         super(type);
     }
 
@@ -94,7 +94,7 @@ public abstract class Entity extends Unit implements IEntity {
     /**
      * @return a type
      */
-    public TypeEnum getType() {
+    public Type getType() {
         // TODO Auto-generated method stub
         return super.getType();
     }
@@ -124,7 +124,7 @@ public abstract class Entity extends Unit implements IEntity {
     }
 
     @Override
-    public void setType(final TypeEnum type) {
+    public void setType(final Type type) {
         // TODO Auto-generated method stub
 
     }
