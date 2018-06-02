@@ -94,13 +94,6 @@ class BoardPanel extends JPanel implements Observer {
 		graphics.fillRect(0, 0, 2, 2);
 	}
 
-	public void setAl() {
-		this.setPawns();
-	}
-	
-	
-	
-	
 	/**
 	 * Adds the pawn.
 	 *

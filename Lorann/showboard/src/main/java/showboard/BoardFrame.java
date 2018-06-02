@@ -38,6 +38,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /** The board panel. */
     private final BoardPanel boardPanel;
+
     
     /**
      * Instantiates a new BoardFrame
