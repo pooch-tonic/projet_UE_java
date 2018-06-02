@@ -10,6 +10,7 @@ import controllerInterfaces.IController;
 import controllerInterfaces.IOrderPerformer;
 import controllerInterfaces.IOrderStacker;
 import enums.OrderEnum;
+import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
 import showboard.IBoard;
 import viewInterfaces.IView;
@@ -87,7 +88,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see controllerInterfaces.IOrderPerformer#performOrder()
      */
     @Override
@@ -122,7 +123,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     private void updateEntities() {
         this.performOrder();
-        this.getModel().getLevel().getEntities().update();
+        for (final IEntity entity : this.getModel().getLevel().getEntities()) {
+            entity.update();
+        }
     }
 
     /**
