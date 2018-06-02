@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package model;
 
@@ -15,38 +15,44 @@ import vector.IVector;
  */
 public class Player extends Entity implements IPlayer {
 
-    /**
-     * Instantiates a new Player
-     *
-     */
-    public Player() {
-        super(TypeEnum.PLAYER);
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Instantiates a new Player
+	 *
+	 */
+	public Player() {
+		super(TypeEnum.PLAYER);
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * Instantiates a new Player
-     *
-     * @param position
-     */
-    public Player(final IVector position) {
-        super(position, TypeEnum.PLAYER);
-    }
+	/**
+	 * Instantiates a new Player
+	 *
+	 * @param position
+	 */
+	public Player(final IVector position) {
+		super(position, TypeEnum.PLAYER);
+	}
 
-    @Override
-    public int getX() {
-        return this.getPosition().getX();
-    }
+	@Override
+	public Image getImage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public int getY() {
-        return this.getPosition().getY();
-    }
+	@Override
+	public int getX() {
+		return this.getPosition().getX();
+	}
 
-    @Override
-    public Image getImage() {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
+	}
 
 }
