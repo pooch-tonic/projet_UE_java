@@ -1,7 +1,5 @@
 package controllerInterfaces;
 
-import showboard.IBoard;
-
 /**
  * <h1>The Interface IController.</h1>
  *
@@ -12,7 +10,7 @@ public interface IController {
 
 	/**
 	 * loads the level according to the specified id
-	 * 
+	 *
 	 * @param id
 	 */
 	void loadLevel(int id);
@@ -23,14 +21,7 @@ public interface IController {
 	void nextlevel(int currentLevelId);
 
 	/**
-	 * sets the controller's contained game board
-	 *
-	 * @param board
-	 */
-	void setBoard(IBoard board);
-
-	/**
 	 * asks the controller to update the model
 	 */
-	void update();
+	void updateLevel();
 }

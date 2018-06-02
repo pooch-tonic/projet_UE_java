@@ -9,7 +9,6 @@ import controllerInterfaces.IController;
 import controllerInterfaces.IOrderStacker;
 import enums.OrderEnum;
 import modelInterfaces.IModel;
-import showboard.IBoard;
 import viewInterfaces.IView;
 
 /**
@@ -27,9 +26,6 @@ public class ControllerFacade implements IController, IOrderStacker {
 	/** The model. */
 	private final IModel model;
 
-	/** The board. */
-	private IBoard board;
-
 	/** The interaction manager. */
 	private InteractionManager interactionManager;
 
@@ -44,16 +40,8 @@ public class ControllerFacade implements IController, IOrderStacker {
 	public ControllerFacade(final IModel model) {
 		// TODO mettre super() si ça marche pas
 		this.model = model;
-		this.setBoard(null);
 		this.setInteractionManager(new InteractionManager());
 		this.setLevelLoader(new LevelLoader());
-	}
-
-	/**
-	 * @return the board
-	 */
-	private IBoard getBoard() {
-		return this.board;
 	}
 
 	/**
@@ -108,17 +96,6 @@ public class ControllerFacade implements IController, IOrderStacker {
 		this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
-	 */
-	@Override
-	public void setBoard(final IBoard board) {
-		// TODO Auto-generated method stub
-		this.board = board;
-	}
-
 	/**
 	 * @param interactionManager
 	 *            the interactionManager to set
@@ -168,8 +145,15 @@ public class ControllerFacade implements IController, IOrderStacker {
 	 * @see controllerInterfaces.IController#update()
 	 */
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
+	public void updateLevel() {
+		// TODO get player order
+		// TODO save player decision
+		// TODO move test : player
+		// TODO check collisions
+		// TODO move test : enemies
+		// TODO check collisions
+		// TODO move test : spell
+		// TODO check collisions
+		// TODO
 	}
 }
