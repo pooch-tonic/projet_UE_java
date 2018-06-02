@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderPerformer;
 import controllerInterfaces.IOrderStacker;
+import enums.DirectionEnum;
 import enums.OrderEnum;
 import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
@@ -73,6 +74,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     private void updateEntities() {
         this.performOrder();
         for (final IEntity entity : this.getModel().getLevel().getEntities()) {
+            // if (this.getModel().getLevel().getUnits().*/)
+            this.getInteractionManager().defineInteractionBetween(entity, null);
             entity.update();
         }
     }
@@ -116,7 +119,39 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     @Override
     public void performOrder() {
         // TODO Auto-generated method stub
+        final OrderEnum order = this.getStackOrder().get(this.getStackOrder().size() - 1);
 
+        switch (order) {
+        case UP:
+            this.getModel().setPlayerDirection(DirectionEnum.UP);
+            break;
+        case UPLEFT:
+            this.getModel().setPlayerDirection(DirectionEnum.UPLEFT);
+            break;
+        case UPRIGHT:
+            this.getModel().setPlayerDirection(DirectionEnum.UPRIGHT);
+            break;
+        case LEFT:
+            this.getModel().setPlayerDirection(DirectionEnum.LEFT);
+            break;
+        case RIGHT:
+            this.getModel().setPlayerDirection(DirectionEnum.RIGHT);
+            break;
+        case DOWN:
+            this.getModel().setPlayerDirection(DirectionEnum.DOWN);
+            break;
+        case DOWNLEFT:
+            this.getModel().setPlayerDirection(DirectionEnum.DOWNLEFT);
+            break;
+        case DOWNRIGHT:
+            this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
+            break;
+        case CAST:
+            // TODO call cast method
+            break;
+        default:
+            break;
+        }
     }
 
     /**

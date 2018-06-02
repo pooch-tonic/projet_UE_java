@@ -6,7 +6,7 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import enums.DirectionsEnum;
+import enums.DirectionEnum;
 import enums.Type;
 import modelInterfaces.IEntity;
 import showboard.ISpriteSet;
@@ -100,7 +100,7 @@ public abstract class Entity extends Unit implements IEntity {
     }
 
     @Override
-    public void move(final DirectionsEnum direction) {
+    public void move(final DirectionEnum direction) {
         // TODO Auto-generated method stub
 
     }

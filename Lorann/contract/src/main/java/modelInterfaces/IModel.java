@@ -6,7 +6,7 @@ package modelInterfaces;
 import java.awt.Dimension;
 import java.sql.SQLException;
 
-import enums.DirectionsEnum;
+import enums.DirectionEnum;
 
 /**
  * <h1>The Interface IModel.</h1>
@@ -37,5 +37,5 @@ public interface IModel {
     void resetScore();
 
     // TODO javadoc
-    public void setPlayerDirection(DirectionsEnum direction);
+    public void setPlayerDirection(DirectionEnum direction);
 }
