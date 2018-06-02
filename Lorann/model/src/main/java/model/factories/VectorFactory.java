@@ -1,6 +1,6 @@
 package model.factories;
 
-import enums.DirectionsEnum;
+import enums.DirectionEnum;
 import modelInterfaces.IVectorFactory;
 import vector.Vector;
 
@@ -43,7 +43,7 @@ abstract class VectorFactory implements IVectorFactory{
 		return MIDDLE;
 	}
 
-	public static Vector getVectorForDirection(DirectionsEnum direction) {
+	public static Vector getVectorForDirection(DirectionEnum direction) {
 		switch(direction) {
 			case UPLEFT :
 				return getUPLEFT();

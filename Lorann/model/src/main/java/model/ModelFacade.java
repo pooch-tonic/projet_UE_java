@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 
-import enums.DirectionsEnum;
+import enums.DirectionEnum;
 import model.dao.QueryDAO;
 import model.dao.TypeEnum;
 import modelInterfaces.ILevel;
@@ -143,7 +143,7 @@ public final class ModelFacade extends Observable implements IModel {
     }
 
     @Override
-    public void setPlayerDirection(final DirectionsEnum direction) {
+    public void setPlayerDirection(final DirectionEnum direction) {
 
     }
 }
