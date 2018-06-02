@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.sql.SQLException;
@@ -47,5 +50,4 @@ public class LevelLoader {
 		this.loadLevel(model.getLevel().getId() + 1, model, view);
 
 	}
-
 }
