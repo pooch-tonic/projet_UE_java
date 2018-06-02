@@ -9,6 +9,8 @@ import java.util.Observable;
 import model.dao.QueryDAO;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import showboard.IPawn;
+import showboard.ISquare;
 import showboard.TypeEnum;
 import vector.IVector;
 
@@ -29,9 +31,13 @@ public final class ModelFacade extends Observable implements IModel {
 	}
 
 	@Override
-	public void addToScoreValue(final int value) {
+	public void addToScore(final int value) {
 		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public ArrayList<IPawn> getEntitiesFromLevel() {
+		return this.getLevel().getEntities();
 	}
 
 	@Override
@@ -51,9 +57,19 @@ public final class ModelFacade extends Observable implements IModel {
 	}
 
 	@Override
-	public int getScoreValue() {
+	public int getScore() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ISquare[][] getSquaresFromLevel() {
+		return this.getLevel().getSquares();
+	}
+
+	@Override
+	public void loadLevel(final int levelId) {
+		this.setLevel(this.level);
 	}
 
 	/*
@@ -62,19 +78,8 @@ public final class ModelFacade extends Observable implements IModel {
 	 * @see model.IModel#getSpritePath(TypeEnum)
 	 */
 	@Override
-	public ArrayList<String> getSpritePath(final TypeEnum type) throws SQLException {
+	public ArrayList<String> loadSpritePath(final TypeEnum type) throws SQLException {
 		ArrayList<String> result = QueryDAO.getSpritePath(type);
-		return result;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see model.IModel#getUnitByMap(int)
-	 */
-	@Override
-	public HashMap<String, IVector> getUnitByMap(final int mapId) throws SQLException {
-		HashMap<String, IVector> result = QueryDAO.getUnitByMap(mapId);
 		return result;
 	}
 
@@ -84,8 +89,19 @@ public final class ModelFacade extends Observable implements IModel {
 	 * @see model.IModel#getUnitByPosition(int, int, int)
 	 */
 	@Override
-	public String getUnitByPosition(final int x, final int y, final int mapId) throws SQLException {
+	public String loadUnitByPosition(final int x, final int y, final int mapId) throws SQLException {
 		return QueryDAO.getUnitByPosition(x, y, mapId);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see model.IModel#getUnitByMap(int)
+	 */
+	@Override
+	public HashMap<String, IVector> loadUnitsByMap(final int mapId) throws SQLException {
+		HashMap<String, IVector> result = QueryDAO.getUnitByMap(mapId);
+		return result;
 	}
 
 	/*
@@ -94,17 +110,12 @@ public final class ModelFacade extends Observable implements IModel {
 	 * @see model.IModel#getUnitByType(TypeEnum, int)
 	 */
 	@Override
-	public ArrayList<IVector> getUnitByType(final TypeEnum type, final int mapId) throws SQLException {
+	public ArrayList<IVector> loadUnitsByType(final TypeEnum type, final int mapId) throws SQLException {
 		return QueryDAO.getUnitByType(type, mapId);
 	}
 
 	@Override
-	public void loadLevel(final int levelId) {
-		this.setLevel(this.level);
-	}
-
-	@Override
-	public void reset() {
+	public void resetScore() {
 		// TODO Auto-generated method stub
 
 	}

@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import showboard.IPawn;
+import showboard.ISquare;
 import showboard.TypeEnum;
 import vector.IVector;
 
@@ -15,13 +17,15 @@ import vector.IVector;
  * @version 1.0
  */
 public interface IModel {
-	void addToScoreValue(final int value);
+	void addToScore(final int value);
+
+	public ArrayList<IPawn> getEntitiesFromLevel();
 
 	ILevel getLevel();
 
 	/**
 	 * Gets the map.
-	 * 
+	 *
 	 * @param mapId
 	 *            the id of the map
 	 * @return the unit by position
@@ -30,7 +34,11 @@ public interface IModel {
 	 */
 	Dimension getMap(int mapId) throws SQLException;
 
-	int getScoreValue();
+	int getScore();
+
+	public ISquare[][] getSquaresFromLevel();
+
+	void loadLevel(int levelId);
 
 	/**
 	 * Gets the path of the sprite.
@@ -41,18 +49,7 @@ public interface IModel {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
-	ArrayList<String> getSpritePath(TypeEnum type) throws SQLException;
-
-	/**
-	 * Gets the unit by map.
-	 *
-	 * @param mapId
-	 *            the id of the map
-	 * @return the unit by map
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	HashMap<String, IVector> getUnitByMap(int mapId) throws SQLException;
+	ArrayList<String> loadSpritePath(TypeEnum type) throws SQLException;
 
 	/**
 	 * Gets the unit by position.
@@ -67,7 +64,18 @@ public interface IModel {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
-	String getUnitByPosition(int x, int y, int mapId) throws SQLException;
+	String loadUnitByPosition(int x, int y, int mapId) throws SQLException;
+
+	/**
+	 * Gets the unit by map.
+	 *
+	 * @param mapId
+	 *            the id of the map
+	 * @return the unit by map
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+	HashMap<String, IVector> loadUnitsByMap(int mapId) throws SQLException;
 
 	/**
 	 * Gets the unit by type.
@@ -80,9 +88,7 @@ public interface IModel {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
-	ArrayList<IVector> getUnitByType(TypeEnum type, int mapId) throws SQLException;
+	ArrayList<IVector> loadUnitsByType(TypeEnum type, int mapId) throws SQLException;
 
-	void loadLevel(int levelId);
-
-	void reset();
+	void resetScore();
 }
