@@ -124,10 +124,18 @@ public final class ModelFacade extends Observable implements IModel {
 
     @Override
     public void loadLevel(final int levelId) throws SQLException {
-        final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
-
-        final Level level = new Level();
-        level.setDimension(QueryDAO.getMap(levelId));
+    	final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
+    	ILevel level = new Level();
+    	
+    	for(String type : resultMap.keySet()) {
+    		if(type == TypeEnum.WALL.toString() || type == TypeEnum.WALL_H.toString() || type == TypeEnum.WALL_V.toString()) {
+    			
+    		} else {
+    			
+    		}
+    	}
+    	
+    	level.setDimension(QueryDAO.getMap(levelId));
         this.setLevel(this.level);
     }
 
