@@ -82,7 +82,7 @@ public interface IModel {
 	 */
 	ArrayList<IVector> getUnitByType(TypeEnum type, int mapId) throws SQLException;
 
-	void loadLevel(int levelId);
+	void loadLevelById(int levelId);
 
 	void reset();
 }

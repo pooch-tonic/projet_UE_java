@@ -99,7 +99,7 @@ public final class ModelFacade extends Observable implements IModel {
 	}
 
 	@Override
-	public void loadLevel(final int levelId) {
+	public void loadLevelById(final int levelId) {
 		this.setLevel(this.level);
 	}
 
