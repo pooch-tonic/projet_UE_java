@@ -19,5 +19,5 @@ public interface ILevel {
 
     public void setDimension(final Dimension dimension);
 
-    public void setUnits(final ISquare[][] units);
+	void setUnits(IUnit[][] units);
 }

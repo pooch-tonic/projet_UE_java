@@ -14,6 +14,7 @@ import model.dao.QueryDAO;
 import model.dao.TypeEnum;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import modelInterfaces.IUnit;
 import vector.IVector;
 
 /**
@@ -87,7 +88,7 @@ public final class ModelFacade extends Observable implements IModel {
         final HashMap<String, IVector> result = QueryDAO.getUnitByMap(mapId);
         return result;
     }
-
+    
     /**
      * Gets the unit by position.
      *
@@ -123,7 +124,13 @@ public final class ModelFacade extends Observable implements IModel {
     }
 
     @Override
-    public void loadLevel(final int levelId) {
+    public void loadLevel(final int levelId) throws SQLException {
+    	final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
+    	
+    	
+    	
+    	ILevel level = new Level();
+    	level.setDimension(QueryDAO.getMap(levelId));
         this.setLevel(this.level);
     }
 

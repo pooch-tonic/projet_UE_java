@@ -16,7 +16,7 @@ import showboard.ISquare;
  *
  */
 public class Level implements ILevel {
-    private ISquare[][]        units;
+    private IUnit[][]          units;
     private ArrayList<IEntity> entities;
     private Dimension          dimension;
     private int                id;
@@ -77,7 +77,7 @@ public class Level implements ILevel {
      * @param squares
      */
     @Override
-    public void setUnits(final ISquare[][] units) {
+    public void setUnits(final IUnit[][] units) {
         this.units = units;
     }
 
