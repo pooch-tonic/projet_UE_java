@@ -4,8 +4,10 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import controllerInterfaces.IController;
+import controllerInterfaces.IOrderPerformer;
 import controllerInterfaces.IOrderStacker;
 import enums.OrderEnum;
 import modelInterfaces.IModel;
@@ -19,157 +21,198 @@ import viewInterfaces.IView;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public class ControllerFacade implements IController, IOrderStacker {
+public class ControllerFacade implements IController, IOrderStacker, IOrderPerformer {
 
-	/** The view. */
-	private IView view;
+    /** The view. */
+    private IView view;
 
-	/** The model. */
-	private final IModel model;
+    /** The model. */
+    private final IModel model;
 
-	/** The board. */
-	private IBoard board;
+    /** The board. */
+    private IBoard board;
 
-	/** The interaction manager. */
-	private InteractionManager interactionManager;
+    /** The interaction manager. */
+    private InteractionManager interactionManager;
 
-	/** The level loader. */
-	private LevelLoader levelLoader;
+    /** The level loader. */
+    private LevelLoader levelLoader;
 
-	/**
-	 * Instantiates a new ControllerFacade
-	 *
-	 * @param model
-	 */
-	public ControllerFacade(final IModel model) {
-		// TODO mettre super() si ça marche pas
-		this.model = model;
-		this.setBoard(null);
-		this.setInteractionManager(new InteractionManager());
-		this.setLevelLoader(new LevelLoader());
-	}
+    private ArrayList<OrderEnum> stackOrder;
 
-	/**
-	 * @return the board
-	 */
-	private IBoard getBoard() {
-		return this.board;
-	}
+    /**
+     * Instantiates a new ControllerFacade
+     *
+     * @param model
+     */
+    public ControllerFacade(final IModel model) {
+        // TODO mettre super() si ca marche pas
+        this.model = model;
+        this.setBoard(null);
+        this.setInteractionManager(new InteractionManager());
+        this.setLevelLoader(new LevelLoader());
+        this.setStackOrder(new ArrayList<>());
+    }
 
-	/**
-	 * @return the interactionManager
-	 */
-	private InteractionManager getInteractionManager() {
-		return this.interactionManager;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#loadLevel(int)
+     */
+    @Override
+    public void loadLevel(final int id) {
+        this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
+    }
 
-	/**
-	 * @return the levelLoader
-	 */
-	private LevelLoader getLevelLoader() {
-		return this.levelLoader;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#nextlevel(int)
+     */
+    @Override
+    public void nextlevel(final int currentLevelId) {
+        this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
+    }
 
-	/**
-	 * Gets the model.
-	 *
-	 * @return the model
-	 */
-	public IModel getModel() {
-		return this.model;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IOrderStacker#stackOrder(enums.OrderEnum)
+     */
+    @Override
+    public void stackOrder(final OrderEnum order) {
+        // TODO Auto-generated method stub
+        this.getStackOrder().add(order);
+    }
 
-	/**
-	 * Gets the view.
-	 *
-	 * @return the view
-	 */
-	public IView getView() {
-		return this.view;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see controllerInterfaces.IOrderPerformer#performOrder()
+     */
+    @Override
+    public void performOrder() {
+        // TODO Auto-generated method stub
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#loadLevel(int)
-	 */
-	@Override
-	public void loadLevel(final int id) {
-		this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
-	}
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#nextlevel(int)
-	 */
-	@Override
-	public void nextlevel(final int currentLevelId) {
-		this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
-	}
+    /**
+     * Start.
+     *
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public void start() throws SQLException {
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
-	 */
-	@Override
-	public void setBoard(final IBoard board) {
-		// TODO Auto-generated method stub
-		this.board = board;
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#update()
+     */
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        this.updateEntities();
+        this.setStackOrder(new ArrayList<>());
+    }
 
-	/**
-	 * @param interactionManager
-	 *            the interactionManager to set
-	 */
-	private void setInteractionManager(final InteractionManager interactionManager) {
-		this.interactionManager = interactionManager;
-	}
+    /**
+     * Update the entities of the model
+     */
+    private void updateEntities() {
+        this.performOrder();
+        this.getModel().getLevel().getEntities().update();
+    }
 
-	/**
-	 * @param levelLoader
-	 *            the levelLoader to set
-	 */
-	private void setLevelLoader(final LevelLoader levelLoader) {
-		this.levelLoader = levelLoader;
-	}
+    /**
+     * @return the board
+     */
+    private IBoard getBoard() {
+        return this.board;
+    }
 
-	/**
-	 * @param view
-	 */
-	public void setView(final IView view) {
-		this.view = view;
-	}
+    /**
+     * @return the interactionManager
+     */
+    private InteractionManager getInteractionManager() {
+        return this.interactionManager;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IOrderStacker#stackOrder(enums.OrderEnum)
-	 */
-	@Override
-	public void stackOrder(final OrderEnum userOrder) {
-		// TODO Auto-generated method stub
+    /**
+     * @return the levelLoader
+     */
+    private LevelLoader getLevelLoader() {
+        return this.levelLoader;
+    }
 
-	}
+    /**
+     * Gets the model.
+     *
+     * @return the model
+     */
+    public IModel getModel() {
+        return this.model;
+    }
 
-	/**
-	 * Start.
-	 *
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	public void start() throws SQLException {
-	}
+    /**
+     * Gets the view.
+     *
+     * @return the view
+     */
+    public IView getView() {
+        return this.view;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#update()
-	 */
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
+     */
+    @Override
+    public void setBoard(final IBoard board) {
+        // TODO Auto-generated method stub
+        this.board = board;
+    }
 
-	}
+    /**
+     * @param interactionManager
+     *            the interactionManager to set
+     */
+    private void setInteractionManager(final InteractionManager interactionManager) {
+        this.interactionManager = interactionManager;
+    }
+
+    /**
+     * @param levelLoader
+     *            the levelLoader to set
+     */
+    private void setLevelLoader(final LevelLoader levelLoader) {
+        this.levelLoader = levelLoader;
+    }
+
+    /**
+     * @param view
+     */
+    public void setView(final IView view) {
+        this.view = view;
+    }
+
+    /**
+     * Gets the stackOrder
+     *
+     * @return the stackOrder
+     */
+    private ArrayList<OrderEnum> getStackOrder() {
+        return this.stackOrder;
+    }
+
+    /**
+     * Sets the stackOrder
+     *
+     * @param stackOrder
+     */
+    private void setStackOrder(final ArrayList<OrderEnum> stackOrder) {
+        this.stackOrder = stackOrder;
+    }
 }
