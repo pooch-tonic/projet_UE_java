@@ -3,7 +3,7 @@
  */
 package model;
 
-import enums.TypeEnum;
+import enums.Type;
 import vector.IVector;
 
 /**
@@ -12,46 +12,26 @@ import vector.IVector;
  */
 public class Wall extends Unit {
 
-	/**
-	 * Instantiates a new Wall
-	 *
-	 * @param position
-	 * @param wallType
-	 */
-	public Wall(final IVector position, final WallType wallType) {
-		super();
-		this.setWallType(wallType);
-		this.setPosition(position);
+    /**
+     * Instantiates a new Wall
+     *
+     * @param position
+     * @param wallType
+     */
+    public Wall(final IVector position, final WallType wallType) {
+        super();
+        this.setPosition(position);
 
-		// TODO Auto-generated constructor stub
-	}
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * Instantiates a new Wall
-	 *
-	 * @param wallType
-	 */
-	public Wall(final WallType wallType) {
-		super();
-		this.setWallType(wallType);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param wallType
-	 */
-	private void setWallType(final WallType wallType) {
-		switch (wallType) {
-		case WALL_ROUND:
-			super.setType(TypeEnum.WALL);
-			break;
-		case WALL_VERTICAL:
-			super.setType(TypeEnum.WALL_V);
-			break;
-		case WALL_HORIZONTAL:
-			super.setType(TypeEnum.WALL_H);
-			break;
-		}
-	}
-
+    /**
+     * Instantiates a new Wall
+     *
+     * @param wallType
+     */
+    public Wall() {
+        super();
+        this.setType(Type.WALL);
+    }
 }

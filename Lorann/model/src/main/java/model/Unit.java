@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package model;
 
@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import enums.TypeEnum;
+import enums.Type;
 import modelInterfaces.IUnit;
 import showboard.ISpriteSet;
 import vector.IVector;
@@ -20,7 +20,7 @@ import vector.Vector;
 public class Unit implements IUnit {
     private IVector    position;
     private ISpriteSet spriteSet;
-    private TypeEnum   type;
+    private Type       type;
     private int        scoreValue;
 
     /**
@@ -38,7 +38,7 @@ public class Unit implements IUnit {
      * @param spriteSet
      * @param type
      */
-    public Unit(final IVector position, final ISpriteSet spriteSet, final TypeEnum type) {
+    public Unit(final IVector position, final ISpriteSet spriteSet, final Type type) {
         this.setPosition(position);
         this.setSpriteSet(spriteSet);
         this.setType(type);
@@ -51,7 +51,7 @@ public class Unit implements IUnit {
      * @param position
      * @param type
      */
-    public Unit(final IVector position, final TypeEnum type) {
+    public Unit(final IVector position, final Type type) {
         this.setPosition(position);
         this.setType(type);
         this.setScoreValue(0);
@@ -62,7 +62,7 @@ public class Unit implements IUnit {
      *
      * @param type
      */
-    public Unit(final TypeEnum type) {
+    public Unit(final Type type) {
         this.setPosition(new Vector(0, 0));
         this.setType(type);
         this.setScoreValue(0);
@@ -88,7 +88,7 @@ public class Unit implements IUnit {
     }
 
     @Override
-    public TypeEnum getType() {
+    public Type getType() {
         return this.type;
     }
 
@@ -113,7 +113,7 @@ public class Unit implements IUnit {
     }
 
     @Override
-    public void setType(final TypeEnum type) {
+    public void setType(final Type type) {
         this.type = type;
     }
 

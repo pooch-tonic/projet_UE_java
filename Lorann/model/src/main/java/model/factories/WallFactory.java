@@ -1,18 +1,20 @@
+/*
+ * 
+ */
 package model.factories;
 
 import model.Wall;
-import model.WallType;
 
 class WallFactory {
-	Wall createHorizontal() {
-		return new Wall(WallType.WALL_HORIZONTAL);
-	}
+    Wall createHorizontal() {
+        return new Wall();
+    }
 
-	Wall createRound() {
-		return new Wall(WallType.WALL_ROUND);
-	}
+    Wall createRound() {
+        return new Wall();
+    }
 
-	Wall createVertical() {
-		return new Wall(WallType.WALL_VERTICAL);
-	}
+    Wall createVertical() {
+        return new Wall();
+    }
 }
