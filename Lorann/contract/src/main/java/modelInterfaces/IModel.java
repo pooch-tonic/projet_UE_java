@@ -32,7 +32,7 @@ public interface IModel {
 
     int getScore();
 
-    void loadLevel(int levelId);
+    void loadLevel(int levelId) throws SQLException;
 
     void resetScore();
 
