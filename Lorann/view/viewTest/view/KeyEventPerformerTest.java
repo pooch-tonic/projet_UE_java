@@ -45,10 +45,4 @@ public class KeyEventPerformerTest {
         }
 
     }
-
-    @Test
-    public void testPerformEvent() {
-        fail("Not yet implemented");
-    }
-
 }

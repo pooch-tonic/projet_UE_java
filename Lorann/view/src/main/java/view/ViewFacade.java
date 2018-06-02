@@ -16,10 +16,11 @@ import viewInterfaces.IView;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>
+ *
  * @author aurel
  * @version 31 mai 2018
  */
-public class ViewFacade implements IView {
+public class ViewFacade implements IView, Runnable {
     /** The frame of the game. */
     private BoardFrame  boardFrame;
     /** The key listener using to detect keyboards inputs. */
@@ -35,24 +36,23 @@ public class ViewFacade implements IView {
      * @param observable
      *            the observable object
      */
-    public ViewFacade(final IController controller,
-            final IOrderStacker orderStacker, final Observable observable) {
+    public ViewFacade(final IController controller, final IOrderStacker orderStacker,
+            final Observable observable, final Dimension frameSize) {
         super();
 
         try {
-            this.setKeyListener(
-                    new KeyListener(new KeyEventPerformer(orderStacker)));
+            this.setKeyListener(new KeyListener(new KeyEventPerformer(orderStacker)));
         } catch (final Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        // TODO get the width and height of the frame from model or game settings
         this.setBoardFrame(new BoardFrame("Lorann", false));
-        this.getBoardFrame().setSize(640, 416);
-        this.getBoardFrame().setDimension(new Dimension(640, 416));
-        this.getBoardFrame().setDisplayFrame(new Rectangle(0, 0, 640, 216));
-        this.getBoardFrame().getContentPane()
-                .addKeyListener(this.getKeyListener());
+        this.getBoardFrame().setSize(frameSize.width, frameSize.height);
+        this.getBoardFrame()
+                .setDimension(new Dimension(frameSize.width / 32, frameSize.height / 32));
+        this.getBoardFrame()
+                .setDisplayFrame(new Rectangle(0, 0, frameSize.width / 32, frameSize.height / 32));
+        this.getBoardFrame().addKeyListener(this.getKeyListener());
 
         controller.setBoard(this.getBoardFrame());
         observable.addObserver(this.getBoardFrame().getObserver());
@@ -111,6 +111,12 @@ public class ViewFacade implements IView {
      */
     private void setKeyListener(final KeyListener keyListener) {
         this.keyListener = keyListener;
+    }
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+
     }
 
 }

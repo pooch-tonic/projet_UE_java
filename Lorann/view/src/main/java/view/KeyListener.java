@@ -21,8 +21,7 @@ class KeyListener implements java.awt.event.KeyListener {
      *
      * @param keyEventPerformer
      */
-    public KeyListener(final IKeyEventPerformer keyEventPerformer)
-            throws Exception {
+    public KeyListener(final IKeyEventPerformer keyEventPerformer) throws Exception {
         if (keyEventPerformer == null) {
             throw new Exception("The KeyEventPerformer is null");
         }
@@ -47,8 +46,7 @@ class KeyListener implements java.awt.event.KeyListener {
      */
     @Override
     public void keyPressed(final KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        this.keyEventPerformer.performKeyPressedEvent(e);
     }
 
     /*
@@ -58,8 +56,7 @@ class KeyListener implements java.awt.event.KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        // TODO Auto-generated method stub
-
+        this.keyEventPerformer.performKeyPressedEvent(e);
     }
 
     /**
@@ -76,8 +73,7 @@ class KeyListener implements java.awt.event.KeyListener {
      *
      * @param keyEventPerformer
      */
-    private void setKeyEventPerformer(
-            final IKeyEventPerformer keyEventPerformer) {
+    private void setKeyEventPerformer(final IKeyEventPerformer keyEventPerformer) {
         this.keyEventPerformer = keyEventPerformer;
     }
 

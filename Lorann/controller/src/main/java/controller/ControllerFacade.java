@@ -31,7 +31,7 @@ public class ControllerFacade implements IController, IOrderStacker {
 
     /**
      * Instantiates a new ControllerFacade
-     * 
+     *
      * @param model
      */
     public ControllerFacade(final IModel model) {
@@ -46,6 +46,9 @@ public class ControllerFacade implements IController, IOrderStacker {
      *             the SQL exception
      */
     public void start() throws SQLException {
+        while (true) {
+            this.getModel().reset();
+        }
     }
 
     /**

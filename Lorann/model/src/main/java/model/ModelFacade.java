@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package model;
 
 import java.sql.ResultSet;
@@ -30,7 +33,7 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getUnitByType(TypeEnum, int)
      */
     @Override
-    public ResultSet getUnitByType(TypeEnum type, int mapId) throws SQLException {
+    public ResultSet getUnitByType(final TypeEnum type, final int mapId) throws SQLException {
         return QueryDAO.getUnitByType(type, mapId);
     }
 
@@ -40,7 +43,8 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getUnitByPosition(int, int, int)
      */
     @Override
-    public ResultSet getUnitByPosition(int x, int y, int mapId) throws SQLException {
+    public ResultSet getUnitByPosition(final int x, final int y, final int mapId)
+            throws SQLException {
         return QueryDAO.getUnitByPosition(x, y, mapId);
     }
 
@@ -50,27 +54,27 @@ public final class ModelFacade extends Observable implements IModel {
      * @see model.IModel#getUnitByMap(int)
      */
     @Override
-    public ResultSet getUnitByMap(int mapId) throws SQLException {
+    public ResultSet getUnitByMap(final int mapId) throws SQLException {
         return QueryDAO.getUnitByMap(mapId);
     }
-    
+
     /*
      * (non-Javadoc)
      *
      * @see model.IModel#getSpritePath(TypeEnum)
      */
     @Override
-    public ResultSet getSpritePath(TypeEnum type) throws SQLException {
+    public ResultSet getSpritePath(final TypeEnum type) throws SQLException {
         return QueryDAO.getSpritePath(type);
     }
-    
+
     /*
      * (non-Javadoc)
      *
      * @see model.IModel#getMap(int)
      */
     @Override
-    public ResultSet getMap(int mapId) throws SQLException {
+    public ResultSet getMap(final int mapId) throws SQLException {
         return QueryDAO.getMap(mapId);
     }
 
@@ -95,6 +99,7 @@ public final class ModelFacade extends Observable implements IModel {
     @Override
     public void reset() {
         // TODO Auto-generated method stub
-
+        this.setChanged();
+        this.notifyObservers();
     }
 }

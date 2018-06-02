@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package showboard;
 
 import java.awt.Color;
@@ -63,8 +66,8 @@ class BoardPanel extends JPanel implements Observer {
     private List<IPawn> pawns;
 
     /**
-     * The dimension is used to known the width and the height of the board.
-     * It's used principally with the squares property
+     * The dimension is used to known the width and the height of the board. It's
+     * used principally with the squares property
      */
     private Dimension dimension;
 
@@ -105,15 +108,17 @@ class BoardPanel extends JPanel implements Observer {
      */
     @Override
     public final void paintComponent(final Graphics graphics) {
-
-        final Map<String, ArrayList<IPawn>> mapPawn = this.createMapPawn();
-
-        for (int x = this.getCornerMinX(); x <= this.getCornerMaxX(); x++) {
-            for (int y = this.getCornerMinY(); y <= this.getCornerMaxY(); y++) {
-                this.drawSquareXY(graphics, x, y);
-                this.drawPawnsXY(graphics, mapPawn, x, y);
-            }
-        }
+        // TODO penser à décommenter
+        // System.out.println(this.getKeyListeners().toString());
+        // System.out.println("====================");
+        // final Map<String, ArrayList<IPawn>> mapPawn = this.createMapPawn();
+        //
+        // for (int x = this.getCornerMinX(); x <= this.getCornerMaxX(); x++) {
+        // for (int y = this.getCornerMinY(); y <= this.getCornerMaxY(); y++) {
+        // this.drawSquareXY(graphics, x, y);
+        // this.drawPawnsXY(graphics, mapPawn, x, y);
+        // }
+        // }
     }
 
     /*
@@ -136,8 +141,7 @@ class BoardPanel extends JPanel implements Observer {
      * @param y
      *            the y
      */
-    public final void addSquare(final ISquare square, final int x,
-            final int y) {
+    public final void addSquare(final ISquare square, final int x, final int y) {
         this.squares[x][y] = square;
     }
 
@@ -169,8 +173,7 @@ class BoardPanel extends JPanel implements Observer {
         Image image;
         final int realX = this.calculateRealX(x);
         final int realY = this.calculateRealY(y);
-        if ((realX < 0) || (realY < 0) || (realX >= widthLimit)
-                || (realY >= heightLimit)) {
+        if ((realX < 0) || (realY < 0) || (realX >= widthLimit) || (realY >= heightLimit)) {
             image = this.noImage;
         } else {
             image = this.squares[realX][realY].getImage();
@@ -236,8 +239,7 @@ class BoardPanel extends JPanel implements Observer {
      */
     public final void setDimension(final Dimension dimension) {
         this.dimension = dimension;
-        this.squares = new ISquare[this.getDimension().width][this
-                .getDimension().height];
+        this.squares = new ISquare[this.getDimension().width][this.getDimension().height];
     }
 
     /**
@@ -341,15 +343,12 @@ class BoardPanel extends JPanel implements Observer {
      * @param y
      *            the y
      */
-    private void drawSquareXY(final Graphics graphics, final int x,
-            final int y) {
+    private void drawSquareXY(final Graphics graphics, final int x, final int y) {
         Image image;
-        image = this.getImageXY(x, y, this.getWidthLimit(),
-                this.getHeightLimit());
-        graphics.drawImage(image,
-                this.getSquareSizeWidth() * (x - this.getCornerMinX()),
-                this.getSquareSizeHeight() * (y - this.getCornerMinY()),
-                this.getSquareSizeWidth(), this.getSquareSizeHeight(), this);
+        image = this.getImageXY(x, y, this.getWidthLimit(), this.getHeightLimit());
+        graphics.drawImage(image, this.getSquareSizeWidth() * (x - this.getCornerMinX()),
+                this.getSquareSizeHeight() * (y - this.getCornerMinY()), this.getSquareSizeWidth(),
+                this.getSquareSizeHeight(), this);
 
     }
 
@@ -365,18 +364,16 @@ class BoardPanel extends JPanel implements Observer {
      * @param y
      *            the y
      */
-    private void drawPawnsXY(final Graphics graphics,
-            final Map<String, ArrayList<IPawn>> mapPawn, final int x,
-            final int y) {
-        final List<IPawn> listPawn = mapPawn.get(this.createMapPawnKey(
-                this.calculateRealX(x), this.calculateRealY(y)));
+    private void drawPawnsXY(final Graphics graphics, final Map<String, ArrayList<IPawn>> mapPawn,
+            final int x, final int y) {
+        final List<IPawn> listPawn = mapPawn
+                .get(this.createMapPawnKey(this.calculateRealX(x), this.calculateRealY(y)));
         if (listPawn != null) {
             for (final IPawn pawn : listPawn) {
                 graphics.drawImage(pawn.getImage(),
                         this.getSquareSizeWidth() * (x - this.getCornerMinX()),
                         this.getSquareSizeHeight() * (y - this.getCornerMinY()),
-                        this.getSquareSizeWidth(), this.getSquareSizeHeight(),
-                        this);
+                        this.getSquareSizeWidth(), this.getSquareSizeHeight(), this);
             }
         }
     }
@@ -397,8 +394,7 @@ class BoardPanel extends JPanel implements Observer {
      * @return the height limit
      */
     private int getHeightLimit() {
-        return Math.min(
-                this.getDisplayFrame().height + this.getDisplayFrame().y,
+        return Math.min(this.getDisplayFrame().height + this.getDisplayFrame().y,
                 this.getDimension().height);
     }
 
