@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 
+import enums.DirectionsEnum;
 import enums.TypeEnum;
 import model.dao.QueryDAO;
 import modelInterfaces.ILevel;
@@ -24,13 +25,6 @@ import vector.IVector;
 public final class ModelFacade extends Observable implements IModel {
 	private ILevel level;
 
-    @Override
-    public void reset() {
-        // TODO Auto-generated method stub
-        this.setChanged();
-        this.notifyObservers();
-    }
-  
 	/**
 	 * Instantiates a new model facade.
 	 */
@@ -39,7 +33,7 @@ public final class ModelFacade extends Observable implements IModel {
 	}
 
 	@Override
-	public void addToScoreValue(final int value) {
+	public void addToScore(final int value) {
 		// TODO Auto-generated method stub
 
 	}
@@ -61,7 +55,7 @@ public final class ModelFacade extends Observable implements IModel {
 	}
 
 	@Override
-	public int getScoreValue() {
+	public int getScore() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -112,12 +106,23 @@ public final class ModelFacade extends Observable implements IModel {
 	public void loadLevel(final int levelId) {
 		this.setLevel(this.level);
 	}
-  
+
+	@Override
+	public void resetScore() {
+		// TODO Auto-generated method stub
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 	/**
 	 * @param level
 	 *            the level to set
 	 */
 	private void setLevel(final ILevel level) {
 		this.level = level;
+	}
+
+	public void setPlayerDirection(final DirectionsEnum direction) {
+
 	}
 }
