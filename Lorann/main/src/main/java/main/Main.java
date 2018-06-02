@@ -1,5 +1,9 @@
+/*
+ * 
+ */
 package main;
 
+import java.awt.Dimension;
 import java.sql.SQLException;
 
 import controller.ControllerFacade;
@@ -23,7 +27,8 @@ public abstract class Main {
     public static void main(final String[] args) {
         final ModelFacade model = new ModelFacade();
         final ControllerFacade controller = new ControllerFacade(model);
-        final ViewFacade view = new ViewFacade(controller, controller, model);
+        final ViewFacade view = new ViewFacade(controller, controller, model,
+                new Dimension(640, 384));
         controller.setView(view);
 
         try {

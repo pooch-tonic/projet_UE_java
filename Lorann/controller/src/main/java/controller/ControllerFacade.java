@@ -42,7 +42,7 @@ public class ControllerFacade implements IController, IOrderStacker {
 	 * @param model
 	 */
 	public ControllerFacade(final IModel model) {
-		// TODO mettre super() si ça marche pas
+		// TODO mettre super() si Ã§a marche pas
 		this.model = model;
 		this.setBoard(null);
 		this.setInteractionManager(new InteractionManager());

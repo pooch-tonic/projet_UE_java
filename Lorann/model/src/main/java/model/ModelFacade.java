@@ -1,3 +1,6 @@
+/*
+ *
+ */
 package model;
 
 import java.awt.Dimension;
@@ -21,6 +24,13 @@ import vector.IVector;
 public final class ModelFacade extends Observable implements IModel {
 	private ILevel level;
 
+    @Override
+    public void reset() {
+        // TODO Auto-generated method stub
+        this.setChanged();
+        this.notifyObservers();
+    }
+  
 	/**
 	 * Instantiates a new model facade.
 	 */
@@ -102,13 +112,7 @@ public final class ModelFacade extends Observable implements IModel {
 	public void loadLevel(final int levelId) {
 		this.setLevel(this.level);
 	}
-
-	@Override
-	public void reset() {
-		// TODO Auto-generated method stub
-
-	}
-
+  
 	/**
 	 * @param level
 	 *            the level to set

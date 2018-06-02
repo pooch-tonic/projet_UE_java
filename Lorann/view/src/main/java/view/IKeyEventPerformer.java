@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package view;
 
 import java.awt.event.KeyEvent;
@@ -11,9 +14,23 @@ import java.awt.event.KeyEvent;
  */
 interface IKeyEventPerformer {
     /**
-     * Process the keyboard event by translate it to order to the controller
+     * Process the key pressed event by translate it to order to the controller
      *
      * @param keyEvent
      */
-    void performEvent(KeyEvent keyEvent);
+    void performKeyPressedEvent(KeyEvent keyEvent);
+
+    /**
+     * Process the key released event by translate it to order to the controller
+     * 
+     * @param keyEvent
+     */
+    void performKeyReleasedEvent(KeyEvent keyEvent);
+
+    /**
+     * Process the key typed event by translate it to order to the controller
+     * 
+     * @param keyEvent
+     */
+    void performKeyTypedEvent(KeyEvent keyEvent);
 }

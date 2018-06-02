@@ -6,16 +6,5 @@ package enums;
  *
  */
 public enum OrderEnum {
-    UPLEFT,
-    UP,
-    UPRIGHT,
-    LEFT,
-    MIDDLE,
-    RIGHT,
-    DOWNLEFT,
-    DOWN,
-    DOWNRIGHT,
-    CAST,
-    CALLBACK,
-    NONE;
+    UPLEFT, UP, UPRIGHT, LEFT, RIGHT, DOWNLEFT, DOWN, DOWNRIGHT, CAST, NONE;
 }
