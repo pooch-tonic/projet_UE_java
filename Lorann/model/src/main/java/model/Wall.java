@@ -3,9 +3,9 @@ package model;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import enums.TypeEnum;
 import modelInterfaces.IUnit;
 import showboard.ISpriteSet;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**
@@ -13,6 +13,9 @@ import vector.IVector;
  *
  */
 public class Wall implements IUnit {
+	private ISpriteSet spriteSet;
+	private TypeEnum type;
+	private WallType wallType;
 
 	/**
 	 * Instantiates a new Wall
@@ -52,7 +55,7 @@ public class Wall implements IUnit {
 	@Override
 	public TypeEnum getType() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.type;
 	}
 
 	public int getX() {
@@ -77,14 +80,13 @@ public class Wall implements IUnit {
 
 	@Override
 	public void setSpriteSet(final ISpriteSet spriteSet) {
-		// TODO Auto-generated method stub
+		this.spriteSet = spriteSet;
 
 	}
 
 	@Override
 	public void setType(final TypeEnum type) {
-		// TODO Auto-generated method stub
-
+		this.type = type;
 	}
 
 	/**

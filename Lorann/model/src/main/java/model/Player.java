@@ -1,7 +1,7 @@
 package model;
 
-import enums.TypeEnum;
 import modelInterfaces.IPlayer;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**

@@ -1,6 +1,6 @@
 package model;
 
-import enums.TypeEnum;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**

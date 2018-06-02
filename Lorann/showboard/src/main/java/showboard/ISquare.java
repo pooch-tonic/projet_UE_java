@@ -24,4 +24,6 @@ public interface ISquare {
 	 */
 	ISpriteSet getSpriteSet();
 
+	TypeEnum getType();
+
 }

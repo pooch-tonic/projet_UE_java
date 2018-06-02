@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 
-import enums.TypeEnum;
 import model.dao.QueryDAO;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import showboard.TypeEnum;
 import vector.IVector;
 
 /**

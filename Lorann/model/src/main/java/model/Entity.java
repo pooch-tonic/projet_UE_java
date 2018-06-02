@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import enums.DirectionsEnum;
-import enums.TypeEnum;
 import modelInterfaces.IEntity;
 import showboard.ISpriteSet;
+import showboard.TypeEnum;
 import vector.IVector;
 import vector.Vector;
 
@@ -99,6 +99,7 @@ public abstract class Entity implements IEntity {
 		return this.spriteSet;
 	}
 
+	@Override
 	public TypeEnum getType() {
 		return this.type;
 	}

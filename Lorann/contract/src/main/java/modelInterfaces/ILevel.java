@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import showboard.IPawn;
 import showboard.ISquare;
-import vector.IVector;
 
 public interface ILevel {
 	/**
@@ -27,12 +26,6 @@ public interface ILevel {
 	 * @return the 2D array of squares
 	 */
 	public ISquare[][] getSquares();
-
-	/**
-	 * @param position
-	 * @return true if a square is present on the position, false if not
-	 */
-	public boolean isSquareOnPosition(IVector position);
 
 	/**
 	 * @param dimension

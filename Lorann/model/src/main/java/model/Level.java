@@ -8,7 +8,6 @@ import modelInterfaces.ILevel;
 import modelInterfaces.IUnit;
 import showboard.IPawn;
 import showboard.ISquare;
-import vector.IVector;
 
 /**
  * @author Max Becerro
@@ -60,16 +59,6 @@ public class Level implements ILevel {
 	@Override
 	public ISquare[][] getSquares() {
 		return this.units;
-	}
-
-	@Override
-	public boolean isSquareOnPosition(final IVector position) {
-		if (this.getSquares()[position.getX()][position.getY()] != null) {
-			return true;
-		} else {
-			return false;
-		}
-
 	}
 
 	/**

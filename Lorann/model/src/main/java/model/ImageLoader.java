@@ -6,9 +6,9 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import enums.TypeEnum;
 import model.dao.QueryDAO;
 import modelInterfaces.IImageLoader;
+import showboard.TypeEnum;
 
 /**
  * @author Max Becerro
