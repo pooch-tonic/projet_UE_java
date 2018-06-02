@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
 import modelInterfaces.IUnit;
-import showboard.ISquare;
+import vector.IVector;
 
 /**
  * @author Max Becerro
@@ -21,10 +21,12 @@ public class Level implements ILevel {
     private Dimension          dimension;
     private int                id;
 
+    @Override
     public void addEntity(final IEntity entity) {
         this.getEntities().add(entity);
     }
 
+    @Override
     public void addUnit(final IUnit unit, final int x, final int y) {
         this.getUnits()[x][y] = unit;
     }
@@ -53,7 +55,7 @@ public class Level implements ILevel {
      * @return the current level map, contained in a 2D array of ISquare.
      */
     @Override
-    public ISquare[][] getUnits() {
+    public IUnit[][] getUnits() {
         return this.units;
     }
 
@@ -69,22 +71,44 @@ public class Level implements ILevel {
      * @param id
      *            the id to set
      */
+    @Override
     public void setId(final int id) {
         this.id = id;
     }
 
-    /**
-     * @param squares
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#setUnits(modelInterfaces.IUnit[][])
      */
     @Override
     public void setUnits(final IUnit[][] units) {
         this.units = units;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getEntities()
+     */
     @Override
     public ArrayList<IEntity> getEntities() {
         // TODO Auto-generated method stub
         return this.entities;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getEntityOn(vector.IVector)
+     */
+    @Override
+    public IEntity getEntityOn(final IVector position) {
+        for (final IEntity entity : this.getEntities()) {
+            if (entity.getPosition().isEqual(position)) {
+                return entity;
+            }
+        }
+        return null;
+    }
 }

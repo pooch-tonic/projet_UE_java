@@ -1,31 +1,36 @@
+/*
+ * 
+ */
 package vector;
 
 import java.awt.Point;
 
 public interface IVector {
-	public void add(final IVector vector);
+    public void add(final IVector vector);
 
-	public void div(final int divider);
+    public void div(final int divider);
 
-	public void div(final IVector divider);
+    public void div(final IVector divider);
 
-	public int getX();
+    public int getX();
 
-	public int getY();
+    public int getY();
 
-	public void invert();
+    public void invert();
 
-	public void mult(final int multiplier);
+    public void mult(final int multiplier);
 
-	public void mult(final IVector multiplier);
+    public void mult(final IVector multiplier);
 
-	public void set(final int x, final int y);
+    public void set(final int x, final int y);
 
-	public void set(final Point point);
+    public void set(final Point point);
 
-	public void setX(final int x);
+    public void setX(final int x);
 
-	public void setY(final int y);
+    public void setY(final int y);
 
-	public void sub(final IVector vector);
+    public void sub(final IVector vector);
+
+    public boolean isEqual(IVector vector);
 }
