@@ -58,6 +58,28 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     /*
      * (non-Javadoc)
      *
+     * @see controllerInterfaces.IController#update()
+     */
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        this.updateEntities();
+        this.setStackOrder(new ArrayList<>());
+    }
+
+    /**
+     * Update the entities of the model
+     */
+    private void updateEntities() {
+        this.performOrder();
+        for (final IEntity entity : this.getModel().getLevel().getEntities()) {
+            entity.update();
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     *
      * @see controllerInterfaces.IController#loadLevel(int)
      */
     @Override
@@ -104,28 +126,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *             the SQL exception
      */
     public void start() throws SQLException {
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see controllerInterfaces.IController#update()
-     */
-    @Override
-    public void update() {
-        // TODO Auto-generated method stub
-        this.updateEntities();
-        this.setStackOrder(new ArrayList<>());
-    }
-
-    /**
-     * Update the entities of the model
-     */
-    private void updateEntities() {
-        this.performOrder();
-        for (final IEntity entity : this.getModel().getLevel().getEntities()) {
-            entity.update();
-        }
     }
 
     /**
