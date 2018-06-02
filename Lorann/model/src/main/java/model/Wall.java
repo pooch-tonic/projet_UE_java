@@ -37,33 +37,6 @@ public class Wall implements IUnit {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public int getX() {
-		return this.getPosition().getX();
-	}
-
-
-	public int getY() {
-		return this.getPosition().getY();
-	}
-
-	/**
-	 * @param wallType
-	 */
-	private void setWallType(final WallType wallType) {
-		switch (wallType) {
-		case WALL_ROUND:
-			setType(TypeEnum.WALL);
-			break;
-		case WALL_VERTICAL:
-			setType(TypeEnum.WALL_V);
-			break;
-		case WALL_HORIZONTAL:
-			setType(TypeEnum.WALL_H);
-			break;
-		}
-	}
-
 	@Override
 	public IVector getPosition() {
 		// TODO Auto-generated method stub
@@ -82,28 +55,53 @@ public class Wall implements IUnit {
 		return null;
 	}
 
-	@Override
-	public void setPosition(IVector position) {
-		// TODO Auto-generated method stub
-		
+	public int getX() {
+		return this.getPosition().getX();
+	}
+
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 	@Override
-	public void setSpriteSet(ArrayList<BufferedImage> sprites) {
+	public void setPosition(final IVector position) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void setSpriteSet(ISpriteSet spriteSet) {
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void setType(TypeEnum type) {
+	public void setSpriteSet(final ISpriteSet spriteSet) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void setType(final TypeEnum type) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * @param wallType
+	 */
+	private void setWallType(final WallType wallType) {
+		switch (wallType) {
+		case WALL_ROUND:
+			this.setType(TypeEnum.WALL);
+			break;
+		case WALL_VERTICAL:
+			this.setType(TypeEnum.WALL_V);
+			break;
+		case WALL_HORIZONTAL:
+			this.setType(TypeEnum.WALL_H);
+			break;
+		}
 	}
 
 }

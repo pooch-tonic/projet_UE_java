@@ -23,4 +23,5 @@ public interface ISquare {
 	 * @return the image
 	 */
 	ISpriteSet getSpriteSet();
+
 }

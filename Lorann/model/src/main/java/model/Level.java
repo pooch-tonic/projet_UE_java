@@ -8,6 +8,7 @@ import modelInterfaces.ILevel;
 import modelInterfaces.IUnit;
 import showboard.IPawn;
 import showboard.ISquare;
+import vector.IVector;
 
 /**
  * @author Max Becerro
@@ -24,7 +25,7 @@ public class Level implements ILevel {
 	}
 
 	public void addUnit(final IUnit unit, final int x, final int y) {
-		this.getUnits()[x][y] = unit;
+		this.getSquares()[x][y] = unit;
 	}
 
 	/**
@@ -57,8 +58,18 @@ public class Level implements ILevel {
 	 * @return the current level map, contained in a 2D array of ISquare.
 	 */
 	@Override
-	public ISquare[][] getUnits() {
+	public ISquare[][] getSquares() {
 		return this.units;
+	}
+
+	@Override
+	public boolean isSquareOnPosition(final IVector position) {
+		if (this.getSquares()[position.getX()][position.getY()] != null) {
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	/**
@@ -89,7 +100,7 @@ public class Level implements ILevel {
 	 * @param squares
 	 */
 	@Override
-	public void setUnits(final ISquare[][] units) {
+	public void setSquares(final ISquare[][] units) {
 		this.units = units;
 	}
 
