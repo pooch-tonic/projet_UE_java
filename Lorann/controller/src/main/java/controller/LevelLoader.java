@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.SQLException;
+
 import modelInterfaces.IModel;
 import showboard.IPawn;
 import showboard.ISquare;
@@ -19,7 +21,12 @@ public class LevelLoader {
 
 	public void loadLevel(final int idLevel, final IModel model, final IView view) {
 
-		model.loadLevel(idLevel);
+		try {
+			model.loadLevel(idLevel);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ISquare[][] squares = model.getLevel().getUnits();
 		for (int x = 0; x < squares.length; x++) {
 			for (int y = 0; y < squares[0].length; y++) {
