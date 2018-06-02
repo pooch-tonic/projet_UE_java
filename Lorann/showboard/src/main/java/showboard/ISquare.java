@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package showboard;
 
 import java.awt.Image;
@@ -17,10 +20,10 @@ import java.awt.Image;
  */
 public interface ISquare {
 
-	/**
-	 * Gets the image.
-	 *
-	 * @return the image
-	 */
-	ISpriteSet getSpriteSet();
+    /**
+     * Gets the image.
+     *
+     * @return the image
+     */
+    Image getImage();
 }
