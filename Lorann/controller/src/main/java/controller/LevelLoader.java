@@ -19,7 +19,7 @@ public class LevelLoader {
 
 	public void loadLevel(final int idLevel, final IModel model, final IView view) {
 
-		model.loadLevel(idLevel);
+		model.loadLevelById(idLevel);
 		ISquare[][] squares = model.getLevel().getSquares();
 		for (int x = 0; x < squares.length; x++) {
 			for (int y = 0; y < squares[0].length; y++) {

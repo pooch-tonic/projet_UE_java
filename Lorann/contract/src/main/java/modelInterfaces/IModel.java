@@ -40,6 +40,8 @@ public interface IModel {
 
 	void loadLevel(int levelId);
 
+	void loadLevelById(int levelId);
+
 	/**
 	 * Gets the path of the sprite.
 	 *
@@ -91,4 +93,5 @@ public interface IModel {
 	ArrayList<IVector> loadUnitsByType(TypeEnum type, int mapId) throws SQLException;
 
 	void resetScore();
+
 }

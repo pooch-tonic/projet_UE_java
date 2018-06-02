@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderStacker;
+import modelInterfaces.ILevel;
 import showboard.BoardFrame;
 import viewInterfaces.IView;
 
@@ -24,6 +25,8 @@ public class ViewFacade implements IView {
     private BoardFrame  boardFrame;
     /** The key listener using to detect keyboards inputs. */
     private KeyListener keyListener;
+    
+    private ILevel level;
 
     /**
      * Instantiates a new ViewFacade
@@ -69,6 +72,13 @@ public class ViewFacade implements IView {
      *
      * @see view.IView#displayMessage(java.lang.String)
      */
+    
+    public void updateView (ILevel level) {
+    	
+    }
+    
+    
+    
     @Override
     public final void displayMessage(final String message) throws Exception {
         if (message.isEmpty()) {
@@ -112,5 +122,21 @@ public class ViewFacade implements IView {
     private void setKeyListener(final KeyListener keyListener) {
         this.keyListener = keyListener;
     }
+
+	/**
+	 * Gets the level
+	 * 
+	 * @return the level
+	 */
+	public ILevel getLevel() {
+		return level;
+	}
+
+	/**
+	 * @param level the level to set
+	 */
+	public void setLevel(ILevel level) {
+		this.level = level;
+	}
 
 }

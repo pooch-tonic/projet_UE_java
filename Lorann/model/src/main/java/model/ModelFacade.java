@@ -72,6 +72,11 @@ public final class ModelFacade extends Observable implements IModel {
 		this.setLevel(this.level);
 	}
 
+	@Override
+	public void loadLevelById(final int levelId) {
+		this.setLevel(this.level);
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -116,8 +121,6 @@ public final class ModelFacade extends Observable implements IModel {
 
 	@Override
 	public void resetScore() {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**

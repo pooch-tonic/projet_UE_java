@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
+
 /**
  * <h1>The Class BoardFrame.</h1>
  * <p>
@@ -37,7 +38,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /** The board panel. */
     private final BoardPanel boardPanel;
-
+    
     /**
      * Instantiates a new BoardFrame
      * 
@@ -56,7 +57,12 @@ public class BoardFrame extends JFrame implements IBoard {
         this.setResizable(false);
         this.setVisible(true);
     }
-
+    
+    public void updateFrame() {
+    	
+    }
+    
+    
     /**
      * Instantiates a new board frame.
      *
