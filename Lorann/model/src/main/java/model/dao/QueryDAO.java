@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import enums.TypeEnum;
 import vector.IVector;
 import vector.Vector;
 

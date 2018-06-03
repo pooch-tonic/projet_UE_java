@@ -20,4 +20,6 @@ public interface IEntity extends IPawn {
     public Type getType();
 
     void update();
+	
+	  void setPosition(final IVector position);
 }
