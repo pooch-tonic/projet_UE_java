@@ -7,6 +7,7 @@ import java.awt.Image;
 
 import enums.Type;
 import enums.TypeEnum;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -27,10 +28,15 @@ public class Dead extends Entity {
     public Dead(final IVector position) {
         super(position, Type.DEAD);
     }
-
+    
+    public Dead(final ISpriteSet spriteSet) {
+        super(Type.DEAD);
+        super.setSpriteSet(spriteSet);
+    }
+    
     @Override
     public Image getImage() {
-        return ImageLoader.getImageByPath(TypeEnum.DEAD, 0);
+    	return super.getSpriteSet().getCurrentSprite();
     }
 
     @Override
