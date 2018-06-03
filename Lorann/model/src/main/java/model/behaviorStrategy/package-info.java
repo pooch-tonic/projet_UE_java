@@ -5,4 +5,4 @@
  * @author Ryo
  *
  */
-package model.moveStrategy;
+package model.behaviorStrategy;
