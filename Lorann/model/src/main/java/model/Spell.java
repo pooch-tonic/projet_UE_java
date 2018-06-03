@@ -6,7 +6,7 @@ import vector.IVector;
 
 public class Spell extends Entity {
 	public Spell(final ISpriteSet spriteSet) {
-		super(spriteSet, Type.SPELL);
+		super(Type.SPELL, spriteSet);
 	}
 
 	/**
@@ -16,6 +16,7 @@ public class Spell extends Entity {
 	 */
 	public Spell(final IVector position) {
 		super(Type.SPELL);
+		this.setPosition(position);
 	}
 
 }

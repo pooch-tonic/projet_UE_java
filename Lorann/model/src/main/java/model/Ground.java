@@ -9,7 +9,7 @@ public class Ground extends Unit {
 	 * Default constructor : instantiates a new Wall.
 	 */
 	public Ground() {
-		super();
+		super(Type.GROUND);
 		// this.setSpriteSet(); TODO finir ça
 		this.setType(Type.GROUND);
 	}
@@ -20,7 +20,7 @@ public class Ground extends Unit {
 	 * @param position
 	 */
 	public Ground(final IVector position) {
-		super();
+		super(Type.GROUND);
 		this.setPosition(position);
 	}
 }
