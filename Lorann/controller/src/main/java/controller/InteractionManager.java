@@ -10,13 +10,51 @@ public class InteractionManager {
         // TODO constructor code
     }
 
-    public Interaction defineInteractionBetween(final IEntity entity, final IEntity target) {
-        // TODO code
-        return Interaction.NONE;
+    public Interaction getInteractionOnNextPositionBetween(final IEntity entity,
+            final IEntity target) {
+        final Interaction interaction;
+
+        switch (entity.getType()) {
+        case ENEMY:
+            interaction = this.getEnemyInteractionOnHisNextPosition(target);
+            break;
+        case SPELL:
+            interaction = this.getSpellInteractionOnHisNextPosition(target);
+            break;
+        case PLAYER:
+            interaction = this.getPlayerInteractionOnHisNextPosition(target);
+            break;
+        default:
+            interaction = Interaction.NONE;
+            break;
+        }
+        return interaction;
+    }
+
+    public Interaction getInteractionOnCurrentPositionBetween(final IEntity entity,
+            final IEntity target) {
+        final Interaction interaction;
+
+        switch (entity.getType()) {
+        case ENEMY:
+            interaction = this.getEnemyInteractionOnHisPosition(target);
+            break;
+        case SPELL:
+            interaction = this.getSpellInteractionOnHisPosition(target);
+            break;
+        case PLAYER:
+            interaction = this.getPlayerInteractionOnHisPosition(target);
+            break;
+        default:
+            interaction = Interaction.NONE;
+            break;
+        }
+        return interaction;
     }
 
     private Interaction getEnemyInteractionOnHisPosition(final IEntity target) {
         final Interaction interaction;
+
         switch (target.getType()) {
         case PLAYER:
             interaction = Interaction.TARGET_DESTROYED;
@@ -47,7 +85,7 @@ public class InteractionManager {
         return interaction;
     }
 
-    private Interaction getInteractionBetweenPlayerAnd(final IEntity target) {
+    private Interaction getPlayerInteractionOnHisPosition(final IEntity target) {
         final Interaction interaction;
         switch (target.getType()) {
         case ENEMY:
@@ -62,12 +100,6 @@ public class InteractionManager {
         case SPELL:
             interaction = Interaction.TARGET_DESTROYED;
             break;
-        case DOOR_OPEN:
-            interaction = Interaction.QUIT_LEVEL;
-            break;
-        case DEAD:
-            interaction = Interaction.NONE;
-            break;
         default:
             interaction = Interaction.NONE;
             break;
@@ -75,14 +107,11 @@ public class InteractionManager {
         return interaction;
     }
 
-    private Interaction getInteractionBetweenEnemyAnd(final IEntity target) {
+    private Interaction getEnemyInteractionOnHisNextPosition(final IEntity target) {
         final Interaction interaction;
         switch (target.getType()) {
         case ENEMY:
             interaction = Interaction.BOUNCE;
-            break;
-        case PLAYER:
-            interaction = Interaction.TARGET_DESTROYED;
             break;
         case KEY:
             interaction = Interaction.BOUNCE;
@@ -106,15 +135,9 @@ public class InteractionManager {
         return interaction;
     }
 
-    private Interaction getInteractionBetweenSpellAnd(final IEntity target) {
+    private Interaction getSpellInteractionOnHisNextPosition(final IEntity target) {
         final Interaction interaction;
         switch (target.getType()) {
-        case ENEMY:
-            interaction = Interaction.BOTH_DESTROYED;
-            break;
-        case PLAYER:
-            interaction = Interaction.ENTITY_DESTROYED;
-            break;
         case KEY:
             interaction = Interaction.BOUNCE;
             break;
@@ -123,6 +146,22 @@ public class InteractionManager {
             break;
         case DOOR_OPEN:
             interaction = Interaction.BOUNCE;
+            break;
+        case DEAD:
+            interaction = Interaction.BOUNCE;
+            break;
+        default:
+            interaction = Interaction.NONE;
+            break;
+        }
+        return interaction;
+    }
+
+    private Interaction getPlayerInteractionOnHisNextPosition(final IEntity target) {
+        final Interaction interaction;
+        switch (target.getType()) {
+        case DOOR_OPEN:
+            interaction = Interaction.UNLOCK_DOOR;
             break;
         case DEAD:
             interaction = Interaction.BOUNCE;

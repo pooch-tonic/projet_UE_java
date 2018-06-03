@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import enums.Type;
 import enums.TypeEnum;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -22,10 +23,11 @@ public class Enemy extends Entity {
      *
      * @param enemyName
      */
-    public Enemy(final EnemyName enemyName) {
+    public Enemy(final EnemyName enemyName, ISpriteSet spriteSet) {
         super();
         this.setType(Type.ENEMY);
         this.setEnemyType(enemyName);
+        super.setSpriteSet(spriteSet);
 
         // TODO Auto-generated constructor stub
     }
@@ -43,23 +45,8 @@ public class Enemy extends Entity {
         // TODO Auto-generated constructor stub
     }
 
-    public Image getImage(final EnemyName enemy) throws IOException, SQLException {
-        Image image = null;
-        switch (enemy) {
-        case KYRACJ:
-            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_A, 0);
-            break;
-        case CARGYV:
-            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_B, 0);
-            break;
-        case ARRBARR:
-            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_C, 0);
-            break;
-        case MAARCG:
-            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_D, 0);
-            break;
-        }
-        return image;
+    public Image getImage(final EnemyName enemy) {
+        return super.getSpriteSet().getCurrentSprite();
     }
 
     @Override

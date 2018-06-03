@@ -4,11 +4,13 @@ import java.awt.Image;
 
 import enums.Type;
 import enums.TypeEnum;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 public class Spell extends Entity {
-	public Spell() {
+	public Spell(ISpriteSet spriteSet) {
         super(Type.SPELL);
+        super.setSpriteSet(spriteSet);
         // TODO Auto-generated constructor stub
     }
 

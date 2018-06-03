@@ -77,14 +77,20 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     private void updateEntities() {
         this.performOrder();
         for (final IEntity entity : this.getModel().getLevel().getEntities()) {
+            IEntity target;
             if (this.getNextTile(entity) != null) {
+                entity.bounce();
             } else {
+                // TODO change and use getAddResult
                 final IVector targetPosition = new Vector(entity.getPosition());
                 targetPosition.add(entity.getDirection());
-                final IEntity target = this.getModel().getLevel().getEntityOn(targetPosition);
-                this.performInteraction(entity, target,
-                        this.getInteractionManager().defineInteractionBetween(entity, target));
+                target = this.getModel().getLevel().getEntityOn(targetPosition);
+                this.performInteraction(entity, target, this.getInteractionManager()
+                        .getInteractionOnNextPositionBetween(entity, target));
             }
+            target = this.getModel().getLevel().getEntityOn(entity.getPosition());
+            this.performInteraction(entity, target, this.getInteractionManager()
+                    .getInteractionOnCurrentPositionBetween(entity, target));
             entity.update();
         }
     }
