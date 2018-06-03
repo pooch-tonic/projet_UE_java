@@ -24,6 +24,7 @@ public class Door extends Entity {
     public Door(final boolean closed, ISpriteSet spriteSet) {
         super();
         this.setDoorType(closed);
+        super.setSpriteSet(spriteSet);
 
         // TODO Auto-generated constructor stub
     }

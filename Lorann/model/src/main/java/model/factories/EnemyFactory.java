@@ -2,21 +2,22 @@ package model.factories;
 
 import model.Enemy;
 import model.EnemyName;
+import showboard.ISpriteSet;
 
 class EnemyFactory {
-	Enemy createArrbarr() {
-		return new Enemy(EnemyName.ARRBARR);
+	Enemy createArrbarr(ISpriteSet spriteSet) {
+		return new Enemy(EnemyName.ARRBARR, spriteSet);
 	}
 
-	Enemy createCargyv() {
-		return new Enemy(EnemyName.CARGYV);
+	Enemy createCargyv(ISpriteSet spriteSet) {
+		return new Enemy(EnemyName.CARGYV, spriteSet);
 	}
 
-	Enemy createKyracj() {
-		return new Enemy(EnemyName.KYRACJ);
+	Enemy createKyracj(ISpriteSet spriteSet) {
+		return new Enemy(EnemyName.KYRACJ, spriteSet);
 	}
 
-	Enemy createMaarcg() {
-		return new Enemy(EnemyName.MAARCG);
+	Enemy createMaarcg(ISpriteSet spriteSet) {
+		return new Enemy(EnemyName.MAARCG, spriteSet);
 	}
 }
