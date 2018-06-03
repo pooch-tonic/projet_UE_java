@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package model.factories;
 
 import java.awt.image.BufferedImage;
@@ -28,6 +31,7 @@ import modelInterfaces.IEntity;
  */
 
 public abstract class UnitFactory {
+  
 	private static final WallFactory wallFactory = new WallFactory();
 	private static final EnemyFactory enemyFactory = new EnemyFactory();
 	private static final PlayerFactory playerFactory = new PlayerFactory();
