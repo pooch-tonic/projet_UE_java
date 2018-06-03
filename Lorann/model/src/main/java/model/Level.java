@@ -21,6 +21,15 @@ public class Level implements ILevel {
     private Dimension          dimension;
     private int                id;
 
+    public Level(final int id, final Dimension dimension) {
+        final Double width = dimension.getWidth();
+        final Double height = dimension.getHeight();
+
+        this.setId(id);
+        this.setUnits(new IUnit[width.intValue()][height.intValue()]);
+        this.setEntities(new ArrayList<>());
+    }
+
     @Override
     public void addEntity(final IEntity entity) {
         this.getEntities().add(entity);
@@ -110,5 +119,14 @@ public class Level implements ILevel {
             }
         }
         return null;
+    }
+
+    /**
+     * Sets the entities
+     *
+     * @param entities
+     */
+    private void setEntities(final ArrayList<IEntity> entities) {
+        this.entities = entities;
     }
 }

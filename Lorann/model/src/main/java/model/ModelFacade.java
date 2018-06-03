@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Observable;
 
 import enums.DirectionEnum;
-import enums.Type;
 import enums.TypeEnum;
 import model.dao.QueryDAO;
 import model.factories.UnitFactory;
@@ -127,34 +126,35 @@ public final class ModelFacade extends Observable implements IModel {
 
     @Override
     public void loadLevel(final int levelId) throws SQLException {
-    	final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
-    	ILevel level = new Level();
-    	String key;
-    	IVector vector;
-    	IEntity entity;
-    	for(HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
-    		key = result.getKey();
-    		vector = result.getValue();
-    		switch(key) {
-    			case "WALL" :
-    				level.addUnit(UnitFactory.createWall_round(), vector.getX(), vector.getY());
-    				break;
-    			case "WALL_H" :
-    				level.addUnit(UnitFactory.createWall_horizontal(), vector.getX(), vector.getY());
-    				break;
-    			case "WALL_V" :
-    				level.addUnit(UnitFactory.createWall_Vertical(), vector.getX(), vector.getY());
-    				break;
-    			default:
-    				entity = UnitFactory.createUnit(TypeEnum.valueOf(key), QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
-        			entity.setPosition(vector);
-        			level.addEntity(entity);
-    				break;
-    		}
-    	}
-    	level.setId(levelId);
-    	level.setDimension(QueryDAO.getMap(levelId));
-        this.setLevel(this.level);
+        final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
+        final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
+
+        String key;
+        IVector vector;
+        IEntity entity;
+
+        for (final HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
+            key = result.getKey();
+            vector = result.getValue();
+            switch (key) {
+            case "WALL":
+                level.addUnit(UnitFactory.createWall_round(), vector.getX(), vector.getY());
+                break;
+            case "WALL_H":
+                level.addUnit(UnitFactory.createWall_horizontal(), vector.getX(), vector.getY());
+                break;
+            case "WALL_V":
+                level.addUnit(UnitFactory.createWall_Vertical(), vector.getX(), vector.getY());
+                break;
+            default:
+                entity = UnitFactory.createUnit(TypeEnum.valueOf(key),
+                        QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
+                entity.setPosition(vector);
+                level.addEntity(entity);
+                break;
+            }
+        }
+        this.setLevel(level);
     }
 
     @Override
