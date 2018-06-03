@@ -6,8 +6,11 @@ import showboard.IPawn;
 import vector.IVector;
 
 /**
- * @author Ryo Interface used by all moving units, so-called entities. It
- *         extends IPawn in order to be displayed on the showboard.
+ * Interface used by all moving units, so-called entities. It extends IPawn in
+ * order to be displayed on the showboard.
+ *
+ * @author Ryo
+ *
  */
 public interface IEntity extends IPawn {
 	/**
@@ -21,13 +24,13 @@ public interface IEntity extends IPawn {
 	public void dodge();
 
 	/**
-	 * @return the direction vector of the entity
+	 * @return the direction vector of the entity.
 	 */
 	public IVector getDirection();
 
 	/**
 	 * @return the type enumeration of the entity, which allows the controller to
-	 *         identify it
+	 *         identify it.
 	 */
 	public Type getType();
 
@@ -37,28 +40,28 @@ public interface IEntity extends IPawn {
 	public void move();
 
 	/**
-	 * sets the direction vector of the entity
+	 * sets the direction vector of the entity.
 	 *
 	 * @param direction
 	 */
 	void setDirection(IVector direction);
 
 	/**
-	 * sets the position vector pf the entity
+	 * sets the position vector pf the entity.
 	 *
 	 * @param position
 	 */
 	void setPosition(final IVector position);
 
 	/**
-	 * sets the type enumeration of the entity
+	 * sets the type enumeration of the entity.
 	 *
 	 * @param type
 	 */
 	void setType(TypeEnum type);
 
 	/**
-	 * contains all the actions to be executed for a full update of the entity
+	 * contains all the actions to be executed for a full update of the entity.
 	 */
 	void update();
 
