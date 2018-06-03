@@ -3,11 +3,13 @@
  */
 package model.factories;
 
+import java.awt.image.BufferedImage;
+
 import model.Wall;
-import showboard.ISpriteSet;
 
 class WallFactory {
-	Wall createDefault(final ISpriteSet spriteSet) {
-		return new Wall();
+
+	Wall createDefault(final BufferedImage image) {
+		return new Wall(image);
 	}
 }

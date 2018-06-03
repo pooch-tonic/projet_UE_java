@@ -3,10 +3,7 @@
  */
 package model;
 
-import java.awt.Image;
-
 import enums.Type;
-import enums.TypeEnum;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -43,28 +40,6 @@ public class Enemy extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Image getImage(final EnemyName enemy) {
-		return super.getSpriteSet().getCurrentSprite();
-	}
-
-	@Override
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
 	 * @param enemyName
 	 */
@@ -85,15 +60,4 @@ public class Enemy extends Entity {
 		}
 	}
 
-	@Override
-	public void setType(final TypeEnum type) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
 }
