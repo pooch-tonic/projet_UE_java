@@ -120,10 +120,11 @@ public abstract class UnitFactory {
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return the player : Lorann
 	 */
-	public static Player createPlayer_Lorann() {
-		return playerFactory.createLorann();
+	public static Player createPlayer_Lorann(ISpriteSet spriteSet) {
+		return playerFactory.createLorann(spriteSet);
 	}
 
 	/**

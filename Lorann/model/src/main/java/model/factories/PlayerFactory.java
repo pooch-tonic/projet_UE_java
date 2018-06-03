@@ -1,9 +1,10 @@
 package model.factories;
 
 import model.Player;
+import showboard.ISpriteSet;
 
 class PlayerFactory {
-	Player createLorann() {
-		return new Player();
+	Player createLorann(ISpriteSet spriteSet) {
+		return new Player(spriteSet);
 	}
 }

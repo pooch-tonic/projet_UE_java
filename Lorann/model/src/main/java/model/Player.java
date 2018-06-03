@@ -8,6 +8,7 @@ import java.awt.Image;
 import enums.Type;
 import enums.TypeEnum;
 import modelInterfaces.IPlayer;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -20,8 +21,9 @@ public class Player extends Entity implements IPlayer {
      * Instantiates a new Player
      *
      */
-    public Player() {
+    public Player(ISpriteSet spriteSet) {
         super(Type.PLAYER);
+        super.setSpriteSet(spriteSet);
         // TODO Auto-generated constructor stub
     }
 
