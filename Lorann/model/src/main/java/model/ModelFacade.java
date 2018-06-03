@@ -16,6 +16,7 @@ import model.factories.UnitFactory;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import modelInterfaces.IUnit;
 import vector.IVector;
 
 /**
@@ -50,6 +51,19 @@ public final class ModelFacade extends Observable implements IModel {
 	public void destroyEntity(final IEntity entity) {
 		this.addToScore(entity.getScoreValue());
 		this.getLevel().removeEntityFromLevel(entity);
+	}
+
+	private void fillVoidSquares() {
+		IUnit[][] units = this.getLevel().getUnits();
+
+		// TODO vérifier que x et y ne sont jamais inversés.
+		for (int x = 0; x < units.length; x++) {
+			for (int y = 0; y < units[0].length; y++) {
+				if (units[x][y] == null) {
+					this.getLevel().addUnit(new Ground(), x, y);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -161,6 +175,7 @@ public final class ModelFacade extends Observable implements IModel {
 	public void loadLevel(final int levelId) throws SQLException {
 		final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
 		final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
+		this.setLevel(level);
 
 		String key;
 		IVector position;
@@ -200,7 +215,10 @@ public final class ModelFacade extends Observable implements IModel {
 				break;
 			}
 		}
-		this.setLevel(level);
+
+		this.fillVoidSquares();
+		System.out.println("filled !");
+
 	}
 
 	/*

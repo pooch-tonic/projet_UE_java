@@ -28,18 +28,6 @@ public class Unit implements IUnit {
 
 	/**
 	 * Instantiates a new Unit
-	 * @param type 
-	 * @param spriteSet 
-	 *
-	 */
-	public Unit(Type type, ISpriteSet spriteSet) {
-		this.setPosition(null);
-		this.setSpriteSet(spriteSet);
-		this.setType(type);
-	}
-
-	/**
-	 * Instantiates a new Unit
 	 *
 	 * @param spriteSet
 	 * @param type
@@ -70,6 +58,7 @@ public class Unit implements IUnit {
 	 * @param type
 	 */
 	public Unit(final IVector position, final Type type) {
+		this.spriteSet = new SpriteSet();
 		this.setPosition(position);
 		this.setSpriteSet(new ArrayList<BufferedImage>());
 		this.setType(type);
@@ -81,8 +70,23 @@ public class Unit implements IUnit {
 	 * @param type
 	 */
 	public Unit(final Type type) {
+		this.spriteSet = new SpriteSet();
 		this.setPosition(new Vector(0, 0));
 		this.setSpriteSet(new ArrayList<BufferedImage>());
+		this.setType(type);
+	}
+
+	/**
+	 * Instantiates a new Unit
+	 *
+	 * @param type
+	 * @param spriteSet
+	 *
+	 */
+	public Unit(final Type type, final ISpriteSet spriteSet) {
+		this.spriteSet = new SpriteSet();
+		this.setPosition(null);
+		this.setSpriteSet(new SpriteSet(spriteSet.getSprites()));
 		this.setType(type);
 	}
 
