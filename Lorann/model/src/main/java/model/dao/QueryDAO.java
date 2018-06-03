@@ -77,6 +77,7 @@ public abstract class QueryDAO extends AbstractDAO {
 			}
 			result.close();
 		}
+		System.out.println(resultString.get(0));
 		return resultString;
 	}
 

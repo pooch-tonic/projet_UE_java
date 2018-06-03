@@ -19,9 +19,8 @@ public class Door extends Entity {
 	 * @param closed
 	 */
 	public Door(final boolean closed, final ISpriteSet spriteSet) {
-		super();
+		super(Type.ENEMY, spriteSet);
 		this.setDoorType(closed);
-		super.setSpriteSet(spriteSet);
 
 		// TODO Auto-generated constructor stub
 	}
@@ -33,7 +32,7 @@ public class Door extends Entity {
 	 * @param closed
 	 */
 	public Door(final IVector position, final boolean closed) {
-		super();
+		super(Type.ENEMY);
 		this.setDoorType(closed);
 		super.setPosition(position);
 

@@ -25,17 +25,17 @@ public class Unit implements IUnit {
 	private IVector position;
 	private ISpriteSet spriteSet;
 	private Type type;
-	private int scoreValue;
 
 	/**
 	 * Instantiates a new Unit
+	 * @param type 
+	 * @param spriteSet 
 	 *
 	 */
-	public Unit() {
+	public Unit(Type type, ISpriteSet spriteSet) {
 		this.setPosition(null);
-		this.setSpriteSet(new ArrayList<BufferedImage>());
-		this.setType(null);
-		this.setScoreValue(0);
+		this.setSpriteSet(spriteSet);
+		this.setType(type);
 	}
 
 	/**
@@ -48,7 +48,6 @@ public class Unit implements IUnit {
 		this.setPosition(null);
 		this.setSpriteSet(spriteSet);
 		this.setType(type);
-		this.setScoreValue(0);
 	}
 
 	/**
@@ -62,7 +61,6 @@ public class Unit implements IUnit {
 		this.setPosition(position);
 		this.setSpriteSet(spriteSet);
 		this.setType(type);
-		this.setScoreValue(0);
 	}
 
 	/**
@@ -75,7 +73,6 @@ public class Unit implements IUnit {
 		this.setPosition(position);
 		this.setSpriteSet(new ArrayList<BufferedImage>());
 		this.setType(type);
-		this.setScoreValue(0);
 	}
 
 	/**
@@ -87,7 +84,6 @@ public class Unit implements IUnit {
 		this.setPosition(new Vector(0, 0));
 		this.setSpriteSet(new ArrayList<BufferedImage>());
 		this.setType(type);
-		this.setScoreValue(0);
 	}
 
 	@Override
@@ -98,16 +94,6 @@ public class Unit implements IUnit {
 	@Override
 	public IVector getPosition() {
 		return this.position;
-	}
-
-	/**
-	 * Gets the scoreValue
-	 *
-	 * @return the scoreValue
-	 */
-	@Override
-	public int getScoreValue() {
-		return this.scoreValue;
 	}
 
 	@Override
@@ -123,11 +109,6 @@ public class Unit implements IUnit {
 	@Override
 	public void setPosition(final IVector position) {
 		this.position = position;
-	}
-
-	@Override
-	public void setScoreValue(final int scoreValue) {
-		this.scoreValue = scoreValue;
 	}
 
 	@Override
