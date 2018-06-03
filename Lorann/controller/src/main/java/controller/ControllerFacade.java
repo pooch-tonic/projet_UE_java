@@ -13,7 +13,10 @@ import enums.DirectionEnum;
 import enums.OrderEnum;
 import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
+import modelInterfaces.IUnit;
 import showboard.IBoard;
+import vector.IVector;
+import vector.Vector;
 import viewInterfaces.IView;
 
 /**
@@ -74,16 +77,22 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     private void updateEntities() {
         this.performOrder();
         for (final IEntity entity : this.getModel().getLevel().getEntities()) {
-            if (this.getModel().getLevel().getUnits()[entity.getX()
-                    + entity.getDirection().getX()][entity.getY()
-                            + entity.getDirection().getY()] == null) {
+            if (this.getNextTile(entity) == null) {
 
             } else {
-                // this.getInteractionManager().defineInteractionBetween(entity,
-                // this.getModel().getLevel().);
+                final IVector targetPosition = new Vector(entity.getPosition());
+                targetPosition.add(entity.getDirection());
+                final IEntity target = this.getModel().getLevel().getEntityOn(targetPosition);
+                this.performInteraction(entity, target,
+                        this.getInteractionManager().defineInteractionBetween(entity, target));
             }
             entity.update();
         }
+    }
+
+    private IUnit getNextTile(final IEntity entity) {
+        return this.getModel().getLevel().getUnits()[entity.getX()
+                + entity.getDirection().getX()][entity.getY() + entity.getDirection().getY()];
     }
 
     /*
@@ -102,7 +111,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      * @see controllerInterfaces.IController#nextlevel(int)
      */
     @Override
-    public void nextlevel(final int currentLevelId) {
+    public void nextlevel() {
         this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
     }
 
@@ -154,6 +163,31 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             break;
         case CAST:
             // TODO call cast method
+            this.getModel().setPlayerDirection(DirectionEnum.NONE);
+            break;
+        default:
+            this.getModel().setPlayerDirection(DirectionEnum.NONE);
+            break;
+        }
+    }
+
+    private void performInteraction(final IEntity entity, final IEntity target,
+            final Interaction interaction) {
+        switch (interaction) {
+        case ENTITY_DESTROYED:
+            break;
+        case TARGET_DESTROYED:
+            break;
+        case BOTH_DESTROYED:
+            break;
+        case BOUNCE:
+            break;
+        case DODGE:
+            break;
+        case UNLOCK_DOOR:
+            break;
+        case QUIT_LEVEL:
+            this.nextlevel();
             break;
         default:
             break;

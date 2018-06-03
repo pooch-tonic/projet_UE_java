@@ -6,7 +6,6 @@ package modelInterfaces;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import showboard.ISquare;
 import vector.IVector;
 
 public interface ILevel {
@@ -16,7 +15,7 @@ public interface ILevel {
 
     public int getId();
 
-    public ISquare[][] getUnits();
+    public IUnit[][] getUnits();
 
     public void setDimension(final Dimension dimension);
 

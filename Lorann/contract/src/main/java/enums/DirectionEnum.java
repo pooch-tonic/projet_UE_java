@@ -1,5 +1,8 @@
+/*
+ * 
+ */
 package enums;
 
 public enum DirectionEnum {
-	UPLEFT, UP, UPRIGHT, LEFT, MIDDLE, RIGHT, DOWNLEFT, DOWN, DOWNRIGHT;
+    UPLEFT, UP, UPRIGHT, LEFT, NONE, RIGHT, DOWNLEFT, DOWN, DOWNRIGHT;
 }
