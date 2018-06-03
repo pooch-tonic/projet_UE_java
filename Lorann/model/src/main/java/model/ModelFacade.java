@@ -16,6 +16,7 @@ import model.factories.UnitFactory;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import modelInterfaces.IUnit;
 import vector.IVector;
 
 /**
@@ -26,6 +27,7 @@ import vector.IVector;
  */
 public final class ModelFacade extends Observable implements IModel {
     private ILevel level;
+    private IUnit unit;
 
     /**
      * Instantiates a new model facade.
@@ -34,12 +36,17 @@ public final class ModelFacade extends Observable implements IModel {
         super();
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.IModel#addToScore(int)
+     */
     @Override
     public void addToScore(final int value) {
-        // TODO Auto-generated method stub
-
+    	getUnit().setScoreValue(getUnit().getScoreValue() + value);
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.IModel#getLevel()
+     */
     @Override
     public ILevel getLevel() {
         // TODO Auto-generated method stub
@@ -56,10 +63,13 @@ public final class ModelFacade extends Observable implements IModel {
         return QueryDAO.getMap(mapId);
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.IModel#getScore()
+     */
     @Override
     public int getScore() {
         // TODO Auto-generated method stub
-        return 0;
+        return getUnit().getScoreValue();
     }
 
     /**
@@ -124,6 +134,9 @@ public final class ModelFacade extends Observable implements IModel {
         return QueryDAO.getUnitByType(type, mapId);
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.IModel#loadLevel(int)
+     */
     @Override
     public void loadLevel(final int levelId) throws SQLException {
         final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
@@ -157,6 +170,9 @@ public final class ModelFacade extends Observable implements IModel {
         this.setLevel(level);
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.IModel#resetScore()
+     */
     @Override
     public void resetScore() {
         // TODO Auto-generated method stub
@@ -172,8 +188,27 @@ public final class ModelFacade extends Observable implements IModel {
         this.level = level;
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.IModel#setPlayerDirection(enums.DirectionEnum)
+     */
     @Override
     public void setPlayerDirection(final DirectionEnum direction) {
-
+    	
     }
+
+	/**
+	 * Gets the unit
+	 * 
+	 * @return the unit
+	 */
+	public IUnit getUnit() {
+		return unit;
+	}
+
+	/**
+	 * @param unit the unit to set
+	 */
+	public void setUnit(IUnit unit) {
+		this.unit = unit;
+	}
 }

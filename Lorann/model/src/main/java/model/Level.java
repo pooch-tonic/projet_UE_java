@@ -21,6 +21,12 @@ public class Level implements ILevel {
     private Dimension          dimension;
     private int                id;
 
+    /**
+     * Instantiates a new Level
+     * 
+     * @param id
+     * @param dimension
+     */
     public Level(final int id, final Dimension dimension) {
         final Double width = dimension.getWidth();
         final Double height = dimension.getHeight();
@@ -30,55 +36,58 @@ public class Level implements ILevel {
         this.setEntities(new ArrayList<>());
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#addEntity(modelInterfaces.IEntity)
+     */
     @Override
     public void addEntity(final IEntity entity) {
         this.getEntities().add(entity);
     }
 
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#addUnit(modelInterfaces.IUnit, int, int)
+     */
     @Override
     public void addUnit(final IUnit unit, final int x, final int y) {
         this.getUnits()[x][y] = unit;
     }
 
-    /**
-     *
-     * @return the dimension of the map, with x as rows and y as columns
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#getDimension()
      */
     @Override
     public Dimension getDimension() {
         return this.dimension;
     }
 
-    /**
-     * Gets the id
-     *
-     * @return the id
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#getId()
      */
     @Override
     public int getId() {
         return this.id;
     }
 
-    /**
-     *
-     * @return the current level map, contained in a 2D array of ISquare.
+
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#getUnits()
      */
     @Override
     public IUnit[][] getUnits() {
         return this.units;
     }
 
-    /**
-     * @param dimension
+
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#setDimension(java.awt.Dimension)
      */
     @Override
     public void setDimension(final Dimension dimension) {
         this.dimension = dimension;
     }
 
-    /**
-     * @param id
-     *            the id to set
+    /* (non-Javadoc)
+     * @see modelInterfaces.ILevel#setId(int)
      */
     @Override
     public void setId(final int id) {
