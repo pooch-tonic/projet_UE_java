@@ -6,6 +6,7 @@ package model;
 import java.awt.Image;
 
 import enums.Type;
+import enums.TypeEnum;
 import modelInterfaces.IPlayer;
 import vector.IVector;
 
@@ -35,8 +36,7 @@ public class Player extends Entity implements IPlayer {
 
     @Override
     public Image getImage() {
-        // TODO Auto-generated method stub
-        return null;
+        return ImageLoader.getImageByPath(TypeEnum.PLAYER, super.getSpriteSet().getCurrentIndex());
     }
 
     @Override
@@ -54,5 +54,11 @@ public class Player extends Entity implements IPlayer {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public void setType(TypeEnum type) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
