@@ -37,8 +37,7 @@ public class Dead extends Entity {
 
     @Override
     public Image getImage() throws IOException, SQLException {
-        Image image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.DEAD).get(0)));
-        return image;
+        return ImageLoader.getImageByPath(TypeEnum.DEAD, 0);
     }
 
     @Override
