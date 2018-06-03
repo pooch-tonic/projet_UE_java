@@ -1,13 +1,14 @@
 package model.factories;
 
 import model.Door;
+import showboard.ISpriteSet;
 
 class DoorFactory {
-	Door createClosed() {
-		return new Door(true);
+	Door createClosed(ISpriteSet spriteSet) {
+		return new Door(true, spriteSet);
 	}
 
-	Door createOpen() {
-		return new Door(false);
+	Door createOpen(ISpriteSet spriteSet) {
+		return new Door(false, spriteSet);
 	}
 }
