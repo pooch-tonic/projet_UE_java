@@ -85,10 +85,12 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
                 final IVector targetPosition = new Vector(entity.getPosition());
                 targetPosition.add(entity.getDirection());
                 target = this.getModel().getLevel().getEntityOn(targetPosition);
+
                 this.performInteraction(entity, target, this.getInteractionManager()
                         .getInteractionOnNextPositionBetween(entity, target));
             }
             target = this.getModel().getLevel().getEntityOn(entity.getPosition());
+
             this.performInteraction(entity, target, this.getInteractionManager()
                     .getInteractionOnCurrentPositionBetween(entity, target));
             entity.update();
@@ -206,6 +208,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *             the SQL exception
      */
     public void start() throws SQLException {
+        this.loadLevel(1);
     }
 
     /**
