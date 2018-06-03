@@ -4,16 +4,14 @@
 package model.factories;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import enums.TypeEnum;
 import model.Dead;
 import model.Door;
 import model.Enemy;
 import model.Ground;
+import model.ImageLoader;
 import model.Key;
 import model.Loot;
 import model.Player;
@@ -140,12 +138,8 @@ public abstract class UnitFactory {
 	// TODO UTILISER IMAGELOADER
 	public static IEntity createUnit(final TypeEnum type, final ArrayList<String> spritePath) {
 		final ArrayList<BufferedImage> images = new ArrayList<>();
-		for (final String sprite : spritePath) {
-			try {
-				images.add(ImageIO.read(UnitFactory.class.getResource(sprite)));
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
+		for (final String path : spritePath) {
+			images.add(ImageLoader.getImageByPath(path));
 		}
 
 		final ISpriteSet spriteSet = new SpriteSet(images);
