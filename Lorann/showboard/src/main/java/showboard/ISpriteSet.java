@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public interface ISpriteSet {
+
+	// TODO JAVADOC
 	public int getCurrentIndex();
 
 	public BufferedImage getCurrentSprite();
@@ -19,6 +21,8 @@ public interface ISpriteSet {
 	public void setNextSprite();
 
 	public void setSprites(final ArrayList<BufferedImage> sprites);
+
+	public void setSprites(final BufferedImage image);
 
 	public void setSprites(final ISpriteSet spriteSet);
 

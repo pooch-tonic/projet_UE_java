@@ -1,20 +1,13 @@
 /*
- * 
+ *
  */
 package model.factories;
 
 import model.Wall;
+import showboard.ISpriteSet;
 
 class WallFactory {
-    Wall createHorizontal() {
-        return new Wall();
-    }
-
-    Wall createRound() {
-        return new Wall();
-    }
-
-    Wall createVertical() {
-        return new Wall();
-    }
+	Wall createDefault(final ISpriteSet spriteSet) {
+		return new Wall();
+	}
 }
