@@ -30,16 +30,6 @@ public abstract class Entity extends Unit implements IEntity {
 
 	/**
 	 * Instantiates a new Entity
-	 * @param type 
-	 * @param spriteSet 
-	 *
-	 */
-	public Entity(Type type, ISpriteSet spriteSet) {
-		super(type, spriteSet);
-	}
-
-	/**
-	 * Instantiates a new Entity
 	 *
 	 * @param position
 	 * @param spriteSet
@@ -66,6 +56,17 @@ public abstract class Entity extends Unit implements IEntity {
 	 */
 	public Entity(final Type type) {
 		super(type);
+	}
+
+	/**
+	 * Instantiates a new Entity
+	 *
+	 * @param type
+	 * @param spriteSet
+	 *
+	 */
+	public Entity(final Type type, final ISpriteSet spriteSet) {
+		super(type, spriteSet);
 	}
 
 	/*
@@ -133,6 +134,11 @@ public abstract class Entity extends Unit implements IEntity {
 	}
 
 	@Override
+	public int getScoreValue() {
+		return this.scoreValue;
+	}
+
+	@Override
 	/**
 	 * @return a spriteSet
 	 */
@@ -145,16 +151,16 @@ public abstract class Entity extends Unit implements IEntity {
 		return this.getPosition().getX();
 	}
 
-	@Override
-	public int getY() {
-		return this.getPosition().getY();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see modelInterfaces.IMoveStrategy#move()
 	 */
+
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
+	}
 
 	@Override
 	public void move() {
@@ -195,6 +201,10 @@ public abstract class Entity extends Unit implements IEntity {
 		super.setPosition(position);
 	}
 
+	public void setScoreValue(final int scoreValue) {
+		this.scoreValue = scoreValue;
+	}
+
 	@Override
 	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
 		super.setSpriteSet(sprites);
@@ -213,13 +223,5 @@ public abstract class Entity extends Unit implements IEntity {
 	@Override
 	public void update() {
 
-	}
-
-	public int getScoreValue() {
-		return scoreValue;
-	}
-
-	public void setScoreValue(int scoreValue) {
-		this.scoreValue = scoreValue;
 	}
 }

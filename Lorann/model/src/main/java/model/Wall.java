@@ -20,11 +20,11 @@ public class Wall extends Unit {
 	 * @param wallType
 	 */
 	public Wall() {
-		super();
+		super(Type.WALL);
 	}
 
 	public Wall(final BufferedImage image) {
-		super(new SpriteSet(image), Type.WALL);
+		super(Type.WALL, new SpriteSet(image));
 	}
 
 	/**
@@ -34,12 +34,12 @@ public class Wall extends Unit {
 	 * @param wallType
 	 */
 	public Wall(final IVector position) {
-		super();
+		super(Type.WALL);
 		this.setPosition(position);
 	}
 
 	public Wall(final IVector position, final BufferedImage image) {
-		super(new SpriteSet(image), Type.WALL);
+		super(Type.WALL, new SpriteSet(image));
 		this.setPosition(position);
 	}
 }
