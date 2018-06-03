@@ -20,7 +20,7 @@ import vector.IVector;
  * @author Max Becerro
  *
  */
-public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBounceStrategy, IDodgeStrategy {
+public abstract class Entity extends Unit implements IEntity {
 
 	private IVector direction;
 	private IMoveStrategy moveStrategy;
@@ -70,14 +70,9 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 *
 	 * @see modelInterfaces.IBounceStrategy#bounce()
 	 */
-	@Override
+
 	public void bounce() {
-
-	}
-
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
+		this.getBounceStrategy().bounce();
 	}
 
 	/*
@@ -85,9 +80,9 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 *
 	 * @see modelInterfaces.IDodgeStrategy#dodge()
 	 */
-	@Override
-	public void dodge() {
 
+	public void dodge() {
+		this.getDodgeStrategy().dodge();
 	}
 
 	/**
@@ -102,7 +97,6 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 * @return a direction
 	 */
 	public IVector getDirection() {
-		// TODO Auto-generated method stub
 		return this.direction;
 	}
 
@@ -111,6 +105,11 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 */
 	private IDodgeStrategy getDodgeStrategy() {
 		return this.dodgeStrategy;
+	}
+
+	public Image getImage(final TypeEnum type) {
+		return super.getSpriteSet().getCurrentSprite();
+		// TODO ROMAIN TU DOIS ADAPTER A CETTE UTILISATION DU SPRITESET
 	}
 
 	/**
@@ -125,7 +124,6 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 * @return a position
 	 */
 	public IVector getPosition() {
-		// TODO Auto-generated method stub
 		return super.getPosition();
 	}
 
@@ -134,7 +132,6 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 * @return a spriteSet
 	 */
 	public ISpriteSet getSpriteSet() {
-		// TODO Auto-generated method stub
 		return super.getSpriteSet();
 	}
 
@@ -152,10 +149,9 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	 *
 	 * @see modelInterfaces.IMoveStrategy#move()
 	 */
-	@Override
-	public void move() {
-		// TODO Auto-generated method stub
 
+	public void move() {
+		this.getMoveStrategy().move();
 	}
 
 	/**
@@ -168,8 +164,7 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 
 	@Override
 	public void setDirection(final IVector direction) {
-		// TODO Auto-generated method stub
-
+		this.direction = direction;
 	}
 
 	/**
@@ -190,30 +185,22 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 
 	@Override
 	public void setPosition(final IVector position) {
-		// TODO Auto-generated method stub
-
+		super.setPosition(position);
 	}
 
 	@Override
 	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
-		// TODO Auto-generated method stub
-
+		super.setSpriteSet(sprites);
 	}
 
 	@Override
 	public void setType(final Type type) {
-		// TODO Auto-generated method stub
-
+		super.setType(type);
 	}
 
 	@Override
 	public void update() {
 
-	}
-
-	public Image getImage(TypeEnum type) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
