@@ -50,17 +50,18 @@ public abstract class UnitFactory {
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return a closed door
 	 */
-	public static Door createDoor_closed() {
-		return doorFactory.createClosed();
+	public static Door createDoor_closed(ISpriteSet spriteSet) {
+		return doorFactory.createClosed(spriteSet);
 	}
 
 	/**
 	 * @return an open door
 	 */
-	public static Door createDoor_open() {
-		return doorFactory.createOpen();
+	public static Door createDoor_open(ISpriteSet spriteSet) {
+		return doorFactory.createOpen(spriteSet);
 	}
 
 	/**
@@ -160,27 +161,27 @@ public abstract class UnitFactory {
 		
 		switch(type) {
 			case ENEMY_A :
-				return createEnemy_Arrbarr();
+				return createEnemy_Arrbarr(spriteSet);
 			case ENEMY_B :
-				return createEnemy_Cargyv();
+				return createEnemy_Cargyv(spriteSet);
 			case ENEMY_C :
-				return createEnemy_Kyracj();
+				return createEnemy_Kyracj(spriteSet);
 			case ENEMY_D :
-				return createEnemy_Maarcg();
+				return createEnemy_Maarcg(spriteSet);
 			case PLAYER :
-				return createPlayer_Lorann();
+				return createPlayer_Lorann(spriteSet);
 			case KEY :
-				return createKey_blue();
+				return createKey_blue(spriteSet);
 			case LOOT :
-				return createLoot_coin();
+				return createLoot_coin(spriteSet);
 			case DOOR_OPEN :
-				return createDoor_open();
+				return createDoor_open(spriteSet);
 			case DOOR_CLOSED :
-				return createDoor_closed();
+				return createDoor_closed(spriteSet);
 			case DEAD :
 				return createDead_default(spriteSet);
 			case SPELL :
-				return createSpell();
+				return createSpell(spriteSet);
 		}
 		return null;
 	}

@@ -7,6 +7,7 @@ import java.awt.Image;
 
 import enums.Type;
 import enums.TypeEnum;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -20,7 +21,7 @@ public class Door extends Entity {
      *
      * @param closed
      */
-    public Door(final boolean closed) {
+    public Door(final boolean closed, ISpriteSet spriteSet) {
         super();
         this.setDoorType(closed);
 
@@ -43,11 +44,7 @@ public class Door extends Entity {
 
     @Override
     public Image getImage() {
-        if (this.getType() == Type.ENEMY) {
-            return ImageLoader.getImageByPath(TypeEnum.DOOR_CLOSED, 0);
-        } else {
-            return ImageLoader.getImageByPath(TypeEnum.DOOR_OPEN, 0);
-        }
+        return super.getSpriteSet().getCurrentSprite();
     }
 
     @Override
