@@ -11,6 +11,7 @@ import controllerInterfaces.IOrderPerformer;
 import controllerInterfaces.IOrderStacker;
 import enums.DirectionEnum;
 import enums.OrderEnum;
+import enums.Type;
 import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
@@ -191,10 +192,18 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             final Interaction interaction) {
         switch (interaction) {
         case ENTITY_DESTROYED:
+            this.getModel().destroyEntity(entity);
+            this.getView().removePawnFromBoard(entity);
             break;
         case TARGET_DESTROYED:
+            this.getModel().destroyEntity(target);
+            this.getView().removePawnFromBoard(target);
             break;
         case BOTH_DESTROYED:
+            this.getModel().destroyEntity(entity);
+            this.getModel().destroyEntity(target);
+            this.getView().removePawnFromBoard(entity);
+            this.getView().removePawnFromBoard(target);
             break;
         case BOUNCE:
             entity.bounce();
@@ -203,6 +212,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             entity.dodge();
             break;
         case UNLOCK_DOOR:
+            this.getModel().getExit().setType(Type.DOOR_OPEN);
             break;
         case QUIT_LEVEL:
             this.nextlevel();

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package showboard;
 
 import java.awt.Dimension;
@@ -38,7 +41,7 @@ public interface IBoard {
 
     void removePawn(IPawn pawn);
 
-    void removeAllPawn(IPawn pawn);
+    void removeAllPawn();
 
     /**
      * Gets the observer.

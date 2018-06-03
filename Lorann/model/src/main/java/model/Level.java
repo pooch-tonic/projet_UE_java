@@ -153,39 +153,48 @@ public class Level implements ILevel {
         this.entities = entities;
     }
 
-    /**
-     * Gets the player
-     * 
-     * @return the player
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getPlayer()
      */
+    @Override
     public IEntity getPlayer() {
         return this.player;
     }
 
-    /**
-     * Sets the player
-     * 
-     * @param player
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#setPlayer(modelInterfaces.IEntity)
      */
+    @Override
     public void setPlayer(final IEntity player) {
         this.player = player;
     }
 
-    /**
-     * Gets the exit
-     * 
-     * @return the exit
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getExit()
      */
+    @Override
     public IEntity getExit() {
         return this.exit;
     }
 
-    /**
-     * Sets the exit
-     * 
-     * @param exit
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#setExit(modelInterfaces.IEntity)
      */
+    @Override
     public void setExit(final IEntity exit) {
         this.exit = exit;
+    }
+
+    @Override
+    public void removeEntityFromLevel(final IEntity entity) {
+        this.getEntities().remove(entity);
     }
 }
