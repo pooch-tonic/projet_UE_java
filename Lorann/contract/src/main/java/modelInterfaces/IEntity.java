@@ -6,8 +6,11 @@ import showboard.IPawn;
 import vector.IVector;
 
 /**
- * @author Ryo Interface used by all moving units, so-called entities. It
- *         extends IPawn in order to be displayed on the showboard.
+ * Interface used by all moving units, so-called entities. It extends IPawn in
+ * order to be displayed on the showboard.
+ * 
+ * @author Ryo
+ *
  */
 public interface IEntity extends IPawn {
 	/**
