@@ -17,8 +17,9 @@ import model.Loot;
 import model.Player;
 import model.Spell;
 import model.SpriteSet;
-import model.Wall;
+import model.WallType;
 import modelInterfaces.IEntity;
+import modelInterfaces.IUnit;
 import showboard.ISpriteSet;
 
 /**
@@ -39,6 +40,7 @@ public abstract class UnitFactory {
 	private static final DeadFactory deadFactory = new DeadFactory();
 	private static final DoorFactory doorFactory = new DoorFactory();
 	private static final GroundFactory groundFactory = new GroundFactory();
+	private static final SpellFactory spellFactory = new SpellFactory();
 
 	/**
 	 * @param spriteSet
@@ -168,13 +170,22 @@ public abstract class UnitFactory {
 	}
 
 	public static Spell createSpell(final ISpriteSet spriteSet) {
-		return SpellFactory.createSpell(spriteSet);
+		return spellFactory.createSpell(spriteSet);
 
 	}
 
-	public static Wall createWall(final ArrayList<String> spritePath) {
-		// return wallFactory.createDefault(spriteSet);
-		return null;
+	public static IUnit createWall(final WallType wallType, final String path) {
+		switch (wallType) {
+		case WALL_HORIZONTAL:
+			return wallFactory.createDefault(ImageLoader.getImageByPath(path));
+		case WALL_VERTICAL:
+			return wallFactory.createDefault(ImageLoader.getImageByPath(path));
+		case WALL_ROUND:
+			return wallFactory.createDefault(ImageLoader.getImageByPath(path));
+		default:
+			return null;
+		}
+
 	}
 
 }

@@ -12,22 +12,24 @@ import showboard.ISquare;
 import vector.IVector;
 
 public interface IUnit extends ISquare {
-	
-    public IVector getPosition();
 
-    public ISpriteSet getSpriteSet();
+	public IVector getPosition();
 
-    public Type getType();
+	public int getScoreValue();
 
-    public void setPosition(final IVector position);
+	public ISpriteSet getSpriteSet();
 
-    public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+	public Type getType();
 
-    public void setSpriteSet(final ISpriteSet spriteSet);
+	public void setPosition(final IVector position);
 
-    public void setType(final Type type);
-    
-    public void setScoreValue(final int scoreValue);
-    
-    public int getScoreValue();
+	public void setScoreValue(final int scoreValue);
+
+	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
+
+	public void setSpriteSet(final BufferedImage image);
+
+	public void setSpriteSet(final ISpriteSet spriteSet);
+
+	public void setType(final Type type);
 }

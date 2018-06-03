@@ -38,7 +38,7 @@ public final class ModelFacade extends Observable implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IModel#addToScore(int)
 	 */
 	@Override
@@ -48,7 +48,7 @@ public final class ModelFacade extends Observable implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IModel#getLevel()
 	 */
 	@Override
@@ -69,7 +69,7 @@ public final class ModelFacade extends Observable implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IModel#getScore()
 	 */
 	@Override
@@ -149,7 +149,7 @@ public final class ModelFacade extends Observable implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IModel#loadLevel(int)
 	 */
 	@Override
@@ -158,25 +158,34 @@ public final class ModelFacade extends Observable implements IModel {
 		final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
 
 		String key;
-		IVector vector;
+		IVector position;
 		IEntity entity;
 
 		for (final HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
 			key = result.getKey();
-			vector = result.getValue();
+			position = result.getValue();
 			switch (key) {
 			case "WALL":
-				level.addUnit(UnitFactory.createWall(), vector.getX(), vector.getY());
+				level.addUnit(
+						UnitFactory.createWall(WallType.WALL_ROUND,
+								QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+						position.getX(), position.getY());
 				break;
 			case "WALL_H":
-				level.addUnit(UnitFactory.createWall(), vector.getX(), vector.getY());
+				level.addUnit(
+						UnitFactory.createWall(WallType.WALL_HORIZONTAL,
+								QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+						position.getX(), position.getY());
 				break;
 			case "WALL_V":
-				level.addUnit(UnitFactory.createWall(), vector.getX(), vector.getY());
+				level.addUnit(
+						UnitFactory.createWall(WallType.WALL_VERTICAL,
+								QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+						position.getX(), position.getY());
 				break;
 			default:
 				entity = UnitFactory.createEntity(TypeEnum.valueOf(key), QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
-				entity.setPosition(vector);
+				entity.setPosition(position);
 				level.addEntity(entity);
 				break;
 			}
@@ -186,7 +195,7 @@ public final class ModelFacade extends Observable implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IModel#resetScore()
 	 */
 	@Override
@@ -206,7 +215,7 @@ public final class ModelFacade extends Observable implements IModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IModel#setPlayerDirection(enums.DirectionEnum)
 	 */
 	@Override

@@ -76,12 +76,6 @@ public abstract class Entity extends Unit implements IEntity {
 		this.getBounceStrategy().bounce();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see modelInterfaces.IDodgeStrategy#dodge()
-	 */
-
 	@Override
 	public void dodge() {
 		this.getDodgeStrategy().dodge();
@@ -93,6 +87,12 @@ public abstract class Entity extends Unit implements IEntity {
 	private IBounceStrategy getBounceStrategy() {
 		return this.bounceStrategy;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see modelInterfaces.IDodgeStrategy#dodge()
+	 */
 
 	@Override
 	/**
@@ -138,12 +138,13 @@ public abstract class Entity extends Unit implements IEntity {
 	}
 
 	@Override
-	/**
-	 * @return a type
-	 */
-	public Type getType() {
-		// TODO Auto-generated method stub
-		return super.getType();
+	public int getX() {
+		return this.getPosition().getX();
+	}
+
+	@Override
+	public int getY() {
+		return this.getPosition().getY();
 	}
 
 	/*

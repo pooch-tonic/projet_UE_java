@@ -16,7 +16,7 @@ import vector.Vector;
 /**
  * <h1>The Unit class, which is the base class for all objects contained by the
  * map.</h1>
- * 
+ *
  * @author Max Becerro
  * @author Ryo SHIINA
  *
@@ -105,6 +105,7 @@ public class Unit implements IUnit {
 	 *
 	 * @return the scoreValue
 	 */
+	@Override
 	public int getScoreValue() {
 		return this.scoreValue;
 	}
@@ -124,6 +125,7 @@ public class Unit implements IUnit {
 		this.position = position;
 	}
 
+	@Override
 	public void setScoreValue(final int scoreValue) {
 		this.scoreValue = scoreValue;
 	}
@@ -131,6 +133,11 @@ public class Unit implements IUnit {
 	@Override
 	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
 		this.spriteSet.setSprites(sprites);
+	}
+
+	@Override
+	public void setSpriteSet(final BufferedImage image) {
+		this.getSpriteSet().setSprites(image);
 	}
 
 	@Override
