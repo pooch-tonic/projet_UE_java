@@ -48,8 +48,15 @@ public interface IModel {
      */
     int getScore();
 
+    /**
+     * @param levelId
+     * @throws SQLException
+     */
     void loadLevel(int levelId) throws SQLException;
 
+    /**
+     * 
+     */
     void resetScore();
 
     /**
