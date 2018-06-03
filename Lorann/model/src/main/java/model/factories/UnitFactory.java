@@ -1,12 +1,15 @@
 package model.factories;
 
+import enums.TypeEnum;
 import model.Dead;
 import model.Door;
 import model.Enemy;
 import model.Key;
 import model.Loot;
 import model.Player;
+import model.Spell;
 import model.Wall;
+import modelInterfaces.IEntity;
 
 /**
  * <h1>The abstract class UnitFactory which instanciates different types of
@@ -122,5 +125,37 @@ public abstract class UnitFactory {
 	public static Wall createWall_Vertical() {
 		return wallFactory.createVertical();
 	}
+	
+	public static Spell createSpell() {
+		return SpellFactory.createSpell();
+		
+	}
 
+	public static IEntity createUnit(TypeEnum type) {
+		switch(type) {
+			case ENEMY_A :
+				return createEnemy_Arrbarr();
+			case ENEMY_B :
+				return createEnemy_Cargyv();
+			case ENEMY_C :
+				return createEnemy_Kyracj();
+			case ENEMY_D :
+				return createEnemy_Maarcg();
+			case PLAYER :
+				return createPlayer_Lorann();
+			case KEY :
+				return createKey_blue();
+			case LOOT :
+				return createLoot_coin();
+			case DOOR_OPEN :
+				return createDoor_open();
+			case DOOR_CLOSED :
+				return createDoor_closed();
+			case DEAD :
+				return createDead_default();
+			case SPELL :
+				return createSpell();
+		}
+		return null;
+	}
 }

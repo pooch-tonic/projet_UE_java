@@ -5,7 +5,7 @@ package model;
 
 import java.awt.image.BufferedImage;
 
-import model.dao.TypeEnum;
+import enums.TypeEnum;
 
 public interface IImageLoader {
     public BufferedImage getImageBypath(TypeEnum type);

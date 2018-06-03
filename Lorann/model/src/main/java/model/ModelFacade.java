@@ -10,8 +10,11 @@ import java.util.HashMap;
 import java.util.Observable;
 
 import enums.DirectionEnum;
+import enums.Type;
+import enums.TypeEnum;
 import model.dao.QueryDAO;
-import model.dao.TypeEnum;
+import model.factories.UnitFactory;
+import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
 import vector.IVector;
@@ -126,15 +129,21 @@ public final class ModelFacade extends Observable implements IModel {
     public void loadLevel(final int levelId) throws SQLException {
     	final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
     	ILevel level = new Level();
-    	
-    	for(String type : resultMap.keySet()) {
-    		if(type == TypeEnum.WALL.toString() || type == TypeEnum.WALL_H.toString() || type == TypeEnum.WALL_V.toString()) {
-    			
+    	String key;
+    	IVector vector;
+    	IEntity entity;
+    	for(HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
+    		key = result.getKey();
+    		vector = result.getValue();
+    		if(key == TypeEnum.WALL.toString() || key == TypeEnum.WALL_H.toString() || key == TypeEnum.WALL_V.toString()) {
+    			level.addUnit(new Unit(vector, Type.WALL), vector.getX(), vector.getY());
     		} else {
-    			
+    			entity = UnitFactory.createUnit(TypeEnum.valueOf(key));
+    			entity.setPosition(vector);
+    			level.addEntity(entity);
     		}
     	}
-    	
+    	level.setId(levelId);
     	level.setDimension(QueryDAO.getMap(levelId));
         this.setLevel(this.level);
     }

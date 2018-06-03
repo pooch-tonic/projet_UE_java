@@ -14,4 +14,6 @@ public interface IEntity extends IPawn {
 	void setDirection(IVector direction);
 
 	void update();
+	
+	void setPosition(final IVector position);
 }
