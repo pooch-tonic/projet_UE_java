@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package showboard;
 
 import java.awt.Dimension;
@@ -40,7 +43,7 @@ public class BoardFrame extends JFrame implements IBoard {
 
     /**
      * Instantiates a new BoardFrame
-     * 
+     *
      * @param title
      * @param decorated
      */
@@ -87,12 +90,10 @@ public class BoardFrame extends JFrame implements IBoard {
     /*
      * (non-Javadoc)
      *
-     * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int,
-     * int)
+     * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int, int)
      */
     @Override
-    public final void addSquare(final ISquare square, final int x,
-            final int y) {
+    public final void addSquare(final ISquare square, final int x, final int y) {
         this.getBoardPanel().addSquare(square, x, y);
     }
 
@@ -209,7 +210,7 @@ public class BoardFrame extends JFrame implements IBoard {
     }
 
     @Override
-    public void removeAllPawn(final IPawn pawn) {
+    public void removeAllPawn() {
         // TODO Auto-generated method stub
         this.getBoardPanel().removeAllPawn();
     }
