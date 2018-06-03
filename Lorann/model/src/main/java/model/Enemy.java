@@ -4,8 +4,16 @@
 package model;
 
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
+
+import enums.DirectionEnum;
 import enums.Type;
+import enums.TypeEnum;
+import model.dao.QueryDAO;
 import vector.IVector;
 
 /**
@@ -40,10 +48,23 @@ public class Enemy extends Entity {
         // TODO Auto-generated constructor stub
     }
 
-    @Override
-    public Image getImage() {
-        // TODO Auto-generated method stub
-        return null;
+    public Image getImage(EnemyName enemy) throws IOException, SQLException {
+    	Image image = null;
+    	switch (enemy) {
+        case KYRACJ:
+            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_A).get(0)));
+            break;
+        case CARGYV:
+            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_B).get(0)));
+            break;
+        case ARRBARR:
+            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_C).get(0)));
+            break;
+        case MAARCG:
+            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_D).get(0)));
+            break;
+        }
+        return image;
     }
 
     @Override
@@ -83,4 +104,16 @@ public class Enemy extends Entity {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public void move(DirectionEnum direction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setType(TypeEnum type) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -3,10 +3,12 @@
  */
 package model;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import enums.Type;
+import enums.TypeEnum;
 import modelInterfaces.IEntity;
 import showboard.ISpriteSet;
 import vector.IVector;
@@ -131,6 +133,11 @@ public abstract class Entity extends Unit implements IEntity {
 	@Override
 	public void update() {
 
+	}
+
+	public Image getImage(TypeEnum type) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
