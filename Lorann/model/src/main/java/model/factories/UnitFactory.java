@@ -112,10 +112,11 @@ public abstract class UnitFactory {
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return a loot : coin (score value 200)
 	 */
-	public static Loot createLoot_coin() {
-		return lootFactory.createCoin();
+	public static Loot createLoot_coin(ISpriteSet spriteSet) {
+		return lootFactory.createCoin(spriteSet);
 	}
 
 	/**
