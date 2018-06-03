@@ -61,6 +61,7 @@ public class SpriteSet implements ISpriteSet {
 	/**
 	 * @return the current animation index of the SpriteSet
 	 */
+	@Override
 	public int getCurrentIndex() {
 		return this.currentIndex;
 	}
@@ -70,6 +71,7 @@ public class SpriteSet implements ISpriteSet {
 	 *
 	 * @return
 	 */
+	@Override
 	public BufferedImage getCurrentSprite() {
 		return this.getSpriteByIndex(this.getCurrentIndex());
 	}
@@ -78,6 +80,7 @@ public class SpriteSet implements ISpriteSet {
 	 * @return the maximal value of the animation index, to prevent a
 	 *         NullPointerException
 	 */
+	@Override
 	public int getMaxIndex() {
 		return this.maxIndex;
 	}
@@ -93,6 +96,7 @@ public class SpriteSet implements ISpriteSet {
 	 * @param index
 	 * @return a spriteByIndex
 	 */
+	@Override
 	public BufferedImage getSpriteByIndex(final int index) {
 		return this.getSprites().get(index);
 	}
@@ -100,6 +104,7 @@ public class SpriteSet implements ISpriteSet {
 	/**
 	 * @return the sprites ArrayList
 	 */
+	@Override
 	public ArrayList<BufferedImage> getSprites() {
 		return this.sprites;
 	}
@@ -107,6 +112,7 @@ public class SpriteSet implements ISpriteSet {
 	/**
 	 * sets the currentIndex to 0
 	 */
+	@Override
 	public void resetIndex() {
 		this.setCurrentIndex(0);
 	}
@@ -129,6 +135,7 @@ public class SpriteSet implements ISpriteSet {
 	 * sets the next sprite by shifting the current index, with a modulo preventing
 	 * NullPointerException
 	 */
+	@Override
 	public void setNextSprite() {
 		this.setCurrentIndex((this.currentIndex + 1) % this.getnSprites());
 	}
@@ -141,22 +148,21 @@ public class SpriteSet implements ISpriteSet {
 	}
 
 	/**
-	 * @param spriteSet
-	 */
-	public void setSprite(final ISpriteSet spriteSet) {
-		this.sprites = spriteSet.getSprites();
-	}
-
-	/**
 	 * @param sprites
 	 */
+	@Override
 	public void setSprites(final ArrayList<BufferedImage> sprites) {
 		this.sprites = sprites;
 	}
 
 	@Override
-	public void setSprites(ISpriteSet spriteSet) {
-		// TODO Auto-generated method stub
-		
+	public void setSprites(final BufferedImage image) {
+		this.setSprites(new ArrayList<BufferedImage>());
+		this.getSprites().add(image);
+	}
+
+	@Override
+	public void setSprites(final ISpriteSet spriteSet) {
+		this.setSprites(spriteSet.getSprites());
 	}
 }
