@@ -19,7 +19,7 @@ public abstract class ImageLoader implements IImageLoader{
 	 * @param type
 	 * @return an image
 	 */
-	public BufferedImage getImageBypath(TypeEnum type, int index) {
+	public static BufferedImage getImageByPath(TypeEnum type, int index) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File(QueryDAO.getSpritePath(type).get(index))) ;
