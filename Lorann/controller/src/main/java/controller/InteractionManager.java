@@ -15,6 +15,38 @@ public class InteractionManager {
         return Interaction.NONE;
     }
 
+    private Interaction getEnemyInteractionOnHisPosition(final IEntity target) {
+        final Interaction interaction;
+        switch (target.getType()) {
+        case PLAYER:
+            interaction = Interaction.TARGET_DESTROYED;
+            break;
+        case SPELL:
+            interaction = Interaction.BOTH_DESTROYED;
+            break;
+        default:
+            interaction = Interaction.NONE;
+            break;
+        }
+        return interaction;
+    }
+
+    private Interaction getSpellInteractionOnHisPosition(final IEntity target) {
+        final Interaction interaction;
+        switch (target.getType()) {
+        case PLAYER:
+            interaction = Interaction.ENTITY_DESTROYED;
+            break;
+        case ENEMY:
+            interaction = Interaction.BOTH_DESTROYED;
+            break;
+        default:
+            interaction = Interaction.NONE;
+            break;
+        }
+        return interaction;
+    }
+
     private Interaction getInteractionBetweenPlayerAnd(final IEntity target) {
         final Interaction interaction;
         switch (target.getType()) {
