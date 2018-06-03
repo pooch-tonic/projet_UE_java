@@ -4,16 +4,11 @@
 package model;
 
 import java.awt.Image;
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.imageio.ImageIO;
-
-import enums.DirectionEnum;
 import enums.Type;
 import enums.TypeEnum;
-import model.dao.QueryDAO;
 import vector.IVector;
 
 /**
@@ -48,9 +43,9 @@ public class Enemy extends Entity {
         // TODO Auto-generated constructor stub
     }
 
-    public Image getImage(EnemyName enemy) throws IOException, SQLException {
-    	Image image = null;
-    	switch (enemy) {
+    public Image getImage(final EnemyName enemy) throws IOException, SQLException {
+        Image image = null;
+        switch (enemy) {
         case KYRACJ:
             image = ImageLoader.getImageByPath(TypeEnum.ENEMY_A, 0);
             break;
@@ -105,15 +100,15 @@ public class Enemy extends Entity {
 
     }
 
-	@Override
-	public void move(DirectionEnum direction) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void move() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void setType(TypeEnum type) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    @Override
+    public void setType(final TypeEnum type) {
+        // TODO Auto-generated method stub
+
+    }
 }

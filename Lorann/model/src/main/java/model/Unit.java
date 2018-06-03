@@ -5,8 +5,6 @@ package model;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import enums.Type;
@@ -120,7 +118,7 @@ public class Unit implements IUnit {
     }
 
     @Override
-    public Image getImage() throws IOException, SQLException {
+    public Image getImage() {
         // TODO Auto-generated method stub
         return null;
     }

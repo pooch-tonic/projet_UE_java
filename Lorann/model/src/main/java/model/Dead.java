@@ -4,16 +4,9 @@
 package model;
 
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 
-import javax.imageio.ImageIO;
-
-import enums.DirectionEnum;
 import enums.Type;
 import enums.TypeEnum;
-import model.dao.QueryDAO;
 import vector.IVector;
 
 /**
@@ -36,7 +29,7 @@ public class Dead extends Entity {
     }
 
     @Override
-    public Image getImage() throws IOException, SQLException {
+    public Image getImage() {
         return ImageLoader.getImageByPath(TypeEnum.DEAD, 0);
     }
 
@@ -53,19 +46,13 @@ public class Dead extends Entity {
     @Override
     public void update() {
         // TODO Auto-generated method stub
-
+        this.move();
     }
 
-	@Override
-	public void move(DirectionEnum direction) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void setType(final TypeEnum type) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void setType(TypeEnum type) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
 }

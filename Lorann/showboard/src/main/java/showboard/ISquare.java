@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package showboard;
 
@@ -26,8 +26,8 @@ public interface ISquare {
      * Gets the image.
      *
      * @return the image
-     * @throws SQLException 
-     * @throws IOException 
+     * @throws SQLException
+     * @throws IOException
      */
-    Image getImage() throws IOException, SQLException;
+    Image getImage();
 }

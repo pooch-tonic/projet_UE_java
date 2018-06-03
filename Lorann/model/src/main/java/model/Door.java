@@ -4,16 +4,9 @@
 package model;
 
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.sql.SQLException;
 
-import javax.imageio.ImageIO;
-
-import enums.DirectionEnum;
 import enums.Type;
 import enums.TypeEnum;
-import model.dao.QueryDAO;
 import vector.IVector;
 
 /**
@@ -49,12 +42,12 @@ public class Door extends Entity {
     }
 
     @Override
-    public Image getImage() throws IOException, SQLException {
-    	if(this.getType() == Type.ENEMY) {
-    		return ImageLoader.getImageByPath(TypeEnum.DOOR_CLOSED, 0);
-    	} else {
-    		return ImageLoader.getImageByPath(TypeEnum.DOOR_OPEN, 0);
-    	}
+    public Image getImage() {
+        if (this.getType() == Type.ENEMY) {
+            return ImageLoader.getImageByPath(TypeEnum.DOOR_CLOSED, 0);
+        } else {
+            return ImageLoader.getImageByPath(TypeEnum.DOOR_OPEN, 0);
+        }
     }
 
     @Override
@@ -84,16 +77,10 @@ public class Door extends Entity {
 
     }
 
-	@Override
-	public void move(DirectionEnum direction) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void setType(final TypeEnum type) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void setType(TypeEnum type) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
 }
