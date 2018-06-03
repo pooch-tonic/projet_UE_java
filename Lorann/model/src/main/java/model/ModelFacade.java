@@ -135,12 +135,21 @@ public final class ModelFacade extends Observable implements IModel {
     	for(HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
     		key = result.getKey();
     		vector = result.getValue();
-    		if(key == TypeEnum.WALL.toString() || key == TypeEnum.WALL_H.toString() || key == TypeEnum.WALL_V.toString()) {
-    			level.addUnit(new Unit(vector, Type.WALL), vector.getX(), vector.getY());
-    		} else {
-    			entity = UnitFactory.createUnit(TypeEnum.valueOf(key));
-    			entity.setPosition(vector);
-    			level.addEntity(entity);
+    		switch(key) {
+    			case "WALL" :
+    				level.addUnit(UnitFactory.createWall_round(), vector.getX(), vector.getY());
+    				break;
+    			case "WALL_H" :
+    				level.addUnit(UnitFactory.createWall_horizontal(), vector.getX(), vector.getY());
+    				break;
+    			case "WALL_V" :
+    				level.addUnit(UnitFactory.createWall_Vertical(), vector.getX(), vector.getY());
+    				break;
+    			default:
+    				entity = UnitFactory.createUnit(TypeEnum.valueOf(key), QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
+        			entity.setPosition(vector);
+        			level.addEntity(entity);
+    				break;
     		}
     	}
     	level.setId(levelId);
