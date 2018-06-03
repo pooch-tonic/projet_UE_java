@@ -9,17 +9,15 @@ import showboard.IPawn;
 import vector.IVector;
 
 public interface IEntity extends IPawn {
-    public void destroy();
+	public IVector getDirection();
 
-    public IVector getDirection();
+	public Type getType();
 
-    public Type getType();
+	void setDirection(IVector direction);
 
-    void setDirection(IVector direction);
+	void setPosition(final IVector position);
 
-    void setPosition(final IVector position);
+	void setType(TypeEnum type);
 
-    void update();
-
-    void setType(TypeEnum type);
+	void update();
 }
