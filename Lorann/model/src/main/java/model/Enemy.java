@@ -52,16 +52,16 @@ public class Enemy extends Entity {
     	Image image = null;
     	switch (enemy) {
         case KYRACJ:
-            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_A).get(0)));
+            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_A, 0);
             break;
         case CARGYV:
-            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_B).get(0)));
+            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_B, 0);
             break;
         case ARRBARR:
-            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_C).get(0)));
+            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_C, 0);
             break;
         case MAARCG:
-            image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.ENEMY_D).get(0)));
+            image = ImageLoader.getImageByPath(TypeEnum.ENEMY_D, 0);
             break;
         }
         return image;
