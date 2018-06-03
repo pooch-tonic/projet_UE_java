@@ -4,16 +4,14 @@
 package model.factories;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import enums.TypeEnum;
 import model.Dead;
 import model.Door;
 import model.Enemy;
 import model.Ground;
+import model.ImageLoader;
 import model.Key;
 import model.Loot;
 import model.Player;
@@ -97,6 +95,43 @@ public abstract class UnitFactory {
 		return enemyFactory.createMaarcg(spriteSet);
 	}
 
+	// TODO UTILISER IMAGELOADER
+	public static IEntity createEntity(final TypeEnum type, final ArrayList<String> spritePath) {
+		final ArrayList<BufferedImage> images = new ArrayList<>();
+		for (final String path : spritePath) {
+			images.add(ImageLoader.getImageByPath(path));
+		}
+
+		final ISpriteSet spriteSet = new SpriteSet(images);
+
+		switch (type) {
+		case ENEMY_A:
+			return createEnemy_Arrbarr(spriteSet);
+		case ENEMY_B:
+			return createEnemy_Cargyv(spriteSet);
+		case ENEMY_C:
+			return createEnemy_Kyracj(spriteSet);
+		case ENEMY_D:
+			return createEnemy_Maarcg(spriteSet);
+		case PLAYER:
+			return createPlayer_Lorann(spriteSet);
+		case KEY:
+			return createKey_blue(spriteSet);
+		case LOOT:
+			return createLoot_coin(spriteSet);
+		case DOOR_OPEN:
+			return createDoor_open(spriteSet);
+		case DOOR_CLOSED:
+			return createDoor_closed(spriteSet);
+		case DEAD:
+			return createDead_default(spriteSet);
+		case SPELL:
+			return createSpell(spriteSet);
+		default:
+			return null;
+		}
+	}
+
 	public static Ground createGround_default(final ISpriteSet spriteSet) {
 		return groundFactory.createDefault();
 	}
@@ -137,48 +172,7 @@ public abstract class UnitFactory {
 
 	}
 
-	// TODO UTILISER IMAGELOADER
-	public static IEntity createUnit(final TypeEnum type, final ArrayList<String> spritePath) {
-		final ArrayList<BufferedImage> images = new ArrayList<>();
-		for (final String sprite : spritePath) {
-			try {
-				images.add(ImageIO.read(UnitFactory.class.getResource(sprite)));
-			} catch (final IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		final ISpriteSet spriteSet = new SpriteSet(images);
-
-		switch (type) {
-		case ENEMY_A:
-			return createEnemy_Arrbarr(spriteSet);
-		case ENEMY_B:
-			return createEnemy_Cargyv(spriteSet);
-		case ENEMY_C:
-			return createEnemy_Kyracj(spriteSet);
-		case ENEMY_D:
-			return createEnemy_Maarcg(spriteSet);
-		case PLAYER:
-			return createPlayer_Lorann(spriteSet);
-		case KEY:
-			return createKey_blue(spriteSet);
-		case LOOT:
-			return createLoot_coin(spriteSet);
-		case DOOR_OPEN:
-			return createDoor_open(spriteSet);
-		case DOOR_CLOSED:
-			return createDoor_closed(spriteSet);
-		case DEAD:
-			return createDead_default(spriteSet);
-		case SPELL:
-			return createSpell(spriteSet);
-		default:
-			return null;
-		}
-	}
-
-	public static Wall createWall_default(final ArrayList<String> spritePath) {
+	public static Wall createWall(final ArrayList<String> spritePath) {
 		// return wallFactory.createDefault(spriteSet);
 		return null;
 	}

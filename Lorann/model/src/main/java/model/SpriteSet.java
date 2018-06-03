@@ -165,4 +165,5 @@ public class SpriteSet implements ISpriteSet {
 	public void setSprites(final ISpriteSet spriteSet) {
 		this.setSprites(spriteSet.getSprites());
 	}
+
 }

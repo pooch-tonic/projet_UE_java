@@ -1,32 +1,30 @@
 package model;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-
 
 import javax.imageio.ImageIO;
 
-import enums.TypeEnum;
-import model.dao.QueryDAO;
+import model.factories.UnitFactory;
 
 /**
  * @author Max Becerro
  *
  */
-public abstract class ImageLoader implements IImageLoader{
-	
+public abstract class ImageLoader implements IImageLoader {
+
 	/**
 	 * @param type
 	 * @return an image
 	 */
-	public static BufferedImage getImageByPath(TypeEnum type, int index) {
+	public static BufferedImage getImageByPath(final String path) {
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File(QueryDAO.getSpritePath(type).get(index))) ;
+			image = ImageIO.read(UnitFactory.class.getResource(path));
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
-		
+
 		return image;
 	}
 
