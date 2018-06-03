@@ -148,8 +148,8 @@ public abstract class UnitFactory {
 		return wallFactory.createVertical();
 	}
 	
-	public static Spell createSpell() {
-		return SpellFactory.createSpell();
+	public static Spell createSpell(ISpriteSet spriteSet) {
+		return SpellFactory.createSpell(spriteSet);
 		
 	}
 
