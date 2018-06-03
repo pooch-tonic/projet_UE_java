@@ -39,27 +39,28 @@ public interface ILevel {
     public IUnit[][] getUnits();
 
     /**
+     * Sets the dimension
+     * 
      * @param dimension
      */
     public void setDimension(final Dimension dimension);
     
-    
     /**
-     * Set an unit
+     * Sets an unit
      * 
      * @param units
      */
     void setUnits(IUnit[][] units);
 
     /**
-     * Add an entity
+     * Adds an entity
      * 
      * @param entity
      */
     public void addEntity(final IEntity entity);
 
     /**
-     * Add an unit on the position x and y
+     * Adds an unit on the position x and y
      * 
      * @param unit
      * @param x
@@ -68,8 +69,9 @@ public interface ILevel {
     public void addUnit(final IUnit unit, final int x, final int y);
 
     /**
+     * Sets the id
+     * 
      * @param id
-     *            the id to set
      */
     public void setId(final int id);
 
