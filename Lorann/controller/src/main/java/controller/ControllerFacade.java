@@ -59,6 +59,16 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.setStackOrder(new ArrayList<>());
     }
 
+    /**
+     * Start.
+     *
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public void start() throws SQLException {
+        this.loadLevel(1);
+    }
+
     /*
      * (non-Javadoc)
      *
@@ -199,16 +209,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         default:
             break;
         }
-    }
-
-    /**
-     * Start.
-     *
-     * @throws SQLException
-     *             the SQL exception
-     */
-    public void start() throws SQLException {
-        this.loadLevel(1);
     }
 
     /**
