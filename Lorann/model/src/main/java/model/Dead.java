@@ -26,8 +26,7 @@ public class Dead extends Entity {
 	 * @param spriteSet
 	 */
 	public Dead(final ISpriteSet spriteSet) {
-		super(Type.DEAD);
-		super.setSpriteSet(spriteSet);
+		super(Type.DEAD, spriteSet);
 	}
 
 	/**

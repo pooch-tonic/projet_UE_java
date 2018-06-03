@@ -19,10 +19,9 @@ public class Enemy extends Entity {
 	 * @param enemyName
 	 */
 	public Enemy(final EnemyName enemyName, final ISpriteSet spriteSet) {
-		super();
+		super(Type.ENEMY, spriteSet);
 		this.setType(Type.ENEMY);
 		this.setEnemyType(enemyName);
-		super.setSpriteSet(spriteSet);
 
 		// TODO Auto-generated constructor stub
 	}
@@ -34,7 +33,7 @@ public class Enemy extends Entity {
 	 * @param enemyName
 	 */
 	public Enemy(final IVector position, final EnemyName enemyName) {
-		super();
+		super(Type.ENEMY);
 		// this.setEnemyType(enemyName);
 		super.setPosition(position);
 		// TODO Auto-generated constructor stub
