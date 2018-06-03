@@ -132,7 +132,7 @@ public interface IVector {
 
 	/**
 	 * Sets the length of this vector to a single unit length. For example, A(2,5)
-	 * becomes A(1,1), B(-1,0) becomes B(1,0). This isn't the proper normalization
+	 * becomes A(1,1), B(-5,0) becomes B(-1,0). This isn't the proper normalization
 	 * of a real vector since this only uses integers.
 	 */
 	public void normalize();
