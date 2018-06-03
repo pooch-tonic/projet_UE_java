@@ -71,6 +71,7 @@ public abstract class Entity extends Unit implements IEntity {
 	 * @see modelInterfaces.IBounceStrategy#bounce()
 	 */
 
+	@Override
 	public void bounce() {
 		this.getBounceStrategy().bounce();
 	}
@@ -81,6 +82,7 @@ public abstract class Entity extends Unit implements IEntity {
 	 * @see modelInterfaces.IDodgeStrategy#dodge()
 	 */
 
+	@Override
 	public void dodge() {
 		this.getDodgeStrategy().dodge();
 	}
@@ -150,6 +152,7 @@ public abstract class Entity extends Unit implements IEntity {
 	 * @see modelInterfaces.IMoveStrategy#move()
 	 */
 
+	@Override
 	public void move() {
 		this.getMoveStrategy().move();
 	}
@@ -193,11 +196,10 @@ public abstract class Entity extends Unit implements IEntity {
 		super.setSpriteSet(sprites);
 	}
 
-
-    @Override
-    public void setSpriteSet(final ISpriteSet spriteSet) {
-        super.setSpriteSet(spriteSet);
-    }
+	@Override
+	public void setSpriteSet(final ISpriteSet spriteSet) {
+		super.setSpriteSet(spriteSet);
+	}
 
 	@Override
 	public void setType(final Type type) {
