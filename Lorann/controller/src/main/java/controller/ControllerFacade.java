@@ -76,7 +76,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void update() {
-        // TODO Auto-generated method stub
+        this.performOrder();
         this.updateEntities();
         this.setStackOrder(new ArrayList<>());
     }
@@ -85,7 +85,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      * Update the entities of the model
      */
     private void updateEntities() {
-        this.performOrder();
         for (final IEntity entity : this.getModel().getLevel().getEntities()) {
             IEntity target;
             if (this.getNextTile(entity) != null) {
@@ -198,8 +197,10 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         case BOTH_DESTROYED:
             break;
         case BOUNCE:
+            entity.bounce();
             break;
         case DODGE:
+            entity.dodge();
             break;
         case UNLOCK_DOOR:
             break;
