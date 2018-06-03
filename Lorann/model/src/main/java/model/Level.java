@@ -20,10 +20,12 @@ public class Level implements ILevel {
     private ArrayList<IEntity> entities;
     private Dimension          dimension;
     private int                id;
+    private IEntity            exit;
+    private IEntity            player;
 
     /**
      * Instantiates a new Level
-     * 
+     *
      * @param id
      * @param dimension
      */
@@ -36,7 +38,9 @@ public class Level implements ILevel {
         this.setEntities(new ArrayList<>());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#addEntity(modelInterfaces.IEntity)
      */
     @Override
@@ -44,7 +48,9 @@ public class Level implements ILevel {
         this.getEntities().add(entity);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#addUnit(modelInterfaces.IUnit, int, int)
      */
     @Override
@@ -52,7 +58,9 @@ public class Level implements ILevel {
         this.getUnits()[x][y] = unit;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#getDimension()
      */
     @Override
@@ -60,7 +68,9 @@ public class Level implements ILevel {
         return this.dimension;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#getId()
      */
     @Override
@@ -68,8 +78,9 @@ public class Level implements ILevel {
         return this.id;
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#getUnits()
      */
     @Override
@@ -77,8 +88,9 @@ public class Level implements ILevel {
         return this.units;
     }
 
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#setDimension(java.awt.Dimension)
      */
     @Override
@@ -86,7 +98,9 @@ public class Level implements ILevel {
         this.dimension = dimension;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see modelInterfaces.ILevel#setId(int)
      */
     @Override
@@ -137,5 +151,41 @@ public class Level implements ILevel {
      */
     private void setEntities(final ArrayList<IEntity> entities) {
         this.entities = entities;
+    }
+
+    /**
+     * Gets the player
+     * 
+     * @return the player
+     */
+    public IEntity getPlayer() {
+        return this.player;
+    }
+
+    /**
+     * Sets the player
+     * 
+     * @param player
+     */
+    public void setPlayer(final IEntity player) {
+        this.player = player;
+    }
+
+    /**
+     * Gets the exit
+     * 
+     * @return the exit
+     */
+    public IEntity getExit() {
+        return this.exit;
+    }
+
+    /**
+     * Sets the exit
+     * 
+     * @param exit
+     */
+    public void setExit(final IEntity exit) {
+        this.exit = exit;
     }
 }
