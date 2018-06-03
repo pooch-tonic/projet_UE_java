@@ -26,13 +26,16 @@ public abstract class Entity extends Unit implements IEntity {
 	private IMoveStrategy moveStrategy;
 	private IDodgeStrategy dodgeStrategy;
 	private IBounceStrategy bounceStrategy;
+	private int scoreValue;
 
 	/**
 	 * Instantiates a new Entity
+	 * @param type 
+	 * @param spriteSet 
 	 *
 	 */
-	public Entity() {
-		super();
+	public Entity(Type type, ISpriteSet spriteSet) {
+		super(type, spriteSet);
 	}
 
 	/**
@@ -212,4 +215,11 @@ public abstract class Entity extends Unit implements IEntity {
 
 	}
 
+	public int getScoreValue() {
+		return scoreValue;
+	}
+
+	public void setScoreValue(int scoreValue) {
+		this.scoreValue = scoreValue;
+	}
 }

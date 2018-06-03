@@ -15,15 +15,11 @@ public interface IUnit extends ISquare {
 
 	public IVector getPosition();
 
-	public int getScoreValue();
-
 	public ISpriteSet getSpriteSet();
 
 	public Type getType();
 
 	public void setPosition(final IVector position);
-
-	public void setScoreValue(final int scoreValue);
 
 	public void setSpriteSet(final ArrayList<BufferedImage> sprites);
 
