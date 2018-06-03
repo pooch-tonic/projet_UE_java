@@ -25,13 +25,13 @@ public abstract class QueryDAO extends AbstractDAO {
 	/** The sql unit by Position. */
 	private static String sqlUnitByPosition = "{call getUnitByPosition(?, ?, ?)}";
 
-	/** The sql all examples. */
+	/** The sql Unit by Map. */
 	private static String sqlUnitByMap = "{call getUnitByMap(?)}";
 
-	/** The sql all examples. */
+	/** The sql sprites path. */
 	private static String sqlSpritePath = "{call getSpritePath(?)}";
 
-	/** The sql all examples. */
+	/** The sql Map Dimensions. */
 	private static String sqlMap = "{call getMap(?)}";
 
 	/**
@@ -39,7 +39,7 @@ public abstract class QueryDAO extends AbstractDAO {
 	 * 
 	 * @param mapId
 	 *            the id of the map
-	 * @return the unit by position
+	 * @return the Dimension of the map
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
@@ -57,11 +57,11 @@ public abstract class QueryDAO extends AbstractDAO {
 	}
 
 	/**
-	 * Gets the path of the sprite.
+	 * Gets the path of the sprites.
 	 *
 	 * @param type
 	 *            the type of the unit
-	 * @return the path of the sprite
+	 * @return the path of the sprites
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
@@ -85,7 +85,7 @@ public abstract class QueryDAO extends AbstractDAO {
 	 *
 	 * @param mapId
 	 *            the id of the map
-	 * @return the unit by map
+	 * @return the units by map
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
