@@ -7,6 +7,7 @@ import java.awt.Image;
 
 import enums.Type;
 import enums.TypeEnum;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -19,8 +20,9 @@ public class Loot extends Entity {
      * Instantiates a new Loot
      *
      */
-    public Loot() {
+    public Loot(ISpriteSet spriteSet) {
         super(Type.LOOT);
+        super.setSpriteSet(spriteSet);
         // TODO Auto-generated constructor stub
     }
 

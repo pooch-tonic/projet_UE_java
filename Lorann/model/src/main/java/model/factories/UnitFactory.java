@@ -65,38 +65,43 @@ public abstract class UnitFactory {
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return an enemy : Arrbarr
 	 */
-	public static Enemy createEnemy_Arrbarr() {
-		return enemyFactory.createArrbarr();
+	public static Enemy createEnemy_Arrbarr(ISpriteSet spriteSet) {
+		return enemyFactory.createArrbarr(spriteSet);
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return an enemy : Cargyv
 	 */
-	public static Enemy createEnemy_Cargyv() {
-		return enemyFactory.createCargyv();
+	public static Enemy createEnemy_Cargyv(ISpriteSet spriteSet) {
+		return enemyFactory.createCargyv(spriteSet);
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return an enemy : Kyracj
 	 */
-	public static Enemy createEnemy_Kyracj() {
-		return enemyFactory.createKyracj();
+	public static Enemy createEnemy_Kyracj(ISpriteSet spriteSet) {
+		return enemyFactory.createKyracj(spriteSet);
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return an enemy : Maarcg
 	 */
-	public static Enemy createEnemy_Maarcg() {
-		return enemyFactory.createMaarcg();
+	public static Enemy createEnemy_Maarcg(ISpriteSet spriteSet) {
+		return enemyFactory.createMaarcg(spriteSet);
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return a blue key
 	 */
-	public static Key createKey_blue() {
-		return keyFactory.createBlue();
+	public static Key createKey_blue(ISpriteSet spriteSet) {
+		return keyFactory.createBlue(spriteSet);
 	}
 
 	/**
@@ -107,17 +112,19 @@ public abstract class UnitFactory {
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return a loot : coin (score value 200)
 	 */
-	public static Loot createLoot_coin() {
-		return lootFactory.createCoin();
+	public static Loot createLoot_coin(ISpriteSet spriteSet) {
+		return lootFactory.createCoin(spriteSet);
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return the player : Lorann
 	 */
-	public static Player createPlayer_Lorann() {
-		return playerFactory.createLorann();
+	public static Player createPlayer_Lorann(ISpriteSet spriteSet) {
+		return playerFactory.createLorann(spriteSet);
 	}
 
 	/**
@@ -141,8 +148,8 @@ public abstract class UnitFactory {
 		return wallFactory.createVertical();
 	}
 	
-	public static Spell createSpell() {
-		return SpellFactory.createSpell();
+	public static Spell createSpell(ISpriteSet spriteSet) {
+		return SpellFactory.createSpell(spriteSet);
 		
 	}
 
