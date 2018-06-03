@@ -6,6 +6,7 @@ package model;
 import java.awt.Image;
 
 import enums.Type;
+import enums.TypeEnum;
 import vector.IVector;
 
 /**
@@ -35,8 +36,7 @@ public class Key extends Entity {
 
     @Override
     public Image getImage() {
-        // TODO Auto-generated method stub
-        return null;
+        return ImageLoader.getImageByPath(TypeEnum.KEY, 0);
     }
 
     @Override
@@ -54,5 +54,11 @@ public class Key extends Entity {
         // TODO Auto-generated method stub
 
     }
+
+	@Override
+	public void setType(TypeEnum type) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
