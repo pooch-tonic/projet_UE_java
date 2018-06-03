@@ -193,6 +193,12 @@ public abstract class Entity extends Unit implements IEntity {
 		super.setSpriteSet(sprites);
 	}
 
+
+    @Override
+    public void setSpriteSet(final ISpriteSet spriteSet) {
+        super.setSpriteSet(spriteSet);
+    }
+
 	@Override
 	public void setType(final Type type) {
 		super.setType(type);

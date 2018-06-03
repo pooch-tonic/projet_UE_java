@@ -18,6 +18,7 @@ import model.Spell;
 import model.SpriteSet;
 import model.Wall;
 import modelInterfaces.IEntity;
+import showboard.ISpriteSet;
 
 /**
  * <h1>The abstract class UnitFactory which instanciates different types of
@@ -37,10 +38,11 @@ public abstract class UnitFactory {
 	private static final DoorFactory doorFactory = new DoorFactory();
 
 	/**
+	 * @param spriteSet 
 	 * @return a default dead unit
 	 */
-	public static Dead createDead_default() {
-		return deadFactory.createDefault();
+	public static Dead createDead_default(ISpriteSet spriteSet) {
+		return deadFactory.createDefault(spriteSet);
 	}
 
 	/**
@@ -150,7 +152,7 @@ public abstract class UnitFactory {
 			}
 		}
 
-		SpriteSet spriteSet = new SpriteSet(images);
+		ISpriteSet spriteSet = new SpriteSet(images);
 		
 		switch(type) {
 			case ENEMY_A :
@@ -172,7 +174,7 @@ public abstract class UnitFactory {
 			case DOOR_CLOSED :
 				return createDoor_closed();
 			case DEAD :
-				return createDead_default();
+				return createDead_default(spriteSet);
 			case SPELL :
 				return createSpell();
 		}
