@@ -21,13 +21,10 @@ public class Wall extends Unit {
 	 */
 	public Wall() {
 		super();
-		this.setType(Type.WALL);
 	}
 
 	public Wall(final BufferedImage image) {
-		super();
-		this.setType(Type.WALL);
-		this.setSpriteSet(image);
+		super(new SpriteSet(image), Type.WALL);
 	}
 
 	/**
@@ -42,9 +39,7 @@ public class Wall extends Unit {
 	}
 
 	public Wall(final IVector position, final BufferedImage image) {
-		super();
-		this.setType(Type.WALL);
-		this.setSpriteSet(image);
+		super(new SpriteSet(image), Type.WALL);
 		this.setPosition(position);
 	}
 }
