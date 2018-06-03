@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderStacker;
 import showboard.BoardFrame;
+import showboard.IPawn;
 import viewInterfaces.IView;
 
 /**
@@ -82,6 +83,7 @@ public class ViewFacade implements IView, Runnable {
      *
      * @return boardFrame
      */
+    @Override
     public BoardFrame getBoardFrame() {
         return this.boardFrame;
     }
@@ -117,6 +119,16 @@ public class ViewFacade implements IView, Runnable {
     public void run() {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void removePawnFromBoard(final IPawn pawn) {
+        this.getBoardFrame().removePawn(pawn);
+    }
+
+    @Override
+    public void removeAllPawnsFromBoard() {
+        this.getBoardFrame().removeAllPawn();
     }
 
 }
