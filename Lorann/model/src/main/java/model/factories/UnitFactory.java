@@ -1,5 +1,12 @@
 package model.factories;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
 import enums.TypeEnum;
 import model.Dead;
 import model.Door;
@@ -8,6 +15,7 @@ import model.Key;
 import model.Loot;
 import model.Player;
 import model.Spell;
+import model.SpriteSet;
 import model.Wall;
 import modelInterfaces.IEntity;
 
@@ -131,7 +139,19 @@ public abstract class UnitFactory {
 		
 	}
 
-	public static IEntity createUnit(TypeEnum type) {
+	public static IEntity createUnit(TypeEnum type, ArrayList<String> spritePath) {
+		ArrayList<BufferedImage> images = null;
+		for(String sprite : spritePath) {
+			try {
+				images.add(ImageIO.read(new File(sprite)));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		SpriteSet spriteSet = new SpriteSet(images);
+		
 		switch(type) {
 			case ENEMY_A :
 				return createEnemy_Arrbarr();
