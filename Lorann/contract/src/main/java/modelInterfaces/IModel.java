@@ -15,9 +15,20 @@ import enums.DirectionEnum;
  * @version 1.0
  */
 public interface IModel {
+	
+    /**
+     * Adds a score value to the current score value
+     * 
+     * @param value
+     */
     void addToScore(final int value);
 
-    ILevel getLevel();
+    /**
+     * Gets a level
+     * 
+     * @return a level
+     */
+    public ILevel getLevel();
 
     /**
      * Gets the map.
@@ -30,12 +41,21 @@ public interface IModel {
      */
     Dimension getMap(int mapId) throws SQLException;
 
+    /**
+     * Gets a score value
+     * 
+     * @return a score value
+     */
     int getScore();
 
     void loadLevel(int levelId) throws SQLException;
 
     void resetScore();
 
-    // TODO javadoc
+    /**
+     * 
+     * 
+     * @param direction
+     */
     public void setPlayerDirection(DirectionEnum direction);
 }
