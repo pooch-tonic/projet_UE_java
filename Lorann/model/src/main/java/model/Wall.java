@@ -3,6 +3,8 @@
  */
 package model;
 
+import java.awt.image.BufferedImage;
+
 import enums.Type;
 import vector.IVector;
 
@@ -12,26 +14,37 @@ import vector.IVector;
  */
 public class Wall extends Unit {
 
-    /**
-     * Instantiates a new Wall
-     *
-     * @param position
-     * @param wallType
-     */
-    public Wall(final IVector position, final WallType wallType) {
-        super();
-        this.setPosition(position);
+	/**
+	 * Instantiates a new Wall
+	 *
+	 * @param wallType
+	 */
+	public Wall() {
+		super();
+		this.setType(Type.WALL);
+	}
 
-        // TODO Auto-generated constructor stub
-    }
+	public Wall(final BufferedImage image) {
+		super();
+		this.setType(Type.WALL);
+		this.setSpriteSet(image);
+	}
 
-    /**
-     * Instantiates a new Wall
-     *
-     * @param wallType
-     */
-    public Wall() {
-        super();
-        this.setType(Type.WALL);
-    }
+	/**
+	 * Instantiates a new Wall
+	 *
+	 * @param position
+	 * @param wallType
+	 */
+	public Wall(final IVector position) {
+		super();
+		this.setPosition(position);
+	}
+
+	public Wall(final IVector position, final BufferedImage image) {
+		super();
+		this.setType(Type.WALL);
+		this.setSpriteSet(image);
+		this.setPosition(position);
+	}
 }

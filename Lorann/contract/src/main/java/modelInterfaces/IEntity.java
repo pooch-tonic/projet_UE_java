@@ -1,7 +1,6 @@
 package modelInterfaces;
 
 import enums.Type;
-import enums.TypeEnum;
 import showboard.IPawn;
 import vector.IVector;
 
@@ -58,7 +57,7 @@ public interface IEntity extends IPawn {
 	 *
 	 * @param type
 	 */
-	void setType(TypeEnum type);
+	void setType(Type type);
 
 	/**
 	 * contains all the actions to be executed for a full update of the entity.

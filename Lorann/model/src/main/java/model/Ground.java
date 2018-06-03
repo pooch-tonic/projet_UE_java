@@ -10,7 +10,7 @@ public class Ground extends Unit {
 	 */
 	public Ground() {
 		super();
-		this.setSpriteSet();
+		// this.setSpriteSet(); TODO finir ça
 		this.setType(Type.GROUND);
 	}
 
