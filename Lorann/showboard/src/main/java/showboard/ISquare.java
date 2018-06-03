@@ -4,6 +4,8 @@
 package showboard;
 
 import java.awt.Image;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * <h1>The Interface ISquare.</h1>
@@ -24,6 +26,8 @@ public interface ISquare {
      * Gets the image.
      *
      * @return the image
+     * @throws SQLException 
+     * @throws IOException 
      */
-    Image getImage();
+    Image getImage() throws IOException, SQLException;
 }

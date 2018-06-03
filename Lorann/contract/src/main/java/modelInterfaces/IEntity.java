@@ -4,6 +4,7 @@
 package modelInterfaces;
 
 import enums.Type;
+import enums.TypeEnum;
 import showboard.IPawn;
 import vector.IVector;
 
@@ -18,5 +19,9 @@ public interface IEntity extends IPawn {
 
 	void setPosition(final IVector position);
 
-	void update();
+  void update();
+	
+	void setPosition(final IVector position);
+
+	void setType(TypeEnum type);
 }

@@ -3,10 +3,12 @@
  */
 package model;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import enums.Type;
+import enums.TypeEnum;
 import modelInterfaces.IBounceStrategy;
 import modelInterfaces.IDodgeStrategy;
 import modelInterfaces.IEntity;
@@ -207,6 +209,11 @@ public abstract class Entity extends Unit implements IEntity, IMoveStrategy, IBo
 	@Override
 	public void update() {
 
+	}
+
+	public Image getImage(TypeEnum type) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
