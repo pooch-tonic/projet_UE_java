@@ -13,7 +13,7 @@ import showboard.ISpriteSet;
  *
  */
 
-public class SpriteSet {
+public class SpriteSet implements ISpriteSet {
 
 	private ArrayList<BufferedImage> sprites;
 	private int currentIndex;
@@ -152,5 +152,11 @@ public class SpriteSet {
 	 */
 	public void setSprites(final ArrayList<BufferedImage> sprites) {
 		this.sprites = sprites;
+	}
+
+	@Override
+	public void setSprites(ISpriteSet spriteSet) {
+		// TODO Auto-generated method stub
+		
 	}
 }
