@@ -97,10 +97,11 @@ public abstract class UnitFactory {
 	}
 
 	/**
+	 * @param spriteSet 
 	 * @return a blue key
 	 */
-	public static Key createKey_blue() {
-		return keyFactory.createBlue();
+	public static Key createKey_blue(ISpriteSet spriteSet) {
+		return keyFactory.createBlue(spriteSet);
 	}
 
 	/**

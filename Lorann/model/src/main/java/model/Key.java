@@ -7,6 +7,7 @@ import java.awt.Image;
 
 import enums.Type;
 import enums.TypeEnum;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -19,8 +20,9 @@ public class Key extends Entity {
      * Instantiates a new Key
      *
      */
-    public Key() {
+    public Key(ISpriteSet spriteSet) {
         super(Type.KEY);
+        super.setSpriteSet(spriteSet);
         // TODO Auto-generated constructor stub
     }
 

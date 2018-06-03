@@ -1,9 +1,10 @@
 package model.factories;
 
 import model.Key;
+import showboard.ISpriteSet;
 
 class KeyFactory {
-	Key createBlue() {
-		return new Key();
+	Key createBlue(ISpriteSet spriteSet) {
+		return new Key(spriteSet);
 	}
 }
