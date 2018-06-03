@@ -50,13 +50,11 @@ public class Door extends Entity {
 
     @Override
     public Image getImage() throws IOException, SQLException {
-    	Image image;
     	if(this.getType() == Type.ENEMY) {
-    		image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.DOOR_CLOSED).get(0)));
+    		return ImageLoader.getImageByPath(TypeEnum.DOOR_CLOSED, 0);
     	} else {
-    		image = ImageIO.read(new File(QueryDAO.getSpritePath(TypeEnum.DOOR_OPEN).get(0)));
+    		return ImageLoader.getImageByPath(TypeEnum.DOOR_OPEN, 0);
     	}
-        return image;
     }
 
     @Override
