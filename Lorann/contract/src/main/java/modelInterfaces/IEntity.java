@@ -1,28 +1,27 @@
 /*
- * 
+ *
  */
 package modelInterfaces;
 
-import enums.DirectionEnum;
 import enums.Type;
 import enums.TypeEnum;
 import showboard.IPawn;
 import vector.IVector;
 
 public interface IEntity extends IPawn {
-    public void destroy();
+	public void destroy();
 
-    public IVector getDirection();
+	public IVector getDirection();
 
-    public void move(DirectionEnum direction);
+	public Type getType();
 
-    void setDirection(IVector direction);
+	void setDirection(IVector direction);
 
-    public Type getType();
+	void setPosition(final IVector position);
 
-    void update();
+  void update();
 	
-	  void setPosition(final IVector position);
+	void setPosition(final IVector position);
 
 	void setType(TypeEnum type);
 }

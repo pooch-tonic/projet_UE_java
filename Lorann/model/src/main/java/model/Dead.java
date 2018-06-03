@@ -22,10 +22,6 @@ import vector.IVector;
  */
 public class Dead extends Entity {
 
-    /**
-     * Instantiates a new Dead
-     *
-     */
     public Dead() {
         super(Type.DEAD);
     }
