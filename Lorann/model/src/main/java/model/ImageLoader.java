@@ -6,8 +6,8 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
+import enums.TypeEnum;
 import model.dao.QueryDAO;
-import model.dao.TypeEnum;
 
 /**
  * @author Max Becerro
