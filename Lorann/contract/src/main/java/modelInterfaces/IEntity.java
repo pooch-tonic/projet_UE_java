@@ -28,6 +28,13 @@ public interface IEntity extends IPawn {
 	public IVector getDirection();
 
 	/**
+	 * returns the score value of the entity.
+	 *
+	 * @return the score value.
+	 */
+	int getScoreValue();
+
+	/**
 	 * @return the type enumeration of the entity, which allows the controller to
 	 *         identify it.
 	 */
