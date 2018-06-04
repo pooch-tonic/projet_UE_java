@@ -257,7 +257,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
             break;
         case CAST:
-            // TODO call cast method
+            this.getModel().castSpell();
+            this.getBoard().addPawn(this.getModel().getSpell());
             this.getModel().setPlayerDirection(DirectionEnum.NONE);
             break;
         default:
