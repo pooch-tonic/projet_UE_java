@@ -34,7 +34,10 @@ public class Key extends Entity {
      */
     public Key(final IVector position) {
         super(position, Type.KEY);
-        // TODO Auto-generated constructor stub
     }
-
+    
+    public void update() {
+    	super.update();
+    	this.getSpriteSet().setNextSprite();
+    }
 }
