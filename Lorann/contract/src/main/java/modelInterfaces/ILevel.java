@@ -67,6 +67,14 @@ public interface ILevel {
     public void addEntity(final IEntity entity);
 
     /**
+     * Adds an entity at the index
+     *
+     * @param index
+     * @param entity
+     */
+    public void addEntity(final int index, final IEntity entity);
+
+    /**
      * Adds an unit on the position x and y
      *
      * @param unit

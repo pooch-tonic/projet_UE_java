@@ -51,7 +51,7 @@ public final class ModelFacade extends Observable implements IModel {
     @Override
     public IEntity addEntityToLevel(final TypeEnum type) {
         final IEntity entity = UnitFactory.createEntity(type, new ArrayList<>());
-        this.getLevel().addEntity(entity);
+        this.getLevel().addEntity(1, entity);
 
         if (type == TypeEnum.SPELL) {
             final IEntity player = this.getPlayer();
@@ -137,7 +137,7 @@ public final class ModelFacade extends Observable implements IModel {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see modelInterfaces.IModel#getScore()
      */
     @Override
@@ -273,6 +273,8 @@ public final class ModelFacade extends Observable implements IModel {
         }
         UnitFactory.setSpellSpriteSet(QueryDAO.getSpritePath(TypeEnum.SPELL));
         UnitFactory.setDeadSpriteSet(QueryDAO.getSpritePath(TypeEnum.DEAD));
+        this.removeEntityFromLevel(this.getPlayer());
+        this.getLevel().addEntity(this.getPlayer());
         this.fillVoidSquares();
         this.update();
 
@@ -354,5 +356,11 @@ public final class ModelFacade extends Observable implements IModel {
     public void update() {
         this.setChanged();
         this.notifyObservers();
+    }
+
+    @Override
+    public void removeEntityFromLevel(final IEntity entity) {
+        this.getLevel().removeEntityFromLevel(entity);
+
     }
 }

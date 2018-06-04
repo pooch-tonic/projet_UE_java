@@ -78,6 +78,8 @@ public interface IModel {
 
     public IEntity addEntityToLevel(TypeEnum type);
 
+    public void removeEntityFromLevel(IEntity entity);
+
     /**
      * Gets the maxLevels
      *

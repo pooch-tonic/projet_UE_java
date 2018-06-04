@@ -130,7 +130,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         while (this.getEntityIterator().hasNext()) {
             entity = this.getEntityIterator().next();
             if (this.getNextTile(entity).getType() == Type.WALL) {
-                System.out.println("1");
                 entity.bounce(this.getModel().getLevel());
             } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
                 // TODO change and use getAddResult
@@ -242,7 +241,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.getLevelLoader().resetLevel(this.getModel(), this.getView());
     }
 
-    private synchronized void performInteraction(final IEntity entity, final IEntity target,
+    private void performInteraction(final IEntity entity, final IEntity target,
             final Interaction interaction) {
         System.out.println(entity + " : " + interaction);
         switch (interaction) {
@@ -441,8 +440,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private void closeGame() {
         try {
-            this.getView().displayMessage("You reached the last level !\n Your score is : "
-                    + this.getModel().getScore().getScoreValue());
+            this.getView().displayMessage("You reached the last level !\n Well Played !");
         } catch (final Exception e) {
             e.printStackTrace();
         }
