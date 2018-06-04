@@ -54,6 +54,7 @@ public class SpriteSet implements ISpriteSet {
 	 * configures the maxIndex and nSprites values to fit the SpriteSet ArrayList.
 	 */
 	private void configure() {
+		this.setCurrentIndex(0);
 		this.setnSprites(this.getSprites().size());
 		this.setMaxIndex(this.getnSprites() - 1);
 	}

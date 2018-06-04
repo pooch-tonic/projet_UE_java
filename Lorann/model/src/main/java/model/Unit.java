@@ -22,8 +22,18 @@ import vector.Vector;
  *
  */
 public class Unit implements IUnit {
+	final static int SIZE = 32;
+
+	/**
+	 * @return the size of the unit, also applies to the sprite size.
+	 */
+	public static int getSize() {
+		return SIZE;
+	}
+
 	private IVector position;
 	private ISpriteSet spriteSet;
+
 	private Type type;
 
 	/**
@@ -34,6 +44,7 @@ public class Unit implements IUnit {
 	 */
 	public Unit(final ISpriteSet spriteSet, final Type type) {
 		this.setPosition(null);
+		this.spriteSet = new SpriteSet();
 		this.setSpriteSet(spriteSet);
 		this.setType(type);
 	}
