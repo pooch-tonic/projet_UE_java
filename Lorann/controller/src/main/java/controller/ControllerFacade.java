@@ -5,7 +5,6 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.TimerTask;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderPerformer;
@@ -77,12 +76,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     @Override
     public void update() {
         this.getModel().update();
-        this.getModel().getPlayer().update();
-        // if (!this.getStackOrder().isEmpty()) {
-        // this.performOrder();
-        // }
-        // this.updateEntities();
-        // this.setStackOrder(new ArrayList<>());
+        this.performOrder();
+        this.updateEntities();
+        this.setStackOrder(new ArrayList<>());
     }
 
     /**
@@ -141,7 +137,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     }
 
     private IUnit getNextTile(final IEntity entity) {
-        System.out.println(entity + " : " + entity.getDirection());
         return this.getModel().getUnitOn(entity.getX() + entity.getDirection().getX(),
                 entity.getY() + entity.getDirection().getY());
     }
@@ -184,8 +179,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
     }
 
-    private void performInteraction(final IEntity entity, final IEntity target,
+    private synchronized void performInteraction(final IEntity entity, final IEntity target,
             final Interaction interaction) {
+        System.out.println(entity + " : " + target);
         switch (interaction) {
         case ENTITY_DESTROYED:
             this.getModel().destroyEntity(entity);
@@ -226,10 +222,15 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     @Override
     public void performOrder() {
         // TODO Auto-generated method stub
-        final OrderEnum order = this.getStackOrder().get(this.getStackOrder().size() - 1);
+        OrderEnum order = OrderEnum.NONE;
+
+        if (!this.getStackOrder().isEmpty()) {
+            order = this.getStackOrder().get(this.getStackOrder().size() - 1);
+        }
 
         switch (order) {
         case UP:
+            System.out.println("yes");
             this.getModel().setPlayerDirection(DirectionEnum.UP);
             break;
         case UPLEFT:

@@ -32,7 +32,7 @@ public interface IView {
 
     /**
      * Tells to the board to remove this pawn
-     * 
+     *
      * @param pawn
      */
     public void removePawnFromBoard(IPawn pawn);
