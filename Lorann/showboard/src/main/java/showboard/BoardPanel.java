@@ -91,7 +91,7 @@ class BoardPanel extends JPanel implements Observer {
 		this.pawns = new ArrayList<>();
 		this.noImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 		final Graphics2D graphics = this.noImage.createGraphics();
-		graphics.setColor(Color.darkGray);
+		graphics.setColor(Color.white);
 		graphics.fillRect(0, 0, 2, 2);
 	}
 

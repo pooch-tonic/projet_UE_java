@@ -5,6 +5,7 @@ package modelInterfaces;
 
 import enums.Type;
 import showboard.IPawn;
+import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
@@ -32,7 +33,7 @@ public interface IEntity extends IPawn {
 
 	/**
 	 * returns the last direction taken.
-	 * 
+	 *
 	 * @return the last direction taken
 	 */
 	public IVector getLastDirection();
@@ -43,6 +44,13 @@ public interface IEntity extends IPawn {
 	 * @return the score value.
 	 */
 	int getScoreValue();
+
+	/**
+	 * returns the spriteset of the entity.
+	 *
+	 * @return a spriteset
+	 */
+	public ISpriteSet getSpriteSet();
 
 	/**
 	 * @return the type enumeration of the entity, which allows the controller to
