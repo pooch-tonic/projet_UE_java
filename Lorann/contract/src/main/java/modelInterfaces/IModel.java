@@ -66,8 +66,16 @@ public interface IModel {
     public void setPlayerDirection(DirectionEnum direction);
 
     public void castSpell();
+    
+    public IEntity getSpell();
 
     public void update();
 
     public IUnit getUnitOn(int x, int y);
+    
+    public ILevel getLevelSave();
+
+	public void setLevelSave(ILevel levelSave);
+	
+	public void resetLevel();
 }

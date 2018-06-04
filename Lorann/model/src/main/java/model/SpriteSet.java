@@ -59,8 +59,8 @@ public class SpriteSet implements ISpriteSet {
 		this.setMaxIndex(this.getnSprites() - 1);
 	}
 
-	/**
-	 * @return the current animation index of the SpriteSet
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#getCurrentIndex()
 	 */
 	@Override
 	public int getCurrentIndex() {
@@ -118,7 +118,6 @@ public class SpriteSet implements ISpriteSet {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see showboard.ISpriteSet#getSprites()
 	 */
 	@Override
@@ -159,9 +158,8 @@ public class SpriteSet implements ISpriteSet {
 		this.maxIndex = maxIndex;
 	}
 
-	/**
-	 * sets the next sprite by shifting the current index, with a modulo preventing
-	 * NullPointerException
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#setNextSprite()
 	 */
 	@Override
 	public void setNextSprite() {
@@ -199,7 +197,6 @@ public class SpriteSet implements ISpriteSet {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see showboard.ISpriteSet#setSprites(showboard.ISpriteSet)
 	 */
 	@Override

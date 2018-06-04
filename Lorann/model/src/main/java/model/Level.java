@@ -22,6 +22,7 @@ public class Level implements ILevel {
     private int                id;
     private IEntity            exit;
     private IEntity            player;
+    private IEntity			   spell;
 
     /**
      * Instantiates a new Level
@@ -215,4 +216,12 @@ public class Level implements ILevel {
     public IUnit getUnitOn(final int x, final int y) {
         return this.getUnits()[x][y];
     }
+
+	public IEntity getSpell() {
+		return spell;
+	}
+
+	public void setSpell(IEntity spell) {
+		this.spell = spell;
+	}
 }

@@ -1,5 +1,6 @@
 package model.behaviorStrategy;
 
+import model.factories.VectorFactory;
 import modelInterfaces.IBounceStrategy;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
@@ -13,7 +14,6 @@ public class DoNotBounce implements IBounceStrategy {
 	 */
 	@Override
 	public void bounce(final IEntity actor, final ILevel level) {
-		// nothing on purpose
+		actor.setDirection(VectorFactory.getMIDDLE());
 	}
-
 }

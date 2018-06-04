@@ -44,6 +44,8 @@ public class Door extends Entity {
     }
 
     /**
+     * Set door type between enemy if the door is closed or door_open
+     * 
      * @param closed
      */
     private void setDoorType(final boolean closed) {

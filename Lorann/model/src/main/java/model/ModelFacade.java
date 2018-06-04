@@ -20,6 +20,7 @@ import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
 import vector.IVector;
+import vector.Vector;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -29,7 +30,9 @@ import vector.IVector;
  */
 public final class ModelFacade extends Observable implements IModel {
     private ILevel level;
-    private Score  score;
+    private ILevel levelSave;
+
+	private Score  score;
 
     private final Dimension dimensionTemp; // TODO supprimer
 
@@ -231,6 +234,7 @@ public final class ModelFacade extends Observable implements IModel {
                 }
             }
         }
+        UnitFactory.setSpellSpriteSet(QueryDAO.getSpritePath(TypeEnum.SPELL));
         this.fillVoidSquares();
         this.update();
 
@@ -281,11 +285,35 @@ public final class ModelFacade extends Observable implements IModel {
 
     @Override
     public void castSpell() {
-        // TODO add a spell to the level
+        IEntity entity = UnitFactory.createSpell();
+        entity.setPosition(this.getPlayer().getPosition().getAddResult(new Vector(0,1)));
+        this.getLevel().addEntity(entity);
+        this.getLevel().setSpell(entity);
     }
+    
+    
 
     @Override
     public IUnit getUnitOn(final int x, final int y) {
         return this.getLevel().getUnitOn(x, y);
     }
+
+	@Override
+	public IEntity getSpell() {
+		return this.getLevel().getSpell();
+	}
+	
+	
+    public ILevel getLevelSave() {
+		return levelSave;
+	}
+
+	public void setLevelSave(ILevel levelSave) {
+		this.levelSave = levelSave;
+	}
+
+	@Override
+	public void resetLevel() {
+		this.setLevel(this.getLevelSave());
+	}
 }
