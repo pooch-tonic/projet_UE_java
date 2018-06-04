@@ -64,11 +64,16 @@ public class SpriteSet implements ISpriteSet {
 	 */
 	@Override
 	public int getCurrentIndex() {
-//		System.out.println(this.currentIndex + " calc : " + this.getSprites().size());
+		// System.out.println(this.currentIndex + " calc : " +
+		// this.getSprites().size());
 		return this.currentIndex;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * returns the sprite according to the current animation index, calls
+	 * getSpriteByIndex() method.
+	 *
+	 * @return the sprite of index currentIndex. Null if ArrayList is empty.
 	 * @see showboard.ISpriteSet#getCurrentSprite()
 	 */
 	@Override
@@ -76,7 +81,9 @@ public class SpriteSet implements ISpriteSet {
 		return this.getSpriteByIndex(this.getCurrentIndex());
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * @return the maximal value of the animation index, to prevent a
+	 *         NullPointerException
 	 * @see showboard.ISpriteSet#getMaxIndex()
 	 */
 	@Override
@@ -85,13 +92,18 @@ public class SpriteSet implements ISpriteSet {
 	}
 
 	/**
-	 * @return
+	 * @return the actual amount of sprites
 	 */
 	public int getnSprites() {
 		return this.nSprites;
 	}
 
-	/* (non-Javadoc)
+	/**
+	 * returns the sprite according to its index ; putting a higher value than the
+	 * maxIndex will return the first sprite of the ArrayList
+	 *
+	 * @param index
+	 * @return a sprite for the given index, null if ArrayList is empty.
 	 * @see showboard.ISpriteSet#getSpriteByIndex(int)
 	 */
 	@Override
@@ -104,7 +116,8 @@ public class SpriteSet implements ISpriteSet {
 
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see showboard.ISpriteSet#getSprites()
 	 */
 	@Override
@@ -112,7 +125,9 @@ public class SpriteSet implements ISpriteSet {
 		return this.sprites;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see showboard.ISpriteSet#resetIndex()
 	 */
 	@Override
@@ -122,12 +137,21 @@ public class SpriteSet implements ISpriteSet {
 
 	/**
 	 * @param currentIndex
+	 * @see showboard.ISpriteSet#setCurrentIndex(int)
 	 */
-	private void setCurrentIndex(final int currentIndex) {
-		this.currentIndex = currentIndex;
+	@Override
+	public void setCurrentIndex(final int currentIndex) {
+		if ((currentIndex <= this.maxIndex) && (currentIndex >= 0)) {
+			this.currentIndex = currentIndex;
+		} else {
+			this.currentIndex = 0;
+		}
+
 	}
 
 	/**
+	 * sets the maximum index of the ArrayList.
+	 * 
 	 * @param maxIndex
 	 */
 	private void setMaxIndex(final int maxIndex) {
@@ -143,14 +167,16 @@ public class SpriteSet implements ISpriteSet {
 	}
 
 	/**
+	 * sets the amount of sprites.
+	 * 
 	 * @param nSprites
 	 */
 	private void setnSprites(final int nSprites) {
 		this.nSprites = nSprites;
 	}
 
-
-	/* (non-Javadoc)
+	/**
+	 * @param sprites
 	 * @see showboard.ISpriteSet#setSprites(java.util.ArrayList)
 	 */
 	@Override
@@ -158,7 +184,9 @@ public class SpriteSet implements ISpriteSet {
 		this.sprites = sprites;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see showboard.ISpriteSet#setSprites(java.awt.image.BufferedImage)
 	 */
 	@Override
@@ -167,7 +195,8 @@ public class SpriteSet implements ISpriteSet {
 		this.getSprites().add(image);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see showboard.ISpriteSet#setSprites(showboard.ISpriteSet)
 	 */
 	@Override
