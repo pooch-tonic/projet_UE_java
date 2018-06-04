@@ -68,9 +68,10 @@ public class SpriteSet implements ISpriteSet {
 	}
 
 	/**
-	 * returns the sprite according to the current animation index
+	 * returns the sprite according to the current animation index, calls
+	 * getSpriteByIndex() method.
 	 *
-	 * @return
+	 * @return the sprite of index currentIndex. Null if ArrayList is empty.
 	 */
 	@Override
 	public BufferedImage getCurrentSprite() {
@@ -95,11 +96,16 @@ public class SpriteSet implements ISpriteSet {
 	 * maxIndex will return the first sprite of the ArrayList
 	 *
 	 * @param index
-	 * @return a spriteByIndex
+	 * @return a sprite for the given index, null if ArrayList is empty.
 	 */
 	@Override
 	public BufferedImage getSpriteByIndex(final int index) {
-		return this.getSprites().get(index);
+		if (!this.getSprites().isEmpty()) {
+			return this.getSprites().get(index);
+		} else {
+			return null;
+		}
+
 	}
 
 	/**
