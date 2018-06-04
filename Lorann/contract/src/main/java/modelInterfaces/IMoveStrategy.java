@@ -5,6 +5,6 @@ public interface IMoveStrategy {
 	/**
 	 * strategy pattern method for unit behavior on movement
 	 */
-	public void move();
+	public void move(final ILevel level);
 
 }
