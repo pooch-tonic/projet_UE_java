@@ -16,8 +16,6 @@ import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
 import showboard.IBoard;
-import vector.IVector;
-import vector.Vector;
 import viewInterfaces.IView;
 
 /**
@@ -302,17 +300,17 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
                 entity.bounce();
             } else {
                 // TODO change and use getAddResult
-                final IVector targetPosition = new Vector(entity.getPosition());
-                targetPosition.add(entity.getDirection());
-                target = this.getModel().getLevel().getEntityOn(targetPosition);
+                if ((target = this.getModel().getLevel().getEntityOn(
+                        entity.getPosition().getAddResult(entity.getDirection()))) != null) {
+                    this.performInteraction(entity, target, this.getInteractionManager()
+                            .getInteractionOnNextPositionBetween(entity, target));
+                }
 
-                this.performInteraction(entity, target, this.getInteractionManager()
-                        .getInteractionOnNextPositionBetween(entity, target));
             }
-            target = this.getModel().getLevel().getEntityOn(entity.getPosition());
-
-            this.performInteraction(entity, target, this.getInteractionManager()
-                    .getInteractionOnCurrentPositionBetween(entity, target));
+            if ((target = this.getModel().getLevel().getEntityOverlapping(entity)) != null) {
+                this.performInteraction(entity, target, this.getInteractionManager()
+                        .getInteractionOnCurrentPositionBetween(entity, target));
+            }
             entity.update();
         }
     }
