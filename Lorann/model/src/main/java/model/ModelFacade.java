@@ -30,6 +30,7 @@ import vector.Vector;
  * @version 1.0
  */
 public final class ModelFacade extends Observable implements IModel {
+
 	private ILevel level;
 
 	private int maxLevels;
@@ -271,6 +272,10 @@ public final class ModelFacade extends Observable implements IModel {
 		UnitFactory.setDeadSpriteSet(QueryDAO.getSpritePath(TypeEnum.DEAD));
 		this.fillVoidSquares();
 		this.update();
+    
+    for (final IEntity test : this.getLevel().getEntities()) {
+            test.bounce(this.getLevel());
+    }
 
 	}
 
