@@ -183,10 +183,6 @@ public final class ModelFacade extends Observable implements IModel {
 	public void loadLevel(final int levelId) throws SQLException {
 		final HashMap<String, ArrayList<IVector>> resultMap = QueryDAO.getUnitByMap(levelId);
 
-//		for (final Entry<String, ArrayList<IVector>> result : resultMap.entrySet()) {
-//			System.out.println(result.getKey() + " " + result.getValue());
-//		}
-
 		final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
 		this.setLevel(level);
 
@@ -196,11 +192,9 @@ public final class ModelFacade extends Observable implements IModel {
 
 		for (final Entry<String, ArrayList<IVector>> result : resultMap.entrySet()) {
 			key = result.getKey();
-			position = result.getValue();			
+			position = result.getValue();	
+			
 			for(IVector vector : position) {
-				
-				//System.out.println("key = " + key + "\t vector.x = " + vector.getX() + "\t vector.y = " + vector.getY());
-				
 				switch (key) {
 					case "WALL":
 							level.addUnit(
@@ -233,18 +227,7 @@ public final class ModelFacade extends Observable implements IModel {
 				}
 			}
 		}
-
-		// TODO a supprimer
-		/*
-		 * for (int x = 0; x < this.dimensionTemp.getWidth(); x++) { for (int y = 0; y <
-		 * this.dimensionTemp.getHeight(); y++) { System.out.println("x:" + x + "  y:" +
-		 * y + "  " + this.getLevel().getUnits()[x][y]); }
-		 *
-		 * }
-		 */
-
 		this.fillVoidSquares();
-		//System.out.println("filled !");
 		this.update();
 
 	}

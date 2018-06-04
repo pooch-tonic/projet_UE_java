@@ -105,7 +105,6 @@ public abstract class UnitFactory {
         }
 
         final ISpriteSet spriteSet = new SpriteSet(images);
-        System.out.println(type + " : " + spriteSet);
         switch (type) {
         case ENEMY_A:
             return createEnemy_Arrbarr(spriteSet);
@@ -144,13 +143,6 @@ public abstract class UnitFactory {
      */
     public static Key createKey_blue(final ISpriteSet spriteSet) {
         return keyFactory.createBlue(spriteSet);
-    }
-
-    /**
-     * @return a loot : apple (score value 50)
-     */
-    public static Loot createLoot_apple() {
-        return lootFactory.createApple();
     }
 
     /**

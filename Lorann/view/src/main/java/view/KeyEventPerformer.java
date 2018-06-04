@@ -59,7 +59,6 @@ class KeyEventPerformer implements IKeyEventPerformer {
     @Override
     public void performKeyReleasedEvent(final KeyEvent keyEvent) {
         this.setCurrentOrder(OrderEnum.NONE);
-        System.out.println(OrderEnum.NONE + " : " + this.currentOrder);
         this.orderStacker.stackOrder(OrderEnum.NONE);
     }
 
@@ -86,7 +85,6 @@ class KeyEventPerformer implements IKeyEventPerformer {
         switch (keyCode) {
         case KeyEvent.VK_UP:
             order = OrderEnum.UP;
-            System.out.println("UP PRESSED");
             ;
             break;
         case KeyEvent.VK_DOWN:
