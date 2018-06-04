@@ -278,4 +278,14 @@ public final class ModelFacade extends Observable implements IModel {
         this.setChanged();
         this.notifyObservers();
     }
+
+    @Override
+    public void castSpell() {
+        // TODO add a spell to the level
+    }
+
+    @Override
+    public IUnit getUnitOn(final int x, final int y) {
+        return this.getLevel().getUnitOn(x, y);
+    }
 }

@@ -16,54 +16,58 @@ import enums.DirectionEnum;
  */
 public interface IModel {
 
-	/**
-	 * Adds a score value to the current score value
-	 *
-	 * @param value
-	 */
-	void addToScore(final int value);
+    /**
+     * Adds a score value to the current score value
+     *
+     * @param value
+     */
+    void addToScore(final int value);
 
-	public void destroyEntity(IEntity entity);
+    public void destroyEntity(IEntity entity);
 
-	public IEntity getExit();
+    public IEntity getExit();
 
-	/**
-	 * Gets a level
-	 *
-	 * @return a level
-	 */
-	public ILevel getLevel();
+    /**
+     * Gets a level
+     *
+     * @return a level
+     */
+    public ILevel getLevel();
 
-	/**
-	 * Gets the map.
-	 *
-	 * @param mapId
-	 *            the id of the map
-	 * @return the unit by position
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	Dimension getMap(int mapId) throws SQLException;
+    /**
+     * Gets the map.
+     *
+     * @param mapId
+     *            the id of the map
+     * @return the unit by position
+     * @throws SQLException
+     *             the SQL exception
+     */
+    Dimension getMap(int mapId) throws SQLException;
 
-	public IEntity getPlayer();
+    public IEntity getPlayer();
 
-	/**
-	 * @param levelId
-	 * @throws SQLException
-	 */
-	void loadLevel(int levelId) throws SQLException;
+    /**
+     * @param levelId
+     * @throws SQLException
+     */
+    void loadLevel(int levelId) throws SQLException;
 
-	/**
-	 *
-	 */
-	void resetScore();
+    /**
+     *
+     */
+    void resetScore();
 
-	/**
-	 *
-	 *
-	 * @param direction
-	 */
-	public void setPlayerDirection(DirectionEnum direction);
+    /**
+     *
+     *
+     * @param direction
+     */
+    public void setPlayerDirection(DirectionEnum direction);
 
-	public void update();
+    public void castSpell();
+
+    public void update();
+
+    public IUnit getUnitOn(int x, int y);
 }

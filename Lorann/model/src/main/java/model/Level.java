@@ -210,4 +210,9 @@ public class Level implements ILevel {
         }
         return result;
     }
+
+    @Override
+    public IUnit getUnitOn(final int x, final int y) {
+        return this.getUnits()[x][y];
+    }
 }

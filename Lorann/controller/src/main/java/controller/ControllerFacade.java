@@ -67,7 +67,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     public void start() throws SQLException {
         this.nextlevel();
-        this.nextlevel();
     }
 
     /*
@@ -77,15 +76,41 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public TimerTask update() {
-        this.getModel().update();
-        this.getModel().getPlayer().update();
-        // if (!this.getStackOrder().isEmpty()) {
-        // this.performOrder();
-        // }
-        // this.updateEntities();
-        // this.setStackOrder(new ArrayList<>());
+        // this.getModel().update();
+        // this.getModel().getPlayer().update();
+
+        if (!this.getStackOrder().isEmpty()) {
+            this.performOrder();
+        }
+        this.updateEntities();
+        this.setStackOrder(new ArrayList<>());
         return null;
 
+    }
+
+    /**
+     * Update the entities of the model
+     */
+    private void updateEntities() {
+        for (final IEntity entity : this.getModel().getLevel().getEntities()) {
+            IEntity target;
+            if (this.getNextTile(entity) != null) {
+                entity.bounce(this.getModel().getLevel());
+            } else {
+                // TODO change and use getAddResult
+                if ((target = this.getModel().getLevel().getEntityOn(
+                        entity.getPosition().getAddResult(entity.getDirection()))) != null) {
+                    this.performInteraction(entity, target, this.getInteractionManager()
+                            .getInteractionOnNextPositionBetween(entity, target));
+                }
+
+            }
+            if ((target = this.getModel().getLevel().getEntityOverlapping(entity)) != null) {
+                this.performInteraction(entity, target, this.getInteractionManager()
+                        .getInteractionOnCurrentPositionBetween(entity, target));
+            }
+            entity.update();
+        }
     }
 
     /**
@@ -119,8 +144,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     }
 
     private IUnit getNextTile(final IEntity entity) {
-        return this.getModel().getLevel().getUnits()[entity.getX()
-                + entity.getDirection().getX()][entity.getY() + entity.getDirection().getY()];
+        System.out.println(entity + " : " + entity.getDirection());
+        return this.getModel().getUnitOn(entity.getX() + entity.getDirection().getX(),
+                entity.getY() + entity.getDirection().getY());
     }
 
     /**
@@ -292,31 +318,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     public void stackOrder(final OrderEnum order) {
         // TODO Auto-generated method stub
         this.getStackOrder().add(order);
-    }
-
-    /**
-     * Update the entities of the model
-     */
-    private void updateEntities() {
-        for (final IEntity entity : this.getModel().getLevel().getEntities()) {
-            IEntity target;
-            if (this.getNextTile(entity) != null) {
-                entity.bounce(this.getModel().getLevel());
-            } else {
-                // TODO change and use getAddResult
-                if ((target = this.getModel().getLevel().getEntityOn(
-                        entity.getPosition().getAddResult(entity.getDirection()))) != null) {
-                    this.performInteraction(entity, target, this.getInteractionManager()
-                            .getInteractionOnNextPositionBetween(entity, target));
-                }
-
-            }
-            if ((target = this.getModel().getLevel().getEntityOverlapping(entity)) != null) {
-                this.performInteraction(entity, target, this.getInteractionManager()
-                        .getInteractionOnCurrentPositionBetween(entity, target));
-            }
-            entity.update();
-        }
     }
 
 }
