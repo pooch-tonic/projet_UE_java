@@ -333,7 +333,11 @@ public final class ModelFacade extends Observable implements IModel {
      */
     @Override
     public void setMaxLevels() {
-        // TODO lire dans la bdd
-        this.maxLevels = 5;
+        try {
+			this.maxLevels = QueryDAO.getMapNumber();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

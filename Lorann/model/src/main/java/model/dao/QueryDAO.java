@@ -37,6 +37,9 @@ public abstract class QueryDAO extends AbstractDAO {
     /** The sql Map Dimensions. */
     private static String sqlMap = "{call getMap(?)}";
 
+    /** The sql Map Number. */
+    private static String sqlMapNumber = "{call getMapNumber()}";
+    
     /**
      * Gets the map.
      *
@@ -165,5 +168,24 @@ public abstract class QueryDAO extends AbstractDAO {
         }
         result.close();
         return resultUnit;
+    }
+    
+    /**
+     * Gets the number of map.
+     *
+     * @return the number of map
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public static int getMapNumber() throws SQLException {
+        final CallableStatement callStatement = prepareCall(sqlUnitByType);
+        int resultNumber = 0;
+        ResultSet result = null;
+        if (callStatement.execute()) {
+            result = callStatement.getResultSet();
+            resultNumber = result.getInt(0);
+        }
+        result.close();
+        return resultNumber;
     }
 }
