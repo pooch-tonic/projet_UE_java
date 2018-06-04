@@ -77,7 +77,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     public void start() throws SQLException {
         this.getModel().setMaxLevels();
-        this.loadLevel(2);
+        this.nextLevel();
     }
 
     /*
@@ -129,9 +129,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         IEntity entity, target;
         while (this.getEntityIterator().hasNext()) {
             entity = this.getEntityIterator().next();
-            // }
-            // for (final IEntity entity : this.getModel().getLevel().getEntities()) {
             if (this.getNextTile(entity).getType() == Type.WALL) {
+                System.out.println("1");
                 entity.bounce(this.getModel().getLevel());
             } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
                 // TODO change and use getAddResult
@@ -139,8 +138,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
                         entity.getPosition().getAddResult(entity.getDirection()))) != null) {
                     this.performInteraction(entity, target, this.getInteractionManager()
                             .getInteractionOnNextPositionBetween(entity, target));
-                    System.out.println(entity.getDirection().getX() + " : "
-                            + entity.getDirection().getY() + " : " + entity);
                 }
 
             }
@@ -223,10 +220,10 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     /*
      * (non-Javadoc)
      *
-     * @see controllerInterfaces.IController#nextlevel(int)
+     * @see controllerInterfaces.IController#nextLevel()
      */
     @Override
-    public void nextlevel() {
+    public void nextLevel() {
         if (!this.gameIsOver()) {
             this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
         } else {
@@ -235,6 +232,12 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#resetLevel()
+     */
+    @Override
     public void resetLevel() {
         this.getLevelLoader().resetLevel(this.getModel(), this.getView());
     }
@@ -265,7 +268,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             break;
         case QUIT_LEVEL:
             entity.bounce(this.getModel().getLevel());
-            this.nextlevel();
+            this.nextLevel();
             break;
         default:
             break;
@@ -279,7 +282,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void performOrder() {
-        // TODO Auto-generated method stub
         OrderEnum order = OrderEnum.NONE;
 
         order = this.getStackOrder().get(this.getStackOrder().size() - 1);
@@ -330,7 +332,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void setBoard(final IBoard board) {
-        // TODO Auto-generated method stub
         this.board = board;
     }
 
@@ -373,7 +374,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void stackOrder(final OrderEnum order) {
-        // TODO Auto-generated method stub
         this.getStackOrder().add(order);
     }
 
@@ -443,7 +443,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         try {
             this.getView().displayMessage("You reached the last level !\n Well Played !");
         } catch (final Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         System.exit(0);
