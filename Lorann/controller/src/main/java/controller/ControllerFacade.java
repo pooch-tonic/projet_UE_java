@@ -67,7 +67,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.nextlevel();
+    	this.loadLevel(2);
+        //this.nextlevel();
     }
 
     /*
