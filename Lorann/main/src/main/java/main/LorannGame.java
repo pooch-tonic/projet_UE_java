@@ -5,6 +5,7 @@ package main;
 
 import java.awt.Dimension;
 import java.sql.SQLException;
+import java.util.Timer;
 
 import controller.ControllerFacade;
 import model.ModelFacade;
@@ -60,9 +61,10 @@ public class LorannGame {
     }
 
     public void play() {
+		Timer timer = new Timer();
         // TODO ENLEVER CETTE BOUCLE
         while (true) {
-            this.controller.update();
+			this.controller.update();
         }
     }
 

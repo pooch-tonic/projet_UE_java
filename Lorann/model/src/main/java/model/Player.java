@@ -30,5 +30,11 @@ public class Player extends Entity implements IPlayer {
 	public Player(final IVector position) {
 		super(position, Type.PLAYER);
 	}
+	
+	@Override
+	public void update() {
+		super.update();
+		this.getSpriteSet().setNextSprite();
+	}
 
 }

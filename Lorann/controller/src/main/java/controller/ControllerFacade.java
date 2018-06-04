@@ -5,6 +5,7 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderPerformer;
@@ -65,8 +66,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *             the SQL exception
      */
     public void start() throws SQLException {
-    	this.loadLevel(2);
-        //this.nextlevel();
+        this.nextlevel();
+        this.nextlevel();
     }
 
     /*
@@ -75,13 +76,15 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      * @see controllerInterfaces.IController#update()
      */
     @Override
-    public void update() {
-
+    public TimerTask update() {
+    	this.getModel().update();
+    	this.getModel().getPlayer().update();
 //        if (!this.getStackOrder().isEmpty()) {
 //            this.performOrder();
 //        }
 //        this.updateEntities();
 //        this.setStackOrder(new ArrayList<>());
+		return null;
 
     }
 

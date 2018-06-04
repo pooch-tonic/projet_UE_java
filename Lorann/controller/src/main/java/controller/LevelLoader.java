@@ -30,6 +30,7 @@ public class LevelLoader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		view.removeAllPawnsFromBoard();
 		final ISquare[][] squares = model.getLevel().getUnits();
 		for (int x = 0; x < squares.length; x++) {
 			for (int y = 0; y < squares[0].length; y++) {
