@@ -99,15 +99,12 @@ public abstract class UnitFactory {
 
     // TODO UTILISER IMAGELOADER
     public static IEntity createEntity(final TypeEnum type, final ArrayList<String> spritePath) {
-    	System.out.println(type + " " + spritePath);
         final ArrayList<BufferedImage> images = new ArrayList<>();
         for (final String path : spritePath) {
             images.add(ImageLoader.getImageByPath(path));
         }
 
         final ISpriteSet spriteSet = new SpriteSet(images);
-        System.out.println(type + " " + spriteSet);
-        
         
         switch (type) {
         case ENEMY_A:
