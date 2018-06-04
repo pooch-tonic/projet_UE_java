@@ -89,6 +89,12 @@ public interface ILevel {
     public IEntity getEntityOn(final IVector position);
 
     /**
+     * @param entity
+     * @return the entity overlapping this one.
+     */
+    public IEntity getEntityOverlapping(IEntity entity);
+
+    /**
      * Gets the player
      *
      * @return the player
