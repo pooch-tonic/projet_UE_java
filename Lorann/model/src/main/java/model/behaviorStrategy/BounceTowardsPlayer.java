@@ -3,7 +3,6 @@ package model.behaviorStrategy;
 import modelInterfaces.IBounceStrategy;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
-import vector.IVector;
 
 public class BounceTowardsPlayer implements IBounceStrategy {
 
@@ -14,9 +13,9 @@ public class BounceTowardsPlayer implements IBounceStrategy {
 	 */
 	@Override
 	public void bounce(final IEntity actor, final ILevel level) {
-		IVector playerPosition = level.getPlayer().getPosition();
+		level.getPlayer().getPosition();
 
-		IVector entityPosition = level.
+		actor.getPosition();
 	}
 
 }

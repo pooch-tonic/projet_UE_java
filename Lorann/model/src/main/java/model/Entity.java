@@ -12,6 +12,7 @@ import enums.TypeEnum;
 import modelInterfaces.IBounceStrategy;
 import modelInterfaces.IDodgeStrategy;
 import modelInterfaces.IEntity;
+import modelInterfaces.ILevel;
 import modelInterfaces.IMoveStrategy;
 import showboard.ISpriteSet;
 import vector.IVector;
@@ -76,13 +77,13 @@ public abstract class Entity extends Unit implements IEntity {
 	 */
 
 	@Override
-	public void bounce() {
-		this.getBounceStrategy().bounce();
+	public void bounce(final ILevel level) {
+		this.getBounceStrategy().bounce(this, level);
 	}
 
 	@Override
-	public void dodge() {
-		this.getDodgeStrategy().dodge();
+	public void dodge(final ILevel level) {
+		this.getDodgeStrategy().dodge(this, level);
 	}
 
 	/**
