@@ -87,14 +87,16 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     private void updateEntities() {
         for (final IEntity entity : this.getModel().getLevel().getEntities()) {
             IEntity target;
-            if (this.getNextTile(entity) != null) {
+            if (this.getNextTile(entity).getType() == Type.WALL) {
                 entity.bounce(this.getModel().getLevel());
-            } else {
+            } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
                 // TODO change and use getAddResult
                 if ((target = this.getModel().getLevel().getEntityOn(
                         entity.getPosition().getAddResult(entity.getDirection()))) != null) {
                     this.performInteraction(entity, target, this.getInteractionManager()
                             .getInteractionOnNextPositionBetween(entity, target));
+                    System.out.println(entity.getDirection().getX() + " : "
+                            + entity.getDirection().getY() + " : " + entity);
                 }
 
             }
@@ -181,7 +183,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private synchronized void performInteraction(final IEntity entity, final IEntity target,
             final Interaction interaction) {
-        System.out.println(entity + " : " + target);
+        System.out.println(entity + " : " + interaction);
         switch (interaction) {
         case ENTITY_DESTROYED:
             this.getModel().destroyEntity(entity);
