@@ -1,6 +1,7 @@
 package model.behaviorStrategy;
 
 import modelInterfaces.IBounceStrategy;
+import modelInterfaces.ILevel;
 
 public class BounceOpposite implements IBounceStrategy {
 
@@ -10,8 +11,8 @@ public class BounceOpposite implements IBounceStrategy {
 	 * @see modelInterfaces.IBounceStrategy#bounce()
 	 */
 	@Override
-	public void bounce() {
-
+	public void bounce(final ILevel level) {
+		
 	}
 
 }
