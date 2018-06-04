@@ -25,7 +25,7 @@ public class SpriteSet implements ISpriteSet {
 	 */
 	public SpriteSet() {
 		this.setSprites(new ArrayList<BufferedImage>());
-		this.getSprites().add(new BufferedImage(0, 0, 0)); // TODO default image required
+		this.getSprites().add(new BufferedImage(1, 1, 1)); // TODO default image required
 		this.configure();
 	}
 
@@ -54,6 +54,7 @@ public class SpriteSet implements ISpriteSet {
 	 * configures the maxIndex and nSprites values to fit the SpriteSet ArrayList.
 	 */
 	private void configure() {
+		this.setCurrentIndex(0);
 		this.setnSprites(this.getSprites().size());
 		this.setMaxIndex(this.getnSprites() - 1);
 	}

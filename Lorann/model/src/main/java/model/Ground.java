@@ -9,13 +9,12 @@ public class Ground extends Unit {
 	 * Default constructor : instantiates a new Wall.
 	 */
 	public Ground() {
-		super(Type.GROUND);
-		// this.setSpriteSet(); TODO finir ça
-		this.setType(Type.GROUND);
+		super(new SpriteSet(), Type.GROUND);
+		this.getSpriteSet().getSprites().add(null);
 	}
 
 	/**
-	 * A constructor based on a position vector.
+	 * A constructor based on a position vector.tt
 	 *
 	 * @param position
 	 */

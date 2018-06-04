@@ -16,6 +16,7 @@ import model.factories.UnitFactory;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
+import modelInterfaces.IUnit;
 import vector.IVector;
 
 /**
@@ -28,11 +29,18 @@ public final class ModelFacade extends Observable implements IModel {
 	private ILevel level;
 	private Score score;
 
+	private Dimension dimensionTemp; // TODO supprimer
+
 	/**
 	 * Instantiates a new model facade.
 	 */
-	public ModelFacade() {
+	public ModelFacade(final Dimension dimension) {
 		super();
+		// Creates a ground-only level
+		this.level = new Level(0, dimension);
+		this.dimensionTemp = dimension; // TODO supprimer
+
+		this.fillVoidSquares();
 		this.setScore(new Score());
 	}
 
@@ -50,6 +58,19 @@ public final class ModelFacade extends Observable implements IModel {
 	public void destroyEntity(final IEntity entity) {
 		this.addToScore(entity.getScoreValue());
 		this.getLevel().removeEntityFromLevel(entity);
+	}
+
+	private void fillVoidSquares() {
+		IUnit[][] units = this.getLevel().getUnits();
+
+		// TODO vérifier que x et y ne sont jamais inversés.
+		for (int x = 0; x < units.length; x++) {
+			for (int y = 0; y < units[0].length; y++) {
+				if (units[x][y] == null) {
+					this.getLevel().addUnit(new Ground(), x, y);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -160,7 +181,13 @@ public final class ModelFacade extends Observable implements IModel {
 	@Override
 	public void loadLevel(final int levelId) throws SQLException {
 		final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
+
+		for (final HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
+			System.out.println(result.getKey() + " " + result.getValue());
+		}
+
 		final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
+		this.setLevel(level);
 
 		String key;
 		IVector position;
@@ -200,7 +227,20 @@ public final class ModelFacade extends Observable implements IModel {
 				break;
 			}
 		}
-		this.setLevel(level);
+
+		// TODO a supprimer
+		/*
+		 * for (int x = 0; x < this.dimensionTemp.getWidth(); x++) { for (int y = 0; y <
+		 * this.dimensionTemp.getHeight(); y++) { System.out.println("x:" + x + "  y:" +
+		 * y + "  " + this.getLevel().getUnits()[x][y]); }
+		 *
+		 * }
+		 */
+
+		this.fillVoidSquares();
+		System.out.println("filled !");
+		this.update();
+
 	}
 
 	/*
@@ -210,9 +250,7 @@ public final class ModelFacade extends Observable implements IModel {
 	 */
 	@Override
 	public void resetScore() {
-		// TODO Auto-generated method stub
-		this.setChanged();
-		this.notifyObservers();
+		this.getScore().resetScoreValue();
 	}
 
 	/**
@@ -240,5 +278,11 @@ public final class ModelFacade extends Observable implements IModel {
 	 */
 	private void setScore(final Score score) {
 		this.score = score;
+	}
+
+	@Override
+	public void update() {
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

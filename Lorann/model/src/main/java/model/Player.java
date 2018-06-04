@@ -19,9 +19,7 @@ public class Player extends Entity implements IPlayer {
 	 *
 	 */
 	public Player(final ISpriteSet spriteSet) {
-		super(Type.PLAYER);
-		super.setSpriteSet(spriteSet);
-		// TODO Auto-generated constructor stub
+		super(Type.PLAYER, spriteSet);
 	}
 
 	/**

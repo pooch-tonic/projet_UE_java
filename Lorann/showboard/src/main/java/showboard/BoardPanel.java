@@ -390,7 +390,7 @@ class BoardPanel extends JPanel implements Observer {
 
 		for (int x = this.getCornerMinX(); x <= this.getCornerMaxX(); x++) {
 			for (int y = this.getCornerMinY(); y <= this.getCornerMaxY(); y++) {
-				// this.drawSquareXY(graphics, x, y);
+				this.drawSquareXY(graphics, x, y);
 				this.drawPawnsXY(graphics, mapPawn, x, y);
 			}
 		}

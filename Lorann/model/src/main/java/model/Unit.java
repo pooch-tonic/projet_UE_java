@@ -22,21 +22,19 @@ import vector.Vector;
  *
  */
 public class Unit implements IUnit {
-	private IVector position;
-	private ISpriteSet spriteSet;
-	private Type type;
+	final static int SIZE = 32;
 
 	/**
-	 * Instantiates a new Unit
-	 * @param type 
-	 * @param spriteSet 
-	 *
+	 * @return the size of the unit, also applies to the sprite size.
 	 */
-	public Unit(Type type, ISpriteSet spriteSet) {
-		this.setPosition(null);
-		this.setSpriteSet(spriteSet);
-		this.setType(type);
+	public static int getSize() {
+		return SIZE;
 	}
+
+	private IVector position;
+	private ISpriteSet spriteSet;
+
+	private Type type;
 
 	/**
 	 * Instantiates a new Unit
@@ -46,6 +44,7 @@ public class Unit implements IUnit {
 	 */
 	public Unit(final ISpriteSet spriteSet, final Type type) {
 		this.setPosition(null);
+		this.spriteSet = new SpriteSet();
 		this.setSpriteSet(spriteSet);
 		this.setType(type);
 	}
@@ -70,6 +69,7 @@ public class Unit implements IUnit {
 	 * @param type
 	 */
 	public Unit(final IVector position, final Type type) {
+		this.spriteSet = new SpriteSet();
 		this.setPosition(position);
 		this.setSpriteSet(new ArrayList<BufferedImage>());
 		this.setType(type);
@@ -81,8 +81,23 @@ public class Unit implements IUnit {
 	 * @param type
 	 */
 	public Unit(final Type type) {
+		this.spriteSet = new SpriteSet();
 		this.setPosition(new Vector(0, 0));
 		this.setSpriteSet(new ArrayList<BufferedImage>());
+		this.setType(type);
+	}
+
+	/**
+	 * Instantiates a new Unit
+	 *
+	 * @param type
+	 * @param spriteSet
+	 *
+	 */
+	public Unit(final Type type, final ISpriteSet spriteSet) {
+		this.spriteSet = new SpriteSet();
+		this.setPosition(null);
+		this.setSpriteSet(new SpriteSet(spriteSet.getSprites()));
 		this.setType(type);
 	}
 

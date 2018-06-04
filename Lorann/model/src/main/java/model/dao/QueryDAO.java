@@ -36,7 +36,7 @@ public abstract class QueryDAO extends AbstractDAO {
 
 	/**
 	 * Gets the map.
-	 * 
+	 *
 	 * @param mapId
 	 *            the id of the map
 	 * @return the Dimension of the map
@@ -49,7 +49,7 @@ public abstract class QueryDAO extends AbstractDAO {
 		callStatement.setInt(1, mapId);
 		if (callStatement.execute()) {
 			result = callStatement.getResultSet();
-			if(result.next()) {
+			if (result.next()) {
 				return new Dimension(result.getInt(2), result.getInt(3));
 			}
 		}
@@ -77,7 +77,8 @@ public abstract class QueryDAO extends AbstractDAO {
 			}
 			result.close();
 		}
-		System.out.println(resultString.get(0));
+		// TODO a supprimer
+		// System.out.println(resultString.get(0));
 		return resultString;
 	}
 
