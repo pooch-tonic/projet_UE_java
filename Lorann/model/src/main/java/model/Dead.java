@@ -4,6 +4,9 @@
 package model;
 
 import enums.Type;
+import model.behaviorStrategy.DoNotBounce;
+import model.behaviorStrategy.DoNotDodge;
+import model.behaviorStrategy.DoNotMove;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -13,29 +16,32 @@ import vector.IVector;
  */
 public class Dead extends Entity {
 
-	/**
-	 * Instantiates a new Dead entity.
-	 */
-	public Dead() {
-		super(Type.DEAD);
-	}
+    /**
+     * Instantiates a new Dead entity.
+     */
+    public Dead() {
+        super(Type.DEAD);
+        this.setBounceStrategy(new DoNotBounce());
+        this.setDodgeStrategy(new DoNotDodge());
+        this.setMoveStrategy(new DoNotMove());
+    }
 
-	/**
-	 * Instantiates a new Dead entity.
-	 * 
-	 * @param spriteSet
-	 */
-	public Dead(final ISpriteSet spriteSet) {
-		super(Type.DEAD, spriteSet);
-	}
+    /**
+     * Instantiates a new Dead entity.
+     *
+     * @param spriteSet
+     */
+    public Dead(final ISpriteSet spriteSet) {
+        super(Type.DEAD, spriteSet);
+    }
 
-	/**
-	 * Instantiates a new Dead entity.
-	 *
-	 * @param position
-	 */
-	public Dead(final IVector position) {
-		super(position, Type.DEAD);
-	}
+    /**
+     * Instantiates a new Dead entity.
+     *
+     * @param position
+     */
+    public Dead(final IVector position) {
+        super(position, Type.DEAD);
+    }
 
 }
