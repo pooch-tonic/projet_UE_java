@@ -15,63 +15,77 @@ import vector.IVector;
  *
  */
 public interface IEntity extends IPawn {
-    /**
-     * calls the bounce() method from the IBounceStrategy object.
-     */
-    public void bounce(final ILevel level);
+	/**
+	 * calls the bounce() method from the IBounceStrategy object.
+	 */
+	public void bounce(final ILevel level);
 
-    /**
-     * calls the dodge() method from the IDodgeStrategy object.
-     */
-    public void dodge(final ILevel level);
+	/**
+	 * calls the dodge() method from the IDodgeStrategy object.
+	 */
+	public void dodge(final ILevel level);
 
-    /**
-     * @return the direction vector of the entity.
-     */
-    public IVector getDirection();
+	/**
+	 * @return the direction vector of the entity.
+	 */
+	public IVector getDirection();
 
-    /**
-     * returns the score value of the entity.
-     *
-     * @return the score value.
-     */
-    int getScoreValue();
+	/**
+	 * returns the last direction taken.
+	 * 
+	 * @return the last direction taken
+	 */
+	public IVector getLastDirection();
 
-    /**
-     * @return the type enumeration of the entity, which allows the controller to
-     *         identify it.
-     */
-    public Type getType();
+	/**
+	 * returns the score value of the entity.
+	 *
+	 * @return the score value.
+	 */
+	int getScoreValue();
 
-    /**
-     * calls the move() method from the IMoveStrategy object.
-     */
-    public void move();
+	/**
+	 * @return the type enumeration of the entity, which allows the controller to
+	 *         identify it.
+	 */
+	public Type getType();
 
-    /**
-     * sets the direction vector of the entity.
-     *
-     * @param direction
-     */
-    void setDirection(IVector direction);
+	/**
+	 * calls the move() method from the IMoveStrategy object.
+	 */
+	public void move();
 
-    /**
-     * sets the position vector pf the entity.
-     *
-     * @param position
-     */
-    void setPosition(final IVector position);
+	/**
+	 * sets the direction vector of the entity.
+	 *
+	 * @param direction
+	 */
+	void setDirection(IVector direction);
 
-    /**
-     * sets the type enumeration of the entity.
-     *
-     * @param type
-     */
-    void setType(Type type);
+	/**
+	 * Sets the last direction taken.
+	 *
+	 * @param lastDirection
+	 */
+	public void setLastDirection(final IVector lastDirection);
 
-    /**
-     * contains all the actions to be executed for a full update of the entity.
-     */
-    void update();
+	/**
+	 * sets the position vector pf the entity.
+	 *
+	 * @param position
+	 */
+	void setPosition(final IVector position);
+
+	/**
+	 * sets the type enumeration of the entity.
+	 *
+	 * @param type
+	 */
+	void setType(Type type);
+
+	/**
+	 * contains all the actions to be executed for a full update of the entity.
+	 */
+	void update();
 
 }
