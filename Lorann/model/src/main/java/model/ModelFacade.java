@@ -358,4 +358,5 @@ public final class ModelFacade extends Observable implements IModel {
 		this.setChanged();
 		this.notifyObservers();
 	}
+
 }

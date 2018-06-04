@@ -112,4 +112,5 @@ public interface IModel {
 	 * updates the attributes of the entity.
 	 */
 	public void update();
+
 }

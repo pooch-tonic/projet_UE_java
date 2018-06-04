@@ -453,4 +453,5 @@ class BoardPanel extends JPanel implements Observer {
 	public final void update(final Observable observable, final Object object) {
 		this.repaint();
 	}
+  
 }
