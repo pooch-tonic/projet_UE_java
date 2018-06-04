@@ -17,31 +17,35 @@ import vector.Vector;
  *
  */
 public class Player extends Entity implements IPlayer {
-	/**
-	 * Instantiates a new Player
-	 *
-	 */
-	public Player(final ISpriteSet spriteSet) {
-		super(Type.PLAYER, spriteSet);
-		this.setLastDirection(new Vector(0, 0));
-		this.setBounceStrategy(new DoNotBounce());
-		this.setDodgeStrategy(new DoNotDodge());
-		this.setMoveStrategy(new MoveSimple());
-	}
+    public static int SCORE = 0;
 
-	/**
-	 * Instantiates a new Player
-	 *
-	 * @param position
-	 */
-	public Player(final IVector position) {
-		super(position, Type.PLAYER);
-	}
+    /**
+     * Instantiates a new Player
+     *
+     */
+    public Player(final ISpriteSet spriteSet) {
+        super(Type.PLAYER, spriteSet);
+        this.setLastDirection(new Vector(0, 0));
+        this.setBounceStrategy(new DoNotBounce());
+        this.setDodgeStrategy(new DoNotDodge());
+        this.setMoveStrategy(new MoveSimple());
+        this.setScoreValue(SCORE);
+    }
 
-	@Override
-	public void update() {
-		super.update();
-		this.getSpriteSet().setNextSprite();
-	}
+    /**
+     * Instantiates a new Player
+     *
+     * @param position
+     */
+    public Player(final IVector position) {
+        super(position, Type.PLAYER);
+        this.setScoreValue(SCORE);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        this.getSpriteSet().setNextSprite();
+    }
 
 }

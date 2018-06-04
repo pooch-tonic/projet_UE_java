@@ -36,7 +36,7 @@ public class ViewFacade implements IView, Runnable {
 
     /**
      * Instantiates a new ViewFacade
-     * 
+     *
      * @param controller
      * @param orderStacker
      * @param observable

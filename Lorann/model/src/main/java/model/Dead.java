@@ -15,6 +15,7 @@ import vector.IVector;
  *
  */
 public class Dead extends Entity {
+    public static int SCORE = 0;
 
     /**
      * Instantiates a new Dead entity.
@@ -24,6 +25,7 @@ public class Dead extends Entity {
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -33,6 +35,7 @@ public class Dead extends Entity {
      */
     public Dead(final ISpriteSet spriteSet) {
         super(Type.DEAD, spriteSet);
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -42,6 +45,7 @@ public class Dead extends Entity {
      */
     public Dead(final IVector position) {
         super(position, Type.DEAD);
+        this.setScoreValue(SCORE);
     }
 
 }

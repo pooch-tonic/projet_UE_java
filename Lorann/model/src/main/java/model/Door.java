@@ -15,6 +15,7 @@ import vector.IVector;
  *
  */
 public class Door extends Entity {
+    public static int SCORE = 0;
 
     /**
      * Instantiates a new Door
@@ -26,6 +27,7 @@ public class Door extends Entity {
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -37,6 +39,7 @@ public class Door extends Entity {
     public Door(final IVector position, final Type type) {
         super(type);
         super.setPosition(position);
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -52,6 +55,5 @@ public class Door extends Entity {
             this.getSpriteSet().setNextSprite();
         }
     }
-    
-    
+
 }

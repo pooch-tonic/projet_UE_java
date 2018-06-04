@@ -441,7 +441,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private void closeGame() {
         try {
-            this.getView().displayMessage("You reached the last level !\n Well Played !");
+            this.getView().displayMessage("You reached the last level !\n Your score is : "
+                    + this.getModel().getScore().getScoreValue());
         } catch (final Exception e) {
             e.printStackTrace();
         }

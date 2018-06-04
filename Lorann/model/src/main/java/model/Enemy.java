@@ -16,6 +16,7 @@ import vector.IVector;
  *
  */
 public class Enemy extends Entity {
+    public static int SCORE = 100;
 
     /**
      * Instantiates a new Enemy
@@ -26,6 +27,7 @@ public class Enemy extends Entity {
         super(Type.ENEMY, spriteSet);
         this.setType(Type.ENEMY);
         this.setEnemyStrategies(enemyName);
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -38,7 +40,7 @@ public class Enemy extends Entity {
         super(Type.ENEMY);
         // this.setEnemyType(enemyName);
         super.setPosition(position);
-        // TODO Auto-generated constructor stub
+        this.setScoreValue(SCORE);
     }
 
     /**
