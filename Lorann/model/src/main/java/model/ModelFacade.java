@@ -29,11 +29,18 @@ public final class ModelFacade extends Observable implements IModel {
 	private ILevel level;
 	private Score score;
 
+	private Dimension dimensionTemp; // TODO supprimer
+
 	/**
 	 * Instantiates a new model facade.
 	 */
-	public ModelFacade() {
+	public ModelFacade(final Dimension dimension) {
 		super();
+		// Creates a ground-only level
+		this.level = new Level(0, dimension);
+		this.dimensionTemp = dimension; // TODO supprimer
+
+		this.fillVoidSquares();
 		this.setScore(new Score());
 	}
 
@@ -174,6 +181,11 @@ public final class ModelFacade extends Observable implements IModel {
 	@Override
 	public void loadLevel(final int levelId) throws SQLException {
 		final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
+
+		for (final HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
+			System.out.println(result.getKey() + " " + result.getValue());
+		}
+
 		final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
 		this.setLevel(level);
 
@@ -216,8 +228,18 @@ public final class ModelFacade extends Observable implements IModel {
 			}
 		}
 
+		// TODO a supprimer
+		/*
+		 * for (int x = 0; x < this.dimensionTemp.getWidth(); x++) { for (int y = 0; y <
+		 * this.dimensionTemp.getHeight(); y++) { System.out.println("x:" + x + "  y:" +
+		 * y + "  " + this.getLevel().getUnits()[x][y]); }
+		 *
+		 * }
+		 */
+
 		this.fillVoidSquares();
 		System.out.println("filled !");
+		this.update();
 
 	}
 
@@ -228,9 +250,7 @@ public final class ModelFacade extends Observable implements IModel {
 	 */
 	@Override
 	public void resetScore() {
-		// TODO Auto-generated method stub
-		this.setChanged();
-		this.notifyObservers();
+		this.getScore().resetScoreValue();
 	}
 
 	/**
@@ -258,5 +278,11 @@ public final class ModelFacade extends Observable implements IModel {
 	 */
 	private void setScore(final Score score) {
 		this.score = score;
+	}
+
+	@Override
+	public void update() {
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

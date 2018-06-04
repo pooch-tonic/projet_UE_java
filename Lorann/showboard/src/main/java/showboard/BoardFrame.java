@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package showboard;
 
@@ -32,186 +32,187 @@ import javax.swing.WindowConstants;
  */
 public class BoardFrame extends JFrame implements IBoard {
 
-    /** The Constant serialVersionUID. */
-    private static final long serialVersionUID = -6563585351564617603L;
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -6563585351564617603L;
 
-    /** The initial frame size. */
-    private static final int defaultFrameSize = 700;
+	/** The initial frame size. */
+	private static final int defaultFrameSize = 700;
 
-    /** The board panel. */
-    private final BoardPanel boardPanel;
+	/** The board panel. */
+	private final BoardPanel boardPanel;
 
-    /**
-     * Instantiates a new BoardFrame
-     *
-     * @param title
-     * @param decorated
-     */
-    public BoardFrame(final String title, final Boolean decorated) {
-        super();
-        this.setTitle(title);
-        this.setSize(defaultFrameSize, defaultFrameSize);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        this.setUndecorated(decorated);
-        this.boardPanel = new BoardPanel();
-        this.setContentPane(this.boardPanel);
-        this.setResizable(false);
-        this.setVisible(true);
-    }
+	/**
+	 * Instantiates a new board frame.
+	 */
+	public BoardFrame() {
+		this("", false);
+	}
 
-    /**
-     * Instantiates a new board frame.
-     *
-     * @param title
-     *            the title
-     */
-    public BoardFrame(final String title) {
-        this(title, false);
-    }
+	/**
+	 * Instantiates a new board frame.
+	 *
+	 * @param decorated
+	 *            the decorated
+	 */
+	public BoardFrame(final Boolean decorated) {
+		this("", decorated);
+	}
 
-    /**
-     * Instantiates a new board frame.
-     */
-    public BoardFrame() {
-        this("", false);
-    }
+	/**
+	 * Instantiates a new board frame.
+	 *
+	 * @param title
+	 *            the title
+	 */
+	public BoardFrame(final String title) {
+		this(title, false);
+	}
 
-    /**
-     * Instantiates a new board frame.
-     *
-     * @param decorated
-     *            the decorated
-     */
-    public BoardFrame(final Boolean decorated) {
-        this("", decorated);
-    }
+	/**
+	 * Instantiates a new BoardFrame
+	 *
+	 * @param title
+	 * @param decorated
+	 */
+	public BoardFrame(final String title, final Boolean decorated) {
+		super();
+		this.setTitle(title);
+		this.setSize(defaultFrameSize, defaultFrameSize);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setUndecorated(decorated);
+		this.boardPanel = new BoardPanel();
+		this.setContentPane(this.boardPanel);
+		this.setResizable(false);
+		this.setVisible(true);
+		this.pack();
+		this.setLocationRelativeTo(null);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int, int)
-     */
-    @Override
-    public final void addSquare(final ISquare square, final int x, final int y) {
-        this.getBoardPanel().addSquare(square, x, y);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.exia.showboard.IBoard#addPawn(fr.exia.showboard.IPawn)
+	 */
+	@Override
+	public final void addPawn(final IPawn pawn) {
+		this.getBoardPanel().addPawn(pawn);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.exia.showboard.IBoard#addPawn(fr.exia.showboard.IPawn)
-     */
-    @Override
-    public final void addPawn(final IPawn pawn) {
-        this.getBoardPanel().addPawn(pawn);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.exia.showboard.IBoard#addSquare(fr.exia.showboard.ISquare, int, int)
+	 */
+	@Override
+	public final void addSquare(final ISquare square, final int x, final int y) {
+		this.getBoardPanel().addSquare(square, x, y);
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.exia.showboard.IBoard#getObserver()
-     */
-    @Override
-    public final Observer getObserver() {
-        return this.getBoardPanel();
-    }
+	/**
+	 * Gets the board panel.
+	 *
+	 * @return the board panel
+	 */
+	private BoardPanel getBoardPanel() {
+		return this.boardPanel;
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.exia.showboard.IBoard#setDimension(java.awt.Dimension)
-     */
-    @Override
-    public final void setDimension(final Dimension dimension) {
-        this.getBoardPanel().setDimension(dimension);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.exia.showboard.IBoard#getDimension()
+	 */
+	@Override
+	public final Dimension getDimension() {
+		return this.getBoardPanel().getDimension();
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.exia.showboard.IBoard#getDimension()
-     */
-    @Override
-    public final Dimension getDimension() {
-        return this.getBoardPanel().getDimension();
-    }
+	/**
+	 * Gets the display frame.
+	 *
+	 * @return the display frame
+	 */
+	public final Rectangle getDisplayFrame() {
+		return this.getBoardPanel().getDisplayFrame();
+	}
 
-    /**
-     * Gets the display frame.
-     *
-     * @return the display frame
-     */
-    public final Rectangle getDisplayFrame() {
-        return this.getBoardPanel().getDisplayFrame();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.exia.showboard.IBoard#getObserver()
+	 */
+	@Override
+	public final Observer getObserver() {
+		return this.getBoardPanel();
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see fr.exia.showboard.IBoard#setDisplayFrame(java.awt.Rectangle)
-     */
-    @Override
-    public final void setDisplayFrame(final Rectangle displayFrame) {
-        this.getBoardPanel().setDisplayFrame(displayFrame);
-    }
+	/**
+	 * Checks if is height looped.
+	 *
+	 * @return the boolean
+	 */
+	public final Boolean isHeightLooped() {
+		return this.getBoardPanel().isHeightLooped();
+	}
 
-    /**
-     * Gets the board panel.
-     *
-     * @return the board panel
-     */
-    private BoardPanel getBoardPanel() {
-        return this.boardPanel;
-    }
+	/**
+	 * Checks if is width looped.
+	 *
+	 * @return the boolean
+	 */
+	public final Boolean isWidthLooped() {
+		return this.getBoardPanel().isWidthLooped();
+	}
 
-    /**
-     * Checks if is width looped.
-     *
-     * @return the boolean
-     */
-    public final Boolean isWidthLooped() {
-        return this.getBoardPanel().isWidthLooped();
-    }
+	@Override
+	public void removeAllPawn() {
+		// TODO Auto-generated method stub
+		this.getBoardPanel().removeAllPawn();
+	}
 
-    /**
-     * Sets the width looped.
-     *
-     * @param widthLooped
-     *            the new width looped
-     */
-    public final void setWidthLooped(final Boolean widthLooped) {
-        this.getBoardPanel().setWidthLooped(widthLooped);
-    }
+	@Override
+	public void removePawn(final IPawn pawn) {
+		// TODO Auto-generated method stub
+		this.getBoardPanel().removePawn(pawn);
+	}
 
-    /**
-     * Checks if is height looped.
-     *
-     * @return the boolean
-     */
-    public final Boolean isHeightLooped() {
-        return this.getBoardPanel().isHeightLooped();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.exia.showboard.IBoard#setDimension(java.awt.Dimension)
+	 */
+	@Override
+	public final void setDimension(final Dimension dimension) {
+		this.getBoardPanel().setDimension(dimension);
+	}
 
-    /**
-     * Sets the height looped.
-     *
-     * @param heightLooped
-     *            the new height looped
-     */
-    public final void setHeightLooped(final Boolean heightLooped) {
-        this.getBoardPanel().setHeightLooped(heightLooped);
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see fr.exia.showboard.IBoard#setDisplayFrame(java.awt.Rectangle)
+	 */
+	@Override
+	public final void setDisplayFrame(final Rectangle displayFrame) {
+		this.getBoardPanel().setDisplayFrame(displayFrame);
+	}
 
-    @Override
-    public void removePawn(final IPawn pawn) {
-        // TODO Auto-generated method stub
-        this.getBoardPanel().removePawn(pawn);
-    }
+	/**
+	 * Sets the height looped.
+	 *
+	 * @param heightLooped
+	 *            the new height looped
+	 */
+	public final void setHeightLooped(final Boolean heightLooped) {
+		this.getBoardPanel().setHeightLooped(heightLooped);
+	}
 
-    @Override
-    public void removeAllPawn() {
-        // TODO Auto-generated method stub
-        this.getBoardPanel().removeAllPawn();
-    }
+	/**
+	 * Sets the width looped.
+	 *
+	 * @param widthLooped
+	 *            the new width looped
+	 */
+	public final void setWidthLooped(final Boolean widthLooped) {
+		this.getBoardPanel().setWidthLooped(widthLooped);
+	}
 }
