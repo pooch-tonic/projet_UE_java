@@ -64,7 +64,7 @@ public final class ModelFacade extends Observable implements IModel {
 	private void fillVoidSquares() {
 		IUnit[][] units = this.getLevel().getUnits();
 
-		// TODO vérifier que x et y ne sont jamais inversés.
+		// TODO vÃ©rifier que x et y ne sont jamais inversÃ©s.
 		for (int x = 0; x < units.length; x++) {
 			for (int y = 0; y < units[0].length; y++) {
 				if (units[x][y] == null) {
