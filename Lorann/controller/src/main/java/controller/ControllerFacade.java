@@ -77,14 +77,14 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public TimerTask update() {
-    	this.getModel().update();
-    	this.getModel().getPlayer().update();
-//        if (!this.getStackOrder().isEmpty()) {
-//            this.performOrder();
-//        }
-//        this.updateEntities();
-//        this.setStackOrder(new ArrayList<>());
-		return null;
+        this.getModel().update();
+        this.getModel().getPlayer().update();
+        // if (!this.getStackOrder().isEmpty()) {
+        // this.performOrder();
+        // }
+        // this.updateEntities();
+        // this.setStackOrder(new ArrayList<>());
+        return null;
 
     }
 
@@ -179,10 +179,10 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             this.getView().removePawnFromBoard(target);
             break;
         case BOUNCE:
-            entity.bounce();
+            entity.bounce(this.getModel().getLevel());
             break;
         case DODGE:
-            entity.dodge();
+            entity.dodge(this.getModel().getLevel());
             break;
         case UNLOCK_DOOR:
             this.getModel().getExit().setType(Type.DOOR_OPEN);
@@ -301,7 +301,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         for (final IEntity entity : this.getModel().getLevel().getEntities()) {
             IEntity target;
             if (this.getNextTile(entity) != null) {
-                entity.bounce();
+                entity.bounce(this.getModel().getLevel());
             } else {
                 // TODO change and use getAddResult
                 if ((target = this.getModel().getLevel().getEntityOn(

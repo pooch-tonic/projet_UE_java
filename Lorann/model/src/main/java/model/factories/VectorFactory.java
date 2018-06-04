@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package model.factories;
 
@@ -7,7 +7,7 @@ import enums.DirectionEnum;
 import modelInterfaces.IVectorFactory;
 import vector.Vector;
 
-abstract class VectorFactory implements IVectorFactory {
+public abstract class VectorFactory implements IVectorFactory {
     private static Vector UPLEFT    = new Vector(-1, -1);
     private static Vector UP        = new Vector(0, -1);
     private static Vector UPRIGHT   = new Vector(1, -1);
