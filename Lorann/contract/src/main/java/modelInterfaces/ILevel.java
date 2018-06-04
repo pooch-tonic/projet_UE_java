@@ -39,6 +39,13 @@ public interface ILevel {
     public IUnit[][] getUnits();
 
     /**
+     * Gets the unit on x : y
+     *
+     * @return the IUnit.
+     */
+    public IUnit getUnitOn(int x, int y);
+
+    /**
      * Sets the dimension
      *
      * @param dimension
