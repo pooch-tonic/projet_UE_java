@@ -13,9 +13,8 @@ public class BounceOpposite implements IBounceStrategy {
 	 * @see modelInterfaces.IBounceStrategy#bounce()
 	 */
 	@Override
-	public void bounce(final ILevel level, final IEntity actor) {
+	public void bounce(final IEntity actor, final ILevel level) {
 		IVector getOppositePosition;
-		getOppositePositio
 	}
 
 }
