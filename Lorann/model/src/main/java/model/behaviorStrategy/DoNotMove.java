@@ -6,7 +6,7 @@ public class DoNotMove implements IMoveStrategy {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see modelInterfaces.IMoveStrategy#move()
 	 */
 	@Override
