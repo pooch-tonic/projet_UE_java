@@ -3,6 +3,8 @@
  */
 package controllerInterfaces;
 
+import java.util.TimerTask;
+
 import showboard.IBoard;
 
 /**
@@ -34,6 +36,7 @@ public interface IController {
 
     /**
      * asks the controller to update the model
+     * @return 
      */
-    void update();
+    TimerTask update();
 }

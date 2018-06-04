@@ -95,9 +95,8 @@ public class Unit implements IUnit {
 	 *
 	 */
 	public Unit(final Type type, final ISpriteSet spriteSet) {
-		this.spriteSet = new SpriteSet();
+		this.spriteSet = spriteSet;
 		this.setPosition(null);
-		this.setSpriteSet(new SpriteSet(spriteSet.getSprites()));
 		this.setType(type);
 	}
 
