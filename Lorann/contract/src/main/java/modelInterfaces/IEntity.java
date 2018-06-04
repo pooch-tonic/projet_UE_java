@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package modelInterfaces;
 
@@ -46,7 +46,7 @@ public interface IEntity extends IPawn {
     /**
      * calls the move() method from the IMoveStrategy object.
      */
-    public void move(IEntity actor);
+    public void move();
 
     /**
      * sets the direction vector of the entity.
