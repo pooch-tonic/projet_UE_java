@@ -20,6 +20,7 @@ import modelInterfaces.ILevel;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
 import vector.IVector;
+import vector.Vector;
 
 /**
  * <h1>The Class ModelFacade provides a facade of the Model component.</h1>
@@ -231,6 +232,9 @@ public final class ModelFacade extends Observable implements IModel {
                 }
             }
         }
+        entity = UnitFactory.createEntity(TypeEnum.SPELL, QueryDAO.getSpritePath(TypeEnum.SPELL));
+        entity.setPosition(new Vector(1000,1000));
+        level.addEntity(entity);
         this.fillVoidSquares();
         this.update();
 

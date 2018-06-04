@@ -10,7 +10,16 @@ import model.behaviorStrategy.MoveSimple;
 import showboard.ISpriteSet;
 import vector.IVector;
 
+/**
+ * @author Peyret Romain
+ *
+ */
 public class Spell extends Entity {
+	
+	/**
+     * Instantiates a new Spell
+     *
+     */
     public Spell(final ISpriteSet spriteSet) {
         super(Type.SPELL, spriteSet);
         this.setBounceStrategy(new BounceOpposite());
@@ -19,13 +28,16 @@ public class Spell extends Entity {
     }
 
     /**
-     * Instantiates a new Player
+     * Instantiates a new Spell
      *
      * @param position
      */
     public Spell(final IVector position) {
-        super(Type.SPELL);
-        this.setPosition(position);
+        super(position, Type.SPELL);
     }
-
+    
+    public void update() {
+    	super.update();
+    	this.getSpriteSet().setNextSprite();
+    }
 }

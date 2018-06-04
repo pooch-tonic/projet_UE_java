@@ -4,7 +4,7 @@ import model.Spell;
 import showboard.ISpriteSet;
 
 class SpellFactory {
-	Spell createSpell(final ISpriteSet spriteSet) {
+	Spell createSpell(ISpriteSet spriteSet) {
 		return new Spell(spriteSet);
 	}
 }
