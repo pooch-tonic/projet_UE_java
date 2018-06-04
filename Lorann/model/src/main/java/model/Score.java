@@ -1,10 +1,12 @@
 package model;
 
+import modelInterfaces.IScore;
+
 /**
  * @author Max Becerro
  *
  */
-public class Score {
+public class Score implements IScore{
 	private int scoreValue;
 	/**
 	 * 
