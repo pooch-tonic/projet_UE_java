@@ -46,7 +46,6 @@ class KeyEventPerformer implements IKeyEventPerformer {
             this.orderStacker.stackOrder(this.keyCodeToOrder(keyEvent.getKeyCode()));
         } else if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
             this.setCurrentOrder(OrderEnum.NONE);
-            this.orderStacker.stackOrder(OrderEnum.NONE);
         }
 
     }
@@ -59,7 +58,6 @@ class KeyEventPerformer implements IKeyEventPerformer {
     @Override
     public void performKeyReleasedEvent(final KeyEvent keyEvent) {
         this.setCurrentOrder(OrderEnum.NONE);
-        this.orderStacker.stackOrder(OrderEnum.NONE);
     }
 
     /*

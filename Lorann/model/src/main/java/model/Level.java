@@ -205,7 +205,7 @@ public class Level implements ILevel {
         for (final IEntity entityStudied : this.getEntities()) {
             if (entity.getPosition().isEqual(entityStudied.getPosition())
                     && (entity != entityStudied)) {
-                result = entity;
+                result = entityStudied;
             }
         }
         return result;

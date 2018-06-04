@@ -167,7 +167,7 @@ public abstract class Entity extends Unit implements IEntity {
 
     @Override
     public void move() {
-        this.getMoveStrategy().move();
+        this.getMoveStrategy().move(this);
     }
 
     /**
@@ -225,6 +225,6 @@ public abstract class Entity extends Unit implements IEntity {
 
     @Override
     public void update() {
-
+        this.move();
     }
 }
