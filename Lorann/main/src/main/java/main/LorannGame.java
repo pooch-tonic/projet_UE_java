@@ -6,6 +6,7 @@ package main;
 import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import controller.ControllerFacade;
 import model.ModelFacade;
@@ -61,11 +62,9 @@ public class LorannGame {
     }
 
     public void play() {
+    	TimerTask task = new UpdateTask(this.getController());
 		Timer timer = new Timer();
-        // TODO ENLEVER CETTE BOUCLE
-        while (true) {
-			this.controller.update();
-        }
+		timer.scheduleAtFixedRate(task, 100, 100);
     }
 
 }

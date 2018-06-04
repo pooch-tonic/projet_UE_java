@@ -76,7 +76,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      * @see controllerInterfaces.IController#update()
      */
     @Override
-    public TimerTask update() {
+    public void update() {
         this.getModel().update();
         this.getModel().getPlayer().update();
         // if (!this.getStackOrder().isEmpty()) {
@@ -84,8 +84,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         // }
         // this.updateEntities();
         // this.setStackOrder(new ArrayList<>());
-        return null;
-
     }
 
     /**
