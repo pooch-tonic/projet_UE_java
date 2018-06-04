@@ -75,17 +75,14 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      * @see controllerInterfaces.IController#update()
      */
     @Override
-    public TimerTask update() {
-        // this.getModel().update();
-        // this.getModel().getPlayer().update();
-
-        if (!this.getStackOrder().isEmpty()) {
-            this.performOrder();
-        }
-        this.updateEntities();
-        this.setStackOrder(new ArrayList<>());
-        return null;
-
+    public void update() {
+        this.getModel().update();
+        this.getModel().getPlayer().update();
+        // if (!this.getStackOrder().isEmpty()) {
+        // this.performOrder();
+        // }
+        // this.updateEntities();
+        // this.setStackOrder(new ArrayList<>());
     }
 
     /**

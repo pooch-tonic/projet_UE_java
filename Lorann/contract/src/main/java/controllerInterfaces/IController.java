@@ -38,5 +38,5 @@ public interface IController {
      * asks the controller to update the model
      * @return 
      */
-    TimerTask update();
+    void update();
 }
