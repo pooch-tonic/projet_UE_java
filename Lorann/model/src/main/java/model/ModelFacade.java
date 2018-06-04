@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Observable;
 
 import enums.DirectionEnum;
@@ -136,8 +137,8 @@ public final class ModelFacade extends Observable implements IModel {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
-	public HashMap<String, IVector> getUnitByMap(final int mapId) throws SQLException {
-		final HashMap<String, IVector> result = QueryDAO.getUnitByMap(mapId);
+	public HashMap<String, ArrayList<IVector>> getUnitByMap(final int mapId) throws SQLException {
+		final HashMap<String, ArrayList<IVector>> result = QueryDAO.getUnitByMap(mapId);
 		return result;
 	}
 
@@ -180,51 +181,56 @@ public final class ModelFacade extends Observable implements IModel {
 	 */
 	@Override
 	public void loadLevel(final int levelId) throws SQLException {
-		final HashMap<String, IVector> resultMap = QueryDAO.getUnitByMap(levelId);
+		final HashMap<String, ArrayList<IVector>> resultMap = QueryDAO.getUnitByMap(levelId);
 
-		for (final HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
-			System.out.println(result.getKey() + " " + result.getValue());
-		}
+//		for (final Entry<String, ArrayList<IVector>> result : resultMap.entrySet()) {
+//			System.out.println(result.getKey() + " " + result.getValue());
+//		}
 
 		final ILevel level = new Level(levelId, QueryDAO.getMap(levelId));
 		this.setLevel(level);
 
 		String key;
-		IVector position;
+		ArrayList<IVector> position;
 		IEntity entity;
 
-		for (final HashMap.Entry<String, IVector> result : resultMap.entrySet()) {
+		for (final Entry<String, ArrayList<IVector>> result : resultMap.entrySet()) {
 			key = result.getKey();
-			position = result.getValue();
-			switch (key) {
-			case "WALL":
-				level.addUnit(
-						UnitFactory.createWall(WallType.WALL_ROUND,
-								QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
-						position.getX(), position.getY());
-				break;
-			case "WALL_H":
-				level.addUnit(
-						UnitFactory.createWall(WallType.WALL_HORIZONTAL,
-								QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
-						position.getX(), position.getY());
-				break;
-			case "WALL_V":
-				level.addUnit(
-						UnitFactory.createWall(WallType.WALL_VERTICAL,
-								QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
-						position.getX(), position.getY());
-				break;
-			default:
-				entity = UnitFactory.createEntity(TypeEnum.valueOf(key), QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
-				entity.setPosition(position);
-				level.addEntity(entity);
-				if (TypeEnum.valueOf(key) == TypeEnum.PLAYER) {
-					this.getLevel().setPlayer(entity);
-				} else if (TypeEnum.valueOf(key) == TypeEnum.DOOR_CLOSED) {
-					this.getLevel().setExit(entity);
+			position = result.getValue();			
+			for(IVector vector : position) {
+				
+				//System.out.println("key = " + key + "\t vector.x = " + vector.getX() + "\t vector.y = " + vector.getY());
+				
+				switch (key) {
+					case "WALL":
+							level.addUnit(
+							UnitFactory.createWall(WallType.WALL_ROUND,
+									QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+							vector.getX(), vector.getY());
+							break;
+					case "WALL_H":
+							level.addUnit(
+							UnitFactory.createWall(WallType.WALL_HORIZONTAL,
+									QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+							vector.getX(), vector.getY());
+							break;
+					case "WALL_V":
+							level.addUnit(
+							UnitFactory.createWall(WallType.WALL_VERTICAL,
+									QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+							vector.getX(), vector.getY());
+							break;
+				default:
+					entity = UnitFactory.createEntity(TypeEnum.valueOf(key), QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
+					entity.setPosition(vector);
+					level.addEntity(entity);
+					if (TypeEnum.valueOf(key) == TypeEnum.PLAYER) {
+						this.getLevel().setPlayer(entity);
+					} else if (TypeEnum.valueOf(key) == TypeEnum.DOOR_CLOSED) {
+						this.getLevel().setExit(entity);
+					}
+					break;
 				}
-				break;
 			}
 		}
 
@@ -238,7 +244,7 @@ public final class ModelFacade extends Observable implements IModel {
 		 */
 
 		this.fillVoidSquares();
-		System.out.println("filled !");
+		//System.out.println("filled !");
 		this.update();
 
 	}

@@ -1,5 +1,9 @@
 package model;
 
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import enums.Type;
 import vector.IVector;
 
@@ -10,7 +14,12 @@ public class Ground extends Unit {
 	 */
 	public Ground() {
 		super(new SpriteSet(), Type.GROUND);
-		this.getSpriteSet().getSprites().add(null);
+		try {
+			this.getSpriteSet().getSprites().add(ImageIO.read(Ground.class.getResource("/sprites/ground.png")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

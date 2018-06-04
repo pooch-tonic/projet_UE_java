@@ -91,18 +91,23 @@ public abstract class QueryDAO extends AbstractDAO {
 	 * @throws SQLException
 	 *             the SQL exception
 	 */
-	public static HashMap<String, IVector> getUnitByMap(final int mapId) throws SQLException {
-		final HashMap<String, IVector> resultMap = new HashMap<String, IVector>();
+	public static HashMap<String, ArrayList<IVector>> getUnitByMap(final int mapId) throws SQLException {
+		final HashMap<String, ArrayList<IVector>> resultMap = new HashMap<String, ArrayList<IVector>>();
+		IVector vector;
 		final CallableStatement callStatement = prepareCall(sqlUnitByMap);
 		ResultSet result;
 		callStatement.setInt(1, mapId);
 		if (callStatement.execute()) {
 			result = callStatement.getResultSet();
 			for (boolean isResultLeft = result.first(); isResultLeft; isResultLeft = result.next()) {
-				resultMap.put(result.getString(1), new Vector(result.getInt(2), result.getInt(3)));
+				resultMap.putIfAbsent(result.getString(1), new ArrayList<IVector>());
+				vector = new Vector(result.getInt(2), result.getInt(3));
+				resultMap.get(result.getString(1)).add(vector);
+				//resultMap.put(result.getString(1), );
 			}
 			result.close();
 		}
+		//System.out.println(resultMap);
 		return resultMap;
 	}
 
