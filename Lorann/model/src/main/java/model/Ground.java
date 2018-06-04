@@ -14,12 +14,7 @@ public class Ground extends Unit {
 	 */
 	public Ground() {
 		super(new SpriteSet(), Type.GROUND);
-		try {
-			this.getSpriteSet().getSprites().add(ImageIO.read(Ground.class.getResource("/sprites/ground.png")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.getSpriteSet().getSprites().add(null);
 	}
 
 	/**

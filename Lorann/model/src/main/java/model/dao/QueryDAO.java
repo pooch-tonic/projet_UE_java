@@ -81,8 +81,6 @@ public abstract class QueryDAO extends AbstractDAO {
             }
             result.close();
         }
-        // TODO a supprimer
-        // System.out.println(resultString.get(0));
         return resultString;
     }
   
@@ -107,11 +105,9 @@ public abstract class QueryDAO extends AbstractDAO {
 				resultMap.putIfAbsent(result.getString(1), new ArrayList<IVector>());
 				vector = new Vector(result.getInt(2), result.getInt(3));
 				resultMap.get(result.getString(1)).add(vector);
-				//resultMap.put(result.getString(1), );
 			}
 			result.close();
 		}
-		//System.out.println(resultMap);
 		return resultMap;
 	}
 

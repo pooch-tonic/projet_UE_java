@@ -78,11 +78,11 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     @Override
     public void update() {
 
-        if (!this.getStackOrder().isEmpty()) {
-            this.performOrder();
-        }
-        this.updateEntities();
-        this.setStackOrder(new ArrayList<>());
+//        if (!this.getStackOrder().isEmpty()) {
+//            this.performOrder();
+//        }
+//        this.updateEntities();
+//        this.setStackOrder(new ArrayList<>());
 
     }
 

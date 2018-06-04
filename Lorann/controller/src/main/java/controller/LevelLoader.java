@@ -33,7 +33,6 @@ public class LevelLoader {
 		final ISquare[][] squares = model.getLevel().getUnits();
 		for (int x = 0; x < squares.length; x++) {
 			for (int y = 0; y < squares[0].length; y++) {
-				// System.out.println(squares[x][y]); //TODO a supprimer
 				view.getBoardFrame().addSquare(squares[x][y], x, y);
 			}
 		}
