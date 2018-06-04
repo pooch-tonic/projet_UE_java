@@ -99,13 +99,16 @@ public abstract class UnitFactory {
 
     // TODO UTILISER IMAGELOADER
     public static IEntity createEntity(final TypeEnum type, final ArrayList<String> spritePath) {
-        System.out.println(type);
+    	System.out.println(type + " " + spritePath);
         final ArrayList<BufferedImage> images = new ArrayList<>();
         for (final String path : spritePath) {
             images.add(ImageLoader.getImageByPath(path));
         }
 
         final ISpriteSet spriteSet = new SpriteSet(images);
+        System.out.println(type + " " + spriteSet);
+        
+        
         switch (type) {
         case ENEMY_A:
             return createEnemy_Arrbarr(spriteSet);
@@ -121,9 +124,7 @@ public abstract class UnitFactory {
             return createKey_blue(spriteSet);
         case LOOT:
             return createLoot_coin(spriteSet);
-        case DOOR_OPEN:
-            return createDoor_open(spriteSet);
-        case DOOR_CLOSED:
+        case DOOR:
             return createDoor_closed(spriteSet);
         case DEAD:
             return createDead_default();

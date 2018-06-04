@@ -225,7 +225,7 @@ public final class ModelFacade extends Observable implements IModel {
                     level.addEntity(entity);
                     if (TypeEnum.valueOf(key) == TypeEnum.PLAYER) {
                         this.getLevel().setPlayer(entity);
-                    } else if (TypeEnum.valueOf(key) == TypeEnum.DOOR_CLOSED) {
+                    } else if (TypeEnum.valueOf(key) == TypeEnum.DOOR) {
                         this.getLevel().setExit(entity);
                     }
                     break;
@@ -333,11 +333,11 @@ public final class ModelFacade extends Observable implements IModel {
      */
     @Override
     public void setMaxLevels() {
-        try {
-			this.maxLevels = QueryDAO.getMapNumber();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        try {
+			this.maxLevels = 5; //QueryDAO.getMapNumber();
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     }
 }
