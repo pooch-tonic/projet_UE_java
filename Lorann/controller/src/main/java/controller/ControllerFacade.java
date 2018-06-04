@@ -5,6 +5,7 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderPerformer;
@@ -44,6 +45,10 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private ArrayList<OrderEnum> stackOrder;
 
+    private Iterator<IEntity> entityIterator;
+
+    private ArrayList<IEntity> entitiesToDestroy;
+
     /**
      * Instantiates a new ControllerFacade
      *
@@ -56,6 +61,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.setInteractionManager(new InteractionManager());
         this.setLevelLoader(new LevelLoader());
         this.setStackOrder(new ArrayList<>());
+        this.setEntitiesToDestroy(new ArrayList<>());
     }
 
     /**
@@ -76,17 +82,30 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     @Override
     public void update() {
         this.getModel().update();
+        this.setEntityIterator(this.getModel().getLevel().getEntities());
         this.performOrder();
         this.updateEntities();
+        this.killEntities();
         this.setStackOrder(new ArrayList<>());
+        this.setEntitiesToDestroy(new ArrayList<>());
+    }
+
+    private void killEntities() {
+        for (final IEntity entity : this.getEntitiesToDestroy()) {
+            this.getModel().destroyEntity(entity);
+            this.getView().removePawnFromBoard(entity);
+        }
     }
 
     /**
      * Update the entities of the model
      */
     private void updateEntities() {
-        for (final IEntity entity : this.getModel().getLevel().getEntities()) {
-            IEntity target;
+        IEntity entity, target;
+        while (this.getEntityIterator().hasNext()) {
+            entity = this.getEntityIterator().next();
+            // }
+            // for (final IEntity entity : this.getModel().getLevel().getEntities()) {
             if (this.getNextTile(entity).getType() == Type.WALL) {
                 entity.bounce(this.getModel().getLevel());
             } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
@@ -186,18 +205,14 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         System.out.println(entity + " : " + interaction);
         switch (interaction) {
         case ENTITY_DESTROYED:
-            this.getModel().destroyEntity(entity);
-            this.getView().removePawnFromBoard(entity);
+            this.getEntitiesToDestroy().add(entity);
             break;
         case TARGET_DESTROYED:
-            this.getModel().destroyEntity(target);
-            this.getView().removePawnFromBoard(target);
+            this.getEntitiesToDestroy().add(target);
             break;
         case BOTH_DESTROYED:
-            this.getModel().destroyEntity(entity);
-            this.getModel().destroyEntity(target);
-            this.getView().removePawnFromBoard(entity);
-            this.getView().removePawnFromBoard(target);
+            this.getEntitiesToDestroy().add(entity);
+            this.getEntitiesToDestroy().add(target);
             break;
         case BOUNCE:
             entity.bounce(this.getModel().getLevel());
@@ -206,9 +221,11 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             entity.dodge(this.getModel().getLevel());
             break;
         case UNLOCK_DOOR:
+            this.getEntitiesToDestroy().add(target);
             this.getModel().getExit().setType(Type.DOOR_OPEN);
             break;
         case QUIT_LEVEL:
+            entity.bounce(this.getModel().getLevel());
             this.nextlevel();
             break;
         default:
@@ -318,6 +335,42 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     public void stackOrder(final OrderEnum order) {
         // TODO Auto-generated method stub
         this.getStackOrder().add(order);
+    }
+
+    /**
+     * Gets the entityIterator
+     *
+     * @return the entityIterator
+     */
+    private Iterator<IEntity> getEntityIterator() {
+        return this.entityIterator;
+    }
+
+    /**
+     * Sets the entityIterator
+     *
+     * @param entities
+     */
+    private void setEntityIterator(final ArrayList<IEntity> entities) {
+        this.entityIterator = entities.iterator();
+    }
+
+    /**
+     * Gets the entitiesToDestroy
+     *
+     * @return the entitiesToDestroy
+     */
+    private ArrayList<IEntity> getEntitiesToDestroy() {
+        return this.entitiesToDestroy;
+    }
+
+    /**
+     * Sets the entitiesToDestroy
+     *
+     * @param entitiesToDestroy
+     */
+    private void setEntitiesToDestroy(final ArrayList<IEntity> entitiesToDestroy) {
+        this.entitiesToDestroy = entitiesToDestroy;
     }
 
 }

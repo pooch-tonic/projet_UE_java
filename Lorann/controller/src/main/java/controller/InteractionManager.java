@@ -161,7 +161,7 @@ public class InteractionManager {
         final Interaction interaction;
         switch (target.getType()) {
         case DOOR_OPEN:
-            interaction = Interaction.UNLOCK_DOOR;
+            interaction = Interaction.QUIT_LEVEL;
             break;
         case DEAD:
             interaction = Interaction.BOUNCE;
