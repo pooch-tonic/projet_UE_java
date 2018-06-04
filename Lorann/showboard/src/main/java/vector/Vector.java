@@ -59,7 +59,7 @@ public class Vector implements IVector {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see vector.IVector#calculateLength()
 	 */
 	@Override
@@ -198,6 +198,20 @@ public class Vector implements IVector {
 	/*
 	 * (non-Javadoc)
 	 *
+	 * @see vector.IVector#isEqual(int, int)
+	 */
+	@Override
+	public boolean isEqual(final int x, final int y) {
+		if ((this.getX() == x) && (this.getY() == y)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
 	 * @see vector.IVector#isEqual(vector.IVector)
 	 */
 	@Override
@@ -259,6 +273,12 @@ public class Vector implements IVector {
 	}
 
 	/*
+	 * Sets the x value.
+	 *
+	 * @param x
+	 */
+
+	/*
 	 * (non-Javadoc)
 	 *
 	 * @see vector.IVector#set(java.awt.Point)
@@ -268,22 +288,15 @@ public class Vector implements IVector {
 		this.set(point.x, point.y);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see vector.IVector#setX(int)
-	 */
-	@Override
 	public void setX(final int x) {
 		this.x = x;
 	}
 
 	/*
-	 * (non-Javadoc)
+	 * Sets the y value.
 	 *
-	 * @see vector.IVector#setY(int)
+	 * @param y
 	 */
-	@Override
 	public void setY(final int y) {
 		this.y = y;
 	}

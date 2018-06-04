@@ -18,7 +18,7 @@ public interface IVector {
 
 	/**
 	 * Calculates the length of the vector.
-	 * 
+	 *
 	 * @return The length as a Float.
 	 */
 	public Float calculateLength();
@@ -116,6 +116,15 @@ public interface IVector {
 	public void invert();
 
 	/**
+	 * Checks if the current vector has the same values as the given x and y.
+	 *
+	 * @param x
+	 * @param y
+	 * @return True if equal, false if not.
+	 */
+	public boolean isEqual(final int x, final int y);
+
+	/**
 	 * Checks if the current vector has the same values as the given vector.
 	 *
 	 * @param vector
@@ -158,20 +167,6 @@ public interface IVector {
 	 * @param point
 	 */
 	public void set(final Point point);
-
-	/**
-	 * Sets the x of the current vector.
-	 *
-	 * @param x
-	 */
-	public void setX(final int x);
-
-	/**
-	 * Sets the y of the current vector.
-	 *
-	 * @param y
-	 */
-	public void setY(final int y);
 
 	/**
 	 * Substracts the current vector by another vector.
