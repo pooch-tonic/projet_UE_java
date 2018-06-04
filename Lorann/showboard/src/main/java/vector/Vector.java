@@ -59,6 +59,16 @@ public class Vector implements IVector {
 
 	/*
 	 * (non-Javadoc)
+	 * 
+	 * @see vector.IVector#calculateLength()
+	 */
+	@Override
+	public Float calculateLength() {
+		return new Float(Math.sqrt(Math.pow(this.getX(), 2)) + (Math.pow(this.getY(), 2)));
+	}
+
+	/*
+	 * (non-Javadoc)
 	 *
 	 * @see vector.IVector#div(int)
 	 */

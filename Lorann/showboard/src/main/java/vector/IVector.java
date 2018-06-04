@@ -17,6 +17,13 @@ public interface IVector {
 	public void add(final IVector vector);
 
 	/**
+	 * Calculates the length of the vector.
+	 * 
+	 * @return The length as a Float.
+	 */
+	public Float calculateLength();
+
+	/**
 	 * Divides this vector by an integer. Prints a console error if the divider is
 	 * 0.
 	 *

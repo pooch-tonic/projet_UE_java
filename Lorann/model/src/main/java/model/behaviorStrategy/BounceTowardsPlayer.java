@@ -1,8 +1,10 @@
 package model.behaviorStrategy;
 
+import enums.Type;
 import modelInterfaces.IBounceStrategy;
 import modelInterfaces.IEntity;
 import modelInterfaces.ILevel;
+import vector.IVector;
 
 public class BounceTowardsPlayer implements IBounceStrategy {
 
@@ -13,9 +15,21 @@ public class BounceTowardsPlayer implements IBounceStrategy {
 	 */
 	@Override
 	public void bounce(final IEntity actor, final ILevel level) {
-		level.getPlayer().getPosition();
+		IVector actorPosition = actor.getPosition();
+		IVector actorDirection = actor.getDirection();
+		IVector playerPosition = level.getPlayer().getPosition();
+		IVector chasingDirection = playerPosition.getSubResult(actorPosition);
+		chasingDirection.normalize();
+		IVector actorNextPosition = actorPosition.getAddResult(chasingDirection);
 
-		actor.getPosition();
+		if (level.getUnits()[actorNextPosition.getX()][actorNextPosition.getY()].getType() != Type.WALL) {
+			actor.setDirection(chasingDirection);
+		} else {
+
+		}
+
+
+		level.getUnits()[][y]
 	}
 
 }
