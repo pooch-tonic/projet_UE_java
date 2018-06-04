@@ -1,9 +1,7 @@
 /*
- * 
+ *
  */
 package controllerInterfaces;
-
-import java.util.TimerTask;
 
 import showboard.IBoard;
 
@@ -16,18 +14,6 @@ import showboard.IBoard;
 public interface IController {
 
     /**
-     * loads the level according to the specified id
-     * 
-     * @param id
-     */
-    void loadLevel(int id);
-
-    /**
-     * loads the level that comes after the specified current level id
-     */
-    void nextlevel();
-
-    /**
      * sets the controller's contained game board
      *
      * @param board
@@ -36,7 +22,25 @@ public interface IController {
 
     /**
      * asks the controller to update the model
-     * @return 
+     *
+     * @return
      */
     void update();
+
+    /**
+     * Loads the level according to the specified id
+     *
+     * @param id
+     */
+    public void loadLevel(final int id);
+
+    /**
+     * Loads the level that comes after the specified current level id
+     */
+    public void nextLevel();
+
+    /**
+     * Reset the current level
+     */
+    public void resetLevel();
 }

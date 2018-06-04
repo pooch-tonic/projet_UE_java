@@ -237,6 +237,10 @@ public final class ModelFacade extends Observable implements IModel {
         this.fillVoidSquares();
         this.update();
 
+        for (final IEntity test : this.getLevel().getEntities()) {
+            test.bounce(this.getLevel());
+        }
+
     }
 
     /*
@@ -334,10 +338,9 @@ public final class ModelFacade extends Observable implements IModel {
     @Override
     public void setMaxLevels() {
         try {
-			this.maxLevels = QueryDAO.getMapNumber();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            this.maxLevels = QueryDAO.getMapNumber();
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
