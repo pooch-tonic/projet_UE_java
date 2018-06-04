@@ -15,12 +15,12 @@ public interface IEntity extends IPawn {
 	/**
 	 * calls the bounce() method from the IBounceStrategy object.
 	 */
-	public void bounce(final IEntity actor, final ILevel level);
+	public void bounce(final ILevel level);
 
 	/**
 	 * calls the dodge() method from the IDodgeStrategy object.
 	 */
-	public void dodge(final IEntity actor, final ILevel level);
+	public void dodge(final ILevel level);
 
 	/**
 	 * @return the direction vector of the entity.
