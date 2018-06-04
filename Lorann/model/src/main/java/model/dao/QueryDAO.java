@@ -178,7 +178,7 @@ public abstract class QueryDAO extends AbstractDAO {
      *             the SQL exception
      */
     public static int getMapNumber() throws SQLException {
-        final CallableStatement callStatement = prepareCall(sqlUnitByType);
+        final CallableStatement callStatement = prepareCall(sqlMapNumber);
         int resultNumber = 0;
         ResultSet result = null;
         if (callStatement.execute()) {
