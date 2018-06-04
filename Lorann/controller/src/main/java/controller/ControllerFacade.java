@@ -29,6 +29,7 @@ import viewInterfaces.IView;
  */
 public class ControllerFacade implements IController, IOrderStacker, IOrderPerformer {
 
+
     /** The view. */
     private IView view;
 
@@ -277,56 +278,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     /*
      * (non-Javadoc)
      *
-     * @see controllerInterfaces.IOrderPerformer#performOrder()
-     */
-    @Override
-    public void performOrder() {
-        OrderEnum order = OrderEnum.NONE;
-
-        order = this.getStackOrder().get(this.getStackOrder().size() - 1);
-
-        switch (order) {
-        case UP:
-            System.out.println("yes");
-            this.getModel().setPlayerDirection(DirectionEnum.UP);
-            break;
-        case UPLEFT:
-            this.getModel().setPlayerDirection(DirectionEnum.UPLEFT);
-            break;
-        case UPRIGHT:
-            this.getModel().setPlayerDirection(DirectionEnum.UPRIGHT);
-            break;
-        case LEFT:
-            this.getModel().setPlayerDirection(DirectionEnum.LEFT);
-            break;
-        case RIGHT:
-            this.getModel().setPlayerDirection(DirectionEnum.RIGHT);
-            break;
-        case DOWN:
-            this.getModel().setPlayerDirection(DirectionEnum.DOWN);
-            break;
-        case DOWNLEFT:
-            this.getModel().setPlayerDirection(DirectionEnum.DOWNLEFT);
-            break;
-        case DOWNRIGHT:
-            this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
-            break;
-        case CAST:
-            if (this.getModel().getSpell() == null) {
-                this.getEntitiesToSummon().add(TypeEnum.SPELL);
-            }
-            // TODO attirer le spell
-            this.getModel().setPlayerDirection(DirectionEnum.NONE);
-            break;
-        default:
-            this.getModel().setPlayerDirection(DirectionEnum.NONE);
-            break;
-        }
-    }
-
-    /*
-     * (non-Javadoc)
-     *
      * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
      */
     @Override
@@ -438,13 +389,72 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         return isOver;
     }
 
-    private void closeGame() {
-        try {
-            this.getView().displayMessage("You reached the last level !\n Well Played !");
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-        System.exit(0);
-    }
+	
+	private void closeGame() {
+		try {
+			this.getView().displayMessage(
+					"You reached the last level !\n Your score is : " + this.getModel().getScore().getScoreValue());
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
+	}
 
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see controllerInterfaces.IOrderPerformer#performOrder()
+	 */
+	@Override
+	public void performOrder() {
+		OrderEnum order = OrderEnum.NONE;
+
+		order = this.getStackOrder().get(this.getStackOrder().size() - 1);
+
+		switch (order) {
+		case UP:
+			System.out.println("yes");
+			this.getModel().setPlayerDirection(DirectionEnum.UP);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case UPLEFT:
+			this.getModel().setPlayerDirection(DirectionEnum.UPLEFT);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case UPRIGHT:
+			this.getModel().setPlayerDirection(DirectionEnum.UPRIGHT);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case LEFT:
+			this.getModel().setPlayerDirection(DirectionEnum.LEFT);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case RIGHT:
+			this.getModel().setPlayerDirection(DirectionEnum.RIGHT);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case DOWN:
+			this.getModel().setPlayerDirection(DirectionEnum.DOWN);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case DOWNLEFT:
+			this.getModel().setPlayerDirection(DirectionEnum.DOWNLEFT);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case DOWNRIGHT:
+			this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
+			this.getModel().setPlayerSpriteSetToIndex();
+			break;
+		case CAST:
+			if (this.getModel().getSpell() == null) {
+				this.getEntitiesToSummon().add(TypeEnum.SPELL);
+			}
+			// TODO attirer le spell
+			this.getModel().setPlayerDirection(DirectionEnum.NONE);
+			break;
+		default:
+			this.getModel().setPlayerDirection(DirectionEnum.NONE);
+			break;
+		}
+	}
 }
