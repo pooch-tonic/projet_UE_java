@@ -15,10 +15,11 @@ import vector.IVector;
  *
  */
 public class Loot extends Entity {
+    public static int SCORE = 620;
 
     /**
      * Instantiates a new Loot
-     * 
+     *
      * @param coin
      *
      */
@@ -27,6 +28,7 @@ public class Loot extends Entity {
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -36,7 +38,7 @@ public class Loot extends Entity {
      */
     public Loot(final IVector position) {
         super(position, Type.LOOT);
-        // TODO Auto-generated constructor stub
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -48,6 +50,7 @@ public class Loot extends Entity {
     public Loot(final IVector position, final LootType lootType) {
         super(position, Type.LOOT);
         this.setLootScoreValue(lootType);
+        this.setScoreValue(SCORE);
     }
 
     /**

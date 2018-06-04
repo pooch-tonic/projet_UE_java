@@ -15,6 +15,7 @@ import vector.IVector;
  *
  */
 public class Key extends Entity {
+    public static int SCORE = 0;
 
     /**
      * Instantiates a new Key
@@ -25,6 +26,7 @@ public class Key extends Entity {
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -34,10 +36,12 @@ public class Key extends Entity {
      */
     public Key(final IVector position) {
         super(position, Type.KEY);
+        this.setScoreValue(SCORE);
     }
-    
+
+    @Override
     public void update() {
-    	super.update();
-    	this.getSpriteSet().setNextSprite();
+        super.update();
+        this.getSpriteSet().setNextSprite();
     }
 }

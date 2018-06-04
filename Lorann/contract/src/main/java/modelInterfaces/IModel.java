@@ -89,4 +89,11 @@ public interface IModel {
      * Sets the maxLevels by reading the Database
      */
     public void setMaxLevels();
+
+    /**
+     * Gets the score
+     *
+     * @return the score
+     */
+    public IScore getScore();
 }

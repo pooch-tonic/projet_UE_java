@@ -15,8 +15,9 @@ import vector.IVector;
  *
  */
 public class Spell extends Entity {
-	
-	/**
+    public static int SCORE = 0;
+
+    /**
      * Instantiates a new Spell
      *
      */
@@ -25,6 +26,7 @@ public class Spell extends Entity {
         this.setBounceStrategy(new BounceOpposite());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new MoveSimple());
+        this.setScoreValue(SCORE);
     }
 
     /**
@@ -34,10 +36,12 @@ public class Spell extends Entity {
      */
     public Spell(final IVector position) {
         super(position, Type.SPELL);
+        this.setScoreValue(SCORE);
     }
-    
+
+    @Override
     public void update() {
-    	super.update();
-    	this.getSpriteSet().setNextSprite();
+        super.update();
+        this.getSpriteSet().setNextSprite();
     }
 }
