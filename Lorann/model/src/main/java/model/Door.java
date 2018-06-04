@@ -47,11 +47,11 @@ public class Door extends Entity {
     @Override
     public void setType(final Type type) {
         super.setType(type);
-
         if (this.getType() == Type.DOOR_OPEN) {
             System.out.println("ok");
             this.getSpriteSet().setNextSprite();
         }
     }
-
+    
+    
 }

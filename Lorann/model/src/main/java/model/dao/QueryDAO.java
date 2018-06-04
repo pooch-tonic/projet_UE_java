@@ -183,7 +183,9 @@ public abstract class QueryDAO extends AbstractDAO {
         ResultSet result = null;
         if (callStatement.execute()) {
             result = callStatement.getResultSet();
-            resultNumber = result.getInt(0);
+            if(result.next()) {
+            	resultNumber = result.getInt(1);
+            }
         }
         result.close();
         return resultNumber;
