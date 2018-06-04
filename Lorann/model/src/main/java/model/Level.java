@@ -136,6 +136,11 @@ public class Level implements ILevel {
         return this.units;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see modelInterfaces.ILevel#removeEntityFromLevel(modelInterfaces.IEntity)
+     */
     @Override
     public void removeEntityFromLevel(final IEntity entity) {
         this.getEntities().remove(entity);
@@ -200,6 +205,11 @@ public class Level implements ILevel {
         this.units = units;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getEntityOverlapping(modelInterfaces.IEntity)
+     */
     @Override
     public IEntity getEntityOverlapping(final IEntity entity) {
         IEntity result = null;
@@ -212,18 +222,44 @@ public class Level implements ILevel {
         return result;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getUnitOn(int, int)
+     */
     @Override
     public IUnit getUnitOn(final int x, final int y) {
         return this.getUnits()[x][y];
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#getSpell()
+     */
     @Override
     public IEntity getSpell() {
         return this.spell;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#setSpell(modelInterfaces.IEntity)
+     */
     @Override
     public void setSpell(final IEntity spell) {
         this.spell = spell;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.ILevel#addEntity(int, modelInterfaces.IEntity)
+     */
+    @Override
+    public void addEntity(final int index, final IEntity entity) {
+        this.getEntities().add(index, entity);
+
     }
 }

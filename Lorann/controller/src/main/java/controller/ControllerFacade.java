@@ -29,46 +29,367 @@ import viewInterfaces.IView;
  */
 public class ControllerFacade implements IController, IOrderStacker, IOrderPerformer {
 
-	/** The view. */
-	private IView view;
 
-	/** The model. */
-	private final IModel model;
+    /** The view. */
+    private IView view;
 
-	/** The board. */
-	private IBoard board;
+    /** The model. */
+    private final IModel model;
 
-	/** The interaction manager. */
-	private InteractionManager interactionManager;
+    /** The board. */
+    private IBoard board;
 
-	/** The level loader. */
-	private LevelLoader levelLoader;
+    /** The interaction manager. */
+    private InteractionManager interactionManager;
 
-	private ArrayList<OrderEnum> stackOrder;
+    /** The level loader. */
+    private LevelLoader levelLoader;
 
-	private Iterator<IEntity> entityIterator;
+    private ArrayList<OrderEnum> stackOrder;
 
-	private ArrayList<IEntity> entitiesToDestroy;
+    private Iterator<IEntity> entityIterator;
 
-	private ArrayList<TypeEnum> entitiesToSummon;
+    private ArrayList<IEntity> entitiesToDestroy;
 
-	/**
-	 * Instantiates a new ControllerFacade
-	 *
-	 * @param model
-	 */
-	public ControllerFacade(final IModel model) {
-		// TODO mettre super() si ca marche pas
-		this.model = model;
-		this.setBoard(null);
-		this.setInteractionManager(new InteractionManager());
-		this.setLevelLoader(new LevelLoader());
-		this.setStackOrder(new ArrayList<>());
-		this.getStackOrder().add(OrderEnum.NONE);
-		this.setEntitiesToDestroy(new ArrayList<>());
-		this.setEntitiesToSummon(new ArrayList<>());
-	}
+    private ArrayList<TypeEnum> entitiesToSummon;
 
+    /**
+     * Instantiates a new ControllerFacade
+     *
+     * @param model
+     */
+    public ControllerFacade(final IModel model) {
+        // TODO mettre super() si ca marche pas
+        this.model = model;
+        this.setBoard(null);
+        this.setInteractionManager(new InteractionManager());
+        this.setLevelLoader(new LevelLoader());
+        this.setStackOrder(new ArrayList<>());
+        this.getStackOrder().add(OrderEnum.NONE);
+        this.setEntitiesToDestroy(new ArrayList<>());
+        this.setEntitiesToSummon(new ArrayList<>());
+    }
+
+    /**
+     * Start.
+     *
+     * @throws SQLException
+     *             the SQL exception
+     */
+    public void start() throws SQLException {
+        this.getModel().setMaxLevels();
+        this.nextLevel();
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#update()
+     */
+    @Override
+    public void update() {
+        this.getModel().update();
+        this.setEntityIterator(this.getModel().getLevel().getEntities());
+        this.performOrder();
+        this.updateEntities();
+        this.destroyEntities();
+        this.summonEntities();
+        this.setStackOrder(new ArrayList<>());
+        this.getStackOrder().add(OrderEnum.NONE);
+        this.setEntitiesToDestroy(new ArrayList<>());
+        this.setEntitiesToSummon(new ArrayList<>());
+    }
+
+    private void destroyEntities() {
+        for (final IEntity entity : this.getEntitiesToDestroy()) {
+            this.getModel().destroyEntity(entity);
+            this.getView().removePawnFromBoard(entity);
+
+            switch (entity.getType()) {
+            case PLAYER:
+                this.resetLevel();
+                break;
+            case SPELL:
+                this.getModel().setSpell(null);
+            default:
+                break;
+            }
+        }
+    }
+
+    private void summonEntities() {
+        for (final TypeEnum type : this.getEntitiesToSummon()) {
+            this.getView().getBoardFrame().addPawn(this.getModel().addEntityToLevel(type));
+        }
+    }
+
+    /**
+     * Update the entities of the model
+     */
+    private void updateEntities() {
+        IEntity entity, target;
+        while (this.getEntityIterator().hasNext()) {
+            entity = this.getEntityIterator().next();
+            if (this.getNextTile(entity).getType() == Type.WALL) {
+                entity.bounce(this.getModel().getLevel());
+            } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
+                // TODO change and use getAddResult
+                if ((target = this.getModel().getLevel().getEntityOn(
+                        entity.getPosition().getAddResult(entity.getDirection()))) != null) {
+                    this.performInteraction(entity, target, this.getInteractionManager()
+                            .getInteractionOnNextPositionBetween(entity, target));
+                }
+
+            }
+            if ((target = this.getModel().getLevel().getEntityOverlapping(entity)) != null) {
+                this.performInteraction(entity, target, this.getInteractionManager()
+                        .getInteractionOnCurrentPositionBetween(entity, target));
+            }
+            entity.update();
+        }
+    }
+
+    /**
+     * @return the board
+     */
+    private IBoard getBoard() {
+        return this.board;
+    }
+
+    /**
+     * @return the interactionManager
+     */
+    private InteractionManager getInteractionManager() {
+        return this.interactionManager;
+    }
+
+    /**
+     * @return the levelLoader
+     */
+    private LevelLoader getLevelLoader() {
+        return this.levelLoader;
+    }
+
+    /**
+     * Gets the model.
+     *
+     * @return the model
+     */
+    public IModel getModel() {
+        return this.model;
+    }
+
+    private IUnit getNextTile(final IEntity entity) {
+        return this.getModel().getUnitOn(entity.getX() + entity.getDirection().getX(),
+                entity.getY() + entity.getDirection().getY());
+    }
+
+    /**
+     * Gets the stackOrder
+     *
+     * @return the stackOrder
+     */
+    private ArrayList<OrderEnum> getStackOrder() {
+        return this.stackOrder;
+    }
+
+    /**
+     * Gets the view.
+     *
+     * @return the view
+     */
+    public IView getView() {
+        return this.view;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#loadLevel(int)
+     */
+    @Override
+    public void loadLevel(final int id) {
+        if (id <= this.getModel().getMaxLevels()) {
+            this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
+        } else {
+            this.closeGame();
+        }
+
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#nextLevel()
+     */
+    @Override
+    public void nextLevel() {
+        if (!this.gameIsOver()) {
+            this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
+        } else {
+            this.closeGame();
+        }
+
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#resetLevel()
+     */
+    @Override
+    public void resetLevel() {
+        this.getLevelLoader().resetLevel(this.getModel(), this.getView());
+    }
+
+    private void performInteraction(final IEntity entity, final IEntity target,
+            final Interaction interaction) {
+        System.out.println(entity + " : " + interaction);
+        switch (interaction) {
+        case ENTITY_DESTROYED:
+            this.getEntitiesToDestroy().add(entity);
+            break;
+        case TARGET_DESTROYED:
+            this.getEntitiesToDestroy().add(target);
+            break;
+        case BOTH_DESTROYED:
+            this.getEntitiesToDestroy().add(entity);
+            this.getEntitiesToDestroy().add(target);
+            break;
+        case BOUNCE:
+            entity.bounce(this.getModel().getLevel());
+            break;
+        case DODGE:
+            entity.dodge(this.getModel().getLevel());
+            break;
+        case UNLOCK_DOOR:
+            this.getEntitiesToDestroy().add(target);
+            this.getModel().getExit().setType(Type.DOOR_OPEN);
+            break;
+        case QUIT_LEVEL:
+            entity.bounce(this.getModel().getLevel());
+            this.nextLevel();
+            break;
+        default:
+            break;
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
+     */
+    @Override
+    public void setBoard(final IBoard board) {
+        this.board = board;
+    }
+
+    /**
+     * @param interactionManager
+     *            the interactionManager to set
+     */
+    private void setInteractionManager(final InteractionManager interactionManager) {
+        this.interactionManager = interactionManager;
+    }
+
+    /**
+     * @param levelLoader
+     *            the levelLoader to set
+     */
+    private void setLevelLoader(final LevelLoader levelLoader) {
+        this.levelLoader = levelLoader;
+    }
+
+    /**
+     * Sets the stackOrder
+     *
+     * @param stackOrder
+     */
+    private void setStackOrder(final ArrayList<OrderEnum> stackOrder) {
+        this.stackOrder = stackOrder;
+    }
+
+    /**
+     * @param view
+     */
+    public void setView(final IView view) {
+        this.view = view;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IOrderStacker#stackOrder(enums.OrderEnum)
+     */
+    @Override
+    public void stackOrder(final OrderEnum order) {
+        this.getStackOrder().add(order);
+    }
+
+    /**
+     * Gets the entityIterator
+     *
+     * @return the entityIterator
+     */
+    private Iterator<IEntity> getEntityIterator() {
+        return this.entityIterator;
+    }
+
+    /**
+     * Sets the entityIterator
+     *
+     * @param entities
+     */
+    private void setEntityIterator(final ArrayList<IEntity> entities) {
+        this.entityIterator = entities.iterator();
+    }
+
+    /**
+     * Gets the entitiesToDestroy
+     *
+     * @return the entitiesToDestroy
+     */
+    private ArrayList<IEntity> getEntitiesToDestroy() {
+        return this.entitiesToDestroy;
+    }
+
+    /**
+     * Sets the entitiesToDestroy
+     *
+     * @param entitiesToDestroy
+     */
+    private void setEntitiesToDestroy(final ArrayList<IEntity> entitiesToDestroy) {
+        this.entitiesToDestroy = entitiesToDestroy;
+    }
+
+    /**
+     * Gets the entitiesToSummon
+     *
+     * @return the entitiesToSummon
+     */
+    private ArrayList<TypeEnum> getEntitiesToSummon() {
+        return this.entitiesToSummon;
+    }
+
+    /**
+     * Sets the entitiesToSummon
+     *
+     * @param entitiesToSummon
+     */
+    private void setEntitiesToSummon(final ArrayList<TypeEnum> entitiesToSummon) {
+        this.entitiesToSummon = entitiesToSummon;
+    }
+
+    private boolean gameIsOver() {
+        Boolean isOver = false;
+        if (this.getModel().getLevel().getId() == this.getModel().getMaxLevels()) {
+            isOver = true;
+        }
+        return isOver;
+    }
+
+	
 	private void closeGame() {
 		try {
 			this.getView().displayMessage(
@@ -77,174 +398,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 			e.printStackTrace();
 		}
 		System.exit(0);
-	}
-
-	private void destroyEntities() {
-		for (final IEntity entity : this.getEntitiesToDestroy()) {
-			this.getModel().destroyEntity(entity);
-			this.getView().removePawnFromBoard(entity);
-
-			switch (entity.getType()) {
-			case PLAYER:
-				this.resetLevel();
-				break;
-			case SPELL:
-				this.getModel().setSpell(null);
-			default:
-				break;
-			}
-		}
-	}
-
-	private boolean gameIsOver() {
-		Boolean isOver = false;
-		if (this.getModel().getLevel().getId() == this.getModel().getMaxLevels()) {
-			isOver = true;
-		}
-		return isOver;
-	}
-
-	/**
-	 * @return the board
-	 */
-	private IBoard getBoard() {
-		return this.board;
-	}
-
-	/**
-	 * Gets the entitiesToDestroy
-	 *
-	 * @return the entitiesToDestroy
-	 */
-	private ArrayList<IEntity> getEntitiesToDestroy() {
-		return this.entitiesToDestroy;
-	}
-
-	/**
-	 * Gets the entitiesToSummon
-	 *
-	 * @return the entitiesToSummon
-	 */
-	private ArrayList<TypeEnum> getEntitiesToSummon() {
-		return this.entitiesToSummon;
-	}
-
-	/**
-	 * Gets the entityIterator
-	 *
-	 * @return the entityIterator
-	 */
-	private Iterator<IEntity> getEntityIterator() {
-		return this.entityIterator;
-	}
-
-	/**
-	 * @return the interactionManager
-	 */
-	private InteractionManager getInteractionManager() {
-		return this.interactionManager;
-	}
-
-	/**
-	 * @return the levelLoader
-	 */
-	private LevelLoader getLevelLoader() {
-		return this.levelLoader;
-	}
-
-	/**
-	 * Gets the model.
-	 *
-	 * @return the model
-	 */
-	public IModel getModel() {
-		return this.model;
-	}
-
-	private IUnit getNextTile(final IEntity entity) {
-		return this.getModel().getUnitOn(entity.getX() + entity.getDirection().getX(),
-				entity.getY() + entity.getDirection().getY());
-	}
-
-	/**
-	 * Gets the stackOrder
-	 *
-	 * @return the stackOrder
-	 */
-	private ArrayList<OrderEnum> getStackOrder() {
-		return this.stackOrder;
-	}
-
-	/**
-	 * Gets the view.
-	 *
-	 * @return the view
-	 */
-	public IView getView() {
-		return this.view;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#loadLevel(int)
-	 */
-	@Override
-	public void loadLevel(final int id) {
-		if (id <= this.getModel().getMaxLevels()) {
-			this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
-		} else {
-			this.closeGame();
-		}
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#nextLevel()
-	 */
-	@Override
-	public void nextLevel() {
-		if (!this.gameIsOver()) {
-			this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
-		} else {
-			this.closeGame();
-		}
-
-	}
-
-	private synchronized void performInteraction(final IEntity entity, final IEntity target,
-			final Interaction interaction) {
-		System.out.println(entity + " : " + interaction);
-		switch (interaction) {
-		case ENTITY_DESTROYED:
-			this.getEntitiesToDestroy().add(entity);
-			break;
-		case TARGET_DESTROYED:
-			this.getEntitiesToDestroy().add(target);
-			break;
-		case BOTH_DESTROYED:
-			this.getEntitiesToDestroy().add(entity);
-			this.getEntitiesToDestroy().add(target);
-			break;
-		case BOUNCE:
-			entity.bounce(this.getModel().getLevel());
-			break;
-		case DODGE:
-			entity.dodge(this.getModel().getLevel());
-			break;
-		case UNLOCK_DOOR:
-			this.getEntitiesToDestroy().add(target);
-			this.getModel().getExit().setType(Type.DOOR_OPEN);
-			break;
-		case QUIT_LEVEL:
-			entity.bounce(this.getModel().getLevel());
-			this.nextLevel();
-			break;
-		default:
-			break;
-		}
 	}
 
 	/*
@@ -304,157 +457,4 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 			break;
 		}
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#resetLevel()
-	 */
-	@Override
-	public void resetLevel() {
-		this.getLevelLoader().resetLevel(this.getModel(), this.getView());
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
-	 */
-	@Override
-	public void setBoard(final IBoard board) {
-		this.board = board;
-	}
-
-	/**
-	 * Sets the entitiesToDestroy
-	 *
-	 * @param entitiesToDestroy
-	 */
-	private void setEntitiesToDestroy(final ArrayList<IEntity> entitiesToDestroy) {
-		this.entitiesToDestroy = entitiesToDestroy;
-	}
-
-	/**
-	 * Sets the entitiesToSummon
-	 *
-	 * @param entitiesToSummon
-	 */
-	private void setEntitiesToSummon(final ArrayList<TypeEnum> entitiesToSummon) {
-		this.entitiesToSummon = entitiesToSummon;
-	}
-
-	/**
-	 * Sets the entityIterator
-	 *
-	 * @param entities
-	 */
-	private void setEntityIterator(final ArrayList<IEntity> entities) {
-		this.entityIterator = entities.iterator();
-	}
-
-	/**
-	 * @param interactionManager
-	 *            the interactionManager to set
-	 */
-	private void setInteractionManager(final InteractionManager interactionManager) {
-		this.interactionManager = interactionManager;
-	}
-
-	/**
-	 * @param levelLoader
-	 *            the levelLoader to set
-	 */
-	private void setLevelLoader(final LevelLoader levelLoader) {
-		this.levelLoader = levelLoader;
-	}
-
-	/**
-	 * Sets the stackOrder
-	 *
-	 * @param stackOrder
-	 */
-	private void setStackOrder(final ArrayList<OrderEnum> stackOrder) {
-		this.stackOrder = stackOrder;
-	}
-
-	/**
-	 * @param view
-	 */
-	public void setView(final IView view) {
-		this.view = view;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IOrderStacker#stackOrder(enums.OrderEnum)
-	 */
-	@Override
-	public void stackOrder(final OrderEnum order) {
-		this.getStackOrder().add(order);
-	}
-
-	/**
-	 * Start.
-	 *
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	public void start() throws SQLException {
-		this.getModel().setMaxLevels();
-		this.nextLevel();
-	}
-
-	private void summonEntities() {
-		for (final TypeEnum type : this.getEntitiesToSummon()) {
-			this.getView().getBoardFrame().addPawn(this.getModel().addEntityToLevel(type));
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IController#update()
-	 */
-	@Override
-	public void update() {
-		this.getModel().update();
-		this.setEntityIterator(this.getModel().getLevel().getEntities());
-		this.performOrder();
-		this.updateEntities();
-		this.destroyEntities();
-		this.summonEntities();
-		this.setStackOrder(new ArrayList<>());
-		this.getStackOrder().add(OrderEnum.NONE);
-		this.setEntitiesToDestroy(new ArrayList<>());
-		this.setEntitiesToSummon(new ArrayList<>());
-	}
-
-	/**
-	 * Update the entities of the model
-	 */
-	private void updateEntities() {
-		IEntity entity, target;
-		while (this.getEntityIterator().hasNext()) {
-			entity = this.getEntityIterator().next();
-			if (this.getNextTile(entity).getType() == Type.WALL) {
-				System.out.println("1");
-				entity.bounce(this.getModel().getLevel());
-			} else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
-				// TODO change and use getAddResult
-				if ((target = this.getModel().getLevel()
-						.getEntityOn(entity.getPosition().getAddResult(entity.getDirection()))) != null) {
-					this.performInteraction(entity, target,
-							this.getInteractionManager().getInteractionOnNextPositionBetween(entity, target));
-				}
-
-			}
-			if ((target = this.getModel().getLevel().getEntityOverlapping(entity)) != null) {
-				this.performInteraction(entity, target,
-						this.getInteractionManager().getInteractionOnCurrentPositionBetween(entity, target));
-			}
-			entity.update();
-		}
-	}
-
 }
