@@ -59,8 +59,8 @@ public class SpriteSet implements ISpriteSet {
 		this.setMaxIndex(this.getnSprites() - 1);
 	}
 
-	/**
-	 * @return the current animation index of the SpriteSet
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#getCurrentIndex()
 	 */
 	@Override
 	public int getCurrentIndex() {
@@ -68,36 +68,31 @@ public class SpriteSet implements ISpriteSet {
 		return this.currentIndex;
 	}
 
-	/**
-	 * returns the sprite according to the current animation index, calls
-	 * getSpriteByIndex() method.
-	 *
-	 * @return the sprite of index currentIndex. Null if ArrayList is empty.
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#getCurrentSprite()
 	 */
 	@Override
 	public BufferedImage getCurrentSprite() {
 		return this.getSpriteByIndex(this.getCurrentIndex());
 	}
 
-	/**
-	 * @return the maximal value of the animation index, to prevent a
-	 *         NullPointerException
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#getMaxIndex()
 	 */
 	@Override
 	public int getMaxIndex() {
 		return this.maxIndex;
 	}
 
+	/**
+	 * @return
+	 */
 	public int getnSprites() {
 		return this.nSprites;
 	}
 
-	/**
-	 * returns the sprite according to its index ; putting a higher value than the
-	 * maxIndex will return the first sprite of the ArrayList
-	 *
-	 * @param index
-	 * @return a sprite for the given index, null if ArrayList is empty.
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#getSpriteByIndex(int)
 	 */
 	@Override
 	public BufferedImage getSpriteByIndex(final int index) {
@@ -109,16 +104,16 @@ public class SpriteSet implements ISpriteSet {
 
 	}
 
-	/**
-	 * @return the sprites ArrayList
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#getSprites()
 	 */
 	@Override
 	public ArrayList<BufferedImage> getSprites() {
 		return this.sprites;
 	}
 
-	/**
-	 * sets the currentIndex to 0
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#resetIndex()
 	 */
 	@Override
 	public void resetIndex() {
@@ -139,9 +134,8 @@ public class SpriteSet implements ISpriteSet {
 		this.maxIndex = maxIndex;
 	}
 
-	/**
-	 * sets the next sprite by shifting the current index, with a modulo preventing
-	 * NullPointerException
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#setNextSprite()
 	 */
 	@Override
 	public void setNextSprite() {
@@ -155,20 +149,27 @@ public class SpriteSet implements ISpriteSet {
 		this.nSprites = nSprites;
 	}
 
-	/**
-	 * @param sprites
+
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#setSprites(java.util.ArrayList)
 	 */
 	@Override
 	public void setSprites(final ArrayList<BufferedImage> sprites) {
 		this.sprites = sprites;
 	}
 
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#setSprites(java.awt.image.BufferedImage)
+	 */
 	@Override
 	public void setSprites(final BufferedImage image) {
 		this.setSprites(new ArrayList<BufferedImage>());
 		this.getSprites().add(image);
 	}
 
+	/* (non-Javadoc)
+	 * @see showboard.ISpriteSet#setSprites(showboard.ISpriteSet)
+	 */
 	@Override
 	public void setSprites(final ISpriteSet spriteSet) {
 		this.setSprites(spriteSet.getSprites());
