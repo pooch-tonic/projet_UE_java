@@ -13,6 +13,7 @@ import controllerInterfaces.IOrderStacker;
 import enums.DirectionEnum;
 import enums.OrderEnum;
 import enums.Type;
+import enums.TypeEnum;
 import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
@@ -49,6 +50,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private ArrayList<IEntity> entitiesToDestroy;
 
+    private ArrayList<TypeEnum> entitiesToSummon;
+
     /**
      * Instantiates a new ControllerFacade
      *
@@ -61,7 +64,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.setInteractionManager(new InteractionManager());
         this.setLevelLoader(new LevelLoader());
         this.setStackOrder(new ArrayList<>());
+        this.getStackOrder().add(OrderEnum.NONE);
         this.setEntitiesToDestroy(new ArrayList<>());
+        this.setEntitiesToSummon(new ArrayList<>());
     }
 
     /**
@@ -71,7 +76,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *             the SQL exception
      */
     public void start() throws SQLException {
-        this.nextlevel();
+        this.getModel().setMaxLevels();
+        this.loadLevel(5);
     }
 
     /*
@@ -85,15 +91,34 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.setEntityIterator(this.getModel().getLevel().getEntities());
         this.performOrder();
         this.updateEntities();
-        this.killEntities();
+        this.destroyEntities();
+        this.summonEntities();
         this.setStackOrder(new ArrayList<>());
+        this.getStackOrder().add(OrderEnum.NONE);
         this.setEntitiesToDestroy(new ArrayList<>());
+        this.setEntitiesToSummon(new ArrayList<>());
     }
 
-    private void killEntities() {
+    private void destroyEntities() {
         for (final IEntity entity : this.getEntitiesToDestroy()) {
             this.getModel().destroyEntity(entity);
             this.getView().removePawnFromBoard(entity);
+
+            switch (entity.getType()) {
+            case PLAYER:
+                this.resetLevel();
+                break;
+            case SPELL:
+                this.getModel().setSpell(null);
+            default:
+                break;
+            }
+        }
+    }
+
+    private void summonEntities() {
+        for (final TypeEnum type : this.getEntitiesToSummon()) {
+            this.getView().getBoardFrame().addPawn(this.getModel().addEntityToLevel(type));
         }
     }
 
@@ -187,7 +212,12 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void loadLevel(final int id) {
-        this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
+        if (id <= this.getModel().getMaxLevels()) {
+            this.getLevelLoader().loadLevel(id, this.getModel(), this.getView());
+        } else {
+            this.closeGame();
+        }
+
     }
 
     /*
@@ -197,7 +227,16 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void nextlevel() {
-        this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
+        if (!this.gameIsOver()) {
+            this.getLevelLoader().loadNextLevel(this.getModel(), this.getView());
+        } else {
+            this.closeGame();
+        }
+
+    }
+
+    public void resetLevel() {
+        this.getLevelLoader().resetLevel(this.getModel(), this.getView());
     }
 
     private synchronized void performInteraction(final IEntity entity, final IEntity target,
@@ -243,9 +282,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         // TODO Auto-generated method stub
         OrderEnum order = OrderEnum.NONE;
 
-        if (!this.getStackOrder().isEmpty()) {
-            order = this.getStackOrder().get(this.getStackOrder().size() - 1);
-        }
+        order = this.getStackOrder().get(this.getStackOrder().size() - 1);
 
         switch (order) {
         case UP:
@@ -274,8 +311,10 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
             break;
         case CAST:
-            this.getModel().castSpell();
-            this.getBoard().addPawn(this.getModel().getSpell());
+            if (this.getModel().getSpell() == null) {
+                this.getEntitiesToSummon().add(TypeEnum.SPELL);
+            }
+            // TODO attirer le spell
             this.getModel().setPlayerDirection(DirectionEnum.NONE);
             break;
         default:
@@ -372,6 +411,42 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     private void setEntitiesToDestroy(final ArrayList<IEntity> entitiesToDestroy) {
         this.entitiesToDestroy = entitiesToDestroy;
+    }
+
+    /**
+     * Gets the entitiesToSummon
+     *
+     * @return the entitiesToSummon
+     */
+    private ArrayList<TypeEnum> getEntitiesToSummon() {
+        return this.entitiesToSummon;
+    }
+
+    /**
+     * Sets the entitiesToSummon
+     *
+     * @param entitiesToSummon
+     */
+    private void setEntitiesToSummon(final ArrayList<TypeEnum> entitiesToSummon) {
+        this.entitiesToSummon = entitiesToSummon;
+    }
+
+    private boolean gameIsOver() {
+        Boolean isOver = false;
+        if (this.getModel().getLevel().getId() == this.getModel().getMaxLevels()) {
+            isOver = true;
+        }
+        return isOver;
+    }
+
+    private void closeGame() {
+        try {
+            this.getView().displayMessage("You reached the last level !\n Well Played !");
+        } catch (final Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.exit(0);
     }
 
 }

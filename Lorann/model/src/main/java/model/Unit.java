@@ -22,126 +22,126 @@ import vector.Vector;
  *
  */
 public class Unit implements IUnit {
-	final static int SIZE = 32;
+    final static int SIZE = 32;
 
-	/**
-	 * @return the size of the unit, also applies to the sprite size.
-	 */
-	public static int getSize() {
-		return SIZE;
-	}
+    /**
+     * @return the size of the unit, also applies to the sprite size.
+     */
+    public static int getSize() {
+        return SIZE;
+    }
 
-	private IVector position;
-	private ISpriteSet spriteSet;
+    private IVector    position;
+    private ISpriteSet spriteSet;
 
-	private Type type;
+    private Type type;
 
-	/**
-	 * Instantiates a new Unit
-	 *
-	 * @param spriteSet
-	 * @param type
-	 */
-	public Unit(final ISpriteSet spriteSet, final Type type) {
-		this.setPosition(null);
-		this.spriteSet = new SpriteSet();
-		this.setSpriteSet(spriteSet);
-		this.setType(type);
-	}
+    /**
+     * Instantiates a new Unit
+     *
+     * @param spriteSet
+     * @param type
+     */
+    public Unit(final ISpriteSet spriteSet, final Type type) {
+        this.setPosition(null);
+        this.spriteSet = new SpriteSet();
+        this.setSpriteSet(spriteSet);
+        this.setType(type);
+    }
 
-	/**
-	 * Instantiates a new Unit
-	 *
-	 * @param position
-	 * @param spriteSet
-	 * @param type
-	 */
-	public Unit(final IVector position, final ISpriteSet spriteSet, final Type type) {
-		this.setPosition(position);
-		this.setSpriteSet(spriteSet);
-		this.setType(type);
-	}
+    /**
+     * Instantiates a new Unit
+     *
+     * @param position
+     * @param spriteSet
+     * @param type
+     */
+    public Unit(final IVector position, final ISpriteSet spriteSet, final Type type) {
+        this.setPosition(position);
+        this.setSpriteSet(spriteSet);
+        this.setType(type);
+    }
 
-	/**
-	 * Instantiates a new Unit
-	 *
-	 * @param position
-	 * @param type
-	 */
-	public Unit(final IVector position, final Type type) {
-		this.spriteSet = new SpriteSet();
-		this.setPosition(position);
-		this.setSpriteSet(new ArrayList<BufferedImage>());
-		this.setType(type);
-	}
+    /**
+     * Instantiates a new Unit
+     *
+     * @param position
+     * @param type
+     */
+    public Unit(final IVector position, final Type type) {
+        this.spriteSet = new SpriteSet();
+        this.setPosition(position);
+        this.setSpriteSet(new ArrayList<BufferedImage>());
+        this.setType(type);
+    }
 
-	/**
-	 * Instantiates a new Unit
-	 *
-	 * @param type
-	 */
-	public Unit(final Type type) {
-		this.spriteSet = new SpriteSet();
-		this.setPosition(new Vector(0, 0));
-		this.setSpriteSet(new ArrayList<BufferedImage>());
-		this.setType(type);
-	}
+    /**
+     * Instantiates a new Unit
+     *
+     * @param type
+     */
+    public Unit(final Type type) {
+        this.spriteSet = new SpriteSet();
+        this.setPosition(new Vector(0, 0));
+        this.setSpriteSet(new ArrayList<BufferedImage>());
+        this.setType(type);
+    }
 
-	/**
-	 * Instantiates a new Unit
-	 *
-	 * @param type
-	 * @param spriteSet
-	 *
-	 */
-	public Unit(final Type type, final ISpriteSet spriteSet) {
-		this.spriteSet = spriteSet;
-		this.setPosition(null);
-		this.setType(type);
-	}
+    /**
+     * Instantiates a new Unit
+     *
+     * @param type
+     * @param spriteSet
+     *
+     */
+    public Unit(final Type type, final ISpriteSet spriteSet) {
+        this.spriteSet = spriteSet;
+        this.setPosition(null);
+        this.setType(type);
+    }
 
-	@Override
-	public Image getImage() {
-		return this.getSpriteSet().getCurrentSprite();
-	}
+    @Override
+    public Image getImage() {
+        return this.getSpriteSet().getCurrentSprite();
+    }
 
-	@Override
-	public IVector getPosition() {
-		return this.position;
-	}
+    @Override
+    public IVector getPosition() {
+        return this.position;
+    }
 
-	@Override
-	public ISpriteSet getSpriteSet() {
-		return this.spriteSet;
-	}
+    @Override
+    public ISpriteSet getSpriteSet() {
+        return this.spriteSet;
+    }
 
-	@Override
-	public Type getType() {
-		return this.type;
-	}
+    @Override
+    public Type getType() {
+        return this.type;
+    }
 
-	@Override
-	public void setPosition(final IVector position) {
-		this.position = position;
-	}
+    @Override
+    public void setPosition(final IVector position) {
+        this.position = position;
+    }
 
-	@Override
-	public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
-		this.spriteSet.setSprites(sprites);
-	}
+    @Override
+    public void setSpriteSet(final ArrayList<BufferedImage> sprites) {
+        this.spriteSet.setSprites(sprites);
+    }
 
-	@Override
-	public void setSpriteSet(final BufferedImage image) {
-		this.getSpriteSet().setSprites(image);
-	}
+    @Override
+    public void setSpriteSet(final BufferedImage image) {
+        this.getSpriteSet().setSprites(image);
+    }
 
-	@Override
-	public void setSpriteSet(final ISpriteSet spriteSet) {
-		this.spriteSet.setSprites(spriteSet);
-	}
+    @Override
+    public void setSpriteSet(final ISpriteSet spriteSet) {
+        this.spriteSet.setSprites(spriteSet);
+    }
 
-	@Override
-	public void setType(final Type type) {
-		this.type = type;
-	}
+    @Override
+    public void setType(final Type type) {
+        this.type = type;
+    }
 }

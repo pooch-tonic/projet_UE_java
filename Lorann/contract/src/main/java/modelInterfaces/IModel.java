@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.sql.SQLException;
 
 import enums.DirectionEnum;
+import enums.TypeEnum;
 
 /**
  * <h1>The Interface IModel.</h1>
@@ -47,6 +48,8 @@ public interface IModel {
 
     public IEntity getPlayer();
 
+    public void setPlayer(IEntity player);
+
     /**
      * @param levelId
      * @throws SQLException
@@ -65,17 +68,25 @@ public interface IModel {
      */
     public void setPlayerDirection(DirectionEnum direction);
 
-    public void castSpell();
-    
     public IEntity getSpell();
+
+    public void setSpell(IEntity spell);
 
     public void update();
 
     public IUnit getUnitOn(int x, int y);
-    
-    public ILevel getLevelSave();
 
-	public void setLevelSave(ILevel levelSave);
-	
-	public void resetLevel();
+    public IEntity addEntityToLevel(TypeEnum type);
+
+    /**
+     * Gets the maxLevels
+     *
+     * @return the maxLevels
+     */
+    public int getMaxLevels();
+
+    /**
+     * Sets the maxLevels by reading the Database
+     */
+    public void setMaxLevels();
 }

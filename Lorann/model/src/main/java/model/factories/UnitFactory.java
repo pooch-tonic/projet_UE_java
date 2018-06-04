@@ -46,8 +46,8 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return a default dead unit
      */
-    public static Dead createDead_default(final ISpriteSet spriteSet) {
-        return deadFactory.createDefault(spriteSet);
+    public static Dead createDead_default() {
+        return deadFactory.createDefault();
     }
 
     /**
@@ -99,6 +99,7 @@ public abstract class UnitFactory {
 
     // TODO UTILISER IMAGELOADER
     public static IEntity createEntity(final TypeEnum type, final ArrayList<String> spritePath) {
+        System.out.println(type);
         final ArrayList<BufferedImage> images = new ArrayList<>();
         for (final String path : spritePath) {
             images.add(ImageLoader.getImageByPath(path));
@@ -125,7 +126,7 @@ public abstract class UnitFactory {
         case DOOR_CLOSED:
             return createDoor_closed(spriteSet);
         case DEAD:
-            return createDead_default(spriteSet);
+            return createDead_default();
         case SPELL:
             return createSpell();
         default:
@@ -165,9 +166,13 @@ public abstract class UnitFactory {
         return spellFactory.createSpell();
 
     }
-    
-    public static void setSpellSpriteSet(ArrayList<String> spritePath) {
-    	spellFactory.setSpriteSet(spritePath);
+
+    public static void setSpellSpriteSet(final ArrayList<String> spritePath) {
+        spellFactory.setSpriteSet(spritePath);
+    }
+
+    public static void setDeadSpriteSet(final ArrayList<String> spritePath) {
+        deadFactory.setSpriteSet(spritePath);
     }
 
     public static IUnit createWall(final WallType wallType, final String path) {

@@ -21,9 +21,8 @@ public class Door extends Entity {
      *
      * @param closed
      */
-    public Door(final boolean closed, final ISpriteSet spriteSet) {
-        super(Type.ENEMY, spriteSet);
-        this.setDoorType(closed);
+    public Door(final Type type, final ISpriteSet spriteSet) {
+        super(type, spriteSet);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
@@ -35,24 +34,23 @@ public class Door extends Entity {
      * @param position
      * @param closed
      */
-    public Door(final IVector position, final boolean closed) {
-        super(Type.ENEMY);
-        this.setDoorType(closed);
+    public Door(final IVector position, final Type type) {
+        super(type);
         super.setPosition(position);
-
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * Set door type between enemy if the door is closed or door_open
-     * 
+     *
      * @param closed
      */
-    private void setDoorType(final boolean closed) {
-        if (closed) {
-            super.setType(Type.ENEMY);
-        } else {
-            super.setType(Type.DOOR_OPEN);
+    @Override
+    public void setType(final Type type) {
+        super.setType(type);
+
+        if (this.getType() == Type.DOOR_OPEN) {
+            System.out.println("ok");
+            this.getSpriteSet().setNextSprite();
         }
     }
 

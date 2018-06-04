@@ -81,7 +81,7 @@ public class ViewFacade implements IView, Runnable {
         if (message.isEmpty()) {
             throw new Exception("Message to display is empty");
         }
-        JOptionPane.showMessageDialog(null, message);
+        JOptionPane.showMessageDialog(this.getBoardFrame(), message);
     }
 
     /**

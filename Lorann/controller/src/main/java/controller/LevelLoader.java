@@ -12,16 +12,15 @@ import viewInterfaces.IView;
 
 public class LevelLoader {
 
+    public LevelLoader() {
+        // TODO level loader constructor
+    }
+
     /**
      * @param idLevel
      * @param model
      * @param view
      */
-
-    public LevelLoader() {
-        // TODO level loader constructor
-    }
-
     public void loadLevel(final int idLevel, final IModel model, final IView view) {
 
         try {
@@ -44,11 +43,23 @@ public class LevelLoader {
     }
 
     /**
+     * Generates the next level
+     *
      * @param model
      * @param view
      */
     public void loadNextLevel(final IModel model, final IView view) {
         this.loadLevel(model.getLevel().getId() + 1, model, view);
 
+    }
+
+    /**
+     * Regenerates the current level
+     *
+     * @param model
+     * @param view
+     */
+    public void resetLevel(final IModel model, final IView view) {
+        this.loadLevel(model.getLevel().getId(), model, view);
     }
 }
