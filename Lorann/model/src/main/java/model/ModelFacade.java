@@ -30,11 +30,10 @@ import vector.Vector;
  */
 public final class ModelFacade extends Observable implements IModel {
     private ILevel level;
-    private ILevel levelSave;
 
-	private Score  score;
+    private int maxLevels;
 
-    private final Dimension dimensionTemp; // TODO supprimer
+    private Score score;
 
     /**
      * Instantiates a new model facade.
@@ -43,7 +42,6 @@ public final class ModelFacade extends Observable implements IModel {
         super();
         // Creates a ground-only level
         this.level = new Level(0, dimension);
-        this.dimensionTemp = dimension; // TODO supprimer
 
         this.fillVoidSquares();
         this.setScore(new Score());
@@ -235,6 +233,7 @@ public final class ModelFacade extends Observable implements IModel {
             }
         }
         UnitFactory.setSpellSpriteSet(QueryDAO.getSpritePath(TypeEnum.SPELL));
+        UnitFactory.setDeadSpriteSet(QueryDAO.getSpritePath(TypeEnum.DEAD));
         this.fillVoidSquares();
         this.update();
 
@@ -284,36 +283,57 @@ public final class ModelFacade extends Observable implements IModel {
     }
 
     @Override
-    public void castSpell() {
-        IEntity entity = UnitFactory.createSpell();
-        entity.setPosition(this.getPlayer().getPosition().getAddResult(new Vector(0,1)));
-        this.getLevel().addEntity(entity);
-        this.getLevel().setSpell(entity);
-    }
-    
-    
-
-    @Override
     public IUnit getUnitOn(final int x, final int y) {
         return this.getLevel().getUnitOn(x, y);
     }
 
-	@Override
-	public IEntity getSpell() {
-		return this.getLevel().getSpell();
-	}
-	
-	
-    public ILevel getLevelSave() {
-		return levelSave;
-	}
+    @Override
+    public IEntity getSpell() {
+        return this.getLevel().getSpell();
+    }
 
-	public void setLevelSave(ILevel levelSave) {
-		this.levelSave = levelSave;
-	}
+    @Override
+    public IEntity addEntityToLevel(final TypeEnum type) {
+        final IEntity entity = UnitFactory.createEntity(type, new ArrayList<>());
+        this.getLevel().addEntity(entity);
 
-	@Override
-	public void resetLevel() {
-		this.setLevel(this.getLevelSave());
-	}
+        if (type == TypeEnum.SPELL) {
+            entity.setPosition(this.getPlayer().getPosition().getAddResult(new Vector(0, 1)));
+            this.getLevel().setSpell(entity);
+        }
+
+        return entity;
+    }
+
+    @Override
+    public void setPlayer(final IEntity player) {
+        this.getLevel().setPlayer(player);
+
+    }
+
+    @Override
+    public void setSpell(final IEntity spell) {
+        this.getLevel().setSpell(spell);
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.IModel#getMaxLevels()
+     */
+    @Override
+    public int getMaxLevels() {
+        return this.maxLevels;
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see modelInterfaces.IModel#setMaxLevels(int)
+     */
+    @Override
+    public void setMaxLevels() {
+        // TODO lire dans la bdd
+        this.maxLevels = 5;
+    }
 }

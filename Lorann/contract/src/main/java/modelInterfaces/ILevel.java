@@ -128,14 +128,8 @@ public interface ILevel {
      * @param exit
      */
     public void setExit(final IEntity exit);
-    
-    
-    
-    
+
     public IEntity getSpell();
 
-    
-    
-    
-	public void setSpell(IEntity spell);
+    public void setSpell(IEntity spell);
 }
