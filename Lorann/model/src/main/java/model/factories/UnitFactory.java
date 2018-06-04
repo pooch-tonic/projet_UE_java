@@ -127,7 +127,7 @@ public abstract class UnitFactory {
         case DEAD:
             return createDead_default(spriteSet);
         case SPELL:
-            return createSpell(spriteSet);
+            return createSpell();
         default:
             return null;
         }
@@ -161,9 +161,13 @@ public abstract class UnitFactory {
         return playerFactory.createLorann(spriteSet);
     }
 
-    public static Spell createSpell(final ISpriteSet spriteSet) {
-        return spellFactory.createSpell(spriteSet);
+    public static Spell createSpell() {
+        return spellFactory.createSpell();
 
+    }
+    
+    public static void setSpellSpriteSet(ArrayList<String> spritePath) {
+    	spellFactory.setSpriteSet(spritePath);
     }
 
     public static IUnit createWall(final WallType wallType, final String path) {
