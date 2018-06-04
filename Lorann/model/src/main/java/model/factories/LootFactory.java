@@ -6,6 +6,6 @@ import showboard.ISpriteSet;
 
 class LootFactory {
 	Loot createCoin(ISpriteSet spriteSet) {
-		return new Loot(LootType.COIN);
+		return new Loot(LootType.COIN, spriteSet);
 	}
 }

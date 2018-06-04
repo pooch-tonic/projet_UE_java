@@ -15,11 +15,11 @@ public class Loot extends Entity {
 
 	/**
 	 * Instantiates a new Loot
+	 * @param coin 
 	 *
 	 */
-	public Loot(final ISpriteSet spriteSet) {
-		super(Type.LOOT);
-		super.setSpriteSet(spriteSet);
+	public Loot(LootType coin, final ISpriteSet spriteSet) {
+		super(Type.LOOT, spriteSet);
 		// TODO Auto-generated constructor stub
 	}
 
