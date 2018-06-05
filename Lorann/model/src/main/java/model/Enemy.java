@@ -3,11 +3,11 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.BounceTowardsPlayer;
-import model.behaviorStrategy.DodgeAside;
-import model.behaviorStrategy.DodgeBackwards;
-import model.behaviorStrategy.MoveSimple;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.BounceTowardsPlayer;
+import model.behaviorstrategy.DodgeAside;
+import model.behaviorstrategy.DodgeBackwards;
+import model.behaviorstrategy.MoveSimple;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -23,9 +23,9 @@ public class Enemy extends Entity {
      *
      * @param enemyName
      */
-    public Enemy(final EnemyName enemyName, final ISpriteSet spriteSet) {
-        super(Type.ENEMY, spriteSet);
-        this.setType(Type.ENEMY);
+    public Enemy(final EnemyNameEnum enemyName, final ISpriteSet spriteSet) {
+        super(UnitTypeEnum.ENEMY, spriteSet);
+        this.setType(UnitTypeEnum.ENEMY);
         this.setEnemyStrategies(enemyName);
         this.setScoreValue(SCORE);
     }
@@ -36,8 +36,8 @@ public class Enemy extends Entity {
      * @param position
      * @param enemyName
      */
-    public Enemy(final IVector position, final EnemyName enemyName) {
-        super(Type.ENEMY);
+    public Enemy(final IVector position, final EnemyNameEnum enemyName) {
+        super(UnitTypeEnum.ENEMY);
         // this.setEnemyType(enemyName);
         super.setPosition(position);
         this.setScoreValue(SCORE);
@@ -46,7 +46,7 @@ public class Enemy extends Entity {
     /**
      * @param enemyName
      */
-    private void setEnemyStrategies(final EnemyName enemyName) {
+    private void setEnemyStrategies(final EnemyNameEnum enemyName) {
         switch (enemyName) {
         case KYRACJ:
             this.setBounceStrategy(new BounceTowardsPlayer());

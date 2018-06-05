@@ -1,6 +1,6 @@
 package model;
 
-import modelInterfaces.IScore;
+import modelinterfaces.IScore;
 
 /**
  * @author Max Becerro

@@ -3,10 +3,10 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.DoNotBounce;
-import model.behaviorStrategy.DoNotDodge;
-import model.behaviorStrategy.DoNotMove;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.DoNotBounce;
+import model.behaviorstrategy.DoNotDodge;
+import model.behaviorstrategy.DoNotMove;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -23,8 +23,8 @@ public class Loot extends Entity {
      * @param coin
      *
      */
-    public Loot(final LootType coin, final ISpriteSet spriteSet) {
-        super(Type.LOOT, spriteSet);
+    public Loot(final LootTypeEnum coin, final ISpriteSet spriteSet) {
+        super(UnitTypeEnum.LOOT, spriteSet);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
@@ -37,7 +37,7 @@ public class Loot extends Entity {
      * @param position
      */
     public Loot(final IVector position) {
-        super(position, Type.LOOT);
+        super(position, UnitTypeEnum.LOOT);
         this.setScoreValue(SCORE);
     }
 
@@ -47,8 +47,8 @@ public class Loot extends Entity {
      * @param position
      * @param lootType
      */
-    public Loot(final IVector position, final LootType lootType) {
-        super(position, Type.LOOT);
+    public Loot(final IVector position, final LootTypeEnum lootType) {
+        super(position, UnitTypeEnum.LOOT);
         this.setLootScoreValue(lootType);
         this.setScoreValue(SCORE);
     }
@@ -58,15 +58,15 @@ public class Loot extends Entity {
      *
      * @param lootType
      */
-    public Loot(final LootType lootType) {
-        super(Type.LOOT);
+    public Loot(final LootTypeEnum lootType) {
+        super(UnitTypeEnum.LOOT);
         this.setLootScoreValue(lootType);
     }
 
     /**
      * @param lootType
      */
-    private void setLootScoreValue(final LootType lootType) {
+    private void setLootScoreValue(final LootTypeEnum lootType) {
         switch (lootType) {
         case COIN:
             super.setScoreValue(200);

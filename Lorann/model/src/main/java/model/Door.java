@@ -3,10 +3,10 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.DoNotBounce;
-import model.behaviorStrategy.DoNotDodge;
-import model.behaviorStrategy.DoNotMove;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.DoNotBounce;
+import model.behaviorstrategy.DoNotDodge;
+import model.behaviorstrategy.DoNotMove;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -22,7 +22,7 @@ public class Door extends Entity {
      *
      * @param closed
      */
-    public Door(final Type type, final ISpriteSet spriteSet) {
+    public Door(final UnitTypeEnum type, final ISpriteSet spriteSet) {
         super(type, spriteSet);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
@@ -36,7 +36,7 @@ public class Door extends Entity {
      * @param position
      * @param closed
      */
-    public Door(final IVector position, final Type type) {
+    public Door(final IVector position, final UnitTypeEnum type) {
         super(type);
         super.setPosition(position);
         this.setScoreValue(SCORE);
@@ -48,9 +48,9 @@ public class Door extends Entity {
      * @param closed
      */
     @Override
-    public void setType(final Type type) {
+    public void setType(final UnitTypeEnum type) {
         super.setType(type);
-        if (this.getType() == Type.DOOR_OPEN) {
+        if (this.getType() == UnitTypeEnum.DOOR_OPEN) {
             System.out.println("ok");
             this.getSpriteSet().setNextSprite();
         }

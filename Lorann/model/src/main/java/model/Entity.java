@@ -7,14 +7,14 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import enums.Type;
-import enums.TypeEnum;
+import enums.UnitTypeEnum;
+import enums.AllUnitEnum;
 import model.factories.VectorFactory;
-import modelInterfaces.IBounceStrategy;
-import modelInterfaces.IDodgeStrategy;
-import modelInterfaces.IEntity;
-import modelInterfaces.ILevel;
-import modelInterfaces.IMoveStrategy;
+import modelinterfaces.IBounceStrategy;
+import modelinterfaces.IDodgeStrategy;
+import modelinterfaces.IEntity;
+import modelinterfaces.ILevel;
+import modelinterfaces.IMoveStrategy;
 import showboard.ISpriteSet;
 import vector.IVector;
 import vector.Vector;
@@ -45,7 +45,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param durability
      * @param scoreValue
      */
-    public Entity(final IVector position, final ISpriteSet spriteSet, final Type type,
+    public Entity(final IVector position, final ISpriteSet spriteSet, final UnitTypeEnum type,
             final int durability, final int scoreValue) {
         super(position, spriteSet, type);
         this.configure();
@@ -61,7 +61,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param type
      * @param durability
      */
-    public Entity(final IVector position, final ISpriteSet spriteSet, final Type type,
+    public Entity(final IVector position, final ISpriteSet spriteSet, final UnitTypeEnum type,
             final int durability) {
         super(position, spriteSet, type);
         this.configure();
@@ -75,7 +75,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param spriteSet
      * @param type
      */
-    public Entity(final IVector position, final ISpriteSet spriteSet, final Type type) {
+    public Entity(final IVector position, final ISpriteSet spriteSet, final UnitTypeEnum type) {
         super(position, spriteSet, type);
         this.configure();
     }
@@ -115,7 +115,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param position
      * @param type
      */
-    public Entity(final IVector position, final Type type) {
+    public Entity(final IVector position, final UnitTypeEnum type) {
         super(position, type);
         this.configure();
     }
@@ -125,7 +125,7 @@ public abstract class Entity extends Unit implements IEntity {
      *
      * @param type
      */
-    public Entity(final Type type) {
+    public Entity(final UnitTypeEnum type) {
         super(type);
         this.configure();
     }
@@ -137,7 +137,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param spriteSet
      *
      */
-    public Entity(final Type type, final ISpriteSet spriteSet) {
+    public Entity(final UnitTypeEnum type, final ISpriteSet spriteSet) {
         super(type, spriteSet);
         this.configure();
     }
@@ -196,7 +196,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @param type
      * @return
      */
-    public Image getImage(final TypeEnum type) {
+    public Image getImage(final AllUnitEnum type) {
         return super.getSpriteSet().getCurrentSprite();
     }
 
@@ -370,7 +370,7 @@ public abstract class Entity extends Unit implements IEntity {
      * @see model.Unit#setType(enums.Type)
      */
     @Override
-    public void setType(final Type type) {
+    public void setType(final UnitTypeEnum type) {
         super.setType(type);
     }
 

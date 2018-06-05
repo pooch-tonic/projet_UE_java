@@ -5,7 +5,7 @@ package model;
 
 import java.awt.image.BufferedImage;
 
-import enums.Type;
+import enums.UnitTypeEnum;
 import vector.IVector;
 
 /**
@@ -20,11 +20,11 @@ public class Wall extends Unit {
 	 * @param wallType
 	 */
 	public Wall() {
-		super(Type.WALL);
+		super(UnitTypeEnum.WALL);
 	}
 
 	public Wall(final BufferedImage image) {
-		super(Type.WALL, new SpriteSet(image));
+		super(UnitTypeEnum.WALL, new SpriteSet(image));
 	}
 
 	/**
@@ -34,12 +34,12 @@ public class Wall extends Unit {
 	 * @param wallType
 	 */
 	public Wall(final IVector position) {
-		super(Type.WALL);
+		super(UnitTypeEnum.WALL);
 		this.setPosition(position);
 	}
 
 	public Wall(final IVector position, final BufferedImage image) {
-		super(Type.WALL, new SpriteSet(image));
+		super(UnitTypeEnum.WALL, new SpriteSet(image));
 		this.setPosition(position);
 	}
 }

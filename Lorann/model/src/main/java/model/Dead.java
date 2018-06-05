@@ -3,10 +3,10 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.DoNotBounce;
-import model.behaviorStrategy.DoNotDodge;
-import model.behaviorStrategy.DoNotMove;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.DoNotBounce;
+import model.behaviorstrategy.DoNotDodge;
+import model.behaviorstrategy.DoNotMove;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -21,7 +21,7 @@ public class Dead extends Entity {
      * Instantiates a new Dead entity.
      */
     public Dead(final ISpriteSet spriteSet) {
-        super(null, spriteSet, Type.DEAD, 10, SCORE);
+        super(null, spriteSet, UnitTypeEnum.DEAD, 10, SCORE);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
@@ -33,7 +33,7 @@ public class Dead extends Entity {
      * @param spriteSet
      */
     public Dead() {
-        super(Type.DEAD);
+        super(UnitTypeEnum.DEAD);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setScoreValue(SCORE);
@@ -45,7 +45,7 @@ public class Dead extends Entity {
      * @param position
      */
     public Dead(final IVector position) {
-        super(position, Type.DEAD);
+        super(position, UnitTypeEnum.DEAD);
         this.setScoreValue(SCORE);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());

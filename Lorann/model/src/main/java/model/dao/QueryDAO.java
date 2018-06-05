@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import enums.TypeEnum;
+import enums.AllUnitEnum;
 import vector.IVector;
 import vector.Vector;
 
@@ -71,7 +71,7 @@ public abstract class QueryDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */
-    public static ArrayList<String> getSpritePath(final TypeEnum type) throws SQLException {
+    public static ArrayList<String> getSpritePath(final AllUnitEnum type) throws SQLException {
         final ArrayList<String> resultString = new ArrayList<String>();
         final CallableStatement callStatement = prepareCall(sqlSpritePath);
         ResultSet result;
@@ -152,7 +152,7 @@ public abstract class QueryDAO extends AbstractDAO {
      * @throws SQLException
      *             the SQL exception
      */
-    public static ArrayList<IVector> getUnitByType(final TypeEnum type, final int mapId)
+    public static ArrayList<IVector> getUnitByType(final AllUnitEnum type, final int mapId)
             throws SQLException {
         final ArrayList<IVector> resultUnit = new ArrayList<IVector>();
         final CallableStatement callStatement = prepareCall(sqlUnitByType);

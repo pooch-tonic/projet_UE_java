@@ -3,16 +3,16 @@
  */
 package controller;
 
-import modelInterfaces.IEntity;
+import modelinterfaces.IEntity;
 
 public class InteractionManager {
     public InteractionManager() {
         // TODO constructor code
     }
 
-    public Interaction getInteractionOnNextPositionBetween(final IEntity entity,
+    public InteractionEnum getInteractionOnNextPositionBetween(final IEntity entity,
             final IEntity target) {
-        final Interaction interaction;
+        final InteractionEnum interaction;
 
         switch (entity.getType()) {
         case ENEMY:
@@ -25,15 +25,15 @@ public class InteractionManager {
             interaction = this.getPlayerInteractionOnHisNextPosition(target);
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    public Interaction getInteractionOnCurrentPositionBetween(final IEntity entity,
+    public InteractionEnum getInteractionOnCurrentPositionBetween(final IEntity entity,
             final IEntity target) {
-        final Interaction interaction;
+        final InteractionEnum interaction;
 
         switch (entity.getType()) {
         case ENEMY:
@@ -46,137 +46,137 @@ public class InteractionManager {
             interaction = this.getPlayerInteractionOnHisPosition(target);
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    private Interaction getEnemyInteractionOnHisPosition(final IEntity target) {
-        final Interaction interaction;
+    private InteractionEnum getEnemyInteractionOnHisPosition(final IEntity target) {
+        final InteractionEnum interaction;
 
         switch (target.getType()) {
         case PLAYER:
-            interaction = Interaction.TARGET_DESTROYED;
+            interaction = InteractionEnum.TARGET_DESTROYED;
             break;
         case SPELL:
-            interaction = Interaction.BOTH_DESTROYED;
+            interaction = InteractionEnum.BOTH_DESTROYED;
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    private Interaction getSpellInteractionOnHisPosition(final IEntity target) {
-        final Interaction interaction;
+    private InteractionEnum getSpellInteractionOnHisPosition(final IEntity target) {
+        final InteractionEnum interaction;
         switch (target.getType()) {
         case PLAYER:
-            interaction = Interaction.ENTITY_DESTROYED;
+            interaction = InteractionEnum.ENTITY_DESTROYED;
             break;
         case ENEMY:
-            interaction = Interaction.BOTH_DESTROYED;
+            interaction = InteractionEnum.BOTH_DESTROYED;
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    private Interaction getPlayerInteractionOnHisPosition(final IEntity target) {
-        final Interaction interaction;
+    private InteractionEnum getPlayerInteractionOnHisPosition(final IEntity target) {
+        final InteractionEnum interaction;
         switch (target.getType()) {
         case ENEMY:
-            interaction = Interaction.ENTITY_DESTROYED;
+            interaction = InteractionEnum.ENTITY_DESTROYED;
             break;
         case KEY:
-            interaction = Interaction.UNLOCK_DOOR;
+            interaction = InteractionEnum.UNLOCK_DOOR;
             break;
         case LOOT:
-            interaction = Interaction.TARGET_DESTROYED;
+            interaction = InteractionEnum.TARGET_DESTROYED;
             break;
         case SPELL:
-            interaction = Interaction.TARGET_DESTROYED;
+            interaction = InteractionEnum.TARGET_DESTROYED;
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    private Interaction getEnemyInteractionOnHisNextPosition(final IEntity target) {
-        final Interaction interaction;
+    private InteractionEnum getEnemyInteractionOnHisNextPosition(final IEntity target) {
+        final InteractionEnum interaction;
         switch (target.getType()) {
         case ENEMY:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case DOOR_CLOSED:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case KEY:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case LOOT:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case SPELL:
-            interaction = Interaction.DODGE;
+            interaction = InteractionEnum.DODGE;
             break;
         case DOOR_OPEN:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case DEAD:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    private Interaction getSpellInteractionOnHisNextPosition(final IEntity target) {
-        final Interaction interaction;
+    private InteractionEnum getSpellInteractionOnHisNextPosition(final IEntity target) {
+        final InteractionEnum interaction;
         switch (target.getType()) {
         case KEY:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case LOOT:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case DOOR_OPEN:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case DOOR_CLOSED:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         case DEAD:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;
     }
 
-    private Interaction getPlayerInteractionOnHisNextPosition(final IEntity target) {
-        final Interaction interaction;
+    private InteractionEnum getPlayerInteractionOnHisNextPosition(final IEntity target) {
+        final InteractionEnum interaction;
         switch (target.getType()) {
         case DOOR_OPEN:
-            interaction = Interaction.QUIT_LEVEL;
+            interaction = InteractionEnum.QUIT_LEVEL;
             break;
         case DOOR_CLOSED:
-            interaction = Interaction.ENTITY_DESTROYED;
+            interaction = InteractionEnum.ENTITY_DESTROYED;
             break;
         case DEAD:
-            interaction = Interaction.BOUNCE;
+            interaction = InteractionEnum.BOUNCE;
             break;
         default:
-            interaction = Interaction.NONE;
+            interaction = InteractionEnum.NONE;
             break;
         }
         return interaction;

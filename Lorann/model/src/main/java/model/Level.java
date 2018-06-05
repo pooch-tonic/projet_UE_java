@@ -6,9 +6,9 @@ package model;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
-import modelInterfaces.IEntity;
-import modelInterfaces.ILevel;
-import modelInterfaces.IUnit;
+import modelinterfaces.IEntity;
+import modelinterfaces.ILevel;
+import modelinterfaces.IUnit;
 import vector.IVector;
 
 /**

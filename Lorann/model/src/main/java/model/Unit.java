@@ -7,8 +7,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import enums.Type;
-import modelInterfaces.IUnit;
+import enums.UnitTypeEnum;
+import modelinterfaces.IUnit;
 import showboard.ISpriteSet;
 import vector.IVector;
 import vector.Vector;
@@ -34,7 +34,7 @@ public class Unit implements IUnit {
     private IVector    position;
     private ISpriteSet spriteSet;
 
-    private Type type;
+    private UnitTypeEnum type;
 
     /**
      * Instantiates a new Unit
@@ -42,7 +42,7 @@ public class Unit implements IUnit {
      * @param spriteSet
      * @param type
      */
-    public Unit(final ISpriteSet spriteSet, final Type type) {
+    public Unit(final ISpriteSet spriteSet, final UnitTypeEnum type) {
         this.setPosition(null);
         this.spriteSet = new SpriteSet();
         this.setSpriteSet(spriteSet);
@@ -56,7 +56,7 @@ public class Unit implements IUnit {
      * @param spriteSet
      * @param type
      */
-    public Unit(final IVector position, final ISpriteSet spriteSet, final Type type) {
+    public Unit(final IVector position, final ISpriteSet spriteSet, final UnitTypeEnum type) {
         this.setPosition(position);
         this.setSpriteSet(spriteSet);
         this.setType(type);
@@ -68,7 +68,7 @@ public class Unit implements IUnit {
      * @param position
      * @param type
      */
-    public Unit(final IVector position, final Type type) {
+    public Unit(final IVector position, final UnitTypeEnum type) {
         this.spriteSet = new SpriteSet();
         this.setPosition(position);
         this.setSpriteSet(new ArrayList<BufferedImage>());
@@ -80,7 +80,7 @@ public class Unit implements IUnit {
      *
      * @param type
      */
-    public Unit(final Type type) {
+    public Unit(final UnitTypeEnum type) {
         this.spriteSet = new SpriteSet();
         this.setPosition(new Vector(0, 0));
         this.setSpriteSet(new ArrayList<BufferedImage>());
@@ -94,7 +94,7 @@ public class Unit implements IUnit {
      * @param spriteSet
      *
      */
-    public Unit(final Type type, final ISpriteSet spriteSet) {
+    public Unit(final UnitTypeEnum type, final ISpriteSet spriteSet) {
         this.spriteSet = spriteSet;
         this.setPosition(null);
         this.setType(type);
@@ -116,7 +116,7 @@ public class Unit implements IUnit {
     }
 
     @Override
-    public Type getType() {
+    public UnitTypeEnum getType() {
         return this.type;
     }
 
@@ -141,7 +141,7 @@ public class Unit implements IUnit {
     }
 
     @Override
-    public void setType(final Type type) {
+    public void setType(final UnitTypeEnum type) {
         this.type = type;
     }
 }

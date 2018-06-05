@@ -9,12 +9,12 @@ import java.util.Observable;
 
 import javax.swing.JOptionPane;
 
-import controllerInterfaces.IController;
-import controllerInterfaces.IOrderStacker;
-import modelInterfaces.IModel;
+import controllerinterfaces.IController;
+import controllerinterfaces.IOrderStacker;
+import modelinterfaces.IModel;
 import showboard.BoardFrame;
 import showboard.IPawn;
-import viewInterfaces.IView;
+import viewinterfaces.IView;
 
 /**
  * <h1>The Class ViewFacade provides a facade of the View component.</h1>

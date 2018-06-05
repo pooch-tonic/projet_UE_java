@@ -5,8 +5,8 @@ package model;
 
 import java.awt.image.BufferedImage;
 
-import enums.TypeEnum;
+import enums.AllUnitEnum;
 
 public interface IImageLoader {
-    public BufferedImage getImageBypath(TypeEnum type);
+    public BufferedImage getImageBypath(AllUnitEnum type);
 }
