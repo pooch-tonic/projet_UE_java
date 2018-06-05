@@ -4,7 +4,8 @@
 package model;
 
 import enums.UnitTypeEnum;
-import model.behaviorstrategy.BounceTowardsPlayer;
+import model.behaviorstrategy.BounceTowardsPlayerMainlyByAxis;
+import model.behaviorstrategy.BounceTowardsPlayerMainlyByDiagonal;
 import model.behaviorstrategy.DodgeAside;
 import model.behaviorstrategy.DodgeBackwards;
 import model.behaviorstrategy.MoveSimple;
@@ -52,19 +53,19 @@ public class Enemy extends Entity {
     private void setEnemyStrategies(final EnemyNameEnum enemyName) {
         switch (enemyName) {
         case KYRACJ:
-            this.setBounceStrategy(new BounceTowardsPlayer());
+            this.setBounceStrategy(new BounceTowardsPlayerMainlyByDiagonal());
             this.setDodgeStrategy(new DodgeAside());
             break;
         case CARGYV:
-            this.setBounceStrategy(new BounceTowardsPlayer());
+            this.setBounceStrategy(new BounceTowardsPlayerMainlyByAxis());
             this.setDodgeStrategy(new DodgeAside());
             break;
         case ARRBARR:
-            this.setBounceStrategy(new BounceTowardsPlayer());
+            this.setBounceStrategy(new BounceTowardsPlayerMainlyByAxis());
             this.setDodgeStrategy(new DodgeBackwards());
             break;
         case MAARCG:
-            this.setBounceStrategy(new BounceTowardsPlayer());
+            this.setBounceStrategy(new BounceTowardsPlayerMainlyByAxis());
             this.setDodgeStrategy(new DodgeBackwards());
             break;
         }
