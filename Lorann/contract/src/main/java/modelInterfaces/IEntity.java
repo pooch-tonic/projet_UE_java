@@ -1,6 +1,3 @@
-/*
- *
- */
 package modelInterfaces;
 
 import enums.Type;
@@ -9,20 +6,20 @@ import showboard.ISpriteSet;
 import vector.IVector;
 
 /**
- * Interface used by all moving units, so-called entities. It extends IPawn in
- * order to be displayed on the showboard.
+ * <h1>The IEntity interface.</h1> Implemented by all moving units, so-called
+ * entities. It extends IPawn in order to be displayed on a Showboard object.
  *
- * @author Ryo
+ * @author Ryo SHIINA
  *
  */
 public interface IEntity extends IPawn {
 	/**
-	 * calls the bounce() method from the IBounceStrategy object.
+	 * Calls the bounce() method from the IBounceStrategy object.
 	 */
 	public void bounce(final ILevel level);
 
 	/**
-	 * calls the dodge() method from the IDodgeStrategy object.
+	 * Calls the dodge() method from the IDodgeStrategy object.
 	 */
 	public void dodge(final ILevel level);
 
@@ -32,21 +29,21 @@ public interface IEntity extends IPawn {
 	public IVector getDirection();
 
 	/**
-	 * returns the last direction taken.
+	 * Returns the last direction taken.
 	 *
 	 * @return the last direction taken
 	 */
 	public IVector getLastDirection();
 
 	/**
-	 * returns the score value of the entity.
+	 * Returns the score value of the entity.
 	 *
 	 * @return the score value.
 	 */
 	int getScoreValue();
 
 	/**
-	 * returns the spriteset of the entity.
+	 * Returns the spriteset of the entity.
 	 *
 	 * @return a spriteset
 	 */
@@ -110,7 +107,7 @@ public interface IEntity extends IPawn {
 	/**
 	 * Decrements the durability of the entity. If its value is already 0, the
 	 * operation won't happen.
-	 * 
+	 *
 	 * @return
 	 */
 	public void decrementDurability();
@@ -134,21 +131,21 @@ public interface IEntity extends IPawn {
 	void setMoveStrategy(final IMoveStrategy moveStrategy);
 
 	/**
-	 * Gets the bounceStrategy
+	 * Gets the bounce strategy.
 	 *
 	 * @return the bounceStrategy
 	 */
 	public IBounceStrategy getBounceStrategy();
 
 	/**
-	 * Gets the dodgeStrategy
+	 * Gets the dodge strategy.
 	 *
 	 * @return the dodgeStrategy
 	 */
 	public IDodgeStrategy getDodgeStrategy();
 
 	/**
-	 * Gets the moveStrategy
+	 * Gets the move strategy.
 	 *
 	 * @return the moveStrategy
 	 */
