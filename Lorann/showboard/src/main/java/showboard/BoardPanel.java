@@ -400,10 +400,12 @@ class BoardPanel extends JPanel implements Observer {
     }
 
     public void removeAllPawn() {
+        // TODO Auto-generated method stub
         this.pawns = new ArrayList<>();
     }
 
     public void removePawn(final IPawn pawn) {
+        // TODO Auto-generated method stub
         this.getPawns().remove(pawn);
     }
 

@@ -17,7 +17,7 @@ import viewinterfaces.IView;
 /**
  * <h1>The class ViewFacadeTest tests the proper functioning of the methods of
  * ViewFacade.</h1>
- *
+ * 
  * @author Aurélien Dellac
  * @version 1 juin 2018
  */
@@ -50,6 +50,7 @@ public class ViewFacadeTest {
             this.view.displayMessage("");
             fail("Not yet implemented");
         } catch (final Exception e) {
+            // TODO Auto-generated catch block
             final String expected = "Message to display is empty";
             assertEquals(expected, e.getMessage());
         }

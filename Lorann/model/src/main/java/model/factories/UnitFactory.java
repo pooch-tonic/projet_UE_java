@@ -97,6 +97,7 @@ public abstract class UnitFactory {
         return enemyFactory.createMaarcg(spriteSet);
     }
 
+    // TODO UTILISER IMAGELOADER
     public static IEntity createEntity(final AllUnitEnum type, final ArrayList<String> spritePath) {
         final ArrayList<BufferedImage> images = new ArrayList<>();
         for (final String path : spritePath) {
@@ -104,7 +105,7 @@ public abstract class UnitFactory {
         }
 
         final ISpriteSet spriteSet = new SpriteSet(images);
-
+        
         switch (type) {
         case ENEMY_A:
             return createEnemyArrbarr(spriteSet);

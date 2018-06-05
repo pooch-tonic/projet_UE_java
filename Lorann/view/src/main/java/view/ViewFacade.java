@@ -115,6 +115,8 @@ public class ViewFacade implements IView, Runnable {
 
     @Override
     public void run() {
+        // TODO Auto-generated method stub
+
     }
 
     /**
