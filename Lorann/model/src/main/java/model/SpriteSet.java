@@ -70,8 +70,6 @@ public class SpriteSet implements ISpriteSet {
      */
     @Override
     public int getCurrentIndex() {
-        // System.out.println(this.currentIndex + " calc : " +
-        // this.getSprites().size());
         return this.currentIndex;
     }
 

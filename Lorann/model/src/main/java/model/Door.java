@@ -54,7 +54,6 @@ public class Door extends Entity {
 	public void setType(final UnitTypeEnum type) {
 		super.setType(type);
 		if (this.getType() == UnitTypeEnum.DOOR_OPEN) {
-			System.out.println("ok");
 			this.getSpriteSet().setNextSprite();
 		}
 	}
