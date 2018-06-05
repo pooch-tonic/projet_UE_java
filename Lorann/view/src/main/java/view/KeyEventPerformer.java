@@ -4,6 +4,7 @@
 package view;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import controllerInterfaces.IOrderStacker;
 import enums.OrderEnum;
@@ -17,9 +18,9 @@ import enums.OrderEnum;
  */
 class KeyEventPerformer implements IKeyEventPerformer {
     /** The object able to stack order. */
-    private IOrderStacker orderStacker;
+    private IOrderStacker        orderStacker;
     /** The key code of the current key pressed. */
-    private OrderEnum     currentOrder;
+    private ArrayList<OrderEnum> currentOrder;
 
     /**
      * Instantiates a new KeyEventPerformer
@@ -32,7 +33,8 @@ class KeyEventPerformer implements IKeyEventPerformer {
             throw new Exception("The OrderStacker is null");
         }
         this.setOrderStacker(orderStacker);
-        this.setCurrentOrder(OrderEnum.NONE);
+        this.setCurrentOrder(new ArrayList<>());
+        this.getCurrentOrder().add(OrderEnum.NONE);
     }
 
     /*
@@ -45,7 +47,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
         if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
             this.orderStacker.stackOrder(this.keyCodeToOrder(keyEvent.getKeyCode()));
         } else if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
-            this.setCurrentOrder(OrderEnum.NONE);
+            this.getCurrentOrder().remove(this.keyCodeToOrder(keyEvent.getKeyCode()));
         }
 
     }
@@ -57,7 +59,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
      */
     @Override
     public void performKeyReleasedEvent(final KeyEvent keyEvent) {
-        this.setCurrentOrder(OrderEnum.NONE);
+        this.getCurrentOrder().remove(this.keyCodeToOrder(keyEvent.getKeyCode()));
     }
 
     /*
@@ -166,7 +168,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
      *
      * @return the currentOrder
      */
-    private OrderEnum getCurrentOrder() {
+    private ArrayList<OrderEnum> getCurrentOrder() {
         return this.currentOrder;
     }
 
@@ -175,7 +177,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
      *
      * @param currentOrder
      */
-    private void setCurrentOrder(final OrderEnum currentOrder) {
+    private void setCurrentOrder(final ArrayList<OrderEnum> currentOrder) {
         this.currentOrder = currentOrder;
     }
 }

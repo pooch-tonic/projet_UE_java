@@ -3,7 +3,7 @@
  */
 package controllerInterfaces;
 
-import showboard.IBoard;
+import viewInterfaces.IView;
 
 /**
  * <h1>The Interface IController.</h1>
@@ -12,13 +12,6 @@ import showboard.IBoard;
  * @version 1.0
  */
 public interface IController {
-
-    /**
-     * sets the controller's contained game board
-     *
-     * @param board
-     */
-    void setBoard(IBoard board);
 
     /**
      * asks the controller to update the model
@@ -43,4 +36,11 @@ public interface IController {
      * Reset the current level
      */
     public void resetLevel();
+
+    /**
+     * Sets the view.
+     *
+     * @param viewFacade
+     */
+    void setView(IView viewFacade);
 }

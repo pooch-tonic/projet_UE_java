@@ -8,50 +8,40 @@ import modelInterfaces.IVectorFactory;
 import vector.Vector;
 
 public abstract class VectorFactory implements IVectorFactory {
-    private static Vector UPLEFT    = new Vector(-1, -1);
-    private static Vector UP        = new Vector(0, -1);
-    private static Vector UPRIGHT   = new Vector(1, -1);
-    private static Vector RIGHT     = new Vector(1, 0);
-    private static Vector DOWNRIGHT = new Vector(1, 1);
-    private static Vector DOWN      = new Vector(0, 1);
-    private static Vector DOWNLEFT  = new Vector(-1, 1);
-    private static Vector LEFT      = new Vector(-1, 0);
-    private static Vector MIDDLE    = new Vector(0, 0);
-
     public static Vector getUPLEFT() {
-        return UPLEFT;
+        return new Vector(-1, -1);
     }
 
     public static Vector getUP() {
-        return UP;
+        return new Vector(0, -1);
     }
 
     public static Vector getUPRIGHT() {
-        return UPRIGHT;
+        return new Vector(1, -1);
     }
 
     public static Vector getRIGHT() {
-        return RIGHT;
+        return new Vector(1, 0);
     }
 
     public static Vector getDOWNRIGHT() {
-        return DOWNRIGHT;
+        return new Vector(1, 1);
     }
 
     public static Vector getDOWN() {
-        return DOWN;
+        return new Vector(0, 1);
     }
 
     public static Vector getDOWNLEFT() {
-        return DOWNLEFT;
+        return new Vector(-1, 1);
     }
 
     public static Vector getLEFT() {
-        return LEFT;
+        return new Vector(-1, 0);
     }
 
     public static Vector getMIDDLE() {
-        return MIDDLE;
+        return new Vector(0, 0);
     }
 
     public static Vector getVectorForDirection(final DirectionEnum direction) {

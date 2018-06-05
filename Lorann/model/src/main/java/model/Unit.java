@@ -137,7 +137,7 @@ public class Unit implements IUnit {
 
     @Override
     public void setSpriteSet(final ISpriteSet spriteSet) {
-        this.spriteSet.setSprites(spriteSet);
+        this.spriteSet = spriteSet;
     }
 
     @Override

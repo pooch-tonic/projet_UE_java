@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import enums.DirectionEnum;
 import enums.TypeEnum;
+import vector.IVector;
 
 /**
  * <h1>The Interface IModel.</h1>
@@ -22,7 +23,7 @@ public interface IModel {
 	 * @return the entity created by the input parameter.
 	 *
 	 */
-	public IEntity addEntityToLevel(TypeEnum type);
+	public IEntity addEntityToLevel(TypeEnum type, IVector position);
 
 	public void addEntityToLevel(IEntity entity);
 
