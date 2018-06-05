@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package viewinterfaces;
 
@@ -8,9 +8,9 @@ import showboard.IPawn;
 
 /**
  * <h1>The Interface IView.</h1>
- *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
+ * 
+ * @author Aurélien Dellac
+ * @version 5 juin 2018
  */
 public interface IView {
 
