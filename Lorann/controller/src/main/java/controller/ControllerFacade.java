@@ -415,35 +415,35 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 		case UP:
 			System.out.println("yes");
 			this.getModel().setPlayerDirection(DirectionEnum.UP);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(3);
 			break;
 		case UPLEFT:
 			this.getModel().setPlayerDirection(DirectionEnum.UPLEFT);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(2);
 			break;
 		case UPRIGHT:
 			this.getModel().setPlayerDirection(DirectionEnum.UPRIGHT);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(4);
 			break;
 		case LEFT:
 			this.getModel().setPlayerDirection(DirectionEnum.LEFT);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(1);
 			break;
 		case RIGHT:
 			this.getModel().setPlayerDirection(DirectionEnum.RIGHT);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(5);
 			break;
 		case DOWN:
 			this.getModel().setPlayerDirection(DirectionEnum.DOWN);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(7);
 			break;
 		case DOWNLEFT:
 			this.getModel().setPlayerDirection(DirectionEnum.DOWNLEFT);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(0);
 			break;
 		case DOWNRIGHT:
 			this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
-			this.getModel().setPlayerSpriteSetToIndex();
+			this.getModel().setPlayerSpriteSetToIndex(6);
 			break;
 		case CAST:
 			if (this.getModel().getSpell() == null) {
