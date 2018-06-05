@@ -383,6 +383,7 @@ class BoardPanel extends JPanel implements Observer {
 	 */
 	@Override
 	public final void paintComponent(final Graphics graphics) {
+		super.paintComponent(graphics);
 		final Map<String, ArrayList<IPawn>> mapPawn = this.createMapPawn();
 
 		for (int x = this.getCornerMinX(); x <= this.getCornerMaxX(); x++) {
@@ -411,7 +412,10 @@ class BoardPanel extends JPanel implements Observer {
 	 */
 	public final void setDimension(final Dimension dimension) {
 		this.dimension = dimension;
-		this.squares = new ISquare[this.getDimension().width][this.getDimension().height];
+		System.out.println(dimension.width + " " + dimension.height); // TODO a supprimer
+		this.squares = new ISquare[this.getDimension().width][this.getDimension().height]; // TODO a clean le + 1
+																							// degueulasse
+																							// >> Romain et Aure
 	}
 
 	/**

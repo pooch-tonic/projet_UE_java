@@ -14,10 +14,11 @@ import model.Unit;
 import view.ViewFacade;
 
 public class LorannGame {
-	public static int FRAME_WIDTH = 640;
-	public static int FRAME_HEIGHT = 384;
-	public static int GAME_WIDTH = FRAME_WIDTH / Unit.getSize();
-	public static int GAME_HEIGHT = FRAME_HEIGHT / Unit.getSize();
+	public static final int RESIZE_SCALE = 2;
+	public static final int GAME_WIDTH = 20;
+	public static final int GAME_HEIGHT = 12;
+	public static int FRAME_HEIGHT = GAME_HEIGHT * Unit.getSize() * RESIZE_SCALE;
+	public static int FRAME_WIDTH = GAME_WIDTH * Unit.getSize() * RESIZE_SCALE;
 	final ModelFacade model;
 	final ControllerFacade controller;
 	final ViewFacade view;

@@ -45,7 +45,7 @@ public class BoardFrame extends JFrame implements IBoard {
 	 * Instantiates a new board frame.
 	 */
 	public BoardFrame() {
-		this("", false);
+		this("", false, new Dimension(defaultFrameSize, defaultFrameSize));
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class BoardFrame extends JFrame implements IBoard {
 	 *            the decorated
 	 */
 	public BoardFrame(final Boolean decorated) {
-		this("", decorated);
+		this("", decorated, new Dimension(defaultFrameSize, defaultFrameSize));
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class BoardFrame extends JFrame implements IBoard {
 	 *            the title
 	 */
 	public BoardFrame(final String title) {
-		this(title, false);
+		this(title, false, new Dimension(defaultFrameSize, defaultFrameSize));
 	}
 
 	/**
@@ -74,16 +74,16 @@ public class BoardFrame extends JFrame implements IBoard {
 	 * @param title
 	 * @param decorated
 	 */
-	public BoardFrame(final String title, final Boolean decorated) {
+	public BoardFrame(final String title, final Boolean decorated, final Dimension frameSize) {
 		super();
 		this.setTitle(title);
-		this.setSize(defaultFrameSize, defaultFrameSize);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		this.setUndecorated(decorated);
 		this.boardPanel = new BoardPanel();
 		this.setContentPane(this.boardPanel);
-		this.pack();
+		this.getContentPane().setPreferredSize(frameSize);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.setUndecorated(decorated);
 		this.setResizable(false);
+		this.pack();
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
