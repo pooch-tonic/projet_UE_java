@@ -5,7 +5,9 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -19,7 +21,6 @@ import enums.TypeEnum;
 import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
-import showboard.IBoard;
 import vector.IVector;
 import viewInterfaces.IView;
 
@@ -38,9 +39,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     /** The model. */
     private final IModel model;
 
-    /** The board. */
-    private IBoard board;
-
     /** The interaction manager. */
     private InteractionManager interactionManager;
 
@@ -53,7 +51,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private ArrayList<IEntity> entitiesToDestroy;
 
-    private ArrayList<TypeEnum> entitiesToSummon;
+    private HashMap<IVector, TypeEnum> entitiesToSummon;
 
     /**
      * Instantiates a new ControllerFacade
@@ -63,13 +61,12 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     public ControllerFacade(final IModel model) {
         // TODO mettre super() si ca marche pas
         this.model = model;
-        this.setBoard(null);
         this.setInteractionManager(new InteractionManager());
         this.setLevelLoader(new LevelLoader());
         this.setStackOrder(new ArrayList<>());
         this.getStackOrder().add(OrderEnum.NONE);
         this.setEntitiesToDestroy(new ArrayList<>());
-        this.setEntitiesToSummon(new ArrayList<>());
+        this.setEntitiesToSummon(new HashMap<IVector, TypeEnum>());
     }
 
     /**
@@ -98,33 +95,40 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.summonEntities();
         this.setStackOrder(new ArrayList<>());
         this.getStackOrder().add(OrderEnum.NONE);
-        this.setEntitiesToSummon(new ArrayList<>());
+        this.setEntitiesToSummon(new HashMap<IVector, TypeEnum>());
     }
 
     private synchronized void destroyEntities() {
         final ArrayList<IEntity> entitiesDestroyed = new ArrayList<>();
 
         for (final IEntity entity : this.getEntitiesToDestroy()) {
-            this.getModel().destroyEntity(entity);
-            this.getView().removePawnFromBoard(entity);
-            entitiesDestroyed.add(entity);
+            if (entity.getDurability() <= 0) {
+                this.getModel().destroyEntity(entity);
+                this.getView().removePawnFromBoard(entity);
+                entitiesDestroyed.add(entity);
 
-            switch (entity.getType()) {
-            case PLAYER:
-                this.resetLevel();
-                break;
-            case SPELL:
-                this.getModel().setSpell(null);
-            default:
-                break;
             }
         }
         this.getEntitiesToDestroy().removeAll(entitiesDestroyed);
+
+        if (entitiesDestroyed.contains(this.getModel().getSpell())) {
+            this.getModel().setSpell(null);
+        }
+        if (entitiesDestroyed.contains(this.getModel().getPlayer())) {
+            this.resetLevel();
+        }
     }
 
     private void summonEntities() {
-        for (final TypeEnum type : this.getEntitiesToSummon()) {
-            this.getView().getBoardFrame().addPawn(this.getModel().addEntityToLevel(type));
+        IEntity summonedEntity;
+        for (final Entry<IVector, TypeEnum> set : this.getEntitiesToSummon().entrySet()) {
+            summonedEntity = this.getModel().addEntityToLevel(set.getValue(), set.getKey());
+
+            this.getView().getBoardFrame().addPawn(summonedEntity);
+
+            if (set.getValue() == TypeEnum.DEAD) {
+                this.addEntityToEntitiesToDestroy(summonedEntity);
+            }
         }
     }
 
@@ -152,13 +156,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             }
             entity.update();
         }
-    }
-
-    /**
-     * @return the board
-     */
-    private IBoard getBoard() {
-        return this.board;
     }
 
     /**
@@ -251,18 +248,14 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             final Interaction interaction) {
         switch (interaction) {
         case ENTITY_DESTROYED:
-            this.getEntitiesToDestroy().add(entity);
-            this.getModel().doNotMoveEntity(entity);
+            this.addEntityToEntitiesToDestroy(entity);
             break;
         case TARGET_DESTROYED:
-            this.getEntitiesToDestroy().add(target);
-            this.getModel().doNotMoveEntity(target);
+            this.addEntityToEntitiesToDestroy(target);
             break;
         case BOTH_DESTROYED:
-            this.getEntitiesToDestroy().add(entity);
-            this.getModel().doNotMoveEntity(entity);
-            this.getEntitiesToDestroy().add(target);
-            this.getModel().doNotMoveEntity(target);
+            this.addEntityToEntitiesToDestroy(entity);
+            this.addEntityToEntitiesToDestroy(target);
             break;
         case BOUNCE:
             entity.bounce(this.getModel().getLevel());
@@ -283,14 +276,13 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         }
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see controllerInterfaces.IController#setBoard(showboard.IBoard)
-     */
-    @Override
-    public void setBoard(final IBoard board) {
-        this.board = board;
+    private void addEntityToEntitiesToDestroy(final IEntity entity) {
+        this.getEntitiesToDestroy().add(entity);
+        this.getModel().doNotMoveEntity(entity);
+
+        if (entity.getType() == Type.ENEMY) {
+            this.getEntitiesToSummon().put(entity.getPosition(), TypeEnum.DEAD);
+        }
     }
 
     /**
@@ -376,7 +368,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *
      * @return the entitiesToSummon
      */
-    private ArrayList<TypeEnum> getEntitiesToSummon() {
+    private HashMap<IVector, TypeEnum> getEntitiesToSummon() {
         return this.entitiesToSummon;
     }
 
@@ -385,7 +377,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *
      * @param entitiesToSummon
      */
-    private void setEntitiesToSummon(final ArrayList<TypeEnum> entitiesToSummon) {
+    private void setEntitiesToSummon(final HashMap<IVector, TypeEnum> entitiesToSummon) {
         this.entitiesToSummon = entitiesToSummon;
     }
 
@@ -453,8 +445,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             break;
         case CAST:
             if (this.getModel().getSpell() == null) {
-                if (this.isSpellSummoningPossible()) {
-                    this.getEntitiesToSummon().add(TypeEnum.SPELL);
+                IVector position;
+                if ((position = this.isSpellSummoningPossible()) != null) {
+                    this.getEntitiesToSummon().put(position, TypeEnum.SPELL);
                 }
             } else {
                 this.getModel().callSpell();
@@ -468,17 +461,18 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         }
     }
 
-    private boolean isSpellSummoningPossible() {
-        boolean isPossible = false;
+    private IVector isSpellSummoningPossible() {
+        IVector nextPosition = null;
         final IVector target = this.getModel().getPlayer().getPosition()
                 .getAddResult(this.getModel().getPlayer().getLastDirection().getInvertResult());
 
         if ((this.getModel().getUnitOn(target.getX(), target.getY()).getType() != Type.WALL)
                 && (this.getModel().getLevel().getEntityOn(target) == null)) {
-            isPossible = true;
+            nextPosition = target;
+            System.out.println(nextPosition.getX() + " : " + nextPosition.getY());
         }
 
-        return isPossible;
+        return nextPosition;
     }
 
     public void update(final Observable o, final IEntity entity) {
