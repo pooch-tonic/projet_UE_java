@@ -25,9 +25,9 @@ public class LorannGame {
 
     LorannGame() {
         this.model = new ModelFacade(new Dimension(LorannGame.GAME_WIDTH, LorannGame.GAME_HEIGHT));
-        this.controller = new ControllerFacade(this.model);
-        this.view = new ViewFacade(this.controller, this.controller, this.model,
-                new Dimension(LorannGame.FRAME_WIDTH, LorannGame.FRAME_HEIGHT), this.model,
+        this.controller = new ControllerFacade(this.getModel());
+        this.view = new ViewFacade(this.getController(), this.getController(), this.getModel(),
+                new Dimension(LorannGame.FRAME_WIDTH, LorannGame.FRAME_HEIGHT), this.getModel(),
                 LorannGame.GAME_WIDTH, LorannGame.GAME_HEIGHT);
 
         try {
@@ -36,7 +36,6 @@ public class LorannGame {
             exception.printStackTrace();
         }
 
-        // TODO verifier la bonne pratique
         this.play();
     }
 
@@ -52,13 +51,6 @@ public class LorannGame {
      */
     private ModelFacade getModel() {
         return this.model;
-    }
-
-    /**
-     * @return the view
-     */
-    private ViewFacade getView() {
-        return this.view;
     }
 
     public void play() {

@@ -4,10 +4,9 @@
 package model.factories;
 
 import enums.DirectionEnum;
-import modelinterfaces.IVectorFactory;
 import vector.Vector;
 
-public abstract class VectorFactory implements IVectorFactory {
+public abstract class VectorFactory {
     public static Vector getUPLEFT() {
         return new Vector(-1, -1);
     }

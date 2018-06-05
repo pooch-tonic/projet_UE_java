@@ -30,7 +30,6 @@ public class BounceTowardsPlayer implements IBounceStrategy {
                 && ((target == level.getPlayer()) || (target == null))) {
             actor.setDirection(chasingDirection);
         } else {
-            // TODO a enrichir
             actor.getDirection().invert();
         }
 
