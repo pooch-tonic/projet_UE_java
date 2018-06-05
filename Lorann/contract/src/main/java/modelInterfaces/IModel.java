@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import enums.DirectionEnum;
 import enums.TypeEnum;
+import vector.IVector;
 
 /**
  * <h1>The Interface IModel.</h1>
@@ -17,7 +18,7 @@ import enums.TypeEnum;
  */
 public interface IModel {
 
-    public IEntity addEntityToLevel(TypeEnum type);
+    public IEntity addEntityToLevel(TypeEnum type, IVector position);
 
     public void addEntityToLevel(IEntity entity);
 
