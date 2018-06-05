@@ -1,12 +1,14 @@
 package model;
 
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import enums.UnitTypeEnum;
 import vector.IVector;
 
+/**
+ * <h1>The Ground class.</h1> A simple unit with a black sprite.
+ *
+ * @author Ryo SHIINA
+ *
+ */
 public class Ground extends Unit {
 
 	/**
@@ -18,7 +20,7 @@ public class Ground extends Unit {
 	}
 
 	/**
-	 * A constructor based on a position vector.tt
+	 * A constructor based on a position vector.
 	 *
 	 * @param position
 	 */

@@ -10,23 +10,30 @@ import showboard.IPawn;
 import showboard.ISquare;
 import viewinterfaces.IView;
 
+/**
+ * <h1>The LevelLoader class.</h1> Allows to forward the level content to the
+ * view's Showboard.
+ *
+ * @author Ryo
+ *
+ */
 public class LevelLoader {
 
-	public LevelLoader() {
-		// TODO level loader constructor
-	}
-
 	/**
+	 * Loads the level from the MySQL database to put it into the board.
+	 *
 	 * @param idLevel
+	 *            the level id
 	 * @param model
+	 *            the model
 	 * @param view
+	 *            the view
 	 */
 	public void loadLevel(final int idLevel, final IModel model, final IView view) {
 
 		try {
 			model.loadLevel(idLevel);
 		} catch (final SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		view.removeAllPawnsFromBoard();
@@ -45,10 +52,12 @@ public class LevelLoader {
 	}
 
 	/**
-	 * Generates the next level
+	 * Generates the next level.
 	 *
 	 * @param model
+	 *            the model
 	 * @param view
+	 *            the view
 	 */
 	public void loadNextLevel(final IModel model, final IView view) {
 		this.loadLevel(model.getLevel().getId() + 1, model, view);
@@ -56,10 +65,12 @@ public class LevelLoader {
 	}
 
 	/**
-	 * Regenerates the current level
+	 * Regenerates the current level.
 	 *
 	 * @param model
+	 *            the model
 	 * @param view
+	 *            the view
 	 */
 	public void resetLevel(final IModel model, final IView view) {
 		this.loadLevel(model.getLevel().getId(), model, view);

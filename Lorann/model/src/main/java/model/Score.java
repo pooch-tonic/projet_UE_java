@@ -3,27 +3,34 @@ package model;
 import modelinterfaces.IScore;
 
 /**
- * @author Max Becerro
+ * <h1>The Score class.</h1> Allows the user to store its score.
+ * 
+ * @author Ryo SHIINA
  *
  */
-public class Score implements IScore{
+public class Score implements IScore {
 	private int scoreValue;
+
 	/**
-	 * 
+	 *
 	 * @return a scoreValue
 	 */
+	@Override
 	public int getScoreValue() {
-		return scoreValue;
+		return this.scoreValue;
 	}
 
-	public void setScoreValue(int scoreValue) {
+	@Override
+	public void setScoreValue(final int scoreValue) {
 		this.scoreValue = scoreValue;
 	}
-	
-	public void addToScoreValue(int value) {
+
+	@Override
+	public void addToScoreValue(final int value) {
 		this.setScoreValue(this.getScoreValue() + value);
 	}
-	
+
+	@Override
 	public void resetScoreValue() {
 		this.setScoreValue(0);
 	}
