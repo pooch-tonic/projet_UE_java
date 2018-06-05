@@ -91,8 +91,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.setEntityIterator(this.getModel().getLevel().getEntities());
         this.performOrder();
         this.updateEntities();
-        this.destroyEntities();
         this.summonEntities();
+        this.destroyEntities();
         this.setEntitiesToSummon(new HashMap<IVector, AllUnitEnum>());
     }
 

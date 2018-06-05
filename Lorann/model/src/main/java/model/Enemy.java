@@ -72,4 +72,10 @@ public class Enemy extends Entity {
         this.setMoveStrategy(new MoveSimple());
     }
 
+    @Override
+    public void update() {
+        super.update();
+        System.out.println(this.getPosition().getX() + " : " + this.getPosition().getY());
+    }
+
 }
