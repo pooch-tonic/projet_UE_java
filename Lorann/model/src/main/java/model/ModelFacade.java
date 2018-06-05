@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Observable;
 
-import enums.DirectionEnum;
 import enums.AllUnitEnum;
+import enums.DirectionEnum;
 import model.behaviorstrategy.BounceTowardsPlayerLikeSpell;
 import model.behaviorstrategy.DoNotMove;
 import model.dao.QueryDAO;
@@ -86,7 +86,6 @@ public final class ModelFacade extends Observable implements IModel {
     private void fillVoidSquares() {
         final IUnit[][] units = this.getLevel().getUnits();
 
-        // TODO vérifier que x et y ne sont jamais inversés.
         for (int x = 0; x < units.length; x++) {
             for (int y = 0; y < units[0].length; y++) {
                 if (units[x][y] == null) {
@@ -108,7 +107,6 @@ public final class ModelFacade extends Observable implements IModel {
      */
     @Override
     public ILevel getLevel() {
-        // TODO Auto-generated method stub
         return this.level;
     }
 
@@ -153,20 +151,6 @@ public final class ModelFacade extends Observable implements IModel {
     }
 
     /**
-     * Gets the path of the sprite.
-     *
-     * @param type
-     *            the type of the unit
-     * @return the path of the sprite
-     * @throws SQLException
-     *             the SQL exception
-     */
-    private ArrayList<String> getSpritePath(final AllUnitEnum type) throws SQLException {
-        final ArrayList<String> result = QueryDAO.getSpritePath(type);
-        return result;
-    }
-
-    /**
      * Gets the unit by map.
      *
      * @param mapId
@@ -178,40 +162,6 @@ public final class ModelFacade extends Observable implements IModel {
     public HashMap<String, ArrayList<IVector>> getUnitByMap(final int mapId) throws SQLException {
         final HashMap<String, ArrayList<IVector>> result = QueryDAO.getUnitByMap(mapId);
         return result;
-    }
-
-    /**
-     * Gets the unit by position.
-     *
-     * @param x
-     *            the x coordinate
-     * @param y
-     *            the y coordinate
-     * @param mapId
-     *            the id of the map
-     * @return the unit by position
-     * @throws SQLException
-     *             the SQL exception
-     */
-    private String getUnitByPosition(final int x, final int y, final int mapId)
-            throws SQLException {
-        return QueryDAO.getUnitByPosition(x, y, mapId);
-    }
-
-    /**
-     * Gets the unit by type.
-     *
-     * @param type
-     *            the type of the unit
-     * @param mapId
-     *            the id of the map
-     * @return the unit by type
-     * @throws SQLException
-     *             the SQL exception
-     */
-    private ArrayList<IVector> getUnitByType(final AllUnitEnum type, final int mapId)
-            throws SQLException {
-        return QueryDAO.getUnitByType(type, mapId);
     }
 
     @Override
@@ -314,7 +264,6 @@ public final class ModelFacade extends Observable implements IModel {
         try {
             this.maxLevels = QueryDAO.getMapNumber();
         } catch (final SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -335,7 +284,6 @@ public final class ModelFacade extends Observable implements IModel {
         final IVector directionVector = VectorFactory.getVectorForDirection(direction);
         this.getPlayer().setDirection(directionVector);
         if (!directionVector.isEqual(0, 0)) {
-            // TODO BRICOLAGE DU DIMANCHE DESOLE AURE
             this.getPlayer().setLastDirection(directionVector);
         }
     }

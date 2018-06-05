@@ -59,7 +59,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      * @param model
      */
     public ControllerFacade(final IModel model) {
-        // TODO mettre super() si ca marche pas
         this.model = model;
         this.setInteractionManager(new InteractionManager());
         this.setLevelLoader(new LevelLoader());
@@ -142,7 +141,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             if (this.getNextTile(entity).getType() == UnitTypeEnum.WALL) {
                 entity.bounce(this.getModel().getLevel());
             } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
-                // TODO change and use getAddResult
                 if ((target = this.getModel().getLevel().getEntityOn(
                         entity.getPosition().getAddResult(entity.getDirection()))) != null) {
                     this.performInteraction(entity, target, this.getInteractionManager()
