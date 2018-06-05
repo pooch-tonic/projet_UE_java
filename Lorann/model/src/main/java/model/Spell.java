@@ -42,6 +42,7 @@ public class Spell extends Entity {
     @Override
     public void update() {
         super.update();
+        this.setBounceStrategy(new BounceOpposite());
         this.getSpriteSet().setNextSprite();
     }
 }

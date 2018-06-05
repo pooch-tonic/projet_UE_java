@@ -113,6 +113,9 @@ public class InteractionManager {
         case ENEMY:
             interaction = Interaction.BOUNCE;
             break;
+        case DOOR_CLOSED:
+            interaction = Interaction.BOUNCE;
+            break;
         case KEY:
             interaction = Interaction.BOUNCE;
             break;
@@ -147,6 +150,9 @@ public class InteractionManager {
         case DOOR_OPEN:
             interaction = Interaction.BOUNCE;
             break;
+        case DOOR_CLOSED:
+            interaction = Interaction.BOUNCE;
+            break;
         case DEAD:
             interaction = Interaction.BOUNCE;
             break;
@@ -162,6 +168,9 @@ public class InteractionManager {
         switch (target.getType()) {
         case DOOR_OPEN:
             interaction = Interaction.QUIT_LEVEL;
+            break;
+        case DOOR_CLOSED:
+            interaction = Interaction.ENTITY_DESTROYED;
             break;
         case DEAD:
             interaction = Interaction.BOUNCE;

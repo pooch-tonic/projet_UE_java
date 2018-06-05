@@ -138,7 +138,7 @@ public class Level implements ILevel {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see modelInterfaces.ILevel#removeEntityFromLevel(modelInterfaces.IEntity)
      */
     @Override
