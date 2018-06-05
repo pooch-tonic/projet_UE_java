@@ -13,7 +13,7 @@ import vector.IVector;
 /**
  * <h1>The Loot class.</h1> Grants the user a certain score value when picked
  * up.
- * 
+ *
  * @author Ryo SHIINA
  *
  */
@@ -78,6 +78,17 @@ public class Loot extends Entity {
 			super.setScoreValue(50);
 			break;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see model.Entity#update()
+	 */
+	@Override
+	public void update() {
+		super.update();
+		this.getSpriteSet().setNextSprite();
 	}
 
 }
