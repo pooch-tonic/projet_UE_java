@@ -26,25 +26,24 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>      @Override
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> bounce(<strong class="jxr_keyword">final</strong> <a href="../../modelinterfaces/IEntity.html">IEntity</a> actor, <strong class="jxr_keyword">final</strong> <a href="../../modelinterfaces/ILevel.html">ILevel</a> level) {
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>          System.out.println(<span class="jxr_string">"ok"</span>);
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> actorPosition = actor.getPosition();
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> playerPosition = level.getPlayer().getPosition();
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> chasingDirection = playerPosition.getSubResult(actorPosition);
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>          chasingDirection.normalize();
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> actorNextPosition = actorPosition.getAddResult(chasingDirection);
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">final</strong> <a href="../../modelinterfaces/IEntity.html">IEntity</a> target = level.getEntityOn(actorNextPosition);
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">if</strong> ((level.getUnits()[actorNextPosition.getX()][actorNextPosition.getY()]
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>                  .getType() != UnitTypeEnum.WALL) &amp;&amp; ((target == level.getPlayer()) || (target == <strong class="jxr_keyword">null</strong>))) {
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>              actor.setDirection(chasingDirection);
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>          } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>              actor.setMoveStrategy(<strong class="jxr_keyword">new</strong> <a href="../../model/behaviorstrategy/MoveBlocked.html">MoveBlocked</a>());
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>              ;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>          }
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>      }
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  }
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> actorPosition = actor.getPosition();
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> playerPosition = level.getPlayer().getPosition();
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> chasingDirection = playerPosition.getSubResult(actorPosition);
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          chasingDirection.normalize();
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          <strong class="jxr_keyword">final</strong> <a href="../../vector/IVector.html">IVector</a> actorNextPosition = actorPosition.getAddResult(chasingDirection);
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>          <strong class="jxr_keyword">final</strong> <a href="../../modelinterfaces/IEntity.html">IEntity</a> target = level.getEntityOn(actorNextPosition);
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          <strong class="jxr_keyword">if</strong> ((level.getUnits()[actorNextPosition.getX()][actorNextPosition.getY()]
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>                  .getType() != UnitTypeEnum.WALL) &amp;&amp; ((target == level.getPlayer()) || (target == <strong class="jxr_keyword">null</strong>))) {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>              actor.setDirection(chasingDirection);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>              actor.setMoveStrategy(<strong class="jxr_keyword">new</strong> <a href="../../model/behaviorstrategy/MoveBlocked.html">MoveBlocked</a>());
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>              ;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          }
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      }
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2018. All rights reserved.</div>

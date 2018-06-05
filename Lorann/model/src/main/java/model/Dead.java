@@ -65,7 +65,6 @@ public class Dead extends Entity {
 	 */
 	@Override
 	public void update() {
-		System.out.println(this.getDurability());
 		this.decrementDurability();
 	}
 
