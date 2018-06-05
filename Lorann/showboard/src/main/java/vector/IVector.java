@@ -174,4 +174,8 @@ public interface IVector {
 	 * @param vector
 	 */
 	public void sub(final IVector vector);
+
+	public void setX(int i);
+	
+	public void setY(int i);
 }
