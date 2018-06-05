@@ -18,15 +18,16 @@ public class BounceTowardsPlayerLikeSpell implements IBounceStrategy {
      */
     @Override
     public void bounce(final IEntity actor, final ILevel level) {
+        System.out.println("ok");
         final IVector actorPosition = actor.getPosition();
         final IVector playerPosition = level.getPlayer().getPosition();
         final IVector chasingDirection = playerPosition.getSubResult(actorPosition);
         chasingDirection.normalize();
         final IVector actorNextPosition = actorPosition.getAddResult(chasingDirection);
+        final IEntity target = level.getEntityOn(actorNextPosition);
 
         if ((level.getUnits()[actorNextPosition.getX()][actorNextPosition.getY()]
-                .getType() != Type.WALL)
-                && (level.getEntityOn(actorNextPosition) != level.getPlayer())) {
+                .getType() != Type.WALL) && ((target == level.getPlayer()) || (target == null))) {
             actor.setDirection(chasingDirection);
         } else {
             actor.setMoveStrategy(new MoveBlocked());

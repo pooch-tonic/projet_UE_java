@@ -111,7 +111,6 @@ class KeyEventPerformer implements IKeyEventPerformer {
         } else {
             order = this.performOrderCombination(order);
         }
-        System.out.println(order + " : " + this.currentOrder);
         return order;
     }
 

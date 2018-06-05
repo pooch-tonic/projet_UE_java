@@ -20,6 +20,7 @@ import modelInterfaces.IEntity;
 import modelInterfaces.IModel;
 import modelInterfaces.IUnit;
 import showboard.IBoard;
+import vector.IVector;
 import viewInterfaces.IView;
 
 /**
@@ -97,14 +98,16 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.summonEntities();
         this.setStackOrder(new ArrayList<>());
         this.getStackOrder().add(OrderEnum.NONE);
-        this.setEntitiesToDestroy(new ArrayList<>());
         this.setEntitiesToSummon(new ArrayList<>());
     }
 
-    private void destroyEntities() {
+    private synchronized void destroyEntities() {
+        final ArrayList<IEntity> entitiesDestroyed = new ArrayList<>();
+
         for (final IEntity entity : this.getEntitiesToDestroy()) {
             this.getModel().destroyEntity(entity);
             this.getView().removePawnFromBoard(entity);
+            entitiesDestroyed.add(entity);
 
             switch (entity.getType()) {
             case PLAYER:
@@ -116,6 +119,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
                 break;
             }
         }
+        this.getEntitiesToDestroy().removeAll(entitiesDestroyed);
     }
 
     private void summonEntities() {
@@ -245,7 +249,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private void performInteraction(final IEntity entity, final IEntity target,
             final Interaction interaction) {
-        System.out.println(entity + " : " + interaction);
         switch (interaction) {
         case ENTITY_DESTROYED:
             this.getEntitiesToDestroy().add(entity);
@@ -450,7 +453,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             break;
         case CAST:
             if (this.getModel().getSpell() == null) {
-                this.getEntitiesToSummon().add(TypeEnum.SPELL);
+                if (this.isSpellSummoningPossible()) {
+                    this.getEntitiesToSummon().add(TypeEnum.SPELL);
+                }
             } else {
                 this.getModel().callSpell();
                 this.getModel().getSpell().bounce(this.getModel().getLevel());
@@ -461,6 +466,19 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             this.getModel().setPlayerDirection(DirectionEnum.NONE);
             break;
         }
+    }
+
+    private boolean isSpellSummoningPossible() {
+        boolean isPossible = false;
+        final IVector target = this.getModel().getPlayer().getPosition()
+                .getAddResult(this.getModel().getPlayer().getLastDirection().getInvertResult());
+
+        if ((this.getModel().getUnitOn(target.getX(), target.getY()).getType() != Type.WALL)
+                && (this.getModel().getLevel().getEntityOn(target) == null)) {
+            isPossible = true;
+        }
+
+        return isPossible;
     }
 
     public void update(final Observable o, final IEntity entity) {
