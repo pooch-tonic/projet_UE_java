@@ -19,53 +19,54 @@ import vector.IVector;
  *
  */
 public class Dead extends Entity {
-    public static int SCORE = 0;
+	public static int SCORE = 0;
 
-    /**
-     * Instantiates a new Dead entity.
-     *
-     * @param spriteSet
-     *            the spriteSet to load
-     */
-    public Dead(final ISpriteSet spriteSet) {
-        super(null, spriteSet, UnitTypeEnum.DEAD, 10, SCORE);
-        this.setBounceStrategy(new DoNotBounce());
-        this.setDodgeStrategy(new DoNotDodge());
-        this.setMoveStrategy(new DoNotMove());
-    }
+	/**
+	 * Instantiates a new Dead entity.
+	 *
+	 * @param spriteSet
+	 *            the spriteSet to load
+	 */
+	public Dead(final ISpriteSet spriteSet) {
+		super(null, spriteSet, UnitTypeEnum.DEAD, 10, SCORE);
+		this.setBounceStrategy(new DoNotBounce());
+		this.setDodgeStrategy(new DoNotDodge());
+		this.setMoveStrategy(new DoNotMove());
+	}
 
-    /**
-     * Instantiates a new Dead entity.
-     *
-     */
-    public Dead() {
-        super(UnitTypeEnum.DEAD);
-        this.setBounceStrategy(new DoNotBounce());
-        this.setDodgeStrategy(new DoNotDodge());
-        this.setScoreValue(SCORE);
-    }
+	/**
+	 * Instantiates a new Dead entity.
+	 *
+	 */
+	public Dead() {
+		super(UnitTypeEnum.DEAD);
+		this.setBounceStrategy(new DoNotBounce());
+		this.setDodgeStrategy(new DoNotDodge());
+		this.setScoreValue(SCORE);
+	}
 
-    /**
-     * Instantiates a new Dead entity.
-     *
-     * @param position
-     *            the position of the dead entity
-     */
-    public Dead(final IVector position) {
-        super(position, UnitTypeEnum.DEAD);
-        this.setScoreValue(SCORE);
-        this.setBounceStrategy(new DoNotBounce());
-        this.setDodgeStrategy(new DoNotDodge());
-    }
+	/**
+	 * Instantiates a new Dead entity.
+	 *
+	 * @param position
+	 *            the position of the dead entity
+	 */
+	public Dead(final IVector position) {
+		super(position, UnitTypeEnum.DEAD);
+		this.setScoreValue(SCORE);
+		this.setBounceStrategy(new DoNotBounce());
+		this.setDodgeStrategy(new DoNotDodge());
+	}
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see model.Entity#update()
-     */
-    @Override
-    public void update() {
-        this.decrementDurability();
-    }
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see model.Entity#update()
+	 */
+	@Override
+	public void update() {
+		System.out.println(this.getDurability());
+		this.decrementDurability();
+	}
 
 }

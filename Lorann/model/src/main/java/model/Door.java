@@ -18,44 +18,45 @@ import vector.IVector;
  *
  */
 public class Door extends Entity {
-    public static int SCORE = 0;
+	public static int SCORE = 0;
 
-    /**
-     * Instantiates a new Door
-     *
-     * @param closed
-     */
-    public Door(final UnitTypeEnum type, final ISpriteSet spriteSet) {
-        super(type, spriteSet);
-        this.setBounceStrategy(new DoNotBounce());
-        this.setDodgeStrategy(new DoNotDodge());
-        this.setMoveStrategy(new DoNotMove());
-        this.setScoreValue(SCORE);
-    }
+	/**
+	 * Instantiates a new Door
+	 *
+	 * @param closed
+	 */
+	public Door(final UnitTypeEnum type, final ISpriteSet spriteSet) {
+		super(type, spriteSet);
+		this.setBounceStrategy(new DoNotBounce());
+		this.setDodgeStrategy(new DoNotDodge());
+		this.setMoveStrategy(new DoNotMove());
+		this.setScoreValue(SCORE);
+	}
 
-    /**
-     * Instantiates a new Door
-     *
-     * @param position
-     * @param closed
-     */
-    public Door(final IVector position, final UnitTypeEnum type) {
-        super(type);
-        super.setPosition(position);
-        this.setScoreValue(SCORE);
-    }
+	/**
+	 * Instantiates a new Door
+	 *
+	 * @param position
+	 * @param closed
+	 */
+	public Door(final IVector position, final UnitTypeEnum type) {
+		super(type);
+		super.setPosition(position);
+		this.setScoreValue(SCORE);
+	}
 
-    /**
-     * Set door type between enemy if the door is closed or door_open
-     *
-     * @param closed
-     */
-    @Override
-    public void setType(final UnitTypeEnum type) {
-        super.setType(type);
-        if (this.getType() == UnitTypeEnum.DOOR_OPEN) {
-            this.getSpriteSet().setNextSprite();
-        }
-    }
+	/**
+	 * Set door type between enemy if the door is closed or door_open
+	 *
+	 * @param closed
+	 */
+	@Override
+	public void setType(final UnitTypeEnum type) {
+		super.setType(type);
+		if (this.getType() == UnitTypeEnum.DOOR_OPEN) {
+			System.out.println("ok");
+			this.getSpriteSet().setNextSprite();
+		}
+	}
 
 }
