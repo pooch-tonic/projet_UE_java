@@ -6,6 +6,8 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
 
 import controllerInterfaces.IController;
 import controllerInterfaces.IOrderPerformer;
@@ -24,11 +26,10 @@ import viewInterfaces.IView;
  * <h1>The Class ControllerFacade provides a facade of the Controller
  * component.</h1>
  *
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
+ * @author Aurélien Dellac
+ * @version 5 juin 2018
  */
-public class ControllerFacade implements IController, IOrderStacker, IOrderPerformer {
-
+public class ControllerFacade implements IController, IOrderStacker, IOrderPerformer, Observer {
 
     /** The view. */
     private IView view;
@@ -248,13 +249,17 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         switch (interaction) {
         case ENTITY_DESTROYED:
             this.getEntitiesToDestroy().add(entity);
+            this.getModel().doNotMoveEntity(entity);
             break;
         case TARGET_DESTROYED:
             this.getEntitiesToDestroy().add(target);
+            this.getModel().doNotMoveEntity(target);
             break;
         case BOTH_DESTROYED:
             this.getEntitiesToDestroy().add(entity);
+            this.getModel().doNotMoveEntity(entity);
             this.getEntitiesToDestroy().add(target);
+            this.getModel().doNotMoveEntity(target);
             break;
         case BOUNCE:
             entity.bounce(this.getModel().getLevel());
@@ -389,72 +394,81 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         return isOver;
     }
 
-	
-	private void closeGame() {
-		try {
-			this.getView().displayMessage(
-					"You reached the last level !\n Your score is : " + this.getModel().getScore().getScoreValue());
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
-		System.exit(0);
-	}
+    private void closeGame() {
+        try {
+            this.getView().displayMessage("You reached the last level !\n Your score is : "
+                    + this.getModel().getScore().getScoreValue());
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see controllerInterfaces.IOrderPerformer#performOrder()
-	 */
-	@Override
-	public void performOrder() {
-		OrderEnum order = OrderEnum.NONE;
+    /*
+     * (non-Javadoc)
+     *
+     * @see controllerInterfaces.IOrderPerformer#performOrder()
+     */
+    @Override
+    public void performOrder() {
+        OrderEnum order = OrderEnum.NONE;
 
-		order = this.getStackOrder().get(this.getStackOrder().size() - 1);
+        order = this.getStackOrder().get(this.getStackOrder().size() - 1);
 
-		switch (order) {
-		case UP:
-			System.out.println("yes");
-			this.getModel().setPlayerDirection(DirectionEnum.UP);
-			this.getModel().setPlayerSpriteSetToIndex(3);
-			break;
-		case UPLEFT:
-			this.getModel().setPlayerDirection(DirectionEnum.UPLEFT);
-			this.getModel().setPlayerSpriteSetToIndex(2);
-			break;
-		case UPRIGHT:
-			this.getModel().setPlayerDirection(DirectionEnum.UPRIGHT);
-			this.getModel().setPlayerSpriteSetToIndex(4);
-			break;
-		case LEFT:
-			this.getModel().setPlayerDirection(DirectionEnum.LEFT);
-			this.getModel().setPlayerSpriteSetToIndex(1);
-			break;
-		case RIGHT:
-			this.getModel().setPlayerDirection(DirectionEnum.RIGHT);
-			this.getModel().setPlayerSpriteSetToIndex(5);
-			break;
-		case DOWN:
-			this.getModel().setPlayerDirection(DirectionEnum.DOWN);
-			this.getModel().setPlayerSpriteSetToIndex(7);
-			break;
-		case DOWNLEFT:
-			this.getModel().setPlayerDirection(DirectionEnum.DOWNLEFT);
-			this.getModel().setPlayerSpriteSetToIndex(0);
-			break;
-		case DOWNRIGHT:
-			this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
-			this.getModel().setPlayerSpriteSetToIndex(6);
-			break;
-		case CAST:
-			if (this.getModel().getSpell() == null) {
-				this.getEntitiesToSummon().add(TypeEnum.SPELL);
-			}
-			// TODO attirer le spell
-			this.getModel().setPlayerDirection(DirectionEnum.NONE);
-			break;
-		default:
-			this.getModel().setPlayerDirection(DirectionEnum.NONE);
-			break;
-		}
-	}
+        switch (order) {
+        case UP:
+            this.getModel().setPlayerDirection(DirectionEnum.UP);
+            this.getModel().setPlayerSpriteSetToIndex(3);
+            break;
+        case UPLEFT:
+            this.getModel().setPlayerDirection(DirectionEnum.UPLEFT);
+            this.getModel().setPlayerSpriteSetToIndex(2);
+            break;
+        case UPRIGHT:
+            this.getModel().setPlayerDirection(DirectionEnum.UPRIGHT);
+            this.getModel().setPlayerSpriteSetToIndex(4);
+            break;
+        case LEFT:
+            this.getModel().setPlayerDirection(DirectionEnum.LEFT);
+            this.getModel().setPlayerSpriteSetToIndex(1);
+            break;
+        case RIGHT:
+            this.getModel().setPlayerDirection(DirectionEnum.RIGHT);
+            this.getModel().setPlayerSpriteSetToIndex(5);
+            break;
+        case DOWN:
+            this.getModel().setPlayerDirection(DirectionEnum.DOWN);
+            this.getModel().setPlayerSpriteSetToIndex(7);
+            break;
+        case DOWNLEFT:
+            this.getModel().setPlayerDirection(DirectionEnum.DOWNLEFT);
+            this.getModel().setPlayerSpriteSetToIndex(0);
+            break;
+        case DOWNRIGHT:
+            this.getModel().setPlayerDirection(DirectionEnum.DOWNRIGHT);
+            this.getModel().setPlayerSpriteSetToIndex(6);
+            break;
+        case CAST:
+            if (this.getModel().getSpell() == null) {
+                this.getEntitiesToSummon().add(TypeEnum.SPELL);
+            } else {
+                this.getModel().callSpell();
+                this.getModel().getSpell().bounce(this.getModel().getLevel());
+            }
+            this.getModel().setPlayerDirection(DirectionEnum.NONE);
+            break;
+        default:
+            this.getModel().setPlayerDirection(DirectionEnum.NONE);
+            break;
+        }
+    }
+
+    public void update(final Observable o, final IEntity entity) {
+        this.getEntitiesToDestroy().add(entity);
+
+    }
+
+    @Override
+    public void update(final Observable o, final Object arg) {
+    }
 }

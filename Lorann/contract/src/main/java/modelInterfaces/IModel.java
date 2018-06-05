@@ -17,100 +17,115 @@ import enums.TypeEnum;
  */
 public interface IModel {
 
-	public IEntity addEntityToLevel(TypeEnum type);
+    public IEntity addEntityToLevel(TypeEnum type);
 
-	/**
-	 * Adds a score value to the current score value
-	 *
-	 * @param value
-	 */
-	void addToScore(final int value);
+    public void addEntityToLevel(IEntity entity);
 
-	public void destroyEntity(IEntity entity);
+    public void removeEntityFromLevel(final IEntity entity);
 
-	public IEntity getExit();
+    /**
+     * Adds a score value to the current score value
+     *
+     * @param value
+     */
+    void addToScore(final int value);
 
-	/**
-	 * Gets a level
-	 *
-	 * @return a level
-	 */
-	public ILevel getLevel();
+    public void destroyEntity(IEntity entity);
 
-	/**
-	 * Gets the map.
-	 *
-	 * @param mapId
-	 *            the id of the map
-	 * @return the unit by position
-	 * @throws SQLException
-	 *             the SQL exception
-	 */
-	Dimension getMap(int mapId) throws SQLException;
+    public IEntity getExit();
 
-	/**
-	 * Gets the maxLevels
-	 *
-	 * @return the maxLevels
-	 */
-	public int getMaxLevels();
+    /**
+     * Gets a level
+     *
+     * @return a level
+     */
+    public ILevel getLevel();
 
-	/**
-	 * @return the player as an IEntity.
-	 */
-	public IEntity getPlayer();
+    /**
+     * Gets the map.
+     *
+     * @param mapId
+     *            the id of the map
+     * @return the unit by position
+     * @throws SQLException
+     *             the SQL exception
+     */
+    Dimension getMap(int mapId) throws SQLException;
 
-	/**
-	 * Gets the score
-	 *
-	 * @return the score
-	 */
-	public IScore getScore();
+    /**
+     * Gets the maxLevels
+     *
+     * @return the maxLevels
+     */
+    public int getMaxLevels();
 
-	public IEntity getSpell();
+    /**
+     * @return the player as an IEntity.
+     */
+    public IEntity getPlayer();
 
-	public IUnit getUnitOn(int x, int y);
+    /**
+     * Gets the score
+     *
+     * @return the score
+     */
+    public IScore getScore();
 
-	/**
-	 * @param levelId
-	 * @throws SQLException
-	 */
-	void loadLevel(int levelId) throws SQLException;
+    public IEntity getSpell();
 
-	/**
-	 *
-	 */
-	void resetScore();
+    public IUnit getUnitOn(int x, int y);
 
-	/**
-	 * Sets the maxLevels by reading the Database
-	 */
-	public void setMaxLevels();
+    /**
+     * @param levelId
+     * @throws SQLException
+     */
+    void loadLevel(int levelId) throws SQLException;
 
-	public void setPlayer(IEntity player);
+    /**
+     *
+     */
+    void resetScore();
 
-	/**
-	 *
-	 *
-	 * @param direction
-	 */
-	public void setPlayerDirection(DirectionEnum direction);
+    /**
+     * Sets the maxLevels by reading the Database
+     */
+    public void setMaxLevels();
 
-	/**
-	 * sets the player's spriteset current index to the specified value.
-	 */
-	public void setPlayerSpriteSetToIndex(final int index);
+    public void setPlayer(IEntity player);
 
-	/**
-	 * sets the player's spell attribute
-	 * 
-	 * @param spell
-	 */
-	public void setSpell(IEntity spell);
+    /**
+     *
+     *
+     * @param direction
+     */
+    public void setPlayerDirection(DirectionEnum direction);
 
-	/**
-	 * updates the attributes of the entity.
-	 */
-	public void update();
+    /**
+     * Sets the player's spriteset current index to the specified value.
+     */
+    public void setPlayerSpriteSetToIndex(final int index);
 
+    /**
+     * Sets the player's spell attribute.
+     *
+     * @param spell
+     */
+    public void setSpell(IEntity spell);
+
+    /**
+     * updates the attributes of the entity.
+     */
+    public void update();
+
+    /**
+     * Set the entity move strategy to the "do not move" one.
+     *
+     * @param entity
+     */
+    public void doNotMoveEntity(IEntity entity);
+
+    /**
+     * Makes the spell bouncing towards the player.
+     */
+    public void callSpell();
 }

@@ -10,5 +10,5 @@ package enums;
  * @version 2 juin 2018
  */
 public enum Type {
-	GROUND, WALL, ENEMY, PLAYER, KEY, LOOT, SPELL, DOOR_OPEN, DEAD
+    GROUND, WALL, ENEMY, PLAYER, KEY, LOOT, SPELL, DOOR_OPEN, DOOR_CLOSED, DEAD
 }

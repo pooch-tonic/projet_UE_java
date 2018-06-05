@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package model.factories;
 
@@ -9,7 +9,7 @@ import showboard.ISpriteSet;
 
 class DoorFactory {
     Door createClosed(final ISpriteSet spriteSet) {
-        return new Door(Type.ENEMY, spriteSet);
+        return new Door(Type.DOOR_CLOSED, spriteSet);
     }
 
     Door createOpen(final ISpriteSet spriteSet) {
