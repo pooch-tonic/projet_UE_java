@@ -6,7 +6,7 @@ package model.factories;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import enums.TypeEnum;
+import enums.AllUnitEnum;
 import model.Dead;
 import model.Door;
 import model.Enemy;
@@ -17,9 +17,9 @@ import model.Loot;
 import model.Player;
 import model.Spell;
 import model.SpriteSet;
-import model.WallType;
-import modelInterfaces.IEntity;
-import modelInterfaces.IUnit;
+import model.WallTypeEnum;
+import modelinterfaces.IEntity;
+import modelinterfaces.IUnit;
 import showboard.ISpriteSet;
 
 /**
@@ -46,7 +46,7 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return a default dead unit
      */
-    public static Dead createDead_default() {
+    public static Dead createDeadDefault() {
         return deadFactory.createDefault();
     }
 
@@ -54,14 +54,14 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return a closed door
      */
-    public static Door createDoor_closed(final ISpriteSet spriteSet) {
+    public static Door createDoorClosed(final ISpriteSet spriteSet) {
         return doorFactory.createClosed(spriteSet);
     }
 
     /**
      * @return an open door
      */
-    public static Door createDoor_open(final ISpriteSet spriteSet) {
+    public static Door createDoorOpen(final ISpriteSet spriteSet) {
         return doorFactory.createOpen(spriteSet);
     }
 
@@ -69,7 +69,7 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return an enemy : Arrbarr
      */
-    public static Enemy createEnemy_Arrbarr(final ISpriteSet spriteSet) {
+    public static Enemy createEnemyArrbarr(final ISpriteSet spriteSet) {
         return enemyFactory.createArrbarr(spriteSet);
     }
 
@@ -77,7 +77,7 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return an enemy : Cargyv
      */
-    public static Enemy createEnemy_Cargyv(final ISpriteSet spriteSet) {
+    public static Enemy createEnemyCargyv(final ISpriteSet spriteSet) {
         return enemyFactory.createCargyv(spriteSet);
     }
 
@@ -85,7 +85,7 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return an enemy : Kyracj
      */
-    public static Enemy createEnemy_Kyracj(final ISpriteSet spriteSet) {
+    public static Enemy createEnemyKyracj(final ISpriteSet spriteSet) {
         return enemyFactory.createKyracj(spriteSet);
     }
 
@@ -93,12 +93,12 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return an enemy : Maarcg
      */
-    public static Enemy createEnemy_Maarcg(final ISpriteSet spriteSet) {
+    public static Enemy createEnemyMaarcg(final ISpriteSet spriteSet) {
         return enemyFactory.createMaarcg(spriteSet);
     }
 
     // TODO UTILISER IMAGELOADER
-    public static IEntity createEntity(final TypeEnum type, final ArrayList<String> spritePath) {
+    public static IEntity createEntity(final AllUnitEnum type, final ArrayList<String> spritePath) {
         final ArrayList<BufferedImage> images = new ArrayList<>();
         for (final String path : spritePath) {
             images.add(ImageLoader.getImageByPath(path));
@@ -108,23 +108,23 @@ public abstract class UnitFactory {
         
         switch (type) {
         case ENEMY_A:
-            return createEnemy_Arrbarr(spriteSet);
+            return createEnemyArrbarr(spriteSet);
         case ENEMY_B:
-            return createEnemy_Cargyv(spriteSet);
+            return createEnemyCargyv(spriteSet);
         case ENEMY_C:
-            return createEnemy_Kyracj(spriteSet);
+            return createEnemyKyracj(spriteSet);
         case ENEMY_D:
-            return createEnemy_Maarcg(spriteSet);
+            return createEnemyMaarcg(spriteSet);
         case PLAYER:
-            return createPlayer_Lorann(spriteSet);
+            return createPlayerLorann(spriteSet);
         case KEY:
-            return createKey_blue(spriteSet);
+            return createKeyBlue(spriteSet);
         case LOOT:
-            return createLoot_coin(spriteSet);
+            return createLootPurse(spriteSet);
         case DOOR:
-            return createDoor_closed(spriteSet);
+            return createDoorClosed(spriteSet);
         case DEAD:
-            return createDead_default();
+            return createDeadDefault();
         case SPELL:
             return createSpell();
         default:
@@ -132,7 +132,7 @@ public abstract class UnitFactory {
         }
     }
 
-    public static Ground createGround_default(final ISpriteSet spriteSet) {
+    public static Ground createGroundDefault(final ISpriteSet spriteSet) {
         return groundFactory.createDefault();
     }
 
@@ -140,7 +140,7 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return a blue key
      */
-    public static Key createKey_blue(final ISpriteSet spriteSet) {
+    public static Key createKeyBlue(final ISpriteSet spriteSet) {
         return keyFactory.createBlue(spriteSet);
     }
 
@@ -148,15 +148,15 @@ public abstract class UnitFactory {
      * @param spriteSet
      * @return a loot : coin (score value 200)
      */
-    public static Loot createLoot_coin(final ISpriteSet spriteSet) {
-        return lootFactory.createCoin(spriteSet);
+    public static Loot createLootPurse(final ISpriteSet spriteSet) {
+        return lootFactory.createPurse(spriteSet);
     }
 
     /**
      * @param spriteSet
      * @return the player : Lorann
      */
-    public static Player createPlayer_Lorann(final ISpriteSet spriteSet) {
+    public static Player createPlayerLorann(final ISpriteSet spriteSet) {
         return playerFactory.createLorann(spriteSet);
     }
 
@@ -173,7 +173,7 @@ public abstract class UnitFactory {
         deadFactory.setSpriteSet(spritePath);
     }
 
-    public static IUnit createWall(final WallType wallType, final String path) {
+    public static IUnit createWall(final WallTypeEnum wallType, final String path) {
         switch (wallType) {
         case WALL_HORIZONTAL:
             return wallFactory.createDefault(ImageLoader.getImageByPath(path));

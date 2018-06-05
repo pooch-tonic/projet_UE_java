@@ -3,10 +3,10 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.BounceOpposite;
-import model.behaviorStrategy.DoNotDodge;
-import model.behaviorStrategy.MoveSimple;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.BounceOpposite;
+import model.behaviorstrategy.DoNotDodge;
+import model.behaviorstrategy.MoveSimple;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -22,7 +22,7 @@ public class Spell extends Entity {
      *
      */
     public Spell(final ISpriteSet spriteSet) {
-        super(Type.SPELL, spriteSet);
+        super(UnitTypeEnum.SPELL, spriteSet);
         this.setBounceStrategy(new BounceOpposite());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new MoveSimple());
@@ -35,7 +35,7 @@ public class Spell extends Entity {
      * @param position
      */
     public Spell(final IVector position) {
-        super(position, Type.SPELL);
+        super(position, UnitTypeEnum.SPELL);
         this.setScoreValue(SCORE);
     }
 

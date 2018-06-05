@@ -5,10 +5,10 @@ package controller;
 
 import java.sql.SQLException;
 
-import modelInterfaces.IModel;
+import modelinterfaces.IModel;
 import showboard.IPawn;
 import showboard.ISquare;
-import viewInterfaces.IView;
+import viewinterfaces.IView;
 
 public class LevelLoader {
 

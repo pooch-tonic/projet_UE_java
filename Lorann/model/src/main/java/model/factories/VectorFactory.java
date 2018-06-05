@@ -4,7 +4,7 @@
 package model.factories;
 
 import enums.DirectionEnum;
-import modelInterfaces.IVectorFactory;
+import modelinterfaces.IVectorFactory;
 import vector.Vector;
 
 public abstract class VectorFactory implements IVectorFactory {

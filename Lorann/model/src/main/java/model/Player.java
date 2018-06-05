@@ -3,11 +3,11 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.DoNotBounce;
-import model.behaviorStrategy.DoNotDodge;
-import model.behaviorStrategy.MoveSimple;
-import modelInterfaces.IPlayer;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.DoNotBounce;
+import model.behaviorstrategy.DoNotDodge;
+import model.behaviorstrategy.MoveSimple;
+import modelinterfaces.IPlayer;
 import showboard.ISpriteSet;
 import vector.IVector;
 import vector.Vector;
@@ -24,7 +24,7 @@ public class Player extends Entity implements IPlayer {
      *
      */
     public Player(final ISpriteSet spriteSet) {
-        super(Type.PLAYER, spriteSet);
+        super(UnitTypeEnum.PLAYER, spriteSet);
         this.setLastDirection(new Vector(0, 0));
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
@@ -38,7 +38,7 @@ public class Player extends Entity implements IPlayer {
      * @param position
      */
     public Player(final IVector position) {
-        super(position, Type.PLAYER);
+        super(position, UnitTypeEnum.PLAYER);
         this.setScoreValue(SCORE);
     }
 

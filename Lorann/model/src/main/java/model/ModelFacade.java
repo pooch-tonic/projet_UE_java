@@ -11,17 +11,17 @@ import java.util.Map.Entry;
 import java.util.Observable;
 
 import enums.DirectionEnum;
-import enums.TypeEnum;
-import model.behaviorStrategy.BounceTowardsPlayerLikeSpell;
-import model.behaviorStrategy.DoNotMove;
+import enums.AllUnitEnum;
+import model.behaviorstrategy.BounceTowardsPlayerLikeSpell;
+import model.behaviorstrategy.DoNotMove;
 import model.dao.QueryDAO;
 import model.factories.UnitFactory;
 import model.factories.VectorFactory;
-import modelInterfaces.IEntity;
-import modelInterfaces.ILevel;
-import modelInterfaces.IModel;
-import modelInterfaces.IScore;
-import modelInterfaces.IUnit;
+import modelinterfaces.IEntity;
+import modelinterfaces.ILevel;
+import modelinterfaces.IModel;
+import modelinterfaces.IScore;
+import modelinterfaces.IUnit;
 import vector.IVector;
 import vector.Vector;
 
@@ -51,12 +51,12 @@ public final class ModelFacade extends Observable implements IModel {
     }
 
     @Override
-    public IEntity addEntityToLevel(final TypeEnum type, final IVector position) {
+    public IEntity addEntityToLevel(final AllUnitEnum type, final IVector position) {
         final IEntity entity = UnitFactory.createEntity(type, new ArrayList<>());
         this.getLevel().addEntity(0, entity);
         entity.setPosition(position);
 
-        if (type == TypeEnum.SPELL) {
+        if (type == AllUnitEnum.SPELL) {
             final IEntity player = this.getPlayer();
             final IVector spellDirection = new Vector(player.getLastDirection());
             spellDirection.invert();
@@ -161,7 +161,7 @@ public final class ModelFacade extends Observable implements IModel {
      * @throws SQLException
      *             the SQL exception
      */
-    private ArrayList<String> getSpritePath(final TypeEnum type) throws SQLException {
+    private ArrayList<String> getSpritePath(final AllUnitEnum type) throws SQLException {
         final ArrayList<String> result = QueryDAO.getSpritePath(type);
         return result;
     }
@@ -209,7 +209,7 @@ public final class ModelFacade extends Observable implements IModel {
      * @throws SQLException
      *             the SQL exception
      */
-    private ArrayList<IVector> getUnitByType(final TypeEnum type, final int mapId)
+    private ArrayList<IVector> getUnitByType(final AllUnitEnum type, final int mapId)
             throws SQLException {
         return QueryDAO.getUnitByType(type, mapId);
     }
@@ -243,38 +243,38 @@ public final class ModelFacade extends Observable implements IModel {
                 switch (key) {
                 case "WALL":
                     level.addUnit(
-                            UnitFactory.createWall(WallType.WALL_ROUND,
-                                    QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+                            UnitFactory.createWall(WallTypeEnum.WALL_ROUND,
+                                    QueryDAO.getSpritePath(AllUnitEnum.valueOf(key)).get(0)),
                             vector.getX(), vector.getY());
                     break;
                 case "WALL_H":
                     level.addUnit(
-                            UnitFactory.createWall(WallType.WALL_HORIZONTAL,
-                                    QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+                            UnitFactory.createWall(WallTypeEnum.WALL_HORIZONTAL,
+                                    QueryDAO.getSpritePath(AllUnitEnum.valueOf(key)).get(0)),
                             vector.getX(), vector.getY());
                     break;
                 case "WALL_V":
                     level.addUnit(
-                            UnitFactory.createWall(WallType.WALL_VERTICAL,
-                                    QueryDAO.getSpritePath(TypeEnum.valueOf(key)).get(0)),
+                            UnitFactory.createWall(WallTypeEnum.WALL_VERTICAL,
+                                    QueryDAO.getSpritePath(AllUnitEnum.valueOf(key)).get(0)),
                             vector.getX(), vector.getY());
                     break;
                 default:
-                    entity = UnitFactory.createEntity(TypeEnum.valueOf(key),
-                            QueryDAO.getSpritePath(TypeEnum.valueOf(key)));
+                    entity = UnitFactory.createEntity(AllUnitEnum.valueOf(key),
+                            QueryDAO.getSpritePath(AllUnitEnum.valueOf(key)));
                     entity.setPosition(vector);
                     level.addEntity(entity);
-                    if (TypeEnum.valueOf(key) == TypeEnum.PLAYER) {
+                    if (AllUnitEnum.valueOf(key) == AllUnitEnum.PLAYER) {
                         this.getLevel().setPlayer(entity);
-                    } else if (TypeEnum.valueOf(key) == TypeEnum.DOOR) {
+                    } else if (AllUnitEnum.valueOf(key) == AllUnitEnum.DOOR) {
                         this.getLevel().setExit(entity);
                     }
                     break;
                 }
             }
         }
-        UnitFactory.setSpellSpriteSet(QueryDAO.getSpritePath(TypeEnum.SPELL));
-        UnitFactory.setDeadSpriteSet(QueryDAO.getSpritePath(TypeEnum.DEAD));
+        UnitFactory.setSpellSpriteSet(QueryDAO.getSpritePath(AllUnitEnum.SPELL));
+        UnitFactory.setDeadSpriteSet(QueryDAO.getSpritePath(AllUnitEnum.DEAD));
         this.removeEntityFromLevel(this.getPlayer());
         this.addEntityToLevel(this.getPlayer());
         this.fillVoidSquares();

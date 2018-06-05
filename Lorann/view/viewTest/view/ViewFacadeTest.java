@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import viewInterfaces.IView;
+import viewinterfaces.IView;
 
 /**
  * <h1>The class ViewFacadeTest tests the proper functioning of the methods of

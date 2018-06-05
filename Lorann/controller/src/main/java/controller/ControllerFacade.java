@@ -8,21 +8,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+import controllerinterfaces.IController;
+import controllerinterfaces.IOrderPerformer;
+import controllerinterfaces.IOrderStacker;
+
 import java.util.Observable;
 import java.util.Observer;
 
-import controllerInterfaces.IController;
-import controllerInterfaces.IOrderPerformer;
-import controllerInterfaces.IOrderStacker;
 import enums.DirectionEnum;
 import enums.OrderEnum;
-import enums.Type;
-import enums.TypeEnum;
-import modelInterfaces.IEntity;
-import modelInterfaces.IModel;
-import modelInterfaces.IUnit;
+import enums.UnitTypeEnum;
+import enums.AllUnitEnum;
+import modelinterfaces.IEntity;
+import modelinterfaces.IModel;
+import modelinterfaces.IUnit;
 import vector.IVector;
-import viewInterfaces.IView;
+import viewinterfaces.IView;
 
 /**
  * <h1>The Class ControllerFacade provides a facade of the Controller
@@ -51,7 +53,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private ArrayList<IEntity> entitiesToDestroy;
 
-    private HashMap<IVector, TypeEnum> entitiesToSummon;
+    private HashMap<IVector, AllUnitEnum> entitiesToSummon;
 
     /**
      * Instantiates a new ControllerFacade
@@ -66,7 +68,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.setStackOrder(new ArrayList<>());
         this.getStackOrder().add(OrderEnum.NONE);
         this.setEntitiesToDestroy(new ArrayList<>());
-        this.setEntitiesToSummon(new HashMap<IVector, TypeEnum>());
+        this.setEntitiesToSummon(new HashMap<IVector, AllUnitEnum>());
     }
 
     /**
@@ -95,7 +97,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.summonEntities();
         this.setStackOrder(new ArrayList<>());
         this.getStackOrder().add(OrderEnum.NONE);
-        this.setEntitiesToSummon(new HashMap<IVector, TypeEnum>());
+        this.setEntitiesToSummon(new HashMap<IVector, AllUnitEnum>());
     }
 
     private synchronized void destroyEntities() {
@@ -121,12 +123,12 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
 
     private void summonEntities() {
         IEntity summonedEntity;
-        for (final Entry<IVector, TypeEnum> set : this.getEntitiesToSummon().entrySet()) {
+        for (final Entry<IVector, AllUnitEnum> set : this.getEntitiesToSummon().entrySet()) {
             summonedEntity = this.getModel().addEntityToLevel(set.getValue(), set.getKey());
 
             this.getView().getBoardFrame().addPawn(summonedEntity);
 
-            if (set.getValue() == TypeEnum.DEAD) {
+            if (set.getValue() == AllUnitEnum.DEAD) {
                 this.addEntityToEntitiesToDestroy(summonedEntity);
             }
         }
@@ -139,7 +141,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         IEntity entity, target;
         while (this.getEntityIterator().hasNext()) {
             entity = this.getEntityIterator().next();
-            if (this.getNextTile(entity).getType() == Type.WALL) {
+            if (this.getNextTile(entity).getType() == UnitTypeEnum.WALL) {
                 entity.bounce(this.getModel().getLevel());
             } else if ((entity.getDirection().getX() != 0) || (entity.getDirection().getY() != 0)) {
                 // TODO change and use getAddResult
@@ -245,7 +247,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     }
 
     private void performInteraction(final IEntity entity, final IEntity target,
-            final Interaction interaction) {
+            final InteractionEnum interaction) {
         switch (interaction) {
         case ENTITY_DESTROYED:
             this.addEntityToEntitiesToDestroy(entity);
@@ -265,7 +267,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             break;
         case UNLOCK_DOOR:
             this.getEntitiesToDestroy().add(target);
-            this.getModel().getExit().setType(Type.DOOR_OPEN);
+            this.getModel().getExit().setType(UnitTypeEnum.DOOR_OPEN);
             break;
         case QUIT_LEVEL:
             entity.bounce(this.getModel().getLevel());
@@ -280,8 +282,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.getEntitiesToDestroy().add(entity);
         this.getModel().doNotMoveEntity(entity);
 
-        if (entity.getType() == Type.ENEMY) {
-            this.getEntitiesToSummon().put(entity.getPosition(), TypeEnum.DEAD);
+        if (entity.getType() == UnitTypeEnum.ENEMY) {
+            this.getEntitiesToSummon().put(entity.getPosition(), AllUnitEnum.DEAD);
         }
     }
 
@@ -368,7 +370,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *
      * @return the entitiesToSummon
      */
-    private HashMap<IVector, TypeEnum> getEntitiesToSummon() {
+    private HashMap<IVector, AllUnitEnum> getEntitiesToSummon() {
         return this.entitiesToSummon;
     }
 
@@ -377,7 +379,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      *
      * @param entitiesToSummon
      */
-    private void setEntitiesToSummon(final HashMap<IVector, TypeEnum> entitiesToSummon) {
+    private void setEntitiesToSummon(final HashMap<IVector, AllUnitEnum> entitiesToSummon) {
         this.entitiesToSummon = entitiesToSummon;
     }
 
@@ -447,7 +449,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
             if (this.getModel().getSpell() == null) {
                 IVector position;
                 if ((position = this.isSpellSummoningPossible()) != null) {
-                    this.getEntitiesToSummon().put(position, TypeEnum.SPELL);
+                    this.getEntitiesToSummon().put(position, AllUnitEnum.SPELL);
                 }
             } else {
                 this.getModel().callSpell();
@@ -466,7 +468,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         final IVector target = this.getModel().getPlayer().getPosition()
                 .getAddResult(this.getModel().getPlayer().getLastDirection().getInvertResult());
 
-        if ((this.getModel().getUnitOn(target.getX(), target.getY()).getType() != Type.WALL)
+        if ((this.getModel().getUnitOn(target.getX(), target.getY()).getType() != UnitTypeEnum.WALL)
                 && (this.getModel().getLevel().getEntityOn(target) == null)) {
             nextPosition = target;
             System.out.println(nextPosition.getX() + " : " + nextPosition.getY());

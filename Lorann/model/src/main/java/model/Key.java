@@ -3,10 +3,10 @@
  */
 package model;
 
-import enums.Type;
-import model.behaviorStrategy.DoNotBounce;
-import model.behaviorStrategy.DoNotDodge;
-import model.behaviorStrategy.DoNotMove;
+import enums.UnitTypeEnum;
+import model.behaviorstrategy.DoNotBounce;
+import model.behaviorstrategy.DoNotDodge;
+import model.behaviorstrategy.DoNotMove;
 import showboard.ISpriteSet;
 import vector.IVector;
 
@@ -22,7 +22,7 @@ public class Key extends Entity {
      *
      */
     public Key(final ISpriteSet spriteSet) {
-        super(Type.KEY, spriteSet);
+        super(UnitTypeEnum.KEY, spriteSet);
         this.setBounceStrategy(new DoNotBounce());
         this.setDodgeStrategy(new DoNotDodge());
         this.setMoveStrategy(new DoNotMove());
@@ -35,7 +35,7 @@ public class Key extends Entity {
      * @param position
      */
     public Key(final IVector position) {
-        super(position, Type.KEY);
+        super(position, UnitTypeEnum.KEY);
         this.setScoreValue(SCORE);
     }
 
