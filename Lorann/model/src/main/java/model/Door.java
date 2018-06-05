@@ -3,6 +3,8 @@
  */
 package model;
 
+import java.awt.Image;
+
 import enums.UnitTypeEnum;
 import model.behaviorstrategy.DoNotBounce;
 import model.behaviorstrategy.DoNotDodge;
@@ -45,16 +47,32 @@ public class Door extends Entity {
 		this.setScoreValue(SCORE);
 	}
 
-	/**
-	 * Set door type between enemy if the door is closed or door_open
+	/*
+	 * (non-Javadoc)
 	 *
-	 * @param closed
+	 * @see model.Entity#update()
 	 */
 	@Override
-	public void setType(final UnitTypeEnum type) {
-		super.setType(type);
-		if (this.getType() == UnitTypeEnum.DOOR_OPEN) {
+	public void update() {
+		if (this.getType() != UnitTypeEnum.DOOR_OPEN) {
 			this.getSpriteSet().setNextSprite();
+			if (this.getSpriteSet().getCurrentIndex() == 5) {
+				this.getSpriteSet().resetIndex();
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see model.Unit#getImage()
+	 */
+	@Override
+	public Image getImage() {
+		if (this.getType() == UnitTypeEnum.DOOR_OPEN) {
+			return this.getSpriteSet().getSpriteByIndex(5);
+		} else {
+			return this.getSpriteSet().getCurrentSprite();
 		}
 	}
 
