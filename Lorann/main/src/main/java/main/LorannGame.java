@@ -14,7 +14,7 @@ import model.Unit;
 import view.ViewFacade;
 
 public class LorannGame {
-    public static final int RESIZE_SCALE = 2;
+    public static final int RESIZE_SCALE = 1;
     public static final int GAME_WIDTH   = 20;
     public static final int GAME_HEIGHT  = 12;
     public static int       FRAME_HEIGHT = GAME_HEIGHT * Unit.getSize() * RESIZE_SCALE;
