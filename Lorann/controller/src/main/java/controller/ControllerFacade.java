@@ -8,18 +8,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Observable;
+import java.util.Observer;
 
 import controllerinterfaces.IController;
 import controllerinterfaces.IOrderPerformer;
 import controllerinterfaces.IOrderStacker;
-
-import java.util.Observable;
-import java.util.Observer;
-
+import enums.AllUnitEnum;
 import enums.DirectionEnum;
 import enums.OrderEnum;
 import enums.UnitTypeEnum;
-import enums.AllUnitEnum;
 import modelinterfaces.IEntity;
 import modelinterfaces.IModel;
 import modelinterfaces.IUnit;
@@ -95,8 +93,8 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         this.updateEntities();
         this.destroyEntities();
         this.summonEntities();
-        this.setStackOrder(new ArrayList<>());
-        this.getStackOrder().add(OrderEnum.NONE);
+        // this.setStackOrder(new ArrayList<>());
+        // this.getStackOrder().add(OrderEnum.NONE);
         this.setEntitiesToSummon(new HashMap<IVector, AllUnitEnum>());
     }
 
@@ -315,6 +313,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     /**
      * @param view
      */
+    @Override
     public void setView(final IView view) {
         this.view = view;
     }
@@ -326,7 +325,12 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     @Override
     public void stackOrder(final OrderEnum order) {
-        this.getStackOrder().add(order);
+        if (order != OrderEnum.NONE) {
+            this.getStackOrder().add(order);
+        } else {
+            this.setStackOrder(new ArrayList<>());
+        }
+
     }
 
     /**
@@ -410,7 +414,9 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
     public void performOrder() {
         OrderEnum order = OrderEnum.NONE;
 
-        order = this.getStackOrder().get(this.getStackOrder().size() - 1);
+        if (this.getStackOrder().size() > 0) {
+            order = this.getStackOrder().get(this.getStackOrder().size() - 1);
+        }
 
         switch (order) {
         case UP:
@@ -471,7 +477,6 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
         if ((this.getModel().getUnitOn(target.getX(), target.getY()).getType() != UnitTypeEnum.WALL)
                 && (this.getModel().getLevel().getEntityOn(target) == null)) {
             nextPosition = target;
-            System.out.println(nextPosition.getX() + " : " + nextPosition.getY());
         }
 
         return nextPosition;

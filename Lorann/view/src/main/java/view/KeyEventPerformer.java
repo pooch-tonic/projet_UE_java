@@ -20,7 +20,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
     /** The object able to stack order. */
     private IOrderStacker        orderStacker;
     /** The key code of the current key pressed. */
-    private ArrayList<OrderEnum> currentOrder;
+    private ArrayList<OrderEnum> currentOrders;
 
     /**
      * Instantiates a new KeyEventPerformer
@@ -33,8 +33,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
             throw new Exception("The OrderStacker is null");
         }
         this.setOrderStacker(orderStacker);
-        this.setCurrentOrder(new ArrayList<>());
-        this.getCurrentOrder().add(OrderEnum.NONE);
+        this.setCurrentOrders(new ArrayList<>());
     }
 
     /*
@@ -44,12 +43,17 @@ class KeyEventPerformer implements IKeyEventPerformer {
      */
     @Override
     public void performKeyPressedEvent(final KeyEvent keyEvent) {
-        if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
-            this.orderStacker.stackOrder(this.keyCodeToOrder(keyEvent.getKeyCode()));
-        } else if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
-            this.getCurrentOrder().remove(this.keyCodeToOrder(keyEvent.getKeyCode()));
-        }
+        final OrderEnum order = this.keyCodeToOrder(keyEvent.getKeyCode());
 
+        if (order != OrderEnum.NONE) {
+            if (this.getCurrentOrders().contains(OrderEnum.NONE)) {
+                this.getCurrentOrders().remove(OrderEnum.NONE);
+            }
+            if (!this.getCurrentOrders().contains(order)) {
+                this.getCurrentOrders().add(0, order);
+            }
+        }
+        this.getOrderStacker().stackOrder(this.performOrderCombination());
     }
 
     /*
@@ -59,7 +63,15 @@ class KeyEventPerformer implements IKeyEventPerformer {
      */
     @Override
     public void performKeyReleasedEvent(final KeyEvent keyEvent) {
-        this.getCurrentOrder().remove(this.keyCodeToOrder(keyEvent.getKeyCode()));
+        final OrderEnum order = this.keyCodeToOrder(keyEvent.getKeyCode());
+        if (order != OrderEnum.NONE) {
+            this.getCurrentOrders().remove(order);
+        }
+        if (this.getCurrentOrders().size() == 0) {
+            this.getCurrentOrders().add(OrderEnum.NONE);
+        }
+
+        this.getOrderStacker().stackOrder(this.performOrderCombination());
     }
 
     /*
@@ -104,45 +116,50 @@ class KeyEventPerformer implements IKeyEventPerformer {
             ;
             break;
         default:
-            order = this.currentOrder;
             break;
         }
 
-        if (this.currentOrder == OrderEnum.NONE) {
-            this.setCurrentOrder(order);
-        } else {
-            order = this.performOrderCombination(order);
-        }
         return order;
     }
 
     /**
-     * Checks if the new pressed key may be combine with the current one and then
-     * returns the new (or not) order
+     * Gets the order which have to be send to the controller depending on key
+     * pressed combinations
      *
-     * @param order
      * @return
      */
-    private OrderEnum performOrderCombination(final OrderEnum order) {
-        OrderEnum orderCombination = order;
+    private OrderEnum performOrderCombination() {
+        OrderEnum orderCombination = OrderEnum.NONE;
+        final int numberOfOrders = this.getCurrentOrders().size();
 
-        if (order != this.currentOrder) {
-            if (((order == OrderEnum.UP) && (this.currentOrder == OrderEnum.RIGHT))
-                    || ((this.currentOrder == OrderEnum.UP) && (order == OrderEnum.RIGHT))) {
-                orderCombination = OrderEnum.UPRIGHT;
-            } else if (((order == OrderEnum.UP) && (this.currentOrder == OrderEnum.LEFT))
-                    || ((this.currentOrder == OrderEnum.UP) && (order == OrderEnum.LEFT))) {
-                orderCombination = OrderEnum.UPLEFT;
-            } else if (((order == OrderEnum.DOWN) && (this.currentOrder == OrderEnum.RIGHT))
-                    || ((this.currentOrder == OrderEnum.DOWN) && (order == OrderEnum.RIGHT))) {
-                orderCombination = OrderEnum.DOWNRIGHT;
-            } else if (((order == OrderEnum.DOWN) && (this.currentOrder == OrderEnum.LEFT))
-                    || ((this.currentOrder == OrderEnum.DOWN) && (order == OrderEnum.LEFT))) {
-                orderCombination = OrderEnum.DOWNLEFT;
+        if (this.getCurrentOrders().contains(OrderEnum.CAST)) {
+            orderCombination = OrderEnum.CAST;
+        } else {
+            if ((numberOfOrders > 1) && (numberOfOrders < 3)) {
+                if (this.getCurrentOrders().contains(OrderEnum.UP)
+                        && this.getCurrentOrders().contains(OrderEnum.RIGHT)) {
+                    orderCombination = OrderEnum.UPRIGHT;
+                } else if (this.getCurrentOrders().contains(OrderEnum.UP)
+                        && this.getCurrentOrders().contains(OrderEnum.LEFT)) {
+                    orderCombination = OrderEnum.UPLEFT;
+                } else if (this.getCurrentOrders().contains(OrderEnum.DOWN)
+                        && this.getCurrentOrders().contains(OrderEnum.RIGHT)) {
+                    orderCombination = OrderEnum.DOWNRIGHT;
+                } else if (this.getCurrentOrders().contains(OrderEnum.DOWN)
+                        && this.getCurrentOrders().contains(OrderEnum.LEFT)) {
+                    orderCombination = OrderEnum.DOWNLEFT;
+                } else {
+
+                    this.getCurrentOrders().get(0);
+                }
+            } else if (numberOfOrders == 1) {
+
+                orderCombination = this.getCurrentOrders().get(0);
             }
         }
 
         return orderCombination;
+
     }
 
     /**
@@ -168,8 +185,8 @@ class KeyEventPerformer implements IKeyEventPerformer {
      *
      * @return the currentOrder
      */
-    private ArrayList<OrderEnum> getCurrentOrder() {
-        return this.currentOrder;
+    private ArrayList<OrderEnum> getCurrentOrders() {
+        return this.currentOrders;
     }
 
     /**
@@ -177,7 +194,7 @@ class KeyEventPerformer implements IKeyEventPerformer {
      *
      * @param currentOrder
      */
-    private void setCurrentOrder(final ArrayList<OrderEnum> currentOrder) {
-        this.currentOrder = currentOrder;
+    private void setCurrentOrders(final ArrayList<OrderEnum> currentOrders) {
+        this.currentOrders = currentOrders;
     }
 }

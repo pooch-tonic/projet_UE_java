@@ -23,9 +23,11 @@ public class BounceTowardsPlayer implements IBounceStrategy {
         final IVector chasingDirection = playerPosition.getSubResult(actorPosition);
         chasingDirection.normalize();
         final IVector actorNextPosition = actorPosition.getAddResult(chasingDirection);
+        final IEntity target = level.getEntityOn(actorNextPosition);
 
         if ((level.getUnits()[actorNextPosition.getX()][actorNextPosition.getY()]
-                .getType() != UnitTypeEnum.WALL) && (level.getEntityOn(actorNextPosition) == null)) {
+                .getType() != UnitTypeEnum.WALL)
+                && ((target == level.getPlayer()) || (target == null))) {
             actor.setDirection(chasingDirection);
         } else {
             // TODO a enrichir
