@@ -81,6 +81,8 @@ class KeyEventPerformer implements IKeyEventPerformer {
      */
     @Override
     public void performKeyTypedEvent(final KeyEvent keyEvent) {
+        // TODO Auto-generated method stub
+
     }
 
     /**

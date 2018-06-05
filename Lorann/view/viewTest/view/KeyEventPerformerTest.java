@@ -39,6 +39,7 @@ public class KeyEventPerformerTest {
             new KeyEventPerformer(null);
             fail("Not yet implemented");
         } catch (final Exception e) {
+            // TODO Auto-generated catch block
             final String expected = "The OrderStacker is null";
             assertEquals(expected, e.getMessage());
         }

@@ -35,6 +35,8 @@ class KeyListener implements java.awt.event.KeyListener {
      */
     @Override
     public void keyTyped(final KeyEvent e) {
+        // TODO Auto-generated method stub
+
     }
 
     /*
@@ -44,7 +46,7 @@ class KeyListener implements java.awt.event.KeyListener {
      */
     @Override
     public void keyPressed(final KeyEvent e) {
-        this.getKeyEventPerformer().performKeyPressedEvent(e);
+        this.keyEventPerformer.performKeyPressedEvent(e);
     }
 
     /*
@@ -54,7 +56,7 @@ class KeyListener implements java.awt.event.KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        this.getKeyEventPerformer().performKeyReleasedEvent(e);
+        this.keyEventPerformer.performKeyReleasedEvent(e);
     }
 
     /**
