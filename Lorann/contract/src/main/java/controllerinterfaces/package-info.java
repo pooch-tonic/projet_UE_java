@@ -1,5 +1,6 @@
 /**
- * Provides all contracts for the controller component.
+ * <h1>The controllerinterfaces package</h1> Provides all contracts for the
+ * controller component.
  *
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0

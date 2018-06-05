@@ -4,14 +4,14 @@
 package controllerinterfaces;
 
 /**
- * <h1>The Interface IOrderPerformer allows an object to perform orders</h1>
+ * <h1>The IOrderPerformer interface.</h1> Allows an object to perform orders.
  *
  * @author Aurélien Dellac
  * @version 2 juin 2018
  */
 public interface IOrderPerformer {
-    /**
-     * Indicates to the model what to do depending on the order stacked
-     */
-    public void performOrder();
+	/**
+	 * Indicates to the model what to do depending on the stacked order.
+	 */
+	public void performOrder();
 }

@@ -8,8 +8,8 @@ import vector.IVector;
 /**
  * <h1>The ILevel interface.</h1> Implemented by level objects containing units
  * and entities.
- * 
- * @author Ryo
+ *
+ * @author Ryo SHIINA
  *
  */
 public interface ILevel {
