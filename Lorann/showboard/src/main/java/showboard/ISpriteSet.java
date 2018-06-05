@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 public interface ISpriteSet {
 
-	// TODO JAVADOC
 	/**
 	 * Returns the current animation index.
 	 * 
