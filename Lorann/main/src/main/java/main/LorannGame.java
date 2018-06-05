@@ -64,7 +64,7 @@ public class LorannGame {
     public void play() {
         final TimerTask task = new UpdateTask(this.getController());
         final Timer timer = new Timer();
-        timer.scheduleAtFixedRate(task, 100, 100);
+        timer.scheduleAtFixedRate(task, 100, 115);
     }
 
 }

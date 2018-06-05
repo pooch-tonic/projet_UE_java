@@ -56,7 +56,7 @@ class KeyListener implements java.awt.event.KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-        this.keyEventPerformer.performKeyPressedEvent(e);
+        this.keyEventPerformer.performKeyReleasedEvent(e);
     }
 
     /**
