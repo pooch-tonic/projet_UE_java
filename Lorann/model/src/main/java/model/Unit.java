@@ -14,8 +14,7 @@ import vector.IVector;
 import vector.Vector;
 
 /**
- * <h1>The Unit class, which is the base class for all objects contained by the
- * map.</h1>
+ * <h1>The Unit class.</h1> The base class for all elements placed in the game.
  *
  * @author Max Becerro
  * @author Ryo SHIINA

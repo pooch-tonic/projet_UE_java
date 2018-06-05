@@ -9,7 +9,9 @@ import enums.UnitTypeEnum;
 import vector.IVector;
 
 /**
- * @author Max Becerro
+ * <h1>The Wall class.</h1> A simple unit that blocks the way of other entities.
+ * 
+ * @author Ryo SHIINA
  *
  */
 public class Wall extends Unit {

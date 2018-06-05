@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import showboard.ISpriteSet;
 
 /**
- * <h1>The SpriteSet class to store one or many sprites as a set</h1>
+ * <h1>The SpriteSet class.</h1> Allows the units to store their sprites as a
+ * set.
  *
  * @author Max Becerro
  * @author Ryo SHIINA
@@ -59,7 +60,9 @@ public class SpriteSet implements ISpriteSet {
 		this.setMaxIndex(this.getnSprites() - 1);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see showboard.ISpriteSet#getCurrentIndex()
 	 */
 	@Override
@@ -118,6 +121,7 @@ public class SpriteSet implements ISpriteSet {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see showboard.ISpriteSet#getSprites()
 	 */
 	@Override
@@ -127,7 +131,7 @@ public class SpriteSet implements ISpriteSet {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see showboard.ISpriteSet#resetIndex()
 	 */
 	@Override
@@ -151,14 +155,16 @@ public class SpriteSet implements ISpriteSet {
 
 	/**
 	 * sets the maximum index of the ArrayList.
-	 * 
+	 *
 	 * @param maxIndex
 	 */
 	private void setMaxIndex(final int maxIndex) {
 		this.maxIndex = maxIndex;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see showboard.ISpriteSet#setNextSprite()
 	 */
 	@Override
@@ -168,7 +174,7 @@ public class SpriteSet implements ISpriteSet {
 
 	/**
 	 * sets the amount of sprites.
-	 * 
+	 *
 	 * @param nSprites
 	 */
 	private void setnSprites(final int nSprites) {
@@ -186,7 +192,7 @@ public class SpriteSet implements ISpriteSet {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see showboard.ISpriteSet#setSprites(java.awt.image.BufferedImage)
 	 */
 	@Override
@@ -197,6 +203,7 @@ public class SpriteSet implements ISpriteSet {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see showboard.ISpriteSet#setSprites(showboard.ISpriteSet)
 	 */
 	@Override
