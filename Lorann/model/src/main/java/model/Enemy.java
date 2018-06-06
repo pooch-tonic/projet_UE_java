@@ -54,7 +54,7 @@ public class Enemy extends Entity {
         switch (enemyName) {
         case KYRACJ:
             this.setBounceStrategy(new BounceTowardsPlayerMainlyByDiagonal());
-            this.setDodgeStrategy(new DodgeAside());
+            this.setDodgeStrategy(new DodgeBackwards());
             break;
         case CARGYV:
             this.setBounceStrategy(new BounceTowardsPlayerMainlyByDiagonal());
