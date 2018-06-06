@@ -21,18 +21,19 @@ import vector.IVector;
 public class Dead extends Entity {
     public static int SCORE = 0;
 
-    /**
-     * Instantiates a new Dead entity.
-     *
-     * @param spriteSet
-     *            the spriteSet to load
-     */
-    public Dead(final ISpriteSet spriteSet) {
-        super(null, spriteSet, UnitTypeEnum.DEAD, 10, SCORE);
-        this.setBounceStrategy(new DoNotBounce());
-        this.setDodgeStrategy(new DoNotDodge());
-        this.setMoveStrategy(new DoNotMove());
-    }
+
+	/**
+	 * Instantiates a new Dead entity.
+	 *
+	 * @param spriteSet
+	 *            the spriteSet to load
+	 */
+	public Dead(final ISpriteSet spriteSet) {
+		super(null, spriteSet, UnitTypeEnum.DEAD, 16, SCORE);
+		this.setBounceStrategy(new DoNotBounce());
+		this.setDodgeStrategy(new DoNotDodge());
+		this.setMoveStrategy(new DoNotMove());
+	}
 
     /**
      * Instantiates a new Dead entity.
@@ -60,17 +61,18 @@ public class Dead extends Entity {
         this.setMoveStrategy(new DoNotMove());
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see model.Entity#update()
-     */
-    @Override
-    public void update() {
-        this.decrementDurability();
-        if (this.getDurability() < 8) {
-            super.update();
-        }
-    }
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see model.Entity#update()
+	 */
+	@Override
+	public void update() {
+		this.decrementDurability();
+		if (this.getDurability() < 8) {
+			this.getSpriteSet().setNextSprite();
+		}
+	}
 
 }
