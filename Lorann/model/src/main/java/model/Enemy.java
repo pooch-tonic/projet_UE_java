@@ -57,12 +57,12 @@ public class Enemy extends Entity {
             this.setDodgeStrategy(new DodgeAside());
             break;
         case CARGYV:
-            this.setBounceStrategy(new BounceTowardsPlayerMainlyByAxis());
+            this.setBounceStrategy(new BounceTowardsPlayerMainlyByDiagonal());
             this.setDodgeStrategy(new DodgeAside());
             break;
         case ARRBARR:
             this.setBounceStrategy(new BounceTowardsPlayerMainlyByAxis());
-            this.setDodgeStrategy(new DodgeBackwards());
+            this.setDodgeStrategy(new DodgeAside());
             break;
         case MAARCG:
             this.setBounceStrategy(new BounceTowardsPlayerMainlyByAxis());
