@@ -19,7 +19,8 @@ import vector.IVector;
  *
  */
 public class Dead extends Entity {
-	public static int SCORE = 0;
+    public static int SCORE = 0;
+
 
 	/**
 	 * Instantiates a new Dead entity.
@@ -34,29 +35,32 @@ public class Dead extends Entity {
 		this.setMoveStrategy(new DoNotMove());
 	}
 
-	/**
-	 * Instantiates a new Dead entity.
-	 *
-	 */
-	public Dead() {
-		super(UnitTypeEnum.DEAD);
-		this.setBounceStrategy(new DoNotBounce());
-		this.setDodgeStrategy(new DoNotDodge());
-		this.setScoreValue(SCORE);
-	}
+    /**
+     * Instantiates a new Dead entity.
+     *
+     */
+    public Dead() {
+        super(UnitTypeEnum.DEAD);
+        this.setBounceStrategy(new DoNotBounce());
+        this.setDodgeStrategy(new DoNotDodge());
+        this.setMoveStrategy(new DoNotMove());
+        this.setScoreValue(SCORE);
+    }
 
-	/**
-	 * Instantiates a new Dead entity.
-	 *
-	 * @param position
-	 *            the position of the dead entity
-	 */
-	public Dead(final IVector position) {
-		super(position, UnitTypeEnum.DEAD);
-		this.setScoreValue(SCORE);
-		this.setBounceStrategy(new DoNotBounce());
-		this.setDodgeStrategy(new DoNotDodge());
-	}
+    /**
+     * Instantiates a new Dead entity.
+     *
+     * @param position
+     *            the position of the dead entity
+     */
+    public Dead(final IVector position) {
+        super(position, UnitTypeEnum.DEAD);
+        this.setScoreValue(SCORE);
+        this.setBounceStrategy(new DoNotBounce());
+        this.setDodgeStrategy(new DoNotDodge());
+        this.setMoveStrategy(new DoNotMove());
+    }
+
 
 	/*
 	 * (non-Javadoc)

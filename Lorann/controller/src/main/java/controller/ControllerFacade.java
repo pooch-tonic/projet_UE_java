@@ -76,7 +76,7 @@ public class ControllerFacade implements IController, IOrderStacker, IOrderPerfo
      */
     public void start() throws SQLException {
         this.getModel().setMaxLevels();
-        this.nextLevel();
+        this.loadLevel(1);
         ;
     }
 
