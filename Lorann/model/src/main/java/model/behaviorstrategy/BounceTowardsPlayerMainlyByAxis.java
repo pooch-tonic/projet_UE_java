@@ -28,7 +28,6 @@ public class BounceTowardsPlayerMainlyByAxis implements IBounceStrategy {
         IEntity target;
         int currentDistance = 100;
         int currentDistanceToActor = 3;
-
         for (final DirectionEnum directionEnum : DirectionEnum.values()) {
             directionStudied = VectorFactory.getVectorForDirection(directionEnum);
             positionStudied = directionStudied.getAddResult(actorPosition);
@@ -40,16 +39,16 @@ public class BounceTowardsPlayerMainlyByAxis implements IBounceStrategy {
                 final int abs = positionStudied.getX() - playerPosition.getX();
                 final int ord = positionStudied.getY() - playerPosition.getY();
                 final int distance = new Double(Math.sqrt((abs * abs) + (ord * ord))).intValue();
-                final int distanceToPlayer = Math.abs(directionStudied.getX())
+                final int distanceToActor = Math.abs(directionStudied.getX())
                         + Math.abs(directionStudied.getY());
                 if ((distance < currentDistance)) {
                     currentDistance = distance;
-                    currentDistanceToActor = distanceToPlayer;
+                    currentDistanceToActor = distanceToActor;
                     chasingDirection = directionStudied;
                 } else if ((distance == currentDistance)
-                        && (distanceToPlayer < currentDistanceToActor)) {
+                        && (distanceToActor < currentDistanceToActor)) {
                     currentDistance = distance;
-                    currentDistanceToActor = distanceToPlayer;
+                    currentDistanceToActor = distanceToActor;
                     chasingDirection = directionStudied;
                 }
             }
