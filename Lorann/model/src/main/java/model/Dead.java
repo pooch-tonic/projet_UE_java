@@ -28,7 +28,7 @@ public class Dead extends Entity {
 	 *            the spriteSet to load
 	 */
 	public Dead(final ISpriteSet spriteSet) {
-		super(null, spriteSet, UnitTypeEnum.DEAD, 10, SCORE);
+		super(null, spriteSet, UnitTypeEnum.DEAD, 16, SCORE);
 		this.setBounceStrategy(new DoNotBounce());
 		this.setDodgeStrategy(new DoNotDodge());
 		this.setMoveStrategy(new DoNotMove());
@@ -66,6 +66,9 @@ public class Dead extends Entity {
 	@Override
 	public void update() {
 		this.decrementDurability();
+		if (this.getDurability() < 8) {
+			this.getSpriteSet().setNextSprite();
+		}
 	}
 
 }
